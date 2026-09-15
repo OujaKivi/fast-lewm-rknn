@@ -1,0 +1,324 @@
+{
+  "tag": "het_full_v2",
+  "mode": "all",
+  "torch": "2.9.1+cpu",
+  "platform": "aarch64",
+  "torch_threads": 8,
+  "rknn_predictor": "/root/Fast-LeWorldModel/predictor_S300_fp16_v4.rknn",
+  "rknn_encoder": "/root/Fast-LeWorldModel/action_encoder_S300_fp16.rknn",
+  "config": {
+    "embed_dim": 192,
+    "action_blocks": 5,
+    "cem_samples": 300,
+    "cem_iters": 30,
+    "cem_topk": 30
+  },
+  "E1_cpu": {
+    "mode": "cpu",
+    "iters": 30,
+    "samples": 300,
+    "repeats": 3,
+    "stage_per_iter_ms": {
+      "vi_enc": {
+        "mean_ms": 134.0532,
+        "median_ms": 130.4755,
+        "min_ms": 127.4385,
+        "p95_ms": 130.4755,
+        "count": 3
+      },
+      "cem_sample": {
+        "mean_ms": 0.1291,
+        "median_ms": 0.1221,
+        "min_ms": 0.1105,
+        "p95_ms": 0.147,
+        "count": 90
+      },
+      "tensor_prep": {
+        "mean_ms": 0.087,
+        "median_ms": 0.0643,
+        "min_ms": 0.0519,
+        "p95_ms": 0.084,
+        "count": 90
+      },
+      "act_enc_cpu": {
+        "mean_ms": 102.5574,
+        "median_ms": 99.4132,
+        "min_ms": 83.0622,
+        "p95_ms": 120.9717,
+        "count": 90
+      },
+      "rollout_total": {
+        "mean_ms": 561.3464,
+        "median_ms": 552.9671,
+        "min_ms": 527.5279,
+        "p95_ms": 617.3016,
+        "count": 90
+      },
+      "score": {
+        "mean_ms": 0.3054,
+        "median_ms": 0.2874,
+        "min_ms": 0.2339,
+        "p95_ms": 0.362,
+        "count": 90
+      },
+      "elite_select": {
+        "mean_ms": 0.189,
+        "median_ms": 0.18,
+        "min_ms": 0.1593,
+        "p95_ms": 0.2295,
+        "count": 90
+      }
+    },
+    "stage_total_ms": {
+      "vi_enc": 3914.265,
+      "cem_sample": 3.663,
+      "tensor_prep": 1.929,
+      "act_enc_cpu": 2982.396,
+      "rollout_total": 16589.013,
+      "score": 8.622,
+      "elite_select": 5.4
+    },
+    "total_decision_median_ms": 20089.729,
+    "total_decision_s": 20.09,
+    "npu_per_step_ms": {}
+  },
+  "E1_npu_het": {
+    "mode": "npu_het",
+    "iters": 30,
+    "samples": 300,
+    "repeats": 3,
+    "stage_per_iter_ms": {
+      "vi_enc": {
+        "mean_ms": 169.604,
+        "median_ms": 171.6984,
+        "min_ms": 163.025,
+        "p95_ms": 171.6984,
+        "count": 3
+      },
+      "cem_sample": {
+        "mean_ms": 0.2786,
+        "median_ms": 0.188,
+        "min_ms": 0.1155,
+        "p95_ms": 0.5658,
+        "count": 90
+      },
+      "tensor_prep": {
+        "mean_ms": 0.1888,
+        "median_ms": 0.1342,
+        "min_ms": 0.0674,
+        "p95_ms": 0.3795,
+        "count": 90
+      },
+      "act_enc_cpu": {
+        "mean_ms": 168.0319,
+        "median_ms": 163.22,
+        "min_ms": 101.0176,
+        "p95_ms": 213.662,
+        "count": 90
+      },
+      "npu_transfer_in": {
+        "mean_ms": 0.0926,
+        "median_ms": 0.0825,
+        "min_ms": 0.0534,
+        "p95_ms": 0.1668,
+        "count": 450
+      },
+      "npu_inference": {
+        "mean_ms": 23.6077,
+        "median_ms": 22.5576,
+        "min_ms": 20.6877,
+        "p95_ms": 32.0204,
+        "count": 450
+      },
+      "npu_transfer_out": {
+        "mean_ms": 0.3546,
+        "median_ms": 0.2756,
+        "min_ms": 0.1712,
+        "p95_ms": 0.8773,
+        "count": 450
+      },
+      "rollout_total": {
+        "mean_ms": 120.3232,
+        "median_ms": 113.395,
+        "min_ms": 109.7254,
+        "p95_ms": 153.4427,
+        "count": 90
+      },
+      "score": {
+        "mean_ms": 0.7538,
+        "median_ms": 0.6819,
+        "min_ms": 0.3663,
+        "p95_ms": 1.4619,
+        "count": 90
+      },
+      "elite_select": {
+        "mean_ms": 0.3503,
+        "median_ms": 0.2612,
+        "min_ms": 0.2097,
+        "p95_ms": 0.6248,
+        "count": 90
+      }
+    },
+    "stage_total_ms": {
+      "vi_enc": 5150.952,
+      "cem_sample": 5.64,
+      "tensor_prep": 4.026,
+      "act_enc_cpu": 4896.6,
+      "npu_transfer_in": 2.475,
+      "npu_inference": 676.728,
+      "npu_transfer_out": 8.268,
+      "rollout_total": 3401.85,
+      "score": 20.457,
+      "elite_select": 7.836
+    },
+    "total_decision_median_ms": 8950.464,
+    "total_decision_s": 8.95,
+    "npu_per_step_ms": {
+      "npu_transfer_in": {
+        "mean_ms": 0.0926,
+        "median_ms": 0.0825,
+        "min_ms": 0.0534,
+        "p95_ms": 0.1668,
+        "count": 450
+      },
+      "npu_inference": {
+        "mean_ms": 23.6077,
+        "median_ms": 22.5576,
+        "min_ms": 20.6877,
+        "p95_ms": 32.0204,
+        "count": 450
+      },
+      "npu_transfer_out": {
+        "mean_ms": 0.3546,
+        "median_ms": 0.2756,
+        "min_ms": 0.1712,
+        "p95_ms": 0.8773,
+        "count": 450
+      }
+    }
+  },
+  "E1_npu_full": {
+    "mode": "npu_full",
+    "iters": 30,
+    "samples": 300,
+    "repeats": 3,
+    "stage_per_iter_ms": {
+      "vi_enc": {
+        "mean_ms": 245.5099,
+        "median_ms": 244.4609,
+        "min_ms": 191.6953,
+        "p95_ms": 244.4609,
+        "count": 3
+      },
+      "cem_sample": {
+        "mean_ms": 0.4979,
+        "median_ms": 0.5497,
+        "min_ms": 0.1129,
+        "p95_ms": 0.5857,
+        "count": 90
+      },
+      "tensor_prep": {
+        "mean_ms": 0.3108,
+        "median_ms": 0.2912,
+        "min_ms": 0.0613,
+        "p95_ms": 0.6134,
+        "count": 90
+      },
+      "act_enc_npu": {
+        "mean_ms": 183.7849,
+        "median_ms": 182.2137,
+        "min_ms": 178.0966,
+        "p95_ms": 200.0779,
+        "count": 90
+      },
+      "npu_transfer_in": {
+        "mean_ms": 0.2085,
+        "median_ms": 0.2106,
+        "min_ms": 0.0694,
+        "p95_ms": 0.2622,
+        "count": 450
+      },
+      "npu_inference": {
+        "mean_ms": 29.8769,
+        "median_ms": 30.1457,
+        "min_ms": 21.8185,
+        "p95_ms": 36.2468,
+        "count": 450
+      },
+      "npu_transfer_out": {
+        "mean_ms": 0.8035,
+        "median_ms": 0.7317,
+        "min_ms": 0.2669,
+        "p95_ms": 1.3989,
+        "count": 450
+      },
+      "rollout_total": {
+        "mean_ms": 154.561,
+        "median_ms": 152.822,
+        "min_ms": 117.3063,
+        "p95_ms": 186.0428,
+        "count": 90
+      },
+      "score": {
+        "mean_ms": 1.1518,
+        "median_ms": 1.0585,
+        "min_ms": 0.3725,
+        "p95_ms": 2.0822,
+        "count": 90
+      },
+      "elite_select": {
+        "mean_ms": 0.5609,
+        "median_ms": 0.5814,
+        "min_ms": 0.2328,
+        "p95_ms": 0.7123,
+        "count": 90
+      }
+    },
+    "stage_total_ms": {
+      "vi_enc": 7333.827,
+      "cem_sample": 16.491,
+      "tensor_prep": 8.736,
+      "act_enc_npu": 5466.411,
+      "npu_transfer_in": 6.318,
+      "npu_inference": 904.371,
+      "npu_transfer_out": 21.951,
+      "rollout_total": 4584.66,
+      "score": 31.755,
+      "elite_select": 17.442
+    },
+    "total_decision_median_ms": 10492.305,
+    "total_decision_s": 10.492,
+    "npu_per_step_ms": {
+      "npu_transfer_in": {
+        "mean_ms": 0.2085,
+        "median_ms": 0.2106,
+        "min_ms": 0.0694,
+        "p95_ms": 0.2622,
+        "count": 450
+      },
+      "npu_inference": {
+        "mean_ms": 29.8769,
+        "median_ms": 30.1457,
+        "min_ms": 21.8185,
+        "p95_ms": 36.2468,
+        "count": 450
+      },
+      "npu_transfer_out": {
+        "mean_ms": 0.8035,
+        "median_ms": 0.7317,
+        "min_ms": 0.2669,
+        "p95_ms": 1.3989,
+        "count": 450
+      }
+    }
+  },
+  "speedup": {
+    "cpu_total_s": 20.09,
+    "npu_het_total_s": 8.95,
+    "het_vs_cpu": 2.245,
+    "npu_full_total_s": 10.492,
+    "full_vs_cpu": 1.915,
+    "het_vs_full": 1.172
+  },
+  "max_rss_mb": 911.4
+}

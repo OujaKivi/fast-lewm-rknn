@@ -88,3 +88,78 @@ class NPUPredictor:
     @property
     def call_count(self):
         return self._call_count
+
+
+class NPUActionEncoder:
+    """RKNN 版 action_encoder，接口兼容 ActionPrefixEmbedder 的 forward 调用。
+
+    接口：
+        act_enc(actions, return_last_only=True, latent=latent) -> act_emb
+        actions: (S, 5, 2) torch.Tensor
+        latent:  (S, 1, 192) torch.Tensor
+        act_emb: (S, 1, 192) torch.Tensor
+
+    注意：return_last_only 参数仅为接口兼容，RKNN 模型固定输出最后一个 token。
+    """
+
+    def __init__(self, rknn_path, core_mask=None, verbose=False):
+        self.rknn = RKNNLite(verbose=verbose)
+        ret = self.rknn.load_rknn(rknn_path)
+        if ret != 0:
+            raise RuntimeError(f"加载 RKNN 失败: {rknn_path}, ret={ret}")
+
+        if core_mask is None:
+            core_mask = RKNNLite.NPU_CORE_AUTO
+        ret = self.rknn.init_runtime(core_mask=core_mask)
+        if ret != 0:
+            raise RuntimeError(f"初始化 NPU runtime 失败, ret={ret}")
+
+        self.rknn_path = rknn_path
+        self._call_count = 0
+
+    def __call__(self, actions, return_last_only=True, latent=None):
+        """
+        推理一次 action_encoder。
+
+        Args:
+            actions: torch.Tensor (S, 5, 2)，候选动作序列
+            return_last_only: 接口兼容参数，忽略（RKNN 固定输出最后 token）
+            latent: torch.Tensor (S, 1, 192)，当前 latent 条件
+
+        Returns:
+            act_emb: torch.Tensor (S, 1, 192)，动作编码
+        """
+        if latent is None:
+            raise ValueError("NPUActionEncoder 需要 latent 参数")
+
+        # torch → numpy
+        actions_np = actions.detach().cpu().numpy().astype(np.float32, copy=False)
+        latent_np = latent.detach().cpu().numpy().astype(np.float32, copy=False)
+
+        # NPU 推理（action_encoder 输入顺序：actions, latent）
+        outputs = self.rknn.inference(inputs=[actions_np, latent_np])
+
+        if outputs is None or len(outputs) == 0:
+            raise RuntimeError("NPU 推理返回空输出，请检查输入 shape 是否与模型一致")
+
+        act_emb_np = outputs[0]  # (S, 1, 192) float32
+
+        # numpy → torch
+        act_emb = torch.from_numpy(act_emb_np).to(actions.device)
+        self._call_count += 1
+        return act_emb
+
+    def release(self):
+        if self.rknn is not None:
+            self.rknn.release()
+            self.rknn = None
+
+    def __del__(self):
+        try:
+            self.release()
+        except Exception:
+            pass
+
+    @property
+    def call_count(self):
+        return self._call_count

@@ -65,15 +65,41 @@ npu_transfer_out: numpy → torch.Tensor（from_numpy + to(device)）
 
 ## 3. 实验结果
 
-### 3.1 端到端对比
+### 3.1 三方端到端对比（CPU / NPU全量 / NPU异构）
 
-| 指标 | CPU 基线 | NPU 异构（方案A） | 加速比 |
-|------|----------|-------------------|--------|
-| 完整 CEM 决策 | **20.17 s** | **8.89 s** | **2.27×** |
-| rollout（5步×30iter） | 16.59 s | 3.37 s | **4.93×** |
-| action_encoder | 2.97 s | 5.07 s | 0.59×（变慢） |
-| vi_enc（视觉编码） | 3.90 s | 6.57 s | 0.59×（变慢） |
-| score + elite + sample | 0.018 s | 0.030 s | 0.60×（变慢） |
+为区分"异构调度的收益"与"简单把模型搬到 NPU 的收益"，增加 NPU 全量基线（action_encoder + predictor 都放 NPU）。
+
+| 指标 | CPU 全量 | NPU 全量（enc+pred都NPU） | NPU 异构（方案A，CPU enc+NPU pred） |
+|------|----------|---------------------------|--------------------------------------|
+| 完整 CEM 决策 | 20.09 s | 10.49 s | **8.95 s** |
+| vs CPU 加速比 | 1.0× | 1.92× | **2.25×** |
+| rollout（5步×30iter） | 16.59 s | 4.58 s | **3.40 s** |
+| action_encoder | 2.98 s（CPU） | 5.47 s（NPU，**比CPU慢83%**） | 4.90 s（CPU，被NPU拖慢） |
+| vi_enc（视觉编码） | 3.91 s | 7.33 s | 5.15 s |
+| score + elite + sample | 0.018 s | 0.066 s | 0.034 s |
+| 内存占用（max RSS） | ~440 MB | **911 MB**（双模型加载） | ~490 MB |
+
+**关键结论：异构（方案A）比 NPU 全量快 17%（1.17×）**，证明"不适合 NPU 的模块留 CPU"的异构调度有实际价值，而不是简单搬家。
+
+### 3.2 为什么异构比全量好
+
+**action_encoder 在 NPU 上反而更慢**：
+- CPU：2.98s（30 iter，约 99ms/iter）
+- NPU：5.47s（30 iter，约 182ms/iter）
+- NPU 比 CPU 慢 **83%**，原因：
+  1. action_encoder 仅 1.8M 参数，NPU 吃不满（利用率 31.7%）
+  2. 含 T=5 小 self-attention，NPU 上 attention 效率低
+  3. RKNN 模型文件 190MB，加载和初始化开销大
+  4. 数据搬运开销占比大（小模型计算少，搬运相对多）
+
+**NPU 全量模式下 predictor 也变慢**：
+- 异构模式 predictor：22.6ms/步
+- 全量模式 predictor：30.1ms/步（+33%）
+- 原因：两个 NPU 模型交替推理，NPU 上下文切换/缓存失效
+
+**NPU 全量模式下 CPU 端被拖慢更严重**：
+- vi_enc：CPU 3.91s → 异构 5.15s（+32%）→ 全量 7.33s（+87%）
+- 原因：两个 NPU 模型交替运行，占用更多内存带宽和系统资源
 
 ### 3.2 NPU 每步细粒度（450 次调用统计）
 

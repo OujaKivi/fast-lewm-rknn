@@ -35,6 +35,7 @@ CEM_SAMPLES, CEM_ITERS, CEM_TOPK = 300, 30, 30
 
 # 默认 RKNN 模型路径（板端）
 DEFAULT_RKNN_PATH = "/root/Fast-LeWorldModel/predictor_S300_fp16_v4.rknn"
+DEFAULT_ENC_RKNN_PATH = "/root/Fast-LeWorldModel/action_encoder_S300_fp16.rknn"
 
 
 def n_params(m):
@@ -95,14 +96,18 @@ def build_vit(device):
 # ============================================================
 @torch.no_grad()
 def cem_decision_het(act_enc, predictor, vit, S, iters, topk, steps, device,
-                     use_npu=False, npu_predictor=None):
+                     use_npu=False, npu_predictor=None, use_npu_enc=False, npu_encoder=None):
     """
     异构版 CEM 决策。
-    use_npu=True 时，predictor 用 NPU（npu_predictor），action_encoder 仍用 CPU。
-    use_npu=False 时，全用 CPU predictor（基线）。
+    use_npu=True 时，predictor 用 NPU（npu_predictor）。
+    use_npu_enc=True 时，action_encoder 用 NPU（npu_encoder）。
+    组合：
+      use_npu=False, use_npu_enc=False → CPU 全量基线
+      use_npu=True,  use_npu_enc=False → 方案A异构（CPU enc + NPU pred）
+      use_npu=True,  use_npu_enc=True  → NPU 全量基线（NPU enc + NPU pred）
 
     细粒度计时：
-      vi_enc, cem_sample, tensor_prep, act_enc_cpu, rollout_total,
+      vi_enc, cem_sample, tensor_prep, act_enc_cpu / act_enc_npu, rollout_total,
       npu_transfer_in, npu_inference, npu_transfer_out,
       score, elite_select
     """
@@ -125,6 +130,8 @@ def cem_decision_het(act_enc, predictor, vit, S, iters, topk, steps, device,
     sigma = torch.ones(1, steps, ACTION_DIM, device=device) * 0.5
 
     pred_fn = npu_predictor if use_npu else predictor
+    enc_fn = npu_encoder if use_npu_enc else act_enc
+    enc_tag = "act_enc_npu" if use_npu_enc else "act_enc_cpu"
 
     for i in range(iters):
         # 1) CEM 采样
@@ -139,11 +146,11 @@ def cem_decision_het(act_enc, predictor, vit, S, iters, topk, steps, device,
         act_input = actions.contiguous()
         T["tensor_prep"].append(now_ns() - t0)
 
-        # 3) action_encoder（CPU）
+        # 3) action_encoder（CPU 或 NPU）
         t0 = now_ns()
         emb = latent
-        act_emb = act_enc(act_input, return_last_only=True, latent=emb[:, -1:])
-        T["act_enc_cpu"].append(now_ns() - t0)
+        act_emb = enc_fn(act_input, return_last_only=True, latent=emb[:, -1:])
+        T[enc_tag].append(now_ns() - t0)
 
         # 4) rollout：5 步 predictor（NPU 或 CPU）
         t_rollout0 = now_ns()
@@ -189,18 +196,21 @@ def cem_decision_het(act_enc, predictor, vit, S, iters, topk, steps, device,
 
 
 def run_e1_het(act_enc, predictor, vit, device, use_npu=False, npu_predictor=None,
+               use_npu_enc=False, npu_encoder=None,
                repeats=3, iters=CEM_ITERS, S=CEM_SAMPLES):
     """跑 E1 异构版，返回各阶段统计。"""
     # warmup
     cem_decision_het(act_enc, predictor, vit, S, 2, CEM_TOPK, ACTION_BLOCKS,
-                     device, use_npu=use_npu, npu_predictor=npu_predictor)
+                     device, use_npu=use_npu, npu_predictor=npu_predictor,
+                     use_npu_enc=use_npu_enc, npu_encoder=npu_encoder)
 
     all_T = defaultdict(list)
     totals = []
     for r in range(repeats):
         T, mu, total = cem_decision_het(
             act_enc, predictor, vit, S, iters, CEM_TOPK, ACTION_BLOCKS,
-            device, use_npu=use_npu, npu_predictor=npu_predictor)
+            device, use_npu=use_npu, npu_predictor=npu_predictor,
+            use_npu_enc=use_npu_enc, npu_encoder=npu_encoder)
         for k, v in T.items():
             all_T[k].extend(v)
         totals.append(total)
@@ -216,8 +226,16 @@ def run_e1_het(act_enc, predictor, vit, device, use_npu=False, npu_predictor=Non
             if key in stage_stats:
                 npu_per_step[key] = stage_stats[key]
 
+    # 模式标签
+    if use_npu and use_npu_enc:
+        mode_tag = "npu_full"
+    elif use_npu:
+        mode_tag = "npu_het"
+    else:
+        mode_tag = "cpu"
+
     return {
-        "mode": "npu" if use_npu else "cpu",
+        "mode": mode_tag,
         "iters": iters, "samples": S, "repeats": repeats,
         "stage_per_iter_ms": stage_stats,
         "stage_total_ms": stage_total_ms,
@@ -269,9 +287,10 @@ def verify_output_consistency(act_enc, cpu_pred, npu_pred, device, S=CEM_SAMPLES
 # ============================================================
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["cpu", "npu", "both"], default="both",
-                    help="cpu=全CPU基线, npu=CPU enc + NPU pred, both=两者对比")
+    ap.add_argument("--mode", choices=["cpu", "npu", "npu_full", "both", "all"], default="all",
+                    help="cpu=全CPU基线, npu=CPU enc+NPU pred(方案A), npu_full=NPU enc+NPU pred, both=cpu+npu, all=三者对比")
     ap.add_argument("--rknn", default=DEFAULT_RKNN_PATH, help="RKNN predictor 模型路径")
+    ap.add_argument("--rknn-enc", default=DEFAULT_ENC_RKNN_PATH, help="RKNN action_encoder 模型路径")
     ap.add_argument("--tag", default="het_profile")
     ap.add_argument("--e1", action="store_true", default=True)
     ap.add_argument("--verify", action="store_true", help="验证 CPU/NPU 输出一致性")
@@ -288,10 +307,20 @@ def main():
     vit = build_vit(device)
 
     npu_predictor = None
-    if args.mode in ["npu", "both"]:
+    npu_encoder = None
+    need_npu_pred = args.mode in ["npu", "both", "all", "npu_full"]
+    need_npu_enc = args.mode in ["npu_full", "all"]
+
+    if need_npu_pred:
         print(f"[build] NPU predictor from {args.rknn} ...", flush=True)
         npu_predictor = build_npu_predictor(args.rknn)
         print("  NPU predictor 加载成功", flush=True)
+
+    if need_npu_enc:
+        print(f"[build] NPU action_encoder from {args.rknn_enc} ...", flush=True)
+        from npu_predictor import NPUActionEncoder
+        npu_encoder = NPUActionEncoder(args.rknn_enc)
+        print("  NPU action_encoder 加载成功", flush=True)
 
     rep = 2 if args.quick else args.repeats
     iters = 5 if args.quick else args.iters
@@ -302,42 +331,64 @@ def main():
         "torch": torch.__version__,
         "platform": os.uname().machine,
         "torch_threads": threads,
-        "rknn_model": args.rknn if npu_predictor else None,
+        "rknn_predictor": args.rknn if npu_predictor else None,
+        "rknn_encoder": args.rknn_enc if npu_encoder else None,
         "config": {"embed_dim": EMBED_DIM, "action_blocks": ACTION_BLOCKS,
                    "cem_samples": CEM_SAMPLES, "cem_iters": iters, "cem_topk": CEM_TOPK},
     }
 
     # 输出一致性验证
     if args.verify and npu_predictor is not None:
-        print("[verify] CPU vs NPU 输出一致性 ...", flush=True)
-        res["verify_consistency"] = verify_output_consistency(
+        print("[verify] CPU vs NPU predictor 输出一致性 ...", flush=True)
+        res["verify_consistency_pred"] = verify_output_consistency(
             act_enc, cpu_predictor, npu_predictor, device)
 
     # E1
     if args.e1:
-        if args.mode in ["cpu", "both"]:
+        run_cpu = args.mode in ["cpu", "both", "all"]
+        run_npu_het = args.mode in ["npu", "both", "all"]
+        run_npu_full = args.mode in ["npu_full", "all"]
+
+        if run_cpu:
             print(f"[E1][CPU] 端到端分解, iters={iters}, repeats={rep} ...", flush=True)
             res["E1_cpu"] = run_e1_het(
                 act_enc, cpu_predictor, vit, device, use_npu=False,
                 repeats=rep, iters=iters)
 
-        if args.mode in ["npu", "both"]:
-            print(f"[E1][NPU] 端到端分解, iters={iters}, repeats={rep} ...", flush=True)
-            res["E1_npu"] = run_e1_het(
+        if run_npu_het:
+            print(f"[E1][NPU异构(方案A)] 端到端分解, iters={iters}, repeats={rep} ...", flush=True)
+            res["E1_npu_het"] = run_e1_het(
                 act_enc, cpu_predictor, vit, device, use_npu=True, npu_predictor=npu_predictor,
-                repeats=rep, iters=iters)
+                use_npu_enc=False, repeats=rep, iters=iters)
 
-        # 加速比
-        if "E1_cpu" in res and "E1_npu" in res:
-            cpu_total = res["E1_cpu"]["total_decision_s"]
-            npu_total = res["E1_npu"]["total_decision_s"]
-            res["speedup"] = {
-                "cpu_total_s": cpu_total,
-                "npu_total_s": npu_total,
-                "speedup_npu_vs_cpu": round(cpu_total / npu_total, 3) if npu_total > 0 else None,
-            }
-            print(f"\n[结果] CPU: {cpu_total}s, NPU: {npu_total}s, "
-                  f"加速比: {res['speedup']['speedup_npu_vs_cpu']}×", flush=True)
+        if run_npu_full:
+            print(f"[E1][NPU全量] 端到端分解, iters={iters}, repeats={rep} ...", flush=True)
+            res["E1_npu_full"] = run_e1_het(
+                act_enc, cpu_predictor, vit, device, use_npu=True, npu_predictor=npu_predictor,
+                use_npu_enc=True, npu_encoder=npu_encoder, repeats=rep, iters=iters)
+
+        # 加速比汇总
+        speedup = {}
+        if "E1_cpu" in res:
+            speedup["cpu_total_s"] = res["E1_cpu"]["total_decision_s"]
+        if "E1_npu_het" in res:
+            speedup["npu_het_total_s"] = res["E1_npu_het"]["total_decision_s"]
+            if "E1_cpu" in res:
+                speedup["het_vs_cpu"] = round(
+                    res["E1_cpu"]["total_decision_s"] / res["E1_npu_het"]["total_decision_s"], 3)
+        if "E1_npu_full" in res:
+            speedup["npu_full_total_s"] = res["E1_npu_full"]["total_decision_s"]
+            if "E1_cpu" in res:
+                speedup["full_vs_cpu"] = round(
+                    res["E1_cpu"]["total_decision_s"] / res["E1_npu_full"]["total_decision_s"], 3)
+            if "E1_npu_het" in res:
+                speedup["het_vs_full"] = round(
+                    res["E1_npu_full"]["total_decision_s"] / res["E1_npu_het"]["total_decision_s"], 3)
+        if speedup:
+            res["speedup"] = speedup
+            print(f"\n[结果汇总]", flush=True)
+            for k, v in speedup.items():
+                print(f"  {k}: {v}", flush=True)
 
     res["max_rss_mb"] = round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0, 1)
 
@@ -349,6 +400,8 @@ def main():
 
     if npu_predictor:
         npu_predictor.release()
+    if npu_encoder:
+        npu_encoder.release()
 
 
 if __name__ == "__main__":
