@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast-LeWM 端侧 Profiling 图表（阶段一·CPU）</title>
+<script src="https://unpkg.com/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:#f5f6f8;color:#1f2329}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  h1{font-size:20px;margin:0 0 4px}
+  .sub{color:#6b7280;font-size:13px;margin-bottom:18px}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .card h2{font-size:15px;margin:0 0 2px}
+  .cap{color:#6b7280;font-size:12px;margin:0 0 8px}
+  .chart{width:100%;height:380px}
+  .kpi{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .kpi div{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px 16px;flex:1;min-width:150px}
+  .kpi b{display:block;font-size:21px;color:#b45309}
+  .kpi span{font-size:12px;color:#6b7280}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Fast-LeWM 端侧 Profiling（阶段一·RK3588 CPU）</h1>
+  <div class="sub">4×A76 大核绑核 · torch 2.9.1+cpu · FP32 · CEM S=300/30iter/topk30 · Fast(action-prefix) vs AR(自回归对照)</div>
+
+  <div class="kpi">
+    <div><b>19.55 s</b><span>Fast 单次决策（30 iter）</span></div>
+    <div><b>1.19×</b><span>Fast vs AR 加速比</span></div>
+    <div><b>83.1%</b><span>rollout 占比（Fast）</span></div>
+    <div><b>6.1×</b><span>S=16→512 throughput 提升</span></div>
+    <div><b>0.37%</b><span>runtime 占 rollout 比例</span></div>
+  </div>
+
+  <div class="card">
+    <h2>① E1：各阶段占比对比（Fast vs AR，堆叠）</h2>
+    <p class="cap">Fast 模式 rollout 占比从 85.6% 降至 83.1%（-2.57%），vi_enc 相应升至 16.8%（+2.55%）——轻微瓶颈转移；非模型阶段合计 &lt;0.1%。</p>
+    <div id="c1" class="chart"></div>
+  </div>
+
+  <div class="card">
+    <h2>② E1：各阶段绝对时延对比（对数轴，单次决策 30 iter）</h2>
+    <p class="cap">rollout_model 是绝对主导（19–23s），vi_enc 其次（3.8s），score/elite/sample/prep 均在毫秒级，差 3–4 个数量级。</p>
+    <div id="c2" class="chart"></div>
+  </div>
+
+  <div class="card">
+    <h2>③ E3：candidate batch 扫描（throughput + latency/candidate）</h2>
+    <p class="cap">S=16→512，throughput 从 88 增至 537 cand/s（6.1×），latency/cand 从 11.4 降至 1.86ms（6.1×）；512 仍未见拐点，CPU 上越大越好。</p>
+    <div id="c3" class="chart"></div>
+  </div>
+
+  <div class="card">
+    <h2>④ E4：runtime 微基准（中位时延，对数轴）</h2>
+    <p class="cap">所有非模型阶段均亚毫秒级；最大的是 tensor 分配（1.22ms）和 latent cat（0.75ms），合计 ~2.33ms/iter，仅占 rollout 的 0.37%。NPU 上这些会转化为 h2d/d2h 拷贝与 layout 转换，可能成为新瓶颈。</p>
+    <div id="c4" class="chart"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  if(!window.echarts){return;}
+  function mk(id){return echarts.init(document.getElementById(id));}
+  var logAxis={type:'log',name:'ms（对数）',nameTextStyle:{fontSize:11},axisLabel:{fontSize:11},splitLine:{lineStyle:{color:'#eef0f2'}}};
+
+  // ① 堆叠占比
+  mk('c1').setOption({backgroundColor:'transparent',
+    tooltip:{trigger:'axis',triggerOn:'mousemove|click',renderMode:'richText',confine:true,formatter:function(p){var s=p[0].name+'<br/>';p.forEach(function(i){s+=i.marker+i.seriesName+': '+i.value+'%<br/>';});return s;}},
+    legend:{top:0,textStyle:{fontSize:11}},
+    grid:{left:60,right:40,top:40,bottom:40},
+    xAxis:{type:'category',data:['Fast (action-prefix)','AR (自回归对照)'],axisLabel:{fontSize:12}},
+    yAxis:{type:'value',max:100,axisLabel:{formatter:'{value}%',fontSize:11}},
+    series:[
+      {name:'rollout_model',type:'bar',stack:'t',data:[83.07,85.64],itemStyle:{color:'#c0651e'},label:{show:true,formatter:'{c}%',fontSize:11,color:'#fff'}},
+      {name:'vi_enc',type:'bar',stack:'t',data:[16.84,14.29],itemStyle:{color:'#4c8dca'},label:{show:true,formatter:'{c}%',fontSize:11,color:'#fff'}},
+      {name:'score',type:'bar',stack:'t',data:[0.04,0.03],itemStyle:{color:'#7cb896'}},
+      {name:'elite_select',type:'bar',stack:'t',data:[0.02,0.02],itemStyle:{color:'#9aa5b1'}},
+      {name:'cem_sample',type:'bar',stack:'t',data:[0.02,0.01],itemStyle:{color:'#b8a2c9'}},
+      {name:'tensor_prep',type:'bar',stack:'t',data:[0.01,0.01],itemStyle:{color:'#d4c5a0'}}
+    ]});
+
+  // ② 绝对时延分组（对数）
+  var stages=['rollout_model','vi_enc','score','elite_select','cem_sample','tensor_prep'];
+  var fastMs=[19068.3,3866.2,8.2,5.4,3.6,1.9];
+  var arMs=[22928.4,3825.4,8.5,5.4,3.7,1.9];
+  mk('c2').setOption({backgroundColor:'transparent',
+    tooltip:{trigger:'axis',triggerOn:'mousemove|click',renderMode:'richText',confine:true,formatter:function(p){var s=p[0].name+'<br/>';p.forEach(function(i){s+=i.marker+i.seriesName+': '+i.value+' ms<br/>';});return s;}},
+    legend:{top:0,textStyle:{fontSize:11}},
+    grid:{left:140,right:60,top:40,bottom:40},
+    xAxis:logAxis,
+    yAxis:{type:'category',inverse:true,data:stages,axisLabel:{fontSize:12}},
+    series:[
+      {name:'Fast',type:'bar',data:fastMs,itemStyle:{color:'#c0651e'},label:{show:true,position:'right',fontSize:11,formatter:function(p){return p.value>=1000?(p.value/1000).toFixed(1)+'s':p.value+'ms';}}},
+      {name:'AR',type:'bar',data:arMs,itemStyle:{color:'#4c8dca'},label:{show:true,position:'right',fontSize:11,formatter:function(p){return p.value>=1000?(p.value/1000).toFixed(1)+'s':p.value+'ms';}}}
+    ]});
+
+  // ③ batch 扫描双轴
+  var Ss=['16','32','64','128','256','512'];
+  var thr=[87.63,148.20,237.52,350.91,442.26,536.63];
+  var latPer=[11.411,6.747,4.210,2.850,2.261,1.864];
+  mk('c3').setOption({backgroundColor:'transparent',
+    tooltip:{trigger:'axis',triggerOn:'mousemove|click',renderMode:'richText',confine:true},
+    legend:{top:0,textStyle:{fontSize:11}},
+    grid:{left:60,right:60,top:40,bottom:50},
+    xAxis:{type:'category',data:Ss,name:'candidate batch S',nameLocation:'middle',nameGap:30,axisLabel:{fontSize:12}},
+    yAxis:[
+      {type:'value',name:'throughput (cand/s)',nameTextStyle:{fontSize:11},axisLabel:{fontSize:11}},
+      {type:'value',name:'latency/candidate (ms)',nameTextStyle:{fontSize:11},axisLabel:{fontSize:11},splitLine:{show:false}}
+    ],
+    series:[
+      {name:'throughput',type:'line',data:thr,yAxisIndex:0,smooth:true,lineStyle:{width:3,color:'#c0651e'},itemStyle:{color:'#c0651e'},symbol:'circle',symbolSize:8,label:{show:true,position:'top',fontSize:10,formatter:'{c}'}},
+      {name:'latency/candidate',type:'line',data:latPer,yAxisIndex:1,smooth:true,lineStyle:{width:3,color:'#4c8dca'},itemStyle:{color:'#4c8dca'},symbol:'diamond',symbolSize:8,label:{show:true,position:'bottom',fontSize:10,formatter:'{c}ms'}}
+    ]});
+
+  // ④ runtime 微基准（横向对数）
+  var rtNames=['tensor_alloc_randn_S192','latent_cat_5steps','score_l2_cost','cem_sample_gaussian_S300','elite_select_topk30','tensor_prep_expand','python_loop_30iters'];
+  var rtMs=[1.2163,0.7502,0.1617,0.0980,0.0610,0.0443,0.0023];
+  mk('c4').setOption({backgroundColor:'transparent',
+    tooltip:{trigger:'axis',triggerOn:'mousemove|click',renderMode:'richText',confine:true,formatter:function(p){return p[0].name+'：'+p[0].value+' ms';}},
+    grid:{left:220,right:80,top:20,bottom:40},
+    xAxis:logAxis,
+    yAxis:{type:'category',inverse:true,data:rtNames,axisLabel:{fontSize:11,width:210,overflow:'truncate'}},
+    series:[{type:'bar',data:rtMs,barWidth:18,itemStyle:{color:'#2f8f5b'},label:{show:true,position:'right',fontSize:11,formatter:'{c} ms'}}]});
+
+  window.addEventListener('resize',function(){['c1','c2','c3','c4'].forEach(function(id){echarts.getInstanceByDom(document.getElementById(id)).resize();});});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+dataset:
+
+  num_steps: ${eval:'${wm.dense_supervision.max_transitions} + 1'}
+  frameskip: 1
+  name: reacher
+  keys_to_load:
+    - pixels
+    - action
+    - observation
+  keys_to_cache:
+    - action
+    - observation

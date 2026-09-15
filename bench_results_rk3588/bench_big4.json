@@ -1,0 +1,108 @@
+{
+  "tag": "big4",
+  "torch": "2.9.1+cpu",
+  "numpy": "2.2.6",
+  "platform": "aarch64",
+  "os_cpus": 8,
+  "torch_threads": 4,
+  "affinity": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "params": {
+    "action_encoder": 1802592,
+    "predictor": 9023424,
+    "wm_total": 10826016,
+    "vit_tiny_approx": 5524416
+  },
+  "config": {
+    "embed_dim": 192,
+    "action_blocks": 5,
+    "cem_samples": 300,
+    "cem_iters": 30
+  },
+  "vit_note": "timm vit_tiny_patch16_224 (近似; 仓库为 patch14 ViT-tiny)",
+  "units": {
+    "action_encoder_S32": {
+      "mean_ms": 14.296,
+      "median_ms": 13.596,
+      "min_ms": 13.212,
+      "p95_ms": 15.662,
+      "repeat": 15
+    },
+    "predictor_S32": {
+      "mean_ms": 22.401,
+      "median_ms": 22.246,
+      "min_ms": 21.851,
+      "p95_ms": 22.907,
+      "repeat": 15
+    },
+    "action_encoder_S100": {
+      "mean_ms": 31.026,
+      "median_ms": 29.264,
+      "min_ms": 29.086,
+      "p95_ms": 33.85,
+      "repeat": 15
+    },
+    "predictor_S100": {
+      "mean_ms": 37.12,
+      "median_ms": 37.035,
+      "min_ms": 36.674,
+      "p95_ms": 37.336,
+      "repeat": 15
+    },
+    "action_encoder_S300": {
+      "mean_ms": 80.567,
+      "median_ms": 83.957,
+      "min_ms": 69.16,
+      "p95_ms": 88.087,
+      "repeat": 15
+    },
+    "predictor_S300": {
+      "mean_ms": 75.266,
+      "median_ms": 74.104,
+      "min_ms": 73.441,
+      "p95_ms": 80.932,
+      "repeat": 15
+    },
+    "rollout5_S32": {
+      "mean_ms": 167.628,
+      "median_ms": 167.555,
+      "min_ms": 167.298,
+      "p95_ms": 167.876,
+      "repeat": 7
+    },
+    "rollout5_S100": {
+      "mean_ms": 336.939,
+      "median_ms": 322.254,
+      "min_ms": 313.675,
+      "p95_ms": 368.948,
+      "repeat": 7
+    },
+    "rollout5_S300": {
+      "mean_ms": 749.344,
+      "median_ms": 732.724,
+      "min_ms": 729.624,
+      "p95_ms": 753.542,
+      "repeat": 7
+    },
+    "vit_encode_1x224": {
+      "mean_ms": 49.964,
+      "median_ms": 50.055,
+      "min_ms": 49.22,
+      "p95_ms": 50.146,
+      "repeat": 7
+    }
+  },
+  "estimated_single_mpc_decision": {
+    "cem_iters": 30,
+    "rollout5_S300_median_ms": 732.724,
+    "vit_encode_x2_ms": 100.11,
+    "total_ms": 22081.83,
+    "total_s": 22.082,
+    "note": "30次迭代 x 300候选rollout + 当前帧/目标视觉编码; 未含CEM采样/Python开销与mujoco渲染"
+  },
+  "max_rss_mb": 485.7
+}

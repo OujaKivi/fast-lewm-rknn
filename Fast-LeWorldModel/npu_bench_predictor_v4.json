@@ -1,0 +1,24 @@
+{
+  "name": "predictor",
+  "rknn_path": "./predictor_S300_fp16_v4.rknn",
+  "batch": 300,
+  "iters": 200,
+  "mean_latency_ms": 27.859431320102885,
+  "std_latency_ms": 6.179392952827403,
+  "p50_ms": 25.921216001734138,
+  "p95_ms": 47.87661425289115,
+  "p99_ms": 50.03724249487277,
+  "min_ms": 24.302412988618016,
+  "max_ms": 50.275651999982074,
+  "throughput_cand_per_sec": 10768.34615010699,
+  "latency_per_cand_ms": 0.09286477106700962,
+  "npu_freq_mhz": 1000.0,
+  "npu_util_pct": 20.099999999999994,
+  "output_shapes": [
+    [
+      300,
+      1,
+      192
+    ]
+  ]
+}

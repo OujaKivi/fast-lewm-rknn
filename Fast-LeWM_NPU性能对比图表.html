@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Fast-LeWM NPU 性能对比图表</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; margin: 20px; background: #f5f5f5; }
+h1 { text-align: center; color: #333; font-size: 20px; }
+h2 { color: #444; font-size: 15px; margin-top: 30px; border-left: 4px solid #5470c6; padding-left: 10px; }
+.chart { background: white; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.note { font-size: 12px; color: #888; margin-top: 8px; }
+</style>
+</head>
+<body>
+<h1>Fast-LeWM RK3588 NPU 性能对比</h1>
+<p style="text-align:center;color:#666;font-size:13px;">FP16 / batch=300 / NPU 1GHz / Runtime 2.3.2</p>
+
+<h2>图1：CPU vs NPU 单模块延迟对比</h2>
+<div class="chart"><div id="chart1" style="width:100%;height:380px;"></div></div>
+
+<h2>图2：NPU 两模块吞吐量与利用率对比</h2>
+<div class="chart"><div id="chart2" style="width:100%;height:380px;"></div></div>
+
+<h2>图3：不同执行方式单步延迟对比</h2>
+<div class="chart"><div id="chart3" style="width:100%;height:380px;"></div></div>
+
+<h2>图4：单候选延迟与单位参数效率</h2>
+<div class="chart"><div id="chart4" style="width:100%;height:380px;"></div></div>
+
+<script>
+// 图1：CPU vs NPU 单模块延迟对比
+var c1 = echarts.init(document.getElementById('chart1'));
+c1.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true },
+  legend: { data: ['CPU 4大核(估)', 'NPU FP16'], top: 5 },
+  grid: { left: 60, right: 40, top: 50, bottom: 40, containLabel: true },
+  xAxis: { type: 'category', data: ['action_encoder\n(1.8M参数)', 'predictor\n(9.0M参数)', '单步合计\n(enc+pred)'] },
+  yAxis: { type: 'value', name: '延迟 (ms)', nameLocation: 'middle', nameGap: 45 },
+  series: [
+    { name: 'CPU 4大核(估)', type: 'bar', data: [40, 68.3, 108.3], itemStyle: { color: '#91cc75' }, label: { show: true, position: 'top', formatter: '{c}ms' } },
+    { name: 'NPU FP16', type: 'bar', data: [184.4, 27.9, 212.3], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}ms' } }
+  ]
+});
+
+// 图2：NPU 两模块吞吐量与利用率对比（双轴）
+var c2 = echarts.init(document.getElementById('chart2'));
+c2.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true },
+  legend: { data: ['吞吐量 (cand/s)', 'NPU 利用率 (%)'], top: 5 },
+  grid: { left: 70, right: 70, top: 50, bottom: 40, containLabel: true },
+  xAxis: { type: 'category', data: ['action_encoder', 'predictor'] },
+  yAxis: [
+    { type: 'value', name: '吞吐量 (cand/s)', nameLocation: 'middle', nameGap: 50, position: 'left' },
+    { type: 'value', name: 'NPU 利用率 (%)', nameLocation: 'middle', nameGap: 50, position: 'right', max: 100 }
+  ],
+  series: [
+    { name: '吞吐量 (cand/s)', type: 'bar', data: [1626.6, 10768.3], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}' } },
+    { name: 'NPU 利用率 (%)', type: 'line', yAxisIndex: 1, data: [31.7, 20.1], itemStyle: { color: '#ee6666' }, lineStyle: { width: 3 }, symbol: 'circle', symbolSize: 10, label: { show: true, position: 'top', formatter: '{c}%' } }
+  ]
+});
+
+// 图3：不同执行方式单步延迟对比
+var c3 = echarts.init(document.getElementById('chart3'));
+c3.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true,
+    formatter: function(params) {
+      var s = params[0].name + '<br/>';
+      params.forEach(function(p) { s += p.marker + p.seriesName + ': ' + p.value + 'ms<br/>'; });
+      return s;
+    }
+  },
+  legend: { data: ['action_encoder', 'predictor', '合计'], top: 5 },
+  grid: { left: 60, right: 40, top: 50, bottom: 40, containLabel: true },
+  xAxis: { type: 'category', data: ['CPU 全量\n(4大核)', 'NPU 全量\n(FP16)', '异构调度\n(CPU enc + NPU pred)'] },
+  yAxis: { type: 'value', name: '单步延迟 (ms)', nameLocation: 'middle', nameGap: 45 },
+  series: [
+    { name: 'action_encoder', type: 'bar', stack: 'total', data: [40, 184.4, 40], itemStyle: { color: '#91cc75' } },
+    { name: 'predictor', type: 'bar', stack: 'total', data: [68.3, 27.9, 27.9], itemStyle: { color: '#5470c6' } },
+    { name: '合计', type: 'line', data: [108.3, 212.3, 67.9], itemStyle: { color: '#ee6666' }, lineStyle: { width: 3 }, symbol: 'circle', symbolSize: 10, label: { show: true, position: 'top', formatter: '{c}ms' } }
+  ]
+});
+
+// 图4：单候选延迟与单位参数效率（双轴对数）
+var c4 = echarts.init(document.getElementById('chart4'));
+c4.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true },
+  legend: { data: ['单候选延迟 (ms)', '单位参数延迟 (ms/M)'], top: 5 },
+  grid: { left: 70, right: 70, top: 50, bottom: 40, containLabel: true },
+  xAxis: { type: 'category', data: ['action_encoder\n(NPU)', 'predictor\n(NPU)', 'action_encoder\n(CPU估)', 'predictor\n(CPU估)'] },
+  yAxis: [
+    { type: 'log', name: '单候选延迟 (ms)', nameLocation: 'middle', nameGap: 50, position: 'left' },
+    { type: 'log', name: '单位参数延迟 (ms/M)', nameLocation: 'middle', nameGap: 55, position: 'right' }
+  ],
+  series: [
+    { name: '单候选延迟 (ms)', type: 'bar', data: [0.615, 0.093, 0.133, 0.228], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}' } },
+    { name: '单位参数延迟 (ms/M)', type: 'line', yAxisIndex: 1, data: [102.5, 3.1, 22.2, 7.6], itemStyle: { color: '#ee6666' }, lineStyle: { width: 3 }, symbol: 'circle', symbolSize: 10, label: { show: true, position: 'top', formatter: '{c}' } }
+  ]
+});
+
+window.addEventListener('resize', function() { c1.resize(); c2.resize(); c3.resize(); c4.resize(); });
+</script>
+</body>
+</html>

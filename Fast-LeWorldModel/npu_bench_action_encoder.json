@@ -1,0 +1,24 @@
+{
+  "name": "action_encoder",
+  "rknn_path": "./action_encoder_S300_fp16.rknn",
+  "batch": 300,
+  "iters": 200,
+  "mean_latency_ms": 184.43269711533503,
+  "std_latency_ms": 8.083979910875778,
+  "p50_ms": 180.86403850611532,
+  "p95_ms": 207.05005579584395,
+  "p99_ms": 209.21713417264982,
+  "min_ms": 179.62302900559735,
+  "max_ms": 209.2809820023831,
+  "throughput_cand_per_sec": 1626.6096234139814,
+  "latency_per_cand_ms": 0.6147756570511168,
+  "npu_freq_mhz": 1000.0,
+  "npu_util_pct": 31.683333333333337,
+  "output_shapes": [
+    [
+      300,
+      1,
+      192
+    ]
+  ]
+}

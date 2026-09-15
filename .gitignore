@@ -1,0 +1,33 @@
+# 大文件模型（超出 GitHub 限制或体积过大）
+*.rknn
+*.onnx
+*.pt
+*.pth
+*.ckpt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志和临时文件
+*.log
+/tmp/
+
+# ssh 配置（本地）
+.ssh/
+
+# 上游 git 备份
+.git.upstream.bak/

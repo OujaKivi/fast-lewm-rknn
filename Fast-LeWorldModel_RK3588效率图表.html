@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast-LeWorldModel · RK3588 效率评测</title>
+<script src="https://unpkg.com/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:#f5f6f8;color:#1f2329}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px}
+  h1{font-size:20px;margin:0 0 4px}
+  .sub{color:#6b7280;font-size:13px;margin-bottom:18px}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .card h2{font-size:15px;margin:0 0 2px}
+  .cap{color:#6b7280;font-size:12px;margin:0 0 8px}
+  .chart{width:100%;height:360px}
+  .kpi{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .kpi div{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px 16px;flex:1;min-width:150px}
+  .kpi b{display:block;font-size:21px;color:#b45309}
+  .kpi span{font-size:12px;color:#6b7280}
+  .note{font-size:12px;color:#6b7280;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Fast-LeWorldModel 在 RK3588 上的推理效率</h1>
+  <div class="sub">实测：RK3588（4×A76 大核 + 4×A55 小核）· torch 2.9.1+cpu · FP32 · CEM 候选 S=300 · warmup 后重复 15/7 次取中位数</div>
+
+  <div class="kpi">
+    <div><b>10.83 M</b><span>世界模型参数（FP32≈41MB）</span></div>
+    <div><b>732.7 ms</b><span>一次300候选×5步推演（4大核，最优）</span></div>
+    <div><b>22.1 s / 33.0 s</b><span>单次CEM决策（4大核 / 全8核）</span></div>
+    <div><b>4大核快1.49×</b><span>对比全8核（混入慢A55）</span></div>
+  </div>
+
+  <div class="card">
+    <h2>① 各计算单元中位时延（全8核，S=300）</h2>
+    <p class="cap">横轴毫秒（对数轴）；5步rollout=5×(动作编码器+预测器)。</p>
+    <div id="c1" class="chart"></div>
+  </div>
+
+  <div class="card">
+    <h2>② 核簇对比：绑 4 颗 A76 大核反而最快（rollout，S=300）</h2>
+    <p class="cap">单位 ms。big4=仅cpu4-7四颗A76；all8=4A76+4A55；big1=单颗A76。</p>
+    <div id="c3" class="chart"></div>
+  </div>
+
+  <div class="card">
+    <h2>③ 单次动作决策耗时 vs 实时控制预算</h2>
+    <p class="cap">横轴毫秒（对数轴）。一次CEM=30迭代×rollout+2×ViT；rollout占99.4%。</p>
+    <div id="c2" class="chart"></div>
+    <p class="note">瓶颈不是模型大小，而是 CEM 把同一小网络重复前向 30×300 次。视觉编码仅占0.6%，只把 ViT 放 NPU 几乎无效。</p>
+  </div>
+
+  <div class="card">
+    <h2>④ 候选数 S 扩展（全8核，5步rollout中位时延）</h2>
+    <p class="cap">S 从1→300 仅增5.23×（多核并行摊薄大批次）；S=1 仍有208.8ms 的5步串行固定开销。</p>
+    <div id="c4" class="chart"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  if(!window.echarts){return;}
+  function mk(id){return echarts.init(document.getElementById(id));}
+  var axisLog={type:'log',name:'ms（对数）',nameTextStyle:{fontSize:11},axisLabel:{fontSize:11},splitLine:{lineStyle:{color:'#eef0f2'}}};
+
+  mk('c1').setOption({backgroundColor:'transparent',
+    tooltip:{trigger:'axis',triggerOn:'mousemove|click',renderMode:'richText',confine:true,formatter:function(p){return p[0].name+'：'+p[0].value+' ms';}},
+    grid:{left:180,right:70,top:14,bottom:34},
+    xAxis:axisLog,
+    yAxis:{type:'category',inverse:true,data:['ViT 编码 1×224','动作编码器(300×5)','预测器(300×1)','5步rollout/一次get_cost'],axisLabel:{fontSize:12}},
+    series:[{type:'bar',barWidth:22,data:[
+      {value:102.9,itemStyle:{color:'#9aa5b1'}},
+      {value:114.6,itemStyle:{color:'#4c8dca'}},
+      {value:123.9,itemStyle:{color:'#4c8dca'}},
+      {value:1091.8,itemStyle:{color:'#c0651e'}}],
+      label:{show:true,position:'right',fontSize:11,formatter:'{c} ms'}}]});
+
+  mk('c3').setOption({backgroundColor:'transparent',
+    tooltip:{trigger:'axis',triggerOn:'mousemove|click',renderMode:'richText',confine:true,formatter:function(p){return p[0].name+'：'+p[0].value+' ms';}},
+    grid:{left:60,right:60,top:30,bottom:40},
+    xAxis:{type:'category',data:['big1 单A76(1线程)','all8 4A76+4A55(8线程)','big4 仅4×A76(4线程)'],axisLabel:{fontSize:11,interval:0}},
+    yAxis:{type:'value',name:'ms',nameTextStyle:{fontSize:11}},
+    series:[{type:'bar',barWidth:48,data:[
+      {value:2177.6,itemStyle:{color:'#9aa5b1'}},
+      {value:1091.8,itemStyle:{color:'#4c8dca'}},
+      {value:732.7,itemStyle:{color:'#2f8f5b'}}],
+      label:{show:true,position:'top',fontSize:12,formatter:'{c} ms'}}]});
+
+  mk('c2').setOption({backgroundColor:'transparent',
+    tooltip:{trigger:'axis',triggerOn:'mousemove|click',renderMode:'richText',confine:true,formatter:function(p){return p[0].name+'：'+p[0].value+' ms';}},
+    grid:{left:180,right:80,top:14,bottom:34},
+    xAxis:axisLog,
+    yAxis:{type:'category',inverse:true,data:['20Hz 预算(50ms)','10Hz 预算(100ms)','big4 单次决策(最优)','all8 单次决策','big1 单次决策'],axisLabel:{fontSize:12}},
+    series:[{type:'bar',barWidth:22,data:[
+      {value:50,itemStyle:{color:'#3f9d6d'}},
+      {value:100,itemStyle:{color:'#7cb896'}},
+      {value:22081.8,itemStyle:{color:'#2f8f5b'}},
+      {value:32961.0,itemStyle:{color:'#c0651e'}},
+      {value:65555.9,itemStyle:{color:'#b23b3b'}}],
+      label:{show:true,position:'right',fontSize:11,formatter:function(p){return p.value>=1000?(p.value/1000).toFixed(2)+' s':p.value+' ms';}}}]});
+
+  mk('c4').setOption({backgroundColor:'transparent',
+    tooltip:{trigger:'axis',triggerOn:'mousemove|click',renderMode:'richText',confine:true,formatter:function(p){return '候选数 S='+p[0].name+'：'+p[0].value+' ms';}},
+    grid:{left:60,right:40,top:30,bottom:40},
+    xAxis:{type:'category',data:['1','32','100','300'],name:'候选数 S',nameLocation:'middle',nameGap:28,axisLabel:{fontSize:12}},
+    yAxis:{type:'value',name:'ms',nameTextStyle:{fontSize:11}},
+    series:[{type:'bar',barWidth:46,data:[208.8,348.6,618.4,1091.8],
+      itemStyle:{color:'#4c8dca'},label:{show:true,position:'top',fontSize:12,formatter:'{c} ms'}}]});
+
+  window.addEventListener('resize',function(){['c1','c2','c3','c4'].forEach(function(id){echarts.getInstanceByDom(document.getElementById(id)).resize();});});
+})();
+</script>
+</body>
+</html>

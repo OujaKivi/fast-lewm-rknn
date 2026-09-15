@@ -1,0 +1,48 @@
+# ============================================================
+# Bettbox（内核 = mihomo / Clash.Meta）让微信绕过 TUN、强制直连
+# 用法：Bettbox 设置 → 配置覆写/Override/自定义规则 里合并以下两段；
+#       若该客户端只接受“完整配置覆盖”，就把对应键并进它生成的 config.yaml。
+# 注意：本机微信是旧版，进程名是 WeChat / WeChatAppEx（新版4.0叫 Weixin，需要再加一行）。
+# 本客户端自带 GeoSite.dat 里没有 wechat 分类，所以这里用“进程名 + 域名”而不是 GEOSITE,wechat。
+# ============================================================
+
+# ---------- 1) 规则：必须放在 rules 列表最前面（优先级最高） ----------
+rules:
+  - PROCESS-NAME,WeChat,DIRECT
+  - PROCESS-NAME,WeChatAppEx,DIRECT
+  # 若以后升级到微信4.0(Weixin)，再补下面两行：
+  # - PROCESS-NAME,Weixin,DIRECT
+  # - PROCESS-NAME,WeixinAppEx,DIRECT
+  - DOMAIN-SUFFIX,weixin.qq.com,DIRECT
+  - DOMAIN-SUFFIX,wx.qq.com,DIRECT
+  - DOMAIN-SUFFIX,wechat.com,DIRECT
+  - DOMAIN-SUFFIX,wechatapp.com,DIRECT
+  - DOMAIN-SUFFIX,weixinbridge.com,DIRECT
+  - DOMAIN-SUFFIX,qpic.cn,DIRECT
+  - DOMAIN-SUFFIX,qlogo.cn,DIRECT
+  - DOMAIN-SUFFIX,tenpay.com,DIRECT
+  - DOMAIN-SUFFIX,gtimg.cn,DIRECT
+  # ……原有规则保持不变，接在下面……
+
+# ---------- 2) DNS：让微信域名拿到真实 IP（跳过 fake-ip） ----------
+# 在原有 dns.fake-ip-filter 基础上“追加”，不要删掉已有的 dns.msftnsci.com 等条目
+dns:
+  fake-ip-filter:
+    - dns.msftnsci.com
+    - www.msftnsci.com
+    - www.msftconnecttest.com
+    - "+.weixin.qq.com"
+    - "+.wx.qq.com"
+    - "+.wechat.com"
+    - "+.wechatapp.com"
+    - "+.weixinbridge.com"
+    - "+.qpic.cn"
+    - "+.qlogo.cn"
+    - "+.tenpay.com"
+    - "+.gtimg.cn"
+
+# ============================================================
+# 备选（最省事、影响面更大）：直接关掉 fake-ip
+# 把 dns.enhanced-mode: fake-ip 改成 redir-host，国内 App 兼容性问题通常一并消失，
+# 代价是 DNS 略慢、内存略增。
+# ============================================================

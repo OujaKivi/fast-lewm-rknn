@@ -1,0 +1,133 @@
+{
+  "tag": "all8",
+  "torch": "2.9.1+cpu",
+  "numpy": "2.2.6",
+  "platform": "aarch64",
+  "os_cpus": 8,
+  "torch_threads": 8,
+  "affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "params": {
+    "action_encoder": 1802592,
+    "predictor": 9023424,
+    "wm_total": 10826016,
+    "vit_tiny_approx": 5524416
+  },
+  "config": {
+    "embed_dim": 192,
+    "action_blocks": 5,
+    "cem_samples": 300,
+    "cem_iters": 30
+  },
+  "vit_note": "timm vit_tiny_patch16_224 (近似; 仓库为 patch14 ViT-tiny)",
+  "units": {
+    "action_encoder_S1": {
+      "mean_ms": 8.58,
+      "median_ms": 8.376,
+      "min_ms": 7.991,
+      "p95_ms": 9.475,
+      "repeat": 15
+    },
+    "predictor_S1": {
+      "mean_ms": 48.83,
+      "median_ms": 53.011,
+      "min_ms": 33.577,
+      "p95_ms": 54.674,
+      "repeat": 15
+    },
+    "action_encoder_S32": {
+      "mean_ms": 33.201,
+      "median_ms": 33.992,
+      "min_ms": 24.454,
+      "p95_ms": 38.906,
+      "repeat": 15
+    },
+    "predictor_S32": {
+      "mean_ms": 45.916,
+      "median_ms": 45.379,
+      "min_ms": 43.543,
+      "p95_ms": 48.144,
+      "repeat": 15
+    },
+    "action_encoder_S100": {
+      "mean_ms": 51.009,
+      "median_ms": 51.203,
+      "min_ms": 47.334,
+      "p95_ms": 52.651,
+      "repeat": 15
+    },
+    "predictor_S100": {
+      "mean_ms": 75.18,
+      "median_ms": 74.871,
+      "min_ms": 70.855,
+      "p95_ms": 80.324,
+      "repeat": 15
+    },
+    "action_encoder_S300": {
+      "mean_ms": 112.771,
+      "median_ms": 114.648,
+      "min_ms": 99.478,
+      "p95_ms": 118.515,
+      "repeat": 15
+    },
+    "predictor_S300": {
+      "mean_ms": 124.042,
+      "median_ms": 123.87,
+      "min_ms": 116.934,
+      "p95_ms": 130.067,
+      "repeat": 15
+    },
+    "rollout5_S1": {
+      "mean_ms": 207.45,
+      "median_ms": 208.8,
+      "min_ms": 198.332,
+      "p95_ms": 214.443,
+      "repeat": 7
+    },
+    "rollout5_S32": {
+      "mean_ms": 375.58,
+      "median_ms": 348.614,
+      "min_ms": 332.675,
+      "p95_ms": 441.473,
+      "repeat": 7
+    },
+    "rollout5_S100": {
+      "mean_ms": 644.119,
+      "median_ms": 618.442,
+      "min_ms": 605.634,
+      "p95_ms": 650.038,
+      "repeat": 7
+    },
+    "rollout5_S300": {
+      "mean_ms": 1114.411,
+      "median_ms": 1091.838,
+      "min_ms": 1087.557,
+      "p95_ms": 1136.663,
+      "repeat": 7
+    },
+    "vit_encode_1x224": {
+      "mean_ms": 102.538,
+      "median_ms": 102.929,
+      "min_ms": 98.108,
+      "p95_ms": 104.02,
+      "repeat": 7
+    }
+  },
+  "estimated_single_mpc_decision": {
+    "cem_iters": 30,
+    "rollout5_S300_median_ms": 1091.838,
+    "vit_encode_x2_ms": 205.858,
+    "total_ms": 32961.0,
+    "total_s": 32.961,
+    "note": "30次迭代 x 300候选rollout + 当前帧/目标视觉编码; 未含CEM采样/Python开销与mujoco渲染"
+  },
+  "max_rss_mb": 483.2
+}
