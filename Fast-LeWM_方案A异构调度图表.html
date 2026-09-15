@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Fast-LeWM 方案A 异构调度实验图表</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; margin: 20px; background: #f5f5f5; }
+h1 { text-align: center; color: #333; font-size: 20px; }
+h2 { color: #444; font-size: 15px; margin-top: 30px; border-left: 4px solid #5470c6; padding-left: 10px; }
+.chart { background: white; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.note { font-size: 12px; color: #888; margin-top: 8px; }
+</style>
+</head>
+<body>
+<h1>Fast-LeWM 方案 A 异构调度实验结果</h1>
+<p style="text-align:center;color:#666;font-size:13px;">RK3588 / 4×A76绑核 / NPU 1GHz / FP16 / batch=300 / 30iter×3rep</p>
+
+<h2>图1：端到端延迟对比与加速比</h2>
+<div class="chart"><div id="chart1" style="width:100%;height:380px;"></div></div>
+
+<h2>图2：各阶段延迟分解（CPU vs NPU）</h2>
+<div class="chart"><div id="chart2" style="width:100%;height:400px;"></div></div>
+
+<h2>图3：NPU 每步细粒度开销</h2>
+<div class="chart"><div id="chart3" style="width:100%;height:380px;"></div></div>
+
+<h2>图4：NPU 模式下 CPU 性能下降幅度</h2>
+<div class="chart"><div id="chart4" style="width:100%;height:380px;"></div></div>
+
+<script>
+// 图1：端到端延迟对比
+var c1 = echarts.init(document.getElementById('chart1'));
+c1.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true },
+  legend: { data: ['完整CEM决策', 'rollout(5步×30iter)'], top: 5 },
+  grid: { left: 60, right: 40, top: 50, bottom: 40, containLabel: true },
+  xAxis: { type: 'category', data: ['CPU 基线', 'NPU 异构(方案A)'] },
+  yAxis: { type: 'value', name: '延迟 (s)', nameLocation: 'middle', nameGap: 45 },
+  series: [
+    { name: '完整CEM决策', type: 'bar', data: [20.17, 8.89], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}s' }, barWidth: '30%' },
+    { name: 'rollout(5步×30iter)', type: 'bar', data: [16.59, 3.37], itemStyle: { color: '#91cc75' }, label: { show: true, position: 'top', formatter: '{c}s' }, barWidth: '30%' }
+  ],
+  graphic: [
+    { type: 'text', left: '62%', top: '40%', style: { text: '整体 2.27×', fontSize: 24, fontWeight: 'bold', fill: '#ee6666' } },
+    { type: 'text', left: '62%', top: '55%', style: { text: 'rollout 4.93×', fontSize: 18, fontWeight: 'bold', fill: '#91cc75' } }
+  ]
+});
+
+// 图2：各阶段延迟分解
+var c2 = echarts.init(document.getElementById('chart2'));
+c2.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true, axisPointer: { type: 'shadow' } },
+  legend: { data: ['vi_enc(视觉编码)', 'action_encoder(CPU)', 'rollout(模型计算)', '其他(score/elite/sample)'], top: 5 },
+  grid: { left: 60, right: 40, top: 50, bottom: 40, containLabel: true },
+  xAxis: { type: 'category', data: ['CPU 基线', 'NPU 异构(方案A)'] },
+  yAxis: { type: 'value', name: '延迟 (ms)', nameLocation: 'middle', nameGap: 45 },
+  series: [
+    { name: 'vi_enc(视觉编码)', type: 'bar', stack: 'total', data: [3902, 6573], itemStyle: { color: '#ee6666' }, label: { show: true, formatter: function(p) { return p.value + 'ms'; } } },
+    { name: 'action_encoder(CPU)', type: 'bar', stack: 'total', data: [2971, 5070], itemStyle: { color: '#fac858' }, label: { show: true, formatter: function(p) { return p.value + 'ms'; } } },
+    { name: 'rollout(模型计算)', type: 'bar', stack: 'total', data: [16589, 3365], itemStyle: { color: '#5470c6' }, label: { show: true, formatter: function(p) { return p.value + 'ms'; } } },
+    { name: '其他(score/elite/sample)', type: 'bar', stack: 'total', data: [18, 30], itemStyle: { color: '#91cc75' }, label: { show: true, formatter: function(p) { return p.value + 'ms'; } } }
+  ]
+});
+
+// 图3：NPU 每步细粒度开销
+var c3 = echarts.init(document.getElementById('chart3'));
+c3.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'item', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true, formatter: '{b}: {c}ms ({d}%)' },
+  legend: { orient: 'vertical', left: 'left', top: 'center' },
+  series: [{
+    name: 'NPU每步开销',
+    type: 'pie',
+    radius: ['40%', '70%'],
+    center: ['60%', '50%'],
+    avoidLabelOverlap: false,
+    itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
+    label: { show: true, formatter: '{b}\n{c}ms ({d}%)' },
+    data: [
+      { value: 22.311, name: 'NPU 推理(inference)', itemStyle: { color: '#5470c6' } },
+      { value: 0.276, name: '输出搬运(transfer_out)', itemStyle: { color: '#91cc75' } },
+      { value: 0.084, name: '输入搬运(transfer_in)', itemStyle: { color: '#fac858' } }
+    ]
+  }],
+  graphic: [
+    { type: 'text', left: '55%', top: '85%', style: { text: '每步合计: 22.67ms (median)', fontSize: 14, fontWeight: 'bold', fill: '#333' } }
+  ]
+});
+
+// 图4：NPU 模式下 CPU 性能下降幅度
+var c4 = echarts.init(document.getElementById('chart4'));
+c4.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true, axisPointer: { type: 'shadow' } },
+  legend: { data: ['纯CPU模式', 'NPU异构模式'], top: 5 },
+  grid: { left: 60, right: 40, top: 50, bottom: 40, containLabel: true },
+  xAxis: { type: 'value', name: '延迟 (ms)', nameLocation: 'middle', nameGap: 45 },
+  yAxis: { type: 'category', data: ['tensor_prep', 'cem_sample', 'elite_select', 'score', 'action_encoder', 'vi_enc'] },
+  series: [
+    { name: '纯CPU模式', type: 'bar', data: [2.0, 3.7, 5.5, 8.8, 2971, 3902], itemStyle: { color: '#91cc75' }, label: { show: true, position: 'right', formatter: '{c}ms' } },
+    { name: 'NPU异构模式', type: 'bar', data: [3.9, 5.4, 7.7, 16.4, 5070, 6573], itemStyle: { color: '#ee6666' }, label: { show: true, position: 'right', formatter: '{c}ms' } }
+  ],
+  graphic: [
+    { type: 'text', left: '65%', top: '15%', style: { text: 'NPU 模式下 CPU 统一变慢 30-50%', fontSize: 14, fontWeight: 'bold', fill: '#ee6666' } },
+    { type: 'text', left: '65%', top: '25%', style: { text: '疑似内存带宽竞争 / 发热降频', fontSize: 12, fill: '#666' } }
+  ]
+});
+
+window.addEventListener('resize', function() { c1.resize(); c2.resize(); c3.resize(); c4.resize(); });
+</script>
+</body>
+</html>
