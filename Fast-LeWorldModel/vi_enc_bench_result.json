@@ -1,0 +1,32 @@
+{
+  "test": "vi_enc (ViT-tiny) CPU vs NPU",
+  "date": "2026-09-16",
+  "locked_freq": true,
+  "batch": 2,
+  "warmup": 20,
+  "repeat": 100,
+  "model_params_M": 5.52,
+  "cpu": {
+    "cores": "4×A76 @ 2352MHz",
+    "batch_latency_ms": 139.29,
+    "median_ms": 138.64,
+    "p99_ms": 147.74,
+    "per_candidate_ms": 69.64,
+    "throughput_samples_s": 14.4
+  },
+  "npu": {
+    "cores": "3核 @ 1GHz",
+    "model": "vit_tiny_b2_fp16.rknn (14.33MB)",
+    "batch_latency_ms": 34.97,
+    "median_ms": 34.06,
+    "p99_ms": 38.04,
+    "per_candidate_ms": 17.49,
+    "throughput_samples_s": 57.2
+  },
+  "speedup": {
+    "latency": 3.98,
+    "throughput": 3.98,
+    "npu_faster_pct": 298.3
+  },
+  "conclusion": "vi_enc 适合上 NPU，NPU 加速约 4 倍。但 vi_enc 单次只占总规划时间 2%（~125ms/6.27s），即使加速 4 倍也只省 ~100ms，对端到端影响有限。action_encoder（占47%）才是更大的优化瓶颈。"
+}
