@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>Fast-LeWM 方案A 异构调度实验图表（三方对比）</title>
+<title>Fast-LeWM 方案A 异构调度实验图表（锁频后三方对比）</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <style>
 body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; margin: 20px; background: #f5f5f5; }
@@ -13,23 +13,23 @@ h2 { color: #444; font-size: 15px; margin-top: 30px; border-left: 4px solid #547
 </style>
 </head>
 <body>
-<h1>Fast-LeWM 方案 A 异构调度实验结果（三方对比）</h1>
-<p style="text-align:center;color:#666;font-size:13px;">RK3588 / 4×A76绑核 / NPU 1GHz / FP16 / batch=300 / 30iter×3rep</p>
+<h1>Fast-LeWM 方案 A 异构调度实验结果（锁频后三方对比）</h1>
+<p style="text-align:center;color:#666;font-size:13px;">RK3588 / CPU 2352MHz锁频 / NPU 1GHz / DMC 2.1GHz / FP16 / batch=300 / 30iter×3rep</p>
 
-<h2>图1：三方端到端延迟对比与加速比</h2>
+<h2>图1：三方端到端延迟对比与加速比（锁频后）</h2>
 <div class="chart"><div id="chart1" style="width:100%;height:400px;"></div></div>
 
-<h2>图2：各阶段延迟分解（CPU / NPU全量 / NPU异构）</h2>
+<h2>图2：各阶段延迟分解（锁频后，CPU端无差异）</h2>
 <div class="chart"><div id="chart2" style="width:100%;height:420px;"></div></div>
 
-<h2>图3：NPU 每步细粒度开销（异构 vs 全量）</h2>
+<h2>图3：NPU 每步细粒度开销（异构 vs 全量，锁频后无差异）</h2>
 <div class="chart"><div id="chart3" style="width:100%;height:380px;"></div></div>
 
-<h2>图4：NPU 模式下 CPU 性能下降幅度</h2>
-<div class="chart"><div id="chart4" style="width:100%;height:380px;"></div></div>
+<h2>图4：DVFS 根因诊断 — 锁频前后 CPU 频率与 vi_enc 性能对比</h2>
+<div class="chart"><div id="chart4" style="width:100%;height:420px;"></div></div>
 
 <script>
-// 图1：三方端到端延迟对比
+// 图1：三方端到端延迟对比（锁频后）
 var c1 = echarts.init(document.getElementById('chart1'));
 c1.setOption({
   backgroundColor: 'transparent',
@@ -39,17 +39,18 @@ c1.setOption({
   xAxis: { type: 'category', data: ['CPU 全量', 'NPU 全量\n(enc+pred都NPU)', 'NPU 异构(方案A)\n(CPU enc+NPU pred)'] },
   yAxis: { type: 'value', name: '延迟 (s)', nameLocation: 'middle', nameGap: 45 },
   series: [
-    { name: '完整CEM决策', type: 'bar', data: [20.09, 10.49, 8.95], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}s' }, barWidth: '30%' },
-    { name: 'rollout(5步×30iter)', type: 'bar', data: [16.59, 4.58, 3.40], itemStyle: { color: '#91cc75' }, label: { show: true, position: 'top', formatter: '{c}s' }, barWidth: '30%' }
+    { name: '完整CEM决策', type: 'bar', data: [19.29, 8.58, 6.27], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}s' }, barWidth: '30%' },
+    { name: 'rollout(5步×30iter)', type: 'bar', data: [16.15, 3.09, 3.17], itemStyle: { color: '#91cc75' }, label: { show: true, position: 'top', formatter: '{c}s' }, barWidth: '30%' }
   ],
   graphic: [
-    { type: 'text', left: '72%', top: '35%', style: { text: '异构 vs CPU: 2.25×', fontSize: 16, fontWeight: 'bold', fill: '#ee6666' } },
-    { type: 'text', left: '72%', top: '45%', style: { text: '异构 vs 全量: 1.17×', fontSize: 14, fontWeight: 'bold', fill: '#fac858' } },
-    { type: 'text', left: '72%', top: '55%', style: { text: '全量 vs CPU: 1.92×', fontSize: 12, fill: '#999' } }
+    { type: 'text', left: '70%', top: '30%', style: { text: '异构 vs CPU: 3.08×', fontSize: 16, fontWeight: 'bold', fill: '#ee6666' } },
+    { type: 'text', left: '70%', top: '40%', style: { text: '异构 vs 全量: 1.37×', fontSize: 14, fontWeight: 'bold', fill: '#fac858' } },
+    { type: 'text', left: '70%', top: '50%', style: { text: '全量 vs CPU: 2.25×', fontSize: 12, fill: '#999' } },
+    { type: 'text', left: '70%', top: '62%', style: { text: '未锁频时仅 2.25× / 1.17×', fontSize: 11, fill: '#aaa' } }
   ]
 });
 
-// 图2：各阶段延迟分解（三方）
+// 图2：各阶段延迟分解（锁频后）
 var c2 = echarts.init(document.getElementById('chart2'));
 c2.setOption({
   backgroundColor: 'transparent',
@@ -59,14 +60,21 @@ c2.setOption({
   xAxis: { type: 'category', data: ['CPU 全量', 'NPU 全量', 'NPU 异构(方案A)'] },
   yAxis: { type: 'value', name: '延迟 (ms)', nameLocation: 'middle', nameGap: 45 },
   series: [
-    { name: 'vi_enc(视觉编码)', type: 'bar', stack: 'total', data: [3914, 7334, 5151], itemStyle: { color: '#ee6666' } },
-    { name: 'action_encoder', type: 'bar', stack: 'total', data: [2982, 5466, 4897], itemStyle: { color: '#fac858' } },
-    { name: 'rollout(模型计算)', type: 'bar', stack: 'total', data: [16589, 4585, 3402], itemStyle: { color: '#5470c6' } },
-    { name: '其他(score/elite/sample)', type: 'bar', stack: 'total', data: [18, 66, 34], itemStyle: { color: '#91cc75' } }
+    { name: 'vi_enc(视觉编码)', type: 'bar', stack: 'total', data: [3754, 3724, 3663], itemStyle: { color: '#ee6666' } },
+    { name: 'action_encoder', type: 'bar', stack: 'total', data: [3012, 5313, 2937], itemStyle: { color: '#fac858' } },
+    { name: 'rollout(模型计算)', type: 'bar', stack: 'total', data: [16151, 3088, 3169], itemStyle: { color: '#5470c6' } },
+    { name: '其他(score/elite/sample)', type: 'bar', stack: 'total', data: [17, 17, 18], itemStyle: { color: '#91cc75' } }
+  ],
+  graphic: [
+    { type: 'text', left: '65%', top: '15%', style: { text: '锁频后 CPU 端零差异', fontSize: 14, fontWeight: 'bold', fill: '#ee6666' } },
+    { type: 'text', left: '65%', top: '25%', style: { text: 'vi_enc: 3754/3724/3663ms', fontSize: 11, fill: '#666' } },
+    { type: 'text', left: '65%', top: '33%', style: { text: 'action_encoder(CPU): 3012/2937ms', fontSize: 11, fill: '#666' } },
+    { type: 'text', left: '65%', top: '45%', style: { text: '唯一差异: action_encoder', fontSize: 13, fontWeight: 'bold', fill: '#fac858' } },
+    { type: 'text', left: '65%', top: '53%', style: { text: 'NPU比CPU慢76% (5313 vs 2937ms)', fontSize: 11, fill: '#666' } }
   ]
 });
 
-// 图3：NPU 每步细粒度开销（异构 vs 全量）
+// 图3：NPU 每步细粒度（锁频后异构 vs 全量无差异）
 var c3 = echarts.init(document.getElementById('chart3'));
 c3.setOption({
   backgroundColor: 'transparent',
@@ -76,35 +84,40 @@ c3.setOption({
   xAxis: { type: 'category', data: ['输入搬运\n(transfer_in)', 'NPU推理\n(inference)', '输出搬运\n(transfer_out)', '每步合计'] },
   yAxis: { type: 'value', name: '延迟 (ms)', nameLocation: 'middle', nameGap: 45 },
   series: [
-    { name: 'NPU异构(方案A)', type: 'bar', data: [0.083, 22.558, 0.276, 22.917], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}ms' } },
-    { name: 'NPU全量', type: 'bar', data: [0.211, 30.146, 0.732, 31.089], itemStyle: { color: '#ee6666' }, label: { show: true, position: 'top', formatter: '{c}ms' } }
+    { name: 'NPU异构(方案A)', type: 'bar', data: [0.064, 20.899, 0.189, 21.152], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}ms' } },
+    { name: 'NPU全量', type: 'bar', data: [0.056, 20.414, 0.171, 20.641], itemStyle: { color: '#ee6666' }, label: { show: true, position: 'top', formatter: '{c}ms' } }
   ],
   graphic: [
-    { type: 'text', left: '65%', top: '20%', style: { text: '全量模式 predictor 变慢 33%', fontSize: 13, fontWeight: 'bold', fill: '#ee6666' } },
-    { type: 'text', left: '65%', top: '30%', style: { text: '(双NPU模型交替推理上下文切换)', fontSize: 11, fill: '#999' } },
-    { type: 'text', left: '65%', top: '45%', style: { text: '数据搬运占比: 异构 1.6% / 全量 3.0%', fontSize: 12, fill: '#666' } }
+    { type: 'text', left: '62%', top: '20%', style: { text: '锁频后 NPU 推理无差异', fontSize: 14, fontWeight: 'bold', fill: '#ee6666' } },
+    { type: 'text', left: '62%', top: '30%', style: { text: '异构 20.9ms vs 全量 20.4ms', fontSize: 11, fill: '#666' } },
+    { type: 'text', left: '62%', top: '38%', style: { text: '无双模型上下文切换开销', fontSize: 11, fill: '#666' } },
+    { type: 'text', left: '62%', top: '52%', style: { text: '数据搬运占比: 1.2%', fontSize: 12, fill: '#666' } },
+    { type: 'text', left: '62%', top: '60%', style: { text: '未锁频时全量 predictor 慢33%', fontSize: 11, fill: '#aaa' } },
+    { type: 'text', left: '62%', top: '68%', style: { text: '(实为CPU降频导致数据搬运变慢)', fontSize: 11, fill: '#aaa' } }
   ]
 });
 
-// 图4：NPU 模式下 CPU 性能下降幅度
+// 图4：DVFS 根因诊断
 var c4 = echarts.init(document.getElementById('chart4'));
 c4.setOption({
   backgroundColor: 'transparent',
-  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true, axisPointer: { type: 'shadow' } },
-  legend: { data: ['纯CPU模式', 'NPU异构模式', 'NPU全量模式'], top: 5 },
-  grid: { left: 60, right: 40, top: 50, bottom: 40, containLabel: true },
-  xAxis: { type: 'value', name: '延迟 (ms)', nameLocation: 'middle', nameGap: 45 },
-  yAxis: { type: 'category', data: ['tensor_prep', 'cem_sample', 'elite_select', 'score', 'vi_enc(视觉编码)', 'action_encoder(CPU)'] },
+  tooltip: { trigger: 'axis', triggerOn: 'mousemove|click', renderMode: 'richText', confine: true },
+  legend: { data: ['CPU频率(MHz)', 'vi_enc延迟(ms)'], top: 5 },
+  grid: { left: 60, right: 60, top: 50, bottom: 40, containLabel: true },
+  xAxis: { type: 'category', data: ['CPU基线\n(未锁频)', 'NPU异构\n(未锁频)', 'NPU全量\n(未锁频)', 'CPU基线\n(锁频)', 'NPU异构\n(锁频)', 'NPU全量\n(锁频)'] },
+  yAxis: [
+    { type: 'value', name: 'CPU频率 (MHz)', nameLocation: 'middle', nameGap: 45, min: 1000, max: 2500 },
+    { type: 'value', name: 'vi_enc (ms)', nameLocation: 'middle', nameGap: 45, min: 0, max: 250 }
+  ],
   series: [
-    { name: '纯CPU模式', type: 'bar', data: [1.9, 3.7, 5.4, 8.6, 3914, 2982], itemStyle: { color: '#91cc75' }, label: { show: true, position: 'right', formatter: '{c}ms' } },
-    { name: 'NPU异构模式', type: 'bar', data: [4.0, 5.6, 7.8, 20.5, 5151, 4897], itemStyle: { color: '#fac858' }, label: { show: true, position: 'right', formatter: '{c}ms' } },
-    { name: 'NPU全量模式', type: 'bar', data: [8.7, 16.5, 17.4, 31.8, 7334, '-'], itemStyle: { color: '#ee6666' }, label: { show: true, position: 'right', formatter: function(p) { return p.value === '-' ? '' : p.value + 'ms'; } } }
+    { name: 'CPU频率(MHz)', type: 'bar', data: [2127, 1416, 1433, 2352, 2352, 2352], itemStyle: { color: '#5470c6' }, label: { show: true, position: 'top', formatter: '{c}' }, yAxisIndex: 0 },
+    { name: 'vi_enc延迟(ms)', type: 'line', data: [175, 181, 191, 122, 116, 123], itemStyle: { color: '#ee6666' }, lineStyle: { width: 3 }, symbolSize: 10, label: { show: true, position: 'top', formatter: '{c}ms' }, yAxisIndex: 1 }
   ],
   graphic: [
-    { type: 'text', left: '60%', top: '15%', style: { text: 'NPU 推理导致 CPU 性能下降', fontSize: 14, fontWeight: 'bold', fill: '#ee6666' } },
-    { type: 'text', left: '60%', top: '25%', style: { text: '异构: vi_enc +32%, action_enc +64%', fontSize: 11, fill: '#666' } },
-    { type: 'text', left: '60%', top: '33%', style: { text: '全量: vi_enc +87%, 其他 +100~200%', fontSize: 11, fill: '#666' } },
-    { type: 'text', left: '60%', top: '45%', style: { text: '疑似原因: 内存带宽竞争 / 发热降频', fontSize: 11, fill: '#999' } }
+    { type: 'text', left: '5%', top: '75%', style: { text: '未锁频: NPU模式CPU被压到1416MHz (-33%)', fontSize: 12, fontWeight: 'bold', fill: '#ee6666' } },
+    { type: 'text', left: '5%', top: '82%', style: { text: '锁频后: 全部稳定2352MHz, vi_enc无差异 (±3%)', fontSize: 12, fontWeight: 'bold', fill: '#91cc75' } },
+    { type: 'text', left: '55%', top: '75%', style: { text: '结论: 之前"CPU性能下降30-50%"', fontSize: 12, fill: '#666' } },
+    { type: 'text', left: '55%', top: '82%', style: { text: '100%是DVFS降频, 非内存带宽竞争', fontSize: 12, fontWeight: 'bold', fill: '#ee6666' } }
   ]
 });
 
