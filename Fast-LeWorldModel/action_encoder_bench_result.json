@@ -1,0 +1,41 @@
+{
+  "test": "action_encoder CPU vs NPU FP16 vs NPU INT8",
+  "date": "2026-09-16",
+  "locked_freq": true,
+  "batch": 300,
+  "warmup": 10,
+  "repeat": 50,
+  "model_params_M": 1.80,
+  "cpu": {
+    "cores": "4×A76 @ 2352MHz",
+    "batch_latency_ms": 114.86,
+    "median_ms": 115.45,
+    "p99_ms": 117.18,
+    "per_candidate_ms": 0.383,
+    "throughput_cand_s": 2612.0
+  },
+  "npu_fp16": {
+    "cores": "3核 @ 1GHz",
+    "model": "action_encoder_S300_fp16.rknn (190MB)",
+    "batch_latency_ms": 130.60,
+    "median_ms": 128.85,
+    "p99_ms": 166.42,
+    "per_candidate_ms": 0.435,
+    "throughput_cand_s": 2297.1
+  },
+  "npu_int8": {
+    "cores": "3核 @ 1GHz",
+    "model": "action_encoder_S300_int8.rknn (220MB)",
+    "batch_latency_ms": 116.90,
+    "median_ms": 116.43,
+    "p99_ms": 119.11,
+    "per_candidate_ms": 0.390,
+    "throughput_cand_s": 2566.4
+  },
+  "comparison": {
+    "int8_vs_fp16_speedup": 1.12,
+    "int8_vs_cpu_speedup": 0.98,
+    "fp16_vs_cpu_speedup": 0.88
+  },
+  "conclusion": "INT8 量化比 FP16 快 12%，说明 INT8 对 NPU 效率有提升。但 INT8 仍比 CPU 慢 2%，action_encoder 作为 1.8M 参数的小模型，NPU 启动开销占比高，CPU 4 大核已经足够快。在实际端到端规划中，NPU 还需额外的数据搬运开销，实际差距可能更大。action_encoder 不适合上 NPU（无论 FP16 还是 INT8），应留在 CPU。"
+}

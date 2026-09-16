@@ -514,13 +514,69 @@ NPU 异构模式（6.27s）：
 | --- | --- | --- | --- | --- | --- |
 | **vi\_enc** | 5.52M | 139ms/batch | 35ms/batch | **3.98×** | ✅ 适合，但占比低 |
 | **predictor** | 9.0M | ~733ms/300候选 | 20.9ms/步 | **~35×** | ✅ 非常适合，已上 NPU |
-| **action\_encoder** | 1.8M | 2.94s/300候选 | 5.31s/300候选 | **0.55×（慢76%）** | ❌ FP16 不适合，需 INT8 |
+| **action\_encoder** | 1.8M | 115ms/batch | FP16: 131ms (慢14%)<br>INT8: 117ms (慢2%) | **FP16: 0.88×<br>INT8: 0.98×** | ❌ 不适合 NPU，应留 CPU（见第 10 节） |
 
 **关键发现**：
 1. **大模型（predictor）最适合 NPU**：计算密集，NPU 加速比最高
 2. **小模型（action\_encoder）NPU 不划算**：NPU 启动开销占比高，FP16 比 CPU 还慢
 3. **中等模型（vi\_enc）NPU 有收益**：但调用次数少，整体影响有限
-4. **下一步优化重点应是 action\_encoder 的 INT8 量化**：占总时间 47%，是最大瓶颈
+4. **下一步优化重点**：action\_encoder 不适合上 NPU（无论 FP16 还是 INT8），应留在 CPU。predictor 已上 NPU，后续优化方向应是方案 B 双缓冲流水线和 predictor INT8 量化。
+
+
+
+***
+
+## 10. action\_encoder INT8 量化测试（2026-09-16）
+
+### 10.1 测试目的
+
+验证 action\_encoder（1.8M 参数，占总规划时间 47%）通过 INT8 量化后能否在 NPU 上获得比 CPU 更高的效率。此前 FP16 版本 NPU 比 CPU 慢 76%，希望 INT8 量化能扭转这一局面。
+
+### 10.2 测试配置
+
+* **模型**：ActionPrefixEmbedder（1.80M 参数，双输入 actions[300,5,2] + latent[300,1,192]）
+* **CPU**：4×A76 @ 2352MHz（绑核），torch 2.9.1+cpu
+* **NPU FP16**：3核 @ 1GHz，RKNN FP16（190MB）
+* **NPU INT8**：3核 @ 1GHz，RKNN INT8（220MB，随机数据校准）
+* **锁频**：CPU/NPU/DMC 全部锁最高频
+* **测试**：warmup=10，repeat=50，batch=300
+
+### 10.3 测试结果
+
+| 指标 | CPU (4×A76) | NPU FP16 | NPU INT8 |
+| --- | --- | --- | --- |
+| batch 延迟 | **114.86 ms** | 130.60 ms | 116.90 ms |
+| 单候选延迟 | **0.383 ms** | 0.435 ms | 0.390 ms |
+| 吞吐量 | **2612 cand/s** | 2297 cand/s | 2566 cand/s |
+| p99 延迟 | 117.18 ms | 166.42 ms | 119.11 ms |
+| vs CPU | 1.00× | 0.88×（慢14%） | 0.98×（慢2%） |
+| vs FP16 | - | 1.00× | **1.12×（快12%）** |
+
+### 10.4 关键发现
+
+1. **INT8 量化确实有效**：NPU INT8 比 NPU FP16 快 12%，p99 延迟从 166ms 降到 119ms（-28%），说明 INT8 量化对 NPU 效率有明显提升。
+
+2. **但仍未超过 CPU**：INT8 版本比 CPU 仍慢 2%，在实际端到端规划中还需额外的 CPU↔NPU 数据搬运开销，实际差距会更大。
+
+3. **小模型 NPU 启动开销占比高**：action\_encoder 只有 1.8M 参数，单次推理 115ms，其中 NPU runtime 启动、数据搬运、格式转换等固定开销占比较大，计算本身的加速被开销抵消。
+
+4. **CPU 4 大核已经足够快**：1.8M 参数的小模型在 4×A76 @ 2.35GHz 上已经能跑到 2612 cand/s，NPU 的优势不明显。
+
+### 10.5 结论与建议
+
+**action\_encoder 不适合上 NPU（无论 FP16 还是 INT8），应留在 CPU。**
+
+理由：
+* FP16：NPU 比 CPU 慢 14%
+* INT8：NPU 比 CPU 慢 2%（纯推理），实际端到端更慢
+* 1.8M 参数的小模型，NPU 固定开销占比高
+* CPU 4 大核已经足够高效
+
+**后续优化方向调整**：
+1. ~~action\_encoder INT8 上 NPU~~ → 已验证不可行，留 CPU
+2. **方案 B 双缓冲流水线**：CPU 准备下一批 candidate 时 NPU 推理当前批，掩盖数据搬运开销
+3. **predictor INT8 量化**：predictor 是 9M 参数的大模型，NPU 加速比高（~35×），INT8 可能再加速 1.5-2×
+4. **动态 batch / CEM 收敛感知**：减少后期 candidate 数量，降低 action\_encoder 总调用次数
 
 
 
