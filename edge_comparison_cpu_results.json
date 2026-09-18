@@ -1,0 +1,52 @@
+{
+  "mode": "cpu",
+  "num_episodes": 1,
+  "success_rate": 0.0,
+  "avg_reward": -33838.856903883556,
+  "avg_steps": 100.0,
+  "avg_plan_time_board": 20.182140350341797,
+  "results": [
+    {
+      "episode": 0,
+      "success": false,
+      "total_reward": -33838.856903883556,
+      "steps": 100,
+      "plan_times": [
+        {
+          "step": 0,
+          "time_board": 20.216246843338013,
+          "time_roundtrip": 20.27002501487732,
+          "time_encode": 0.2763707637786865,
+          "time_cem": 19.939871549606323,
+          "cost": 2.289612054824829
+        },
+        {
+          "step": 25,
+          "time_board": 20.018306732177734,
+          "time_roundtrip": 20.022361993789673,
+          "time_encode": 0.2585136890411377,
+          "time_cem": 19.75978946685791,
+          "cost": 241.19171142578125
+        },
+        {
+          "step": 50,
+          "time_board": 20.225236415863037,
+          "time_roundtrip": 20.27480912208557,
+          "time_encode": 0.25934410095214844,
+          "time_cem": 19.965888261795044,
+          "cost": 68.38417053222656
+        },
+        {
+          "step": 75,
+          "time_board": 20.268771409988403,
+          "time_roundtrip": 20.275182008743286,
+          "time_encode": 0.2640202045440674,
+          "time_cem": 20.004748106002808,
+          "cost": 104.37773132324219
+        }
+      ],
+      "num_plans": 4,
+      "wall_time": 81.02587890625
+    }
+  ]
+}
