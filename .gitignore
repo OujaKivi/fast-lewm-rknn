@@ -5,6 +5,10 @@
 *.pth
 *.ckpt
 
+# 数据集（过大，不进 git）
+data/
+datasets/
+
 # Python
 __pycache__/
 *.pyc
