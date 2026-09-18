@@ -3,9 +3,13 @@
 RK3588 完整规划 Server
 - ViT 编码 (CPU)
 - Action Encoder (CPU)
-- Predictor (CPU 或 NPU)
+- Predictor (CPU 或 NPU，多步预测)
 - CEM 采样 (CPU)
 通信：stdin/stdout JSON + base64 图像
+
+更新记录：
+- 2026-09-18: 修复 NPU 模型参数（heads=8, dim_head=128, mlp_dim=2048）
+- 2026-09-18: NPU 改为多步预测（一次 forward 完成 5 步，不再循环）
 """
 import sys
 import json
@@ -23,12 +27,12 @@ import io
 
 sys.path.insert(0, '/root/Fast-LeWorldModel')
 from module import ActionPrefixEmbedder, ARPredictor, MLP
-from npu_predictor import NPUPredictor
 
 # 配置
 WEIGHTS_PATH = '/root/Fast-LeWorldModel/weights/full_model_state.pt'
-PREDICTOR_INT8_PATH = '/root/Fast-LeWorldModel/predictor_S300_pretrained_int8.rknn'
-PREDICTOR_FP16_PATH = '/root/Fast-LeWorldModel/predictor_S300_pretrained_fp16.rknn'
+# 新的多步预测 NPU 模型（正确参数：heads=8, dim_head=128, mlp_dim=2048）
+PREDICTOR_FP16_PATH = '/root/Fast-LeWorldModel/predictor_multistep_fp16.rknn'  # batch=1
+PREDICTOR_B300_FP16_PATH = '/root/Fast-LeWorldModel/predictor_multistep_b300_fp16.rknn'  # batch=300，用于 CEM 批量推理
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
@@ -43,6 +47,78 @@ ACTION_DIM = 50  # packed: 25 steps × 2 dim
 
 def log(msg):
     print(msg, file=sys.stderr, flush=True)
+
+
+class MultiStepNPUPredictor:
+    """
+    多步预测 NPU 推理封装
+    输入: latent (B, 1, 192) + act_emb (B, 5, 192)
+    输出: pred_latent (B, 5, 192)
+    一次 forward 完成 5 步预测（Fast-LeWM 原实现方式）
+    支持固定 batch 模型（如 batch=300），自动分批推理
+    """
+    def __init__(self, model_path, batch_size=1, core_mask=None):
+        from rknnlite.api import RKNNLite
+        self.batch_size = batch_size
+        self.rknn = RKNNLite()
+        ret = self.rknn.load_rknn(model_path)
+        if ret != 0:
+            raise RuntimeError(f"Failed to load RKNN model: {ret}")
+        
+        if core_mask is None:
+            core_mask = RKNNLite.NPU_CORE_0_1_2
+        
+        ret = self.rknn.init_runtime(core_mask=core_mask)
+        if ret != 0:
+            raise RuntimeError(f"Failed to init RKNN runtime: {ret}")
+        
+        log(f"[NPU] Multi-step predictor loaded: {model_path} (batch={batch_size})")
+    
+    def __call__(self, latent, act_emb):
+        """
+        latent: (B, 1, 192) torch.Tensor
+        act_emb: (B, 5, 192) torch.Tensor
+        返回: (B, 5, 192) torch.Tensor
+        """
+        B = latent.shape[0]
+        latent_np = latent.detach().cpu().numpy().astype(np.float32)
+        act_emb_np = act_emb.detach().cpu().numpy().astype(np.float32)
+        
+        # 如果输入 batch 等于模型固定 batch，直接一次推理
+        if B == self.batch_size:
+            out = self.rknn.inference(inputs=[latent_np, act_emb_np])
+            return torch.from_numpy(out[0])
+        
+        # 否则分批推理
+        outputs = []
+        for start in range(0, B, self.batch_size):
+            end = min(start + self.batch_size, B)
+            lat_batch = latent_np[start:end]  # (batch, 1, 192)
+            act_batch = act_emb_np[start:end]  # (batch, 5, 192)
+            
+            # 如果最后一批不足 batch_size，需要 padding 或逐个推理
+            if lat_batch.shape[0] < self.batch_size:
+                # 逐个推理（小批量，效率低但准确）
+                for i in range(lat_batch.shape[0]):
+                    lat_i = lat_batch[i:i+1]
+                    act_i = act_batch[i:i+1]
+                    # 注意：这里用的是固定 batch 模型，不能直接传 batch=1
+                    # 需要 padding 到 batch_size
+                    lat_pad = np.zeros((self.batch_size, 1, 192), dtype=np.float32)
+                    act_pad = np.zeros((self.batch_size, 5, 192), dtype=np.float32)
+                    lat_pad[0] = lat_i[0]
+                    act_pad[0] = act_i[0]
+                    out = self.rknn.inference(inputs=[lat_pad, act_pad])
+                    outputs.append(out[0][0:1])
+            else:
+                out = self.rknn.inference(inputs=[lat_batch, act_batch])
+                outputs.append(out[0])
+        
+        result = np.concatenate(outputs, axis=0)  # (B, 5, 192)
+        return torch.from_numpy(result)
+    
+    def release(self):
+        self.rknn.release()
 
 
 class FastLeWMPlanner:
@@ -82,10 +158,12 @@ class FastLeWMPlanner:
         self.action_encoder.eval()
         self.action_encoder.requires_grad_(False)
 
-        # 3. Predictor
+        # 3. Predictor（多步预测）
         if mode == 'npu':
-            self.predictor = NPUPredictor(PREDICTOR_INT8_PATH)
+            # 使用 batch=300 的 NPU 模型，用于 CEM 批量推理
+            self.predictor = MultiStepNPUPredictor(PREDICTOR_B300_FP16_PATH, batch_size=300)
             self.predictor_type = 'npu'
+            log(f"[Planner] Using NPU multi-step predictor (batch=300, correct params: heads=8)")
         else:
             self.predictor = ARPredictor(
                 depth=6, mlp_dim=2048, input_dim=192, hidden_dim=192,
@@ -104,7 +182,7 @@ class FastLeWMPlanner:
         self.projector.eval()
         self.projector.requires_grad_(False)
 
-        # 5. Pred Proj
+        # 5. Pred Proj（NPU 模型已包含 pred_proj，CPU 模式需要单独做）
         self.pred_proj = MLP(input_dim=192, hidden_dim=2048, output_dim=192, norm_fn=nn.BatchNorm1d)
         pp_state = {k.replace('pred_proj.', '', 1): v for k, v in state_dict.items() if k.startswith('pred_proj.')}
         self.pred_proj.load_state_dict(pp_state)
@@ -118,6 +196,12 @@ class FastLeWMPlanner:
             transforms.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD),
             transforms.Resize(size=(224, 224)),
         ])
+
+        # Profiling 统计
+        self.stats = {
+            'encode': 0, 'action_enc': 0, 'predict': 0,
+            'cost': 0, 'cem_update': 0, 'count': 0,
+        }
 
         log(f"[Planner] Model loaded successfully in {mode} mode")
 
@@ -133,29 +217,28 @@ class FastLeWMPlanner:
         return emb
 
     def predict(self, emb, act_emb):
-        """预测未来 latent"""
+        """
+        预测未来 latent（多步预测）
+        emb: (B, 192) 或 (B, 1, 192)
+        act_emb: (B, 5, 192)
+        返回: (B, 5, 192)
+        """
+        if emb.dim() == 2:
+            emb = emb.unsqueeze(1)  # (B, 1, 192)
+
         if self.predictor_type == 'npu':
-            # NPU 单步预测，循环 5 次
-            B = emb.shape[0]
-            current = emb.unsqueeze(1) if emb.dim() == 2 else emb  # (B, 1, 192)
-            preds = []
-            for t in range(5):
-                act_t = act_emb[:, t:t+1, :] if act_emb.dim() == 3 else act_emb
-                pred = self.predictor(current, act_t)  # (B, 1, 192)
-                preds.append(pred)
-                current = pred
-            pred_emb = torch.cat(preds, dim=1)  # (B, 5, 192)
-            return pred_emb
+            # NPU 多步预测：一次 forward 完成 5 步
+            # NPU 模型已包含 pred_proj，直接返回
+            pred = self.predictor(emb, act_emb)  # (B, 5, 192)
+            return pred
         else:
             # CPU 多步预测
             with torch.no_grad():
-                preds = self.predictor(emb, act_emb)
-                if preds.dim() == 2:
-                    preds = self.pred_proj(preds)
-                elif preds.dim() == 3:
-                    b, t, _ = preds.shape
-                    preds = self.pred_proj(rearrange(preds, "b t d -> (b t) d"))
-                    preds = rearrange(preds, "(b t) d -> b t d", b=b, t=t)
+                preds = self.predictor(emb, act_emb)  # (B, 5, 192)
+                # 应用 pred_proj
+                b, t, _ = preds.shape
+                preds = self.pred_proj(rearrange(preds, "b t d -> (b t) d"))
+                preds = rearrange(preds, "(b t) d -> b t d", b=b, t=t)
             return preds
 
     def get_cost(self, current_emb, goal_emb, action_candidates):
@@ -172,20 +255,25 @@ class FastLeWMPlanner:
         emb = current_emb.expand(N, -1)  # (N, 192)
 
         # Action encoder: 把 (N, 1, 50) 分成 5 个 block，每个 10 维
-        # action_candidates: (N, 1, 50) -> (N, 5, 10)
         actions = action_candidates.reshape(N, 5, 10)
 
+        t0 = time.time()
         with torch.no_grad():
             act_emb = self.action_encoder(actions, latent=emb.unsqueeze(1))  # (N, 5, 192)
+        self.stats['action_enc'] += time.time() - t0
 
-        # Predict
+        # Predict（多步预测）
+        t0 = time.time()
         pred_emb = self.predict(emb, act_emb)  # (N, 5, 192)
+        self.stats['predict'] += time.time() - t0
 
         # Cost: 最后一步预测和 goal 的 MSE
+        t0 = time.time()
         pred_last = pred_emb[:, -1:, :]  # (N, 1, 192)
         goal_expanded = goal_emb.unsqueeze(0).expand(N, 1, -1)  # (N, 1, 192)
-
         cost = F.mse_loss(pred_last, goal_expanded, reduction='none').sum(dim=-1).squeeze(-1)  # (N,)
+        self.stats['cost'] += time.time() - t0
+
         return cost
 
     def cem_plan(self, current_emb, goal_emb):
@@ -207,12 +295,14 @@ class FastLeWMPlanner:
             costs = self.get_cost(current_emb, goal_emb, candidates)  # (N,)
 
             # 选择 top-k
+            t0 = time.time()
             topk_vals, topk_inds = torch.topk(costs, k=TOPK, dim=0, largest=False)
             topk_candidates = candidates[topk_inds]  # (K, 1, 50)
 
             # 更新分布
             mean = topk_candidates.mean(dim=0, keepdim=True)
             var = topk_candidates.std(dim=0, keepdim=True)
+            self.stats['cem_update'] += time.time() - t0
 
             # 记录最优
             if topk_vals[0] < best_cost:
@@ -225,11 +315,16 @@ class FastLeWMPlanner:
         """完整规划流程"""
         t0 = time.time()
 
+        # 重置统计
+        self.stats = {k: 0 for k in self.stats}
+        self.stats['count'] = 1
+
         # 编码图像
         t_enc_start = time.time()
         current_emb = self.encode_image(current_img_b64)
         goal_emb = self.encode_image(goal_img_b64)
         t_enc = time.time() - t_enc_start
+        self.stats['encode'] = t_enc
 
         # CEM 规划
         t_cem_start = time.time()
@@ -238,6 +333,10 @@ class FastLeWMPlanner:
 
         t_total = time.time() - t0
 
+        # 各模块耗时占比
+        total_cem_inner = (self.stats['action_enc'] + self.stats['predict'] +
+                           self.stats['cost'] + self.stats['cem_update'])
+
         return {
             'action': action.tolist(),  # 50维
             'cost': cost,
@@ -245,6 +344,21 @@ class FastLeWMPlanner:
             'time_encode': t_enc,
             'time_cem': t_cem,
             'mode': self.mode,
+            'profiling': {
+                'encode': self.stats['encode'],
+                'action_encoder': self.stats['action_enc'],
+                'predictor': self.stats['predict'],
+                'cost_calc': self.stats['cost'],
+                'cem_update': self.stats['cem_update'],
+                'total_cem_inner': total_cem_inner,
+                'percentages': {
+                    'encode': self.stats['encode'] / t_total * 100 if t_total > 0 else 0,
+                    'action_encoder': self.stats['action_enc'] / t_total * 100 if t_total > 0 else 0,
+                    'predictor': self.stats['predict'] / t_total * 100 if t_total > 0 else 0,
+                    'cost_calc': self.stats['cost'] / t_total * 100 if t_total > 0 else 0,
+                    'cem_update': self.stats['cem_update'] / t_total * 100 if t_total > 0 else 0,
+                }
+            }
         }
 
 
@@ -259,7 +373,7 @@ def main():
     planner = FastLeWMPlanner(mode=args.mode)
     planner.N_STEPS = args.cem_steps
     planner.NUM_SAMPLES = args.num_samples
-    log(f"[Planner] Ready. Mode={args.mode}. Waiting for requests...")
+    log(f"[Planner] Ready. Mode={args.mode}. CEM steps={args.cem_steps}. Samples={args.num_samples}. Waiting for requests...")
 
     for line in sys.stdin:
         line = line.strip()

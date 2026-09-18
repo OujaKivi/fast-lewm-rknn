@@ -1,0 +1,73 @@
+{
+  "experiment": "板端本地 CEM 性能对比（CPU vs NPU 多步预测）",
+  "date": "2026-09-18",
+  "platform": "RK3588 (aarch64, 16GB, NPU 三核 6TOPS)",
+  "config": {
+    "cem_steps": 10,
+    "num_samples": 300,
+    "topk": 30,
+    "action_block": 25,
+    "action_num_blocks": 5,
+    "predictor": "多步预测 (heads=8, dim_head=128, mlp_dim=2048)",
+    "npu_model": "predictor_multistep_b300_fp16.rknn (batch=300, FP16)"
+  },
+  "cpu": {
+    "mean_total": 17.96,
+    "std_total": 0.16,
+    "encode": 0.27,
+    "action_encoder": 4.75,
+    "predictor": 12.93,
+    "cost_calc": 0.015,
+    "cem_update": 0.005,
+    "percentages": {
+      "encode": 1.5,
+      "action_encoder": 26.2,
+      "predictor": 72.1,
+      "cost_calc": 0.1,
+      "cem_update": 0.0
+    },
+    "estimated_full_30_steps": 53.9
+  },
+  "npu": {
+    "mean_total": 9.40,
+    "std_total": 0.11,
+    "encode": 0.27,
+    "action_encoder": 5.53,
+    "predictor": 3.53,
+    "cost_calc": 0.017,
+    "cem_update": 0.006,
+    "percentages": {
+      "encode": 3.0,
+      "action_encoder": 59.0,
+      "predictor": 37.7,
+      "cost_calc": 0.2,
+      "cem_update": 0.1
+    },
+    "estimated_full_30_steps": 28.2
+  },
+  "speedup": {
+    "predictor": 3.66,
+    "action_encoder": 0.86,
+    "total": 1.91,
+    "full_30_steps": 1.91
+  },
+  "key_findings": [
+    "NPU 多步预测把 predictor 加速 3.66x (12.93s -> 3.53s)",
+    "端到端 CEM 加速 1.91x (17.96s -> 9.40s)",
+    "瓶颈转移：CPU 模式 predictor 占 72%，NPU 模式 action_encoder 占 59%",
+    "action_encoder 在 NPU 模式下反而变慢 (4.75s -> 5.53s)，可能因 CPU/NPU 竞争或数据搬运",
+    "下一步优化方向：action_encoder 优化（上NPU或算子优化）、CEM 预算减少、warm start"
+  ],
+  "single_module_benchmark": {
+    "batch_1": {
+      "cpu_ms": 31.40,
+      "npu_ms": 3.24,
+      "speedup": 9.7
+    },
+    "batch_300": {
+      "cpu_ms": 466.0,
+      "npu_ms": 116.0,
+      "speedup": 4.0
+    }
+  }
+}
