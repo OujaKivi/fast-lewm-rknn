@@ -1,0 +1,71 @@
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/stable_worldmodel/envs/__init__.py:215: UserWarning: ale-py not found; ALE/* envs are unavailable. Install with: pip install 'stable-worldmodel[env]' or pip install ale-py.
+  from stable_worldmodel.envs import ale  # noqa: F401
+[BoardEval] Building model...
+[BoardEval] Model built
+[BoardEval] Loading NPU model...
+W Query dynamic range failed. Ret code: RKNN_ERR_MODEL_INVALID. (If it is a static shape RKNN model, please ignore the above warning message.)
+[BoardEval] NPU model loaded
+[BoardEval] Loaded 10 test cases
+
+[BoardEval] Episode 1/10
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/gymnasium/spaces/box.py:415: UserWarning: [33mWARN: Casting input x to numpy array.[0m
+  gym.logger.warn("Casting input x to numpy array.")
+CEM solve time: 18.8554 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-235.2, steps=1, avg_plan_time=18.86s
+
+[BoardEval] Episode 2/10
+CEM solve time: 18.8673 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-117.0, steps=1, avg_plan_time=18.87s
+
+[BoardEval] Episode 3/10
+CEM solve time: 18.9831 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-244.2, steps=1, avg_plan_time=18.98s
+
+[BoardEval] Episode 4/10
+CEM solve time: 19.0137 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-205.7, steps=1, avg_plan_time=19.01s
+
+[BoardEval] Episode 5/10
+CEM solve time: 18.8928 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-85.8, steps=1, avg_plan_time=18.89s
+
+[BoardEval] Episode 6/10
+CEM solve time: 18.9271 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-167.4, steps=1, avg_plan_time=18.93s
+
+[BoardEval] Episode 7/10
+CEM solve time: 19.0250 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-272.3, steps=1, avg_plan_time=19.03s
+
+[BoardEval] Episode 8/10
+CEM solve time: 19.0008 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-240.9, steps=1, avg_plan_time=19.00s
+
+[BoardEval] Episode 9/10
+CEM solve time: 18.9626 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-154.9, steps=1, avg_plan_time=18.96s
+
+[BoardEval] Episode 10/10
+CEM solve time: 18.9837 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-389.2, steps=1, avg_plan_time=18.98s
+
+[BoardEval] Summary: success_rate=100.00%, avg_reward=-211.2, avg_plan_time=18.95s
+[BoardEval] Results saved
+I RKNN: [18:12:48.711] RKNN Runtime Information, librknnrt version: 2.3.2 (429f97ae6b@2025-04-09T09:09:27)
+I RKNN: [18:12:48.711] RKNN Driver Information, version: 0.9.8
+I RKNN: [18:12:48.711] RKNN Model Information, version: 6, toolkit version: 2.3.2(compiler version: 2.3.2 (e045de294f@2025-04-07T19:48:25)), target: RKNPU v2, target platform: rk3588, framework name: ONNX, framework layout: NCHW, model inference type: static_shape
+W RKNN: [18:12:48.773] query RKNN_QUERY_INPUT_DYNAMIC_RANGE error, rknn model is static shape type, please export rknn with dynamic_shapes

@@ -1,0 +1,64 @@
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/stable_worldmodel/envs/__init__.py:215: UserWarning: ale-py not found; ALE/* envs are unavailable. Install with: pip install 'stable-worldmodel[env]' or pip install ale-py.
+  from stable_worldmodel.envs import ale  # noqa: F401
+[BoardEval] Building model...
+[BoardEval] Model built
+[BoardEval] Loaded 10 test cases
+
+[BoardEval] Episode 1/10
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/gymnasium/spaces/box.py:415: UserWarning: [33mWARN: Casting input x to numpy array.[0m
+  gym.logger.warn("Casting input x to numpy array.")
+CEM solve time: 17.6943 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-235.2, steps=1, avg_plan_time=17.69s
+
+[BoardEval] Episode 2/10
+CEM solve time: 17.7529 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-119.0, steps=1, avg_plan_time=17.75s
+
+[BoardEval] Episode 3/10
+CEM solve time: 17.8162 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-247.2, steps=1, avg_plan_time=17.82s
+
+[BoardEval] Episode 4/10
+CEM solve time: 17.8307 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-205.7, steps=1, avg_plan_time=17.83s
+
+[BoardEval] Episode 5/10
+CEM solve time: 17.7962 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-85.8, steps=1, avg_plan_time=17.80s
+
+[BoardEval] Episode 6/10
+CEM solve time: 17.8541 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-167.4, steps=1, avg_plan_time=17.85s
+
+[BoardEval] Episode 7/10
+CEM solve time: 17.8653 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-238.8, steps=1, avg_plan_time=17.87s
+
+[BoardEval] Episode 8/10
+CEM solve time: 17.9202 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-240.9, steps=1, avg_plan_time=17.92s
+
+[BoardEval] Episode 9/10
+CEM solve time: 17.8379 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-154.9, steps=1, avg_plan_time=17.84s
+
+[BoardEval] Episode 10/10
+CEM solve time: 17.8388 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-384.4, steps=1, avg_plan_time=17.84s
+
+[BoardEval] Summary: success_rate=100.00%, avg_reward=-207.9, avg_plan_time=17.82s
+[BoardEval] Results saved
