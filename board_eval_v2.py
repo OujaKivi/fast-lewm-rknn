@@ -89,28 +89,16 @@ def build_model():
                 actions = action_candidates.reshape(B*S, H, D).reshape(B*S, 5, 10)
                 
                 if npu_rknn is not None:
-                    # NPU 模式：用多步预测模型
-                    # 第一次：前2个block
-                    act_emb1 = self.action_encoder(actions[:, :2], return_last_only=True, latent=cur_emb.unsqueeze(1))
-                    # 构造多步预测输入：act_emb 需要 5 个 block，后3个补零
-                    act_emb1_full = torch.zeros(B*S, 5, 192)
-                    act_emb1_full[:, :1] = act_emb1
-                    # NPU 推理
+                    # NPU 优化：单次推理，直接用完整5个block的act_emb
+                    # 构造完整的 act_emb（5个block）
+                    act_emb_full = self.action_encoder(actions, return_last_only=False, latent=cur_emb.unsqueeze(1))
+                    # NPU 推理：latent (B*S,1,192) + act_emb (B*S,5,192)
                     latent_in = cur_emb.unsqueeze(1).numpy().astype(np.float32)
-                    act_emb_in = act_emb1_full.numpy().astype(np.float32)
+                    act_emb_in = act_emb_full.numpy().astype(np.float32)
                     outputs = npu_rknn.inference(inputs=[latent_in, act_emb_in])
-                    pred1 = torch.from_numpy(outputs[0])  # (B*S, 5, 192)
-                    pred1_proj = self.pred_proj(pred1[:, 0].reshape(B*S, -1)).reshape(B*S, 1, -1)
-                    
-                    # 第二次：后3个block
-                    act_emb2 = self.action_encoder(actions[:, 2:], return_last_only=True, latent=pred1_proj)
-                    act_emb2_full = torch.zeros(B*S, 5, 192)
-                    act_emb2_full[:, :1] = act_emb2
-                    latent_in2 = pred1_proj.numpy().astype(np.float32)
-                    act_emb_in2 = act_emb2_full.numpy().astype(np.float32)
-                    outputs2 = npu_rknn.inference(inputs=[latent_in2, act_emb_in2])
-                    pred2 = torch.from_numpy(outputs2[0])
-                    pred2_proj = self.pred_proj(pred2[:, 0].reshape(B*S, -1)).reshape(B*S, 1, -1)
+                    pred = torch.from_numpy(outputs[0])  # (B*S, 5, 192)
+                    # 取最后一步预测
+                    pred_proj = self.pred_proj(pred[:, -1].reshape(B*S, -1)).reshape(B*S, 1, -1)
                 else:
                     # CPU 模式：自回归
                     act_emb1 = self.action_encoder(actions[:, :2], return_last_only=True, latent=cur_emb.unsqueeze(1))
