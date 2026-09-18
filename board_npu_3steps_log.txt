@@ -1,0 +1,98 @@
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/stable_worldmodel/envs/__init__.py:215: UserWarning: ale-py not found; ALE/* envs are unavailable. Install with: pip install 'stable-worldmodel[env]' or pip install ale-py.
+  from stable_worldmodel.envs import ale  # noqa: F401
+[BoardEval] Building model...
+[BoardEval] Model built
+[BoardEval] Loading NPU model...
+W Query dynamic range failed. Ret code: RKNN_ERR_MODEL_INVALID. (If it is a static shape RKNN model, please ignore the above warning message.)
+[BoardEval] NPU model loaded
+[BoardEval] Loaded 10 test cases
+
+[BoardEval] Episode 1/10
+/root/miniconda3/envs/fast-lewm/lib/python3.10/site-packages/gymnasium/spaces/box.py:415: UserWarning: [33mWARN: Casting input x to numpy array.[0m
+  gym.logger.warn("Casting input x to numpy array.")
+CEM solve time: 18.9645 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-5845.0, steps=1, avg_plan_time=18.96s
+
+[BoardEval] Episode 2/10
+CEM solve time: 19.0764 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-3316.9, steps=1, avg_plan_time=19.08s
+
+[BoardEval] Episode 3/10
+CEM solve time: 19.0407 seconds
+  Step 0: plan_time=19.04s, reward=-3812.2
+CEM solve time: 19.0887 seconds
+CEM solve time: 19.0153 seconds
+  Result: success=False, reward=-9258.7, steps=3, avg_plan_time=19.05s
+
+[BoardEval] Episode 4/10
+CEM solve time: 19.1210 seconds
+  Step 0: plan_time=19.12s, reward=-2871.0
+CEM solve time: 19.0425 seconds
+CEM solve time: 19.0784 seconds
+  Result: success=False, reward=-9772.9, steps=3, avg_plan_time=19.08s
+
+[BoardEval] Episode 5/10
+CEM solve time: 18.9999 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-2697.0, steps=1, avg_plan_time=19.00s
+
+[BoardEval] Episode 6/10
+CEM solve time: 19.0770 seconds
+  Step 0: plan_time=19.08s, reward=-7553.2
+CEM solve time: 19.0266 seconds
+CEM solve time: 19.0360 seconds
+  Result: success=False, reward=-35939.4, steps=3, avg_plan_time=19.05s
+
+[BoardEval] Episode 7/10
+CEM solve time: 19.0634 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-4445.2, steps=1, avg_plan_time=19.06s
+
+[BoardEval] Episode 8/10
+CEM solve time: 18.9888 seconds
+  Step 0: plan_time=18.99s, reward=-3992.0
+CEM solve time: 19.0629 seconds
+CEM solve time: 19.0644 seconds
+  Result: success=False, reward=-10515.6, steps=3, avg_plan_time=19.04s
+
+[BoardEval] Episode 9/10
+CEM solve time: 19.0969 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-1620.4, steps=1, avg_plan_time=19.10s
+
+[BoardEval] Episode 10/10
+CEM solve time: 19.0660 seconds
+  Step 0: SUCCESS!
+  Result: success=True, reward=-5814.3, steps=1, avg_plan_time=19.07s
+
+[BoardEval] Summary: success_rate=60.00%, avg_reward=-8922.5, avg_plan_time=19.05s
+Traceback (most recent call last):
+  File "/root/Fast-LeWorldModel/board_eval_v2.py", line 270, in <module>
+    main()
+  File "/root/Fast-LeWorldModel/board_eval_v2.py", line 266, in main
+    json.dump(summary, f, indent=2)
+  File "/root/miniconda3/envs/fast-lewm/lib/python3.10/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/root/miniconda3/envs/fast-lewm/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/root/miniconda3/envs/fast-lewm/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/root/miniconda3/envs/fast-lewm/lib/python3.10/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/root/miniconda3/envs/fast-lewm/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/root/miniconda3/envs/fast-lewm/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/root/miniconda3/envs/fast-lewm/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+I RKNN: [21:18:36.000] RKNN Runtime Information, librknnrt version: 2.3.2 (429f97ae6b@2025-04-09T09:09:27)
+I RKNN: [21:18:36.000] RKNN Driver Information, version: 0.9.8
+I RKNN: [21:18:36.000] RKNN Model Information, version: 6, toolkit version: 2.3.2(compiler version: 2.3.2 (e045de294f@2025-04-07T19:48:25)), target: RKNPU v2, target platform: rk3588, framework name: ONNX, framework layout: NCHW, model inference type: static_shape
+W RKNN: [21:18:37.064] query RKNN_QUERY_INPUT_DYNAMIC_RANGE error, rknn model is static shape type, please export rknn with dynamic_shapes
