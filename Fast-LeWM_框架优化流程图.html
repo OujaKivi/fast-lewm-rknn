@@ -2,179 +2,120 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fast-LeWM 框架与优化位置流程图</title>
+<title>Fast-LeWM 框架优化流程图</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f8f9fa; padding: 20px; }
-  .container { max-width: 1100px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-  h1 { text-align: center; font-size: 20px; color: #1a1a2e; margin-bottom: 8px; }
-  .subtitle { text-align: center; font-size: 13px; color: #666; margin-bottom: 25px; }
-  svg { width: 100%; height: auto; display: block; }
-  .legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #444; }
-  .legend-box { width: 16px; height: 16px; border-radius: 3px; }
-  .note { margin-top: 20px; padding: 12px 16px; background: #f0f7ff; border-left: 3px solid #4a90d9; border-radius: 4px; font-size: 12px; color: #333; line-height: 1.7; }
-  .note strong { color: #1a5276; }
+body{font-family:-apple-system,sans-serif;margin:0;padding:20px;background:#f5f7fa}
+.container{max-width:1200px;margin:0 auto}
+h1{text-align:center;color:#1a1a2e;margin-bottom:10px}
+.subtitle{text-align:center;color:#666;margin-bottom:30px}
+.flow-container{background:white;border-radius:12px;padding:30px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+svg{width:100%;height:auto}
+.legend{display:flex;justify-content:center;gap:30px;margin-top:20px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:14px}
+.legend-box{width:20px;height:20px;border-radius:4px}
+.note{margin-top:20px;padding:15px;background:#f0f4ff;border-radius:8px;font-size:14px;color:#333;line-height:1.6}
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Fast-LeWM 端侧异构执行框架</h1>
-  <p class="subtitle">优化算法在完整规划流水线中的位置 · RK3588 (CPU + NPU)</p>
-
-  <svg viewBox="0 0 1060 620" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-        <path d="M0,0 L8,3 L0,6 Z" fill="#555"/>
-      </marker>
-      <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-        <path d="M0,0 L8,3 L0,6 Z" fill="#4a90d9"/>
-      </marker>
-      <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-        <path d="M0,0 L8,3 L0,6 Z" fill="#27ae60"/>
-      </marker>
-      <linearGradient id="cpu-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#d0e8f7;stop-opacity:1" />
-      </linearGradient>
-      <linearGradient id="npu-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#e8f8f0;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#c8ecd8;stop-opacity:1" />
-      </linearGradient>
-      <linearGradient id="opt-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#fff3cd;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#ffeaa7;stop-opacity:1" />
-      </linearGradient>
-    </defs>
-
-    <!-- 标题：感知层 -->
-    <text x="530" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#888">感知层 Perception</text>
-
-    <!-- 图像输入 -->
-    <rect x="60" y="45" width="120" height="50" rx="6" fill="#f0f0f0" stroke="#999" stroke-width="1.5"/>
-    <text x="120" y="68" text-anchor="middle" font-size="12" fill="#333">观测图像</text>
-    <text x="120" y="84" text-anchor="middle" font-size="10" fill="#777">o_t</text>
-
-    <!-- vi_enc (ViT 编码器) -->
-    <rect x="240" y="45" width="140" height="50" rx="6" fill="url(#cpu-grad)" stroke="#4a90d9" stroke-width="1.5"/>
-    <text x="310" y="66" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a5276">vi_enc (ViT-tiny)</text>
-    <text x="310" y="82" text-anchor="middle" font-size="10" fill="#555">视觉编码器 · CPU</text>
-
-    <!-- latent z_t -->
-    <rect x="440" y="45" width="120" height="50" rx="6" fill="#f5f5f5" stroke="#aaa" stroke-width="1.5" stroke-dasharray="4,2"/>
-    <text x="500" y="68" text-anchor="middle" font-size="12" fill="#333">潜在状态 z_t</text>
-    <text x="500" y="84" text-anchor="middle" font-size="10" fill="#777">[B, 1, 192]</text>
-
-    <!-- 箭头：图像 → vi_enc -->
-    <line x1="180" y1="70" x2="235" y2="70" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <!-- 箭头：vi_enc → latent -->
-    <line x1="380" y1="70" x2="435" y2="70" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-    <!-- CEM 规划循环大框 -->
-    <rect x="30" y="120" width="1000" height="380" rx="10" fill="#fafafa" stroke="#ccc" stroke-width="1.5" stroke-dasharray="6,3"/>
-    <text x="50" y="145" font-size="13" font-weight="bold" fill="#666">CEM 规划循环（30 iterations × 300 candidates）</text>
-
-    <!-- 候选动作采样 -->
-    <rect x="60" y="165" width="150" height="55" rx="6" fill="#f0f0f0" stroke="#999" stroke-width="1.5"/>
-    <text x="135" y="188" text-anchor="middle" font-size="12" fill="#333">候选动作采样</text>
-    <text x="135" y="205" text-anchor="middle" font-size="10" fill="#777">a_{t:t+k} ~ N(μ,σ)</text>
-
-    <!-- action_encoder (CPU) - 优化模块 -->
-    <rect x="270" y="160" width="170" height="65" rx="6" fill="url(#opt-grad)" stroke="#e67e22" stroke-width="2.5"/>
-    <text x="355" y="183" text-anchor="middle" font-size="12" font-weight="bold" fill="#8b4513">⚡ action_encoder</text>
-    <text x="355" y="200" text-anchor="middle" font-size="10" fill="#666">动作前缀编码器</text>
-    <text x="355" y="215" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980b9">→ CPU 执行 (97ms)</text>
-
-    <!-- act_emb -->
-    <rect x="490" y="170" width="110" height="45" rx="6" fill="#f5f5f5" stroke="#aaa" stroke-width="1.5" stroke-dasharray="4,2"/>
-    <text x="545" y="190" text-anchor="middle" font-size="11" fill="#333">act_emb</text>
-    <text x="545" y="205" text-anchor="middle" font-size="10" fill="#777">[B, 1, 192]</text>
-
-    <!-- predictor (NPU) - 优化模块 -->
-    <rect x="650" y="155" width="180" height="75" rx="6" fill="url(#opt-grad)" stroke="#e67e22" stroke-width="2.5"/>
-    <text x="740" y="178" text-anchor="middle" font-size="12" font-weight="bold" fill="#8b4513">⚡ predictor</text>
-    <text x="740" y="195" text-anchor="middle" font-size="10" fill="#666">并行 latent 预测器</text>
-    <text x="740" y="212" text-anchor="middle" font-size="10" font-weight="bold" fill="#27ae60">→ NPU FP16 (17ms/步)</text>
-    <text x="740" y="225" text-anchor="middle" font-size="10" font-weight="bold" fill="#c0392b">→ NPU INT8 (13ms/步)</text>
-
-    <!-- 预测结果 z_{t+k} -->
-    <rect x="880" y="170" width="120" height="45" rx="6" fill="#f5f5f5" stroke="#aaa" stroke-width="1.5" stroke-dasharray="4,2"/>
-    <text x="940" y="190" text-anchor="middle" font-size="11" fill="#333">预测 z_{t+k}</text>
-    <text x="940" y="205" text-anchor="middle" font-size="10" fill="#777">[B, H, 192]</text>
-
-    <!-- 箭头：候选动作 → action_encoder -->
-    <line x1="210" y1="192" x2="265" y2="192" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <!-- 箭头：action_encoder → act_emb -->
-    <line x1="440" y1="192" x2="485" y2="192" stroke="#e67e22" stroke-width="2" marker-end="url(#arrow)"/>
-    <!-- 箭头：latent z_t → predictor (从上方下来) -->
-    <path d="M500,95 L500,130 L740,130 L740,150" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <text x="620" y="125" text-anchor="middle" font-size="10" fill="#777">z_t 输入</text>
-    <!-- 箭头：act_emb → predictor -->
-    <line x1="600" y1="192" x2="645" y2="192" stroke="#e67e22" stroke-width="2" marker-end="url(#arrow)"/>
-    <!-- 箭头：predictor → 预测结果 -->
-    <line x1="830" y1="192" x2="875" y2="192" stroke="#e67e22" stroke-width="2" marker-end="url(#arrow)"/>
-
-    <!-- 评分与精英选择 -->
-    <rect x="700" y="280" width="180" height="55" rx="6" fill="url(#cpu-grad)" stroke="#4a90d9" stroke-width="1.5"/>
-    <text x="790" y="303" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a5276">评分 + 精英选择</text>
-    <text x="790" y="320" text-anchor="middle" font-size="10" fill="#555">Top-K 筛选 · CPU</text>
-
-    <!-- CEM 分布更新 -->
-    <rect x="440" y="280" width="160" height="55" rx="6" fill="#f0f0f0" stroke="#999" stroke-width="1.5"/>
-    <text x="520" y="303" text-anchor="middle" font-size="12" fill="#333">CEM 分布更新</text>
-    <text x="520" y="320" text-anchor="middle" font-size="10" fill="#777">μ, σ ← elite mean/std</text>
-
-    <!-- 箭头：预测结果 → 评分 (从上方下来) -->
-    <path d="M940,215 L940,255 L880,255 L880,275" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <!-- 箭头：评分 → CEM更新 -->
-    <line x1="700" y1="307" x2="605" y2="307" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <!-- 箭头：CEM更新 → 候选动作采样 (循环回去) -->
-    <path d="M440,307 L200,307 L200,225 L135,225" fill="none" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
-    <text x="320" y="300" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="bold">下一轮迭代</text>
-
-    <!-- 最优动作输出 -->
-    <rect x="60" y="400" width="150" height="55" rx="6" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
-    <text x="135" y="423" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e6b3a">最优动作 a*</text>
-    <text x="135" y="440" text-anchor="middle" font-size="10" fill="#555">CEM 收敛后输出</text>
-
-    <!-- 箭头：CEM更新 → 最优动作 (收敛后) -->
-    <path d="M440,335 L440,370 L135,370 L135,395" fill="none" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-green)"/>
-    <text x="290" y="365" text-anchor="middle" font-size="10" fill="#27ae60">收敛后输出</text>
-
-    <!-- 执行层 -->
-    <text x="530" y="530" text-anchor="middle" font-size="13" font-weight="bold" fill="#888">执行层 Execution</text>
-    <rect x="380" y="545" width="300" height="50" rx="6" fill="#f0f0f0" stroke="#999" stroke-width="1.5"/>
-    <text x="530" y="568" text-anchor="middle" font-size="12" fill="#333">环境执行 / 机器人控制</text>
-    <text x="530" y="584" text-anchor="middle" font-size="10" fill="#777">PushT 仿真 / 真实机械臂</text>
-
-    <!-- 箭头：最优动作 → 执行 -->
-    <line x1="135" y1="455" x2="135" y2="490" stroke="#555" stroke-width="1.5"/>
-    <line x1="135" y1="490" x2="530" y2="490" stroke="#555" stroke-width="1.5"/>
-    <line x1="530" y1="490" x2="530" y2="540" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-    <!-- 异构调度标注 -->
-    <rect x="250" y="370" width="540" height="90" rx="8" fill="none" stroke="#e67e22" stroke-width="2" stroke-dasharray="8,4"/>
-    <text x="520" y="390" text-anchor="middle" font-size="11" font-weight="bold" fill="#e67e22">⚡ 本研究优化范围：异构调度 + INT8 量化</text>
-    <text x="520" y="408" text-anchor="middle" font-size="10" fill="#8b4513">action_encoder → CPU（NPU 慢 34%，留 CPU）</text>
-    <text x="520" y="424" text-anchor="middle" font-size="10" fill="#8b4513">predictor → NPU FP16/INT8（CPU 536ms → NPU 73-96ms，加速 5.6-7.3x）</text>
-    <text x="520" y="442" text-anchor="middle" font-size="10" fill="#8b4513">端到端：纯CPU 19.1s → 异构INT8 5.2s，总加速 3.67x</text>
-
-  </svg>
-
-  <div class="legend">
-    <div class="legend-item"><div class="legend-box" style="background: #e8f4fd; border: 1.5px solid #4a90d9;"></div>CPU 执行模块</div>
-    <div class="legend-item"><div class="legend-box" style="background: #e8f8f0; border: 1.5px solid #27ae60;"></div>NPU 执行模块</div>
-    <div class="legend-item"><div class="legend-box" style="background: #fff3cd; border: 2px solid #e67e22;"></div>本研究优化模块</div>
-    <div class="legend-item"><div class="legend-box" style="background: #f5f5f5; border: 1.5px dashed #aaa;"></div>数据/中间状态</div>
-  </div>
-
-  <div class="note">
-    <strong>核心结论：</strong>Fast-LeWM 消除 autoregressive rollout 后，端侧瓶颈从模型计算转移到<strong>异构数据流与调度</strong>。
-    纯 CPU 下 predictor 占 94% 计算时间（536ms/iter），是绝对瓶颈；将 predictor 卸载到 NPU 后，
-    action_encoder 成为新的瓶颈（97ms/iter，占 46%），但因 action_encoder 的小 batch + 串行 attention 结构不适合 NPU（NPU 反而慢 34%），
-    最优方案为 <strong>CPU action_encoder + NPU INT8 predictor</strong>，端到端 5.2s，加速 3.67x。
-  </div>
+<h1>Fast-LeWM 端侧异构执行优化流程图</h1>
+<p class="subtitle">展示优化算法在整个 PushT 任务规划框架中的位置</p>
+<div class="flow-container">
+<svg viewBox="0 0 1100 750" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#555"/></marker>
+<marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#16a34a"/></marker>
+<linearGradient id="cpu-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fef3c7"/><stop offset="100%" stop-color="#fde68a"/></linearGradient>
+<linearGradient id="npu-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#93c5fd"/></linearGradient>
+<linearGradient id="opt-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#dcfce7"/><stop offset="100%" stop-color="#86efac"/></linearGradient>
+<linearGradient id="env-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f3e8ff"/><stop offset="100%" stop-color="#d8b4fe"/></linearGradient>
+</defs>
+<text x="550" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a1a2e">端侧完整规划流程（Mac CPU + RK3588 NPU 异构执行）</text>
+<rect x="50" y="55" width="200" height="80" rx="10" fill="url(#env-grad)" stroke="#a855f7" stroke-width="2"/>
+<text x="150" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b21a8">PushT 环境</text>
+<text x="150" y="105" text-anchor="middle" font-size="11" fill="#7c3aed">pymunk 物理引擎</text>
+<text x="150" y="122" text-anchor="middle" font-size="11" fill="#7c3aed">状态/图像/奖励</text>
+<rect x="320" y="55" width="200" height="80" rx="10" fill="url(#cpu-grad)" stroke="#d97706" stroke-width="2"/>
+<text x="420" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">ViT 图像编码</text>
+<text x="420" y="100" text-anchor="middle" font-size="11" fill="#b45309">当前帧 + goal 帧</text>
+<text x="420" y="118" text-anchor="middle" font-size="11" fill="#b45309">→ latent (192维)</text>
+<rect x="590" y="55" width="200" height="80" rx="10" fill="url(#cpu-grad)" stroke="#d97706" stroke-width="2"/>
+<text x="690" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">Action Encoder</text>
+<text x="690" y="100" text-anchor="middle" font-size="11" fill="#b45309">候选动作 (300×5×2)</text>
+<text x="690" y="118" text-anchor="middle" font-size="11" fill="#b45309">→ act_emb (300×5×192)</text>
+<rect x="860" y="55" width="200" height="80" rx="10" fill="url(#cpu-grad)" stroke="#d97706" stroke-width="2"/>
+<text x="960" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">CEM 采样/更新</text>
+<text x="960" y="100" text-anchor="middle" font-size="11" fill="#b45309">300 candidates × 30 迭代</text>
+<text x="960" y="118" text-anchor="middle" font-size="11" fill="#b45309">Top-30 elite 拟合</text>
+<line x1="250" y1="95" x2="320" y2="95" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="520" y1="95" x2="590" y2="95" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="790" y1="95" x2="860" y2="95" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="350" y="200" width="400" height="120" rx="12" fill="url(#npu-grad)" stroke="#2563eb" stroke-width="3"/>
+<text x="550" y="230" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e40af">Predictor（世界模型动力学）</text>
+<text x="550" y="255" text-anchor="middle" font-size="12" fill="#1e40af">输入: latent (1×192) + act_emb (5×192)</text>
+<text x="550" y="275" text-anchor="middle" font-size="12" fill="#1e40af">输出: pred_latent (5×192) 多步预测</text>
+<text x="550" y="298" text-anchor="middle" font-size="11" fill="#3b82f6" font-style="italic">★ 最大计算瓶颈，占 CEM 时间 89% ★</text>
+<line x1="960" y1="135" x2="960" y2="180" stroke="#555" stroke-width="2"/>
+<line x1="960" y1="180" x2="750" y2="180" stroke="#555" stroke-width="2"/>
+<line x1="750" y1="180" x2="750" y2="200" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="855" y="175" text-anchor="middle" font-size="10" fill="#666">candidate actions</text>
+<line x1="420" y1="135" x2="420" y2="200" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="420" y="170" text-anchor="middle" font-size="10" fill="#666">latent</text>
+<rect x="50" y="200" width="260" height="120" rx="10" fill="url(#opt-grad)" stroke="#16a34a" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="180" y="225" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">优化方案 A（已验证）</text>
+<text x="180" y="248" text-anchor="middle" font-size="11" fill="#15803d">Action encoder → CPU</text>
+<text x="180" y="266" text-anchor="middle" font-size="11" fill="#15803d">Predictor → NPU (INT8)</text>
+<text x="180" y="286" text-anchor="middle" font-size="11" fill="#15803d">板端本地部署，消除通信</text>
+<text x="180" y="306" text-anchor="middle" font-size="11" font-weight="bold" fill="#166534">预期加速: 2-3x</text>
+<line x1="310" y1="260" x2="350" y2="260" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+<rect x="350" y="380" width="400" height="70" rx="10" fill="url(#cpu-grad)" stroke="#d97706" stroke-width="2"/>
+<text x="550" y="408" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">Score 计算 + Elite Selection</text>
+<text x="550" y="430" text-anchor="middle" font-size="11" fill="#b45309">pred_latent → goal 距离 → cost → Top-30</text>
+<line x1="550" y1="320" x2="550" y2="380" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="570" y="355" text-anchor="start" font-size="10" fill="#666">pred_latent</text>
+<path d="M 750 415 Q 900 415 900 300 Q 900 200 750 200" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow)"/>
+<text x="920" y="310" text-anchor="start" font-size="11" fill="#dc2626" font-weight="bold">CEM 循环</text>
+<text x="920" y="328" text-anchor="start" font-size="10" fill="#dc2626">30 次迭代</text>
+<text x="920" y="344" text-anchor="start" font-size="10" fill="#dc2626">更新采样分布</text>
+<rect x="350" y="500" width="400" height="70" rx="10" fill="url(#env-grad)" stroke="#a855f7" stroke-width="2"/>
+<text x="550" y="528" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">最优动作序列输出</text>
+<text x="550" y="550" text-anchor="middle" font-size="11" fill="#7c3aed">action_block=25 → buffer 存 12 步动作</text>
+<line x1="550" y1="450" x2="550" y2="500" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="570" y="480" text-anchor="start" font-size="10" fill="#666">收敛后最优解</text>
+<rect x="50" y="500" width="260" height="70" rx="10" fill="url(#env-grad)" stroke="#a855f7" stroke-width="2"/>
+<text x="180" y="528" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">环境执行</text>
+<text x="180" y="550" text-anchor="middle" font-size="11" fill="#7c3aed">执行 12 步后重新规划</text>
+<line x1="350" y1="535" x2="310" y2="535" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 180 570 Q 180 650 550 650 Q 920 650 920 535" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow)"/>
+<text x="550" y="675" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="bold">状态反馈 → 下一轮规划</text>
+<rect x="50" y="620" width="1000" height="100" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<text x="550" y="645" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">关键性能数据（Mac CPU 基线）</text>
+<text x="150" y="675" text-anchor="middle" font-size="11" fill="#475569">成功率</text>
+<text x="150" y="695" text-anchor="middle" font-size="16" font-weight="bold" fill="#dc2626">28.0%</text>
+<text x="150" y="710" text-anchor="middle" font-size="9" fill="#94a3b8">14/50 episodes</text>
+<text x="350" y="675" text-anchor="middle" font-size="11" fill="#475569">CEM 规划时间</text>
+<text x="350" y="695" text-anchor="middle" font-size="16" font-weight="bold" fill="#2563eb">~1.3s</text>
+<text x="350" y="710" text-anchor="middle" font-size="9" fill="#94a3b8">每 12 步规划一次</text>
+<text x="550" y="675" text-anchor="middle" font-size="11" fill="#475569">Predictor (CPU)</text>
+<text x="550" y="695" text-anchor="middle" font-size="16" font-weight="bold" fill="#2563eb">38.7ms</text>
+<text x="550" y="710" text-anchor="middle" font-size="9" fill="#94a3b8">batch=300, horizon=5</text>
+<text x="750" y="675" text-anchor="middle" font-size="11" fill="#475569">Predictor 占比</text>
+<text x="750" y="695" text-anchor="middle" font-size="16" font-weight="bold" fill="#dc2626">89%</text>
+<text x="750" y="710" text-anchor="middle" font-size="9" fill="#94a3b8">CEM 时间占比</text>
+<text x="950" y="675" text-anchor="middle" font-size="11" fill="#475569">NPU INT8 (板端)</text>
+<text x="950" y="695" text-anchor="middle" font-size="16" font-weight="bold" fill="#16a34a">66.8ms</text>
+<text x="950" y="710" text-anchor="middle" font-size="9" fill="#94a3b8">5次单步循环</text>
+</svg>
+</div>
+<div class="legend">
+<div class="legend-item"><div class="legend-box" style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #d97706"></div><span>CPU 执行模块</span></div>
+<div class="legend-item"><div class="legend-box" style="background:linear-gradient(135deg,#dbeafe,#93c5fd);border:2px solid #2563eb"></div><span>NPU 执行模块（核心优化点）</span></div>
+<div class="legend-item"><div class="legend-box" style="background:linear-gradient(135deg,#dcfce7,#86efac);border:2px solid #16a34a"></div><span>优化方案</span></div>
+<div class="legend-item"><div class="legend-box" style="background:linear-gradient(135deg,#f3e8ff,#d8b4fe);border:2px solid #a855f7"></div><span>环境/物理引擎</span></div>
+</div>
+<div class="note">
+<strong>优化位置说明：</strong>本研究的优化重点在于 <strong>Predictor（世界模型动力学）</strong> 模块，它是端到端规划的最大计算瓶颈（占 CEM 时间 89%）。通过将 Predictor 从 CPU offload 到 RK3588 NPU（INT8 量化），并配合板端本地部署消除通信开销，预期可实现 2-3 倍端到端加速。Action Encoder 因 NPU 效率低于 CPU（CPU 97ms vs NPU 130ms），保留在 CPU 执行。CEM 采样、Score 计算、Elite Selection 等控制逻辑同样保留在 CPU。
+</div>
 </div>
 </body>
 </html>
