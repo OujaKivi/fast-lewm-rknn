@@ -1,0 +1,23 @@
+{
+  "mode": "npu",
+  "num_episodes": 2,
+  "success_rate": 1.0,
+  "avg_reward": -318.33969991599787,
+  "avg_plan_time": 19.00027298927307,
+  "results": [
+    {
+      "episode": 0,
+      "success": true,
+      "total_reward": -321.8545024217022,
+      "steps": 1,
+      "avg_plan_time": 19.02796459197998
+    },
+    {
+      "episode": 1,
+      "success": true,
+      "total_reward": -314.82489741029354,
+      "steps": 1,
+      "avg_plan_time": 18.972581386566162
+    }
+  ]
+}
