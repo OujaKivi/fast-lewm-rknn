@@ -1,0 +1,80 @@
+defaults:
+  - _self_
+  - data: pusht
+output_model_name: Fast-lewm
+subdir: ${hydra:job.id}
+
+num_workers: 6
+train_split: 0.9
+seed: 3072
+img_size: 224
+patch_size: 14
+encoder_scale: tiny
+
+trainer:
+  max_epochs: 10
+  deterministic: true
+  benchmark: false
+  devices: auto
+  accelerator: gpu
+  precision: bf16
+  gradient_clip_val: 1.0
+
+loader:
+  batch_size: 128
+  num_workers: ${num_workers}
+  persistent_workers: True
+  prefetch_factor: 3
+  pin_memory: True
+
+optimizer:
+  type: AdamW
+  lr: 5e-5
+  weight_decay: 1e-3
+
+wandb:
+  enabled: True
+  config:
+    project: pusht-test
+    name: Fast-lewm
+    id: ${subdir}
+    resume: allow
+    log_model: False
+
+wm:
+  action_prefix:
+    temporal_mixer_type: transformer
+    transformer_depth: 3
+    transformer_heads: 6
+    transformer_dim_head: 32
+    transformer_mlp_dim: 768
+    use_latent_condition: True
+    latent_dim: ${wm.embed_dim}
+  action_frame_skip: 5
+  action_use_positional_encoding: True
+  dense_supervision:
+    enabled: True
+    supervise_last_state_only: False
+    transition_sampling_strategy: max_adaptive
+    min_transitions: 1
+    max_transitions: 5
+  embed_dim: 192
+
+predictor:
+  depth: 6
+  value_heads: 16
+  mlp_dim: 2048
+  value_dim_head: 64
+  dropout: 0.1
+  emb_dropout: 0.0
+  action_fusion_hidden_dim: 768
+  action_fusion_zero_init: true
+  token_processing: batch
+
+loss:
+  sigreg:
+    weight: 0.09
+    kwargs:
+      knots: 17
+      num_proj: 1024
+      merge_time_into_batch: False

@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-20",
+  "platform": {
+    "soc": "RK3588",
+    "cpu": "4x Cortex-A76 pinned",
+    "npu": "3-core RK3588 NPU",
+    "rknn_runtime": "2.3.2",
+    "rknn_driver": "0.9.8"
+  },
+  "workload": {
+    "cem_samples": 300,
+    "cem_iterations": 30,
+    "topk": 30,
+    "action_blocks": 5,
+    "action_block_size": 5,
+    "predictor_path": "terminal-only",
+    "predictor_shape": [300, 1, 192]
+  },
+  "cpu": {
+    "total_ms": 6388.41,
+    "image_encoder_ms": 266.81,
+    "action_encoder_ms": 2701.42,
+    "predictor_with_projection_ms": 3387.33,
+    "cost_ms": 10.51,
+    "cem_update_ms": 5.73,
+    "other_ms": 16.61
+  },
+  "heterogeneous_fp16": {
+    "mapping": "CPU action encoder + NPU terminal predictor; image encoder remains CPU in this run",
+    "total_ms": 3745.92,
+    "image_encoder_ms": 291.98,
+    "action_encoder_ms": 2869.38,
+    "predictor_with_projection_ms": 555.32,
+    "cost_ms": 7.05,
+    "cem_update_ms": 5.62,
+    "other_ms": 16.55,
+    "speedup_vs_cpu": 1.705
+  },
+  "predictor_microbenchmark": {
+    "cpu_ms": 118.70,
+    "npu_fp16_ms": 17.05,
+    "speedup": 6.96,
+    "mae": 0.00150,
+    "max_abs_error": 0.01130,
+    "cosine_similarity": 0.999993
+  },
+  "notes": [
+    "Current and goal images are encoded once per planning request, outside the 30-iteration CEM loop.",
+    "The action-prefix encoder consumes all five blocks and returns only the terminal prefix token.",
+    "The fused NPU graph contains the terminal predictor and pred_proj."
+  ]
+}

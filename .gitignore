@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store
+
+# Local datasets and generated evaluation media are not source files.
+data/
+
+# Large deployment artifacts remain available locally and are documented in
+# README, but should be distributed with release storage rather than Git.
+Fast-LeWorldModel/weights/
+Fast-LeWorldModel/onnx_out/
+Fast-LeWorldModel/*.rknn
+Fast-LeWorldModel/.git.upstream.bak/
