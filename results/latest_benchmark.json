@@ -12,29 +12,33 @@
     "cem_iterations": 30,
     "topk": 30,
     "action_blocks": 5,
-    "action_block_size": 5,
+    "action_block_size": 10,
     "predictor_path": "terminal-only",
     "predictor_shape": [300, 1, 192]
   },
   "cpu": {
-    "total_ms": 6388.41,
-    "image_encoder_ms": 266.81,
-    "action_encoder_ms": 2701.42,
-    "predictor_with_projection_ms": 3387.33,
-    "cost_ms": 10.51,
-    "cem_update_ms": 5.73,
-    "other_ms": 16.61
+    "total_ms": 6411.87,
+    "image_encoder_ms": 263.06,
+    "action_encoder_ms": 2723.66,
+    "action_encoder_std_ms": 20.95,
+    "predictor_with_projection_ms": 3392.62,
+    "predictor_with_projection_std_ms": 19.05,
+    "cost_ms": 10.61,
+    "cem_update_ms": 5.59,
+    "other_ms": 16.33
   },
   "heterogeneous_fp16": {
     "mapping": "CPU action encoder + NPU terminal predictor; image encoder remains CPU in this run",
-    "total_ms": 3745.92,
-    "image_encoder_ms": 291.98,
-    "action_encoder_ms": 2869.38,
-    "predictor_with_projection_ms": 555.32,
-    "cost_ms": 7.05,
-    "cem_update_ms": 5.62,
-    "other_ms": 16.55,
-    "speedup_vs_cpu": 1.705
+    "total_ms": 3678.64,
+    "image_encoder_ms": 285.36,
+    "action_encoder_ms": 2828.34,
+    "action_encoder_std_ms": 33.35,
+    "predictor_with_projection_ms": 536.24,
+    "predictor_with_projection_std_ms": 8.88,
+    "cost_ms": 6.78,
+    "cem_update_ms": 5.47,
+    "other_ms": 16.45,
+    "speedup_vs_cpu": 1.743
   },
   "predictor_microbenchmark": {
     "cpu_ms": 118.70,
@@ -45,6 +49,9 @@
     "cosine_similarity": 0.999993
   },
   "notes": [
+    "Complete-solve stage values are means of five repeated requests.",
+    "The CPU action encoder is 3.84% slower in the heterogeneous run even with the CPU fixed at 2.352 GHz; shared cache/DDR and backend switching are the leading explanation, not a model difference.",
+    "A full-NPU result is excluded because the converted action encoder failed validation (cosine similarity 0.062459, MAE 1.187717).",
     "Current and goal images are encoded once per planning request, outside the 30-iteration CEM loop.",
     "The action-prefix encoder consumes all five blocks and returns only the terminal prefix token.",
     "The fused NPU graph contains the terminal predictor and pred_proj."

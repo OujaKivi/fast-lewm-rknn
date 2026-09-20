@@ -10,12 +10,12 @@ Tested on RK3588 with four Cortex-A76 cores pinned, three-core NPU, RKNN Runtime
 
 | Metric | CPU | CPU + NPU FP16 | Result |
 |---|---:|---:|---:|
-| Complete CEM solve | 6.39 s | 3.75 s | **1.71x speedup** |
-| Image encoding | 267 ms | 292 ms | CPU in both runs |
-| Action-prefix encoder | 2.70 s | 2.87 s | CPU in both runs |
-| Terminal predictor + projection | 3.39 s | 555 ms | **6.10x contribution speedup** |
+| Complete CEM solve | 6.41 s | 3.68 s | **1.74x speedup** |
+| Image encoding | 263 ms | 285 ms | CPU in both runs |
+| Action-prefix encoder | 2.72 s | 2.83 s | CPU in both runs |
+| Terminal predictor + projection | 3.39 s | 536 ms | **6.33x contribution speedup** |
 
-Workload: `300` candidates, `30` CEM iterations, `top-k=30`, five action blocks, one terminal latent per candidate. Raw measurements are in [results/latest_benchmark.json](results/latest_benchmark.json).
+Workload: `300` candidates, `30` CEM iterations, `top-k=30`, five action blocks, one terminal latent per candidate. Complete-solve stages are means of five repeated requests. Raw measurements are in [results/latest_benchmark.json](results/latest_benchmark.json).
 
 The isolated terminal predictor benchmark is:
 
@@ -42,7 +42,19 @@ five action blocks
   -> terminal latent cost
 ```
 
-With this alignment, the fused NPU terminal predictor is about seven times faster than CPU and reduces a complete `300 x 30` CEM solve from 6.39 seconds to 3.75 seconds. NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 77% of heterogeneous solve time. The current configuration is still not suitable for high-frequency closed-loop control without further planning-budget or action-encoder optimization.
+With this alignment, the fused NPU terminal predictor is about seven times faster than CPU and reduces a complete `300 x 30` CEM solve from 6.41 seconds to 3.68 seconds. NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 77% of heterogeneous solve time. The current configuration is still not suitable for high-frequency closed-loop control without further planning-budget or action-encoder optimization.
+
+## Why Action Encoding Is Slightly Slower
+
+The heterogeneous run uses exactly the same CPU Action Encoder, weights, input shape, and terminal-only semantics as the CPU run. Across five requests it rises from `2723.66 +/- 20.95 ms` to `2828.34 +/- 33.35 ms`, a `3.84%` increase over all 30 CEM iterations. This is much smaller than the earlier single-run gap, but it is repeatable.
+
+CPU frequency was fixed at `2.352 GHz` and NPU frequency at `1.0 GHz`, so CPU DVFS is not the explanation. The leading cause is SoC-level interference from alternating CPU and NPU work: shared DDR bandwidth and cache state, RKNN driver/runtime transitions, and possible asynchronous NPU tail work disturb the following CPU phase. Hardware PMU counters are still needed to separate those effects precisely; this is a measured systems effect, not a change in Action Encoder computation.
+
+## Full-NPU Baseline
+
+A full-NPU comparison is conceptually useful because it exposes whether moving a small or poorly supported operator graph to NPU helps end-to-end latency. It is not valid to publish one yet. The newly exported official `6 x 32` terminal Action Encoder runs at about `138 ms` for batch 300, but its RKNN output fails the accuracy gate: cosine similarity `0.062459`, MAE `1.187717`. The apparent full-NPU latency is therefore excluded from the chart and results. The validation utility is [scripts/validate_action_encoder_board.py](scripts/validate_action_encoder_board.py).
+
+The next valid route is to rewrite or partition unsupported Action Encoder operations, validate every partition against PyTorch, and only then add a full-NPU bar. The current best verified mapping remains CPU Action Encoder plus NPU predictor.
 
 The paper reports `8.0 s` dynamics time and `28.3 s` full CEM time on an NVIDIA RTX 4090. Those absolute numbers are not directly comparable with this single-environment RK3588 run. This repository reports complete-solve and per-module timing explicitly to avoid mixing one CEM iteration with a full 30-iteration solve.
 
@@ -67,9 +79,11 @@ Fast-LeWorldModel/                  Official model source and deployment artifac
   predictor_terminal_*.rknn         Terminal predictor RKNN FP16
   vit_encoder.rknn                  ViT RKNN model
   export_terminal_predictor.py      Checkpoint -> aligned terminal ONNX
+  export_action_encoder.py          Experimental terminal Action Encoder export
   convert_to_rknn.py                ONNX -> RKNN conversion
 results/latest_benchmark.json       Latest raw measurements
 scripts/plot_breakdown.py           Breakdown figure generator
+scripts/validate_action_encoder_board.py  Board-side RKNN accuracy gate
 rk3588_planner_server.py            Board-side planner service
 board_eval_v2.py                    Board-side official CEM evaluation path
 run_pusht_eval_official.py          Host-side evaluation client
