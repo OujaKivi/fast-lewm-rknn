@@ -13,6 +13,8 @@
     "topk": 30,
     "action_blocks": 5,
     "action_block_size": 10,
+    "primitive_actions_per_plan": 25,
+    "receding_horizon_plans": 1,
     "predictor_path": "terminal-only",
     "predictor_shape": [300, 1, 192]
   },
@@ -78,6 +80,8 @@
     "Keeping 300 CEM candidates fixed while changing only RKNN micro-batch preserves numerical agreement; batch 300 is fastest in the measured sweep.",
     "A full-NPU result is excluded because the accurate NPU Action Encoder is 2.02x slower than the tuned four-core CPU implementation.",
     "Current and goal images are encoded once per planning request, outside the 30-iteration CEM loop.",
+    "Each complete CEM solve produces 25 primitive actions, all of which are executed before the paper-aligned controller replans.",
+    "Complete-solve latency is therefore per replan; dividing by 25 is an amortized compute cost per executed action, not a per-action feedback latency.",
     "The action-prefix encoder consumes all five blocks and returns only the terminal prefix token.",
     "The fused NPU graph contains the terminal predictor and pred_proj."
   ]

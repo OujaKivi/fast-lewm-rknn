@@ -10,12 +10,13 @@ Tested on RK3588 with four Cortex-A76 cores pinned, three-core NPU, RKNN Runtime
 
 | Metric | CPU | CPU + NPU FP16 | Result |
 |---|---:|---:|---:|
-| Complete CEM solve | 4.47 s | 2.63 s | **1.70x speedup** |
+| Complete CEM solve per replan (25-action plan) | 4.47 s | 2.63 s | **1.70x speedup** |
+| Compute time per executed action (amortized) | 179 ms | 105 ms | **1.70x speedup** |
 | Image encoding | 142 ms | 47 ms | **NPU ViT + projector** |
 | Action-prefix encoder | 2.009 s | 2.012 s | effectively identical |
 | Terminal predictor + projection | 2.29 s | 541 ms | **4.23x contribution speedup** |
 
-Workload: `300` candidates, `30` CEM iterations, `top-k=30`, five action blocks, one terminal latent per candidate. Complete-solve stages are means of five repeated requests. Raw measurements are in [results/latest_benchmark.json](results/latest_benchmark.json).
+Workload: `300` candidates, `30` CEM iterations, `top-k=30`, five action blocks, one terminal latent per candidate, and 25 primitive actions executed before the next replan. Complete-solve stages are means of five repeated requests. The amortized value divides one replan by 25; it is not per-action feedback latency. Raw measurements are in [results/latest_benchmark.json](results/latest_benchmark.json).
 
 The isolated terminal predictor benchmark is:
 
@@ -42,7 +43,7 @@ five action blocks
   -> terminal latent cost
 ```
 
-With this alignment, NPU runs the fused `ViT + projector` and fused terminal `predictor + pred_proj`. With PyTorch workers matched to the four pinned CPU cores, this reduces a complete `300 x 30` CEM solve from 4.47 seconds to 2.63 seconds (`1.70x`). NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 77% of heterogeneous solve time. The current configuration is still not suitable for high-frequency closed-loop control without further planning-budget or action-encoder optimization.
+With this alignment, NPU runs the fused `ViT + projector` and fused terminal `predictor + pred_proj`. With PyTorch workers matched to the four pinned CPU cores, this reduces a complete `300 x 30` CEM solve from 4.47 seconds to 2.63 seconds (`1.70x`). NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 77% of heterogeneous solve time. The paper-aligned controller executes all 25 planned actions before replanning, so `2.63 s` is a per-replan planning pause, not a per-action latency; its compute cost amortizes to about `105 ms` per executed action. This configuration is not high-frequency closed-loop control, and deployment viability depends on whether the replan pause is acceptable or can be overlapped with execution.
 
 ## Why Action Encoding Is Slightly Slower
 
