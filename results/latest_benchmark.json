@@ -52,11 +52,21 @@
     "max_abs_error": 0.014721,
     "cosine_similarity": 0.999979
   },
+  "action_encoder_npu_microbenchmark": {
+    "cpu_ms": 67.27,
+    "npu_fp16_ms": 136.10,
+    "npu_vs_cpu": 0.494,
+    "rknn_size_mb": 193.94,
+    "mae": 0.003288,
+    "max_abs_error": 0.022090,
+    "cosine_similarity": 0.999993
+  },
   "notes": [
     "Complete-solve stage values are means of five repeated requests.",
     "After matching PyTorch workers to the four pinned CPU cores, the heterogeneous action encoder is only 0.17% slower, within measurement noise.",
     "The earlier 4.90% gap was a cross-process benchmark artifact amplified by eight PyTorch workers competing on four pinned cores; controlled tests measured +0.10% for NumPy copies and +0.17% for a real NPU predictor.",
-    "A full-NPU result is excluded because the converted action encoder failed validation (cosine similarity 0.062459, MAE 1.187717).",
+    "The Action Encoder conversion issue was isolated to a Transpose/Reshape plus Linear attention-output fusion and fixed with an equivalent 1x1 Conv.",
+    "A full-NPU result is excluded because the accurate NPU Action Encoder is 2.02x slower than the tuned four-core CPU implementation.",
     "Current and goal images are encoded once per planning request, outside the 30-iteration CEM loop.",
     "The action-prefix encoder consumes all five blocks and returns only the terminal prefix token.",
     "The fused NPU graph contains the terminal predictor and pred_proj."

@@ -13,7 +13,7 @@ from rknnlite.api import RKNNLite
 
 
 WEIGHTS_PATH = "/root/Fast-LeWorldModel/weights/full_model_state.pt"
-RKNN_PATH = "/root/Fast-LeWorldModel/action_encoder_terminal_b300_fp16.rknn"
+RKNN_PATH = "/root/Fast-LeWorldModel/action_encoder_terminal_b300_fp16_conv.rknn"
 
 
 def main():
@@ -47,7 +47,10 @@ def main():
         raise RuntimeError("Unable to initialize RKNN runtime")
     try:
         start = time.perf_counter()
-        npu = rknn.inference(inputs=[actions.numpy(), latent.numpy()])[0]
+        npu = rknn.inference(
+            inputs=[actions.numpy(), latent.numpy()],
+            data_format=["nchw", "nchw"],
+        )[0]
         elapsed_ms = (time.perf_counter() - start) * 1000
     finally:
         rknn.release()

@@ -52,9 +52,9 @@ With four PyTorch workers, five complete requests measure `2008.92 ms` on CPU an
 
 ## Full-NPU Baseline
 
-A full-NPU comparison is conceptually useful because it exposes whether moving a small or poorly supported operator graph to NPU helps end-to-end latency. It is not valid to publish one yet. The newly exported official `6 x 32` terminal Action Encoder runs at about `138 ms` for batch 300, but its RKNN output fails the accuracy gate: cosine similarity `0.062459`, MAE `1.187717`. The apparent full-NPU latency is therefore excluded from the chart and results. The validation utility is [scripts/validate_action_encoder_board.py](scripts/validate_action_encoder_board.py).
+A full-NPU comparison is conceptually useful because it exposes whether moving a small or poorly supported operator graph to NPU helps end-to-end latency. Layer-wise bisection found an RKNN Toolkit2 miscompile in the multi-head `Transpose/Reshape + Linear` attention-output pattern. Replacing that mathematically equivalent Linear with a `1x1 Conv` restores batch-300 agreement: cosine similarity `0.999993`, MAE `0.003288`, and maximum absolute error `0.022090`.
 
-The next valid route is to rewrite or partition unsupported Action Encoder operations, validate every partition against PyTorch, and only then add a full-NPU bar. The current best verified mapping is NPU `ViT + projector`, CPU Action Encoder, and NPU `predictor + pred_proj`. The rebuilt image graph passes its accuracy gate with cosine similarity `0.999979`, MAE `0.003556`, and maximum absolute error `0.014721`.
+The accurate NPU Action Encoder is not selected because it takes `136.10 ms` per batch, versus about `67 ms` on the four-core CPU path. The current best verified mapping therefore remains NPU `ViT + projector`, CPU Action Encoder, and NPU `predictor + pred_proj`. The next performance experiment is a batch-size sweep and a fully convolutional export to avoid Toolkit static-batch expansion; the current batch-300 RKNN is about `194 MB` despite a `6.94 MB` ONNX graph.
 
 The paper reports `8.0 s` dynamics time and `28.3 s` full CEM time on an NVIDIA RTX 4090. Those absolute numbers are not directly comparable with this single-environment RK3588 run. This repository reports complete-solve and per-module timing explicitly to avoid mixing one CEM iteration with a full 30-iteration solve.
 
@@ -66,6 +66,7 @@ The paper reports `8.0 s` dynamics time and `28.3 s` full CEM time on an NVIDIA 
 - Predictor configuration is restored to `16 x 64`.
 - Expanded latents are made contiguous before the action encoder.
 - CPU and NPU paths use the same terminal cost semantics.
+- Action attention output projection uses an RKNN-safe `1x1 Conv` equivalent.
 - NPU handles in `board_eval_v2.py` are correctly shared with `get_cost()`.
 - Planner command-line CEM iteration and sample settings now take effect.
 
@@ -80,6 +81,7 @@ Fast-LeWorldModel/                  Official model source and deployment artifac
   vit_encoder_projected_*.rknn      Fused ViT/projector RKNN FP16
   export_terminal_predictor.py      Checkpoint -> aligned terminal ONNX
   export_action_encoder.py          Experimental terminal Action Encoder export
+  export_action_bisection.py        Cumulative layer accuracy bisection export
   export_vit_encoder.py             Checkpoint -> fused ViT/projector ONNX
   convert_to_rknn.py                ONNX -> RKNN conversion
 results/latest_benchmark.json       Latest raw measurements
@@ -87,6 +89,7 @@ scripts/plot_breakdown.py           Breakdown figure generator
 scripts/validate_action_encoder_board.py  Board-side RKNN accuracy gate
 scripts/validate_vit_board.py       Board-side ViT/projector accuracy gate
 scripts/diagnose_action_slowdown_board.py  Controlled slowdown isolation
+scripts/run_action_bisection_rknn.py       RKNN simulator layer comparison
 rk3588_planner_server.py            Board-side planner service
 board_eval_v2.py                    Board-side official CEM evaluation path
 run_pusht_eval_official.py          Host-side evaluation client

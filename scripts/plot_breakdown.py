@@ -45,7 +45,7 @@ def draw_sequence(ax):
 
     y = 0.52
     ax.text(0.02, y, "All NPU", ha="left", va="center", fontsize=10, fontweight="bold")
-    draw_box(ax, 0.9, y, 6.75, "Not reported: Action Encoder RKNN failed accuracy gate (cosine similarity 0.062)", blocked, edge="#C75D5D")
+    draw_box(ax, 0.9, y, 6.75, "Not selected: accurate Action Encoder NPU is slower (136 ms vs 67 ms on CPU)", blocked, edge="#C75D5D")
     ax.set_xlim(0, 8.0)
     ax.set_ylim(0.12, 2.62)
     ax.axis("off")
