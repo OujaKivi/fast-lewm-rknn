@@ -10,10 +10,10 @@ Tested on RK3588 with four Cortex-A76 cores pinned, three-core NPU, RKNN Runtime
 
 | Metric | CPU | CPU + NPU FP16 | Result |
 |---|---:|---:|---:|
-| Complete CEM solve | 6.41 s | 3.48 s | **1.84x speedup** |
-| Image encoding | 263 ms | 49 ms | **NPU ViT + projector** |
-| Action-prefix encoder | 2.72 s | 2.86 s | CPU in both runs |
-| Terminal predictor + projection | 3.39 s | 540 ms | **6.28x contribution speedup** |
+| Complete CEM solve | 4.47 s | 2.63 s | **1.70x speedup** |
+| Image encoding | 142 ms | 47 ms | **NPU ViT + projector** |
+| Action-prefix encoder | 2.009 s | 2.012 s | effectively identical |
+| Terminal predictor + projection | 2.29 s | 541 ms | **4.23x contribution speedup** |
 
 Workload: `300` candidates, `30` CEM iterations, `top-k=30`, five action blocks, one terminal latent per candidate. Complete-solve stages are means of five repeated requests. Raw measurements are in [results/latest_benchmark.json](results/latest_benchmark.json).
 
@@ -42,13 +42,13 @@ five action blocks
   -> terminal latent cost
 ```
 
-With this alignment, NPU runs the fused `ViT + projector` and fused terminal `predictor + pred_proj`. This reduces a complete `300 x 30` CEM solve from 6.41 seconds to 3.48 seconds (`1.84x`). NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 82% of heterogeneous solve time. The current configuration is still not suitable for high-frequency closed-loop control without further planning-budget or action-encoder optimization.
+With this alignment, NPU runs the fused `ViT + projector` and fused terminal `predictor + pred_proj`. With PyTorch workers matched to the four pinned CPU cores, this reduces a complete `300 x 30` CEM solve from 4.47 seconds to 2.63 seconds (`1.70x`). NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 77% of heterogeneous solve time. The current configuration is still not suitable for high-frequency closed-loop control without further planning-budget or action-encoder optimization.
 
 ## Why Action Encoding Is Slightly Slower
 
-The heterogeneous run uses exactly the same CPU Action Encoder, weights, input shape, and terminal-only semantics as the CPU run. Across five requests it rises from `2723.66 ms` to `2857.19 ms`, a `4.90%` increase over all 30 CEM iterations. This is much smaller than the earlier single-run gap, but it is repeatable.
+The earlier heterogeneous result appeared `4.90%` slower in Action Encoder, but a controlled same-process experiment disproved NPU interference as the main cause. The service was pinned to four Cortex-A76 cores while PyTorch created eight workers, making separate benchmark processes sensitive to scheduler state.
 
-CPU frequency was fixed at `2.352 GHz` and NPU frequency at `1.0 GHz`, so CPU DVFS is not the explanation. The leading cause is SoC-level interference from alternating CPU and NPU work: shared DDR bandwidth and cache state, RKNN driver/runtime transitions, and possible asynchronous NPU tail work disturb the following CPU phase. Hardware PMU counters are still needed to separate those effects precisely; this is a measured systems effect, not a change in Action Encoder computation.
+With four PyTorch workers, five complete requests measure `2008.92 ms` on CPU and `2012.31 ms` in the heterogeneous path, a difference of only `0.17%`. In the isolated experiment, NumPy conversion added `0.10%`, a real NPU Predictor between Action Encoder calls added `0.17%`, and a matched sleep control changed `-0.32%`. CPU and NPU frequencies remained locked at `2.352 GHz` and `1.0 GHz`. The earlier gap was therefore a thread oversubscription and cross-process measurement artifact, not meaningful transfer, frequency, or NPU contention overhead.
 
 ## Full-NPU Baseline
 
@@ -86,6 +86,7 @@ results/latest_benchmark.json       Latest raw measurements
 scripts/plot_breakdown.py           Breakdown figure generator
 scripts/validate_action_encoder_board.py  Board-side RKNN accuracy gate
 scripts/validate_vit_board.py       Board-side ViT/projector accuracy gate
+scripts/diagnose_action_slowdown_board.py  Controlled slowdown isolation
 rk3588_planner_server.py            Board-side planner service
 board_eval_v2.py                    Board-side official CEM evaluation path
 run_pusht_eval_official.py          Host-side evaluation client

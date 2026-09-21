@@ -64,7 +64,7 @@ def draw_breakdown(ax, data):
             if value >= 80:
                 ax.text(bar.get_x() + bar.get_width() / 2, bottom + value / 2, f"{value:.0f} ms", ha="center", va="center", color="white", fontsize=10, fontweight="bold")
             elif key == "image_encoder_ms":
-                ax.text(bar.get_x() + bar.get_width() + 0.02, bottom + value / 2, f"{value:.0f} ms", ha="left", va="center", color="#245C91", fontsize=9, fontweight="bold")
+                ax.text(bar.get_x() + bar.get_width() / 2, bottom + value + 45, f"{value:.0f} ms", ha="center", va="center", color="#173F63", fontsize=9, fontweight="bold")
         bottoms = [bottom + value for bottom, value in zip(bottoms, values)]
 
     for index, record in enumerate(records):

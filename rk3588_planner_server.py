@@ -25,6 +25,12 @@ from torchvision.transforms import v2 as transforms
 from PIL import Image
 import io
 
+# The service is pinned to four Cortex-A76 cores. Avoid running eight default
+# PyTorch workers on that four-core affinity mask, which adds large scheduler
+# variance to the CPU action encoder.
+torch.set_num_threads(4)
+torch.set_num_interop_threads(1)
+
 sys.path.insert(0, '/root/Fast-LeWorldModel')
 from module import ActionPrefixEmbedder, ARPredictor, MLP
 

@@ -17,26 +17,26 @@
     "predictor_shape": [300, 1, 192]
   },
   "cpu": {
-    "total_ms": 6411.87,
-    "image_encoder_ms": 263.06,
-    "action_encoder_ms": 2723.66,
-    "action_encoder_std_ms": 20.95,
-    "predictor_with_projection_ms": 3392.62,
-    "predictor_with_projection_std_ms": 19.05,
-    "cost_ms": 10.61,
-    "cem_update_ms": 5.59,
-    "other_ms": 16.33
+    "total_ms": 4465.85,
+    "image_encoder_ms": 142.28,
+    "action_encoder_ms": 2008.92,
+    "action_encoder_std_ms": 2.08,
+    "predictor_with_projection_ms": 2286.83,
+    "cost_ms": 6.50,
+    "cem_update_ms": 5.38,
+    "other_ms": 15.94
   },
   "heterogeneous_fp16": {
     "mapping": "NPU ViT+projector + CPU action encoder + NPU terminal predictor+pred_proj",
-    "total_ms": 3476.47,
-    "image_encoder_ms": 49.23,
-    "action_encoder_ms": 2857.19,
-    "predictor_with_projection_ms": 540.34,
-    "cost_ms": 6.95,
-    "cem_update_ms": 5.54,
-    "other_ms": 17.22,
-    "speedup_vs_cpu": 1.844
+    "total_ms": 2628.38,
+    "image_encoder_ms": 47.29,
+    "action_encoder_ms": 2012.31,
+    "action_encoder_std_ms": 2.31,
+    "predictor_with_projection_ms": 541.11,
+    "cost_ms": 6.08,
+    "cem_update_ms": 5.47,
+    "other_ms": 16.12,
+    "speedup_vs_cpu": 1.699
   },
   "predictor_microbenchmark": {
     "cpu_ms": 118.70,
@@ -54,7 +54,8 @@
   },
   "notes": [
     "Complete-solve stage values are means of five repeated requests.",
-    "The CPU action encoder is 4.90% slower in the heterogeneous run even with the CPU fixed at 2.352 GHz; shared cache/DDR and backend switching are the leading explanation, not a model difference.",
+    "After matching PyTorch workers to the four pinned CPU cores, the heterogeneous action encoder is only 0.17% slower, within measurement noise.",
+    "The earlier 4.90% gap was a cross-process benchmark artifact amplified by eight PyTorch workers competing on four pinned cores; controlled tests measured +0.10% for NumPy copies and +0.17% for a real NPU predictor.",
     "A full-NPU result is excluded because the converted action encoder failed validation (cosine similarity 0.062459, MAE 1.187717).",
     "Current and goal images are encoded once per planning request, outside the 30-iteration CEM loop.",
     "The action-prefix encoder consumes all five blocks and returns only the terminal prefix token.",
