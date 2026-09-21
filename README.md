@@ -54,7 +54,11 @@ With four PyTorch workers, five complete requests measure `2008.92 ms` on CPU an
 
 A full-NPU comparison is conceptually useful because it exposes whether moving a small or poorly supported operator graph to NPU helps end-to-end latency. Layer-wise bisection found an RKNN Toolkit2 miscompile in the multi-head `Transpose/Reshape + Linear` attention-output pattern. Replacing that mathematically equivalent Linear with a `1x1 Conv` restores batch-300 agreement: cosine similarity `0.999993`, MAE `0.003288`, and maximum absolute error `0.022090`.
 
-The accurate NPU Action Encoder is not selected because it takes `136.10 ms` per batch, versus about `67 ms` on the four-core CPU path. The current best verified mapping therefore remains NPU `ViT + projector`, CPU Action Encoder, and NPU `predictor + pred_proj`. The next performance experiment is a batch-size sweep and a fully convolutional export to avoid Toolkit static-batch expansion; the current batch-300 RKNN is about `194 MB` despite a `6.94 MB` ONNX graph.
+The accurate NPU Action Encoder is not selected because it takes about `130 ms` per batch, versus about `67 ms` on the four-core CPU path. The current best verified mapping therefore remains NPU `ViT + projector`, CPU Action Encoder, and NPU `predictor + pred_proj`. The current batch-300 RKNN is about `194 MB` despite a `6.94 MB` ONNX graph, so a more complete convolutional rewrite remains a possible follow-up.
+
+The micro-batch sweep keeps all `300` CEM candidates unchanged, so it does not reduce search quality. Processing the same candidates takes `372.17/162.88/163.59/160.19/151.19/130.28/129.74 ms` for RKNN batches `1/16/32/64/100/150/300`; every configuration has cosine similarity `0.999992`. Batch 300 is already fastest, so splitting the graph does not close the gap to the tuned CPU implementation.
+
+RK3588 includes a Mali-G610 GPU with OpenCL capability, but the tested board image currently exposes no usable compute device: `clinfo` reports zero devices and Vulkan instance creation fails. GPU evaluation requires a kernel-compatible Mali `libmali`/OpenCL or working Panfrost/PanVK stack, followed by a separate MNN, ncnn, or custom OpenCL implementation. It is not part of the verified runtime path.
 
 The paper reports `8.0 s` dynamics time and `28.3 s` full CEM time on an NVIDIA RTX 4090. Those absolute numbers are not directly comparable with this single-environment RK3588 run. This repository reports complete-solve and per-module timing explicitly to avoid mixing one CEM iteration with a full 30-iteration solve.
 
@@ -90,6 +94,7 @@ scripts/validate_action_encoder_board.py  Board-side RKNN accuracy gate
 scripts/validate_vit_board.py       Board-side ViT/projector accuracy gate
 scripts/diagnose_action_slowdown_board.py  Controlled slowdown isolation
 scripts/run_action_bisection_rknn.py       RKNN simulator layer comparison
+scripts/scan_action_microbatch_board.py    Fixed-300-candidate batch sweep
 rk3588_planner_server.py            Board-side planner service
 board_eval_v2.py                    Board-side official CEM evaluation path
 run_pusht_eval_official.py          Host-side evaluation client

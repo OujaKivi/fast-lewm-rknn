@@ -61,11 +61,21 @@
     "max_abs_error": 0.022090,
     "cosine_similarity": 0.999993
   },
+  "action_encoder_microbatch_scan": [
+    {"batch": 1, "calls_for_300": 300, "total_ms": 372.17, "cosine_similarity": 0.999992},
+    {"batch": 16, "calls_for_300": 19, "total_ms": 162.88, "cosine_similarity": 0.999992},
+    {"batch": 32, "calls_for_300": 10, "total_ms": 163.59, "cosine_similarity": 0.999992},
+    {"batch": 64, "calls_for_300": 5, "total_ms": 160.19, "cosine_similarity": 0.999992},
+    {"batch": 100, "calls_for_300": 3, "total_ms": 151.19, "cosine_similarity": 0.999992},
+    {"batch": 150, "calls_for_300": 2, "total_ms": 130.28, "cosine_similarity": 0.999992},
+    {"batch": 300, "calls_for_300": 1, "total_ms": 129.74, "cosine_similarity": 0.999992}
+  ],
   "notes": [
     "Complete-solve stage values are means of five repeated requests.",
     "After matching PyTorch workers to the four pinned CPU cores, the heterogeneous action encoder is only 0.17% slower, within measurement noise.",
     "The earlier 4.90% gap was a cross-process benchmark artifact amplified by eight PyTorch workers competing on four pinned cores; controlled tests measured +0.10% for NumPy copies and +0.17% for a real NPU predictor.",
     "The Action Encoder conversion issue was isolated to a Transpose/Reshape plus Linear attention-output fusion and fixed with an equivalent 1x1 Conv.",
+    "Keeping 300 CEM candidates fixed while changing only RKNN micro-batch preserves numerical agreement; batch 300 is fastest in the measured sweep.",
     "A full-NPU result is excluded because the accurate NPU Action Encoder is 2.02x slower than the tuned four-core CPU implementation.",
     "Current and goal images are encoded once per planning request, outside the 30-iteration CEM loop.",
     "The action-prefix encoder consumes all five blocks and returns only the terminal prefix token.",
