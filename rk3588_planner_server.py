@@ -24,6 +24,7 @@ from transformers import ViTModel, ViTConfig
 from torchvision.transforms import v2 as transforms
 from PIL import Image
 import io
+from pathlib import Path
 
 # The service is pinned to four Cortex-A76 cores. Avoid running eight default
 # PyTorch workers on that four-core affinity mask, which adds large scheduler
@@ -31,7 +32,8 @@ import io
 torch.set_num_threads(4)
 torch.set_num_interop_threads(1)
 
-sys.path.insert(0, '/root/Fast-LeWorldModel')
+LOCAL_MODEL_DIR = Path(__file__).resolve().parent / 'Fast-LeWorldModel'
+sys.path.insert(0, str(LOCAL_MODEL_DIR if LOCAL_MODEL_DIR.exists() else '/root/Fast-LeWorldModel'))
 from module import ActionPrefixEmbedder, ARPredictor, MLP
 
 # 配置
@@ -160,6 +162,19 @@ class FastLeWMPlanner:
         self.num_samples = NUM_SAMPLES
         self.n_steps = N_STEPS
         self.topk = TOPK
+        self.warm_start = False
+        self.adaptive_cem = False
+        self.min_cem_steps = 8
+        self.stop_patience = 3
+        self.cost_rel_tol = 2e-3
+        self.mean_delta_tol = 8e-2
+        self.std_tol = 1.5e-1
+        self.warm_start_std_floor = 0.25
+        self.warm_start_std_inflation = 1.25
+        self.previous_plan = None
+        self.previous_std = None
+        self.seed = 1234
+        self.solve_index = 0
         log(f"[Planner] Loading model in {mode} mode...")
 
         # 加载权重
@@ -324,18 +339,67 @@ class FastLeWMPlanner:
 
         return cost
 
-    def cem_plan(self, current_emb, goal_emb):
+    @staticmethod
+    def _shift_packed_plan(plan, executed_actions):
+        """Shift a packed sequence of 2-D actions for receding-horizon reuse."""
+        if plan is None:
+            return None
+        shift = max(0, int(executed_actions)) * 2
+        flat = plan.reshape(-1)
+        if shift == 0:
+            return flat.clone()
+        if shift >= flat.numel():
+            return None
+        shifted = torch.empty_like(flat)
+        shifted[:-shift] = flat[shift:]
+        # A constant-tail prior is less discontinuous than appending zeros.
+        shifted[-shift:] = flat[-2:].repeat((shift + 1) // 2)[:shift]
+        return shifted
+
+    def reset_planner_state(self):
+        self.previous_plan = None
+        self.previous_std = None
+        self.solve_index = 0
+
+    def cem_plan(self, current_emb, goal_emb, executed_actions=1, reset=False):
         """CEM 规划，返回最优动作序列"""
         # 初始化动作分布
         mean = torch.zeros(1, HORIZON, ACTION_DIM)
         var = torch.ones(1, HORIZON, ACTION_DIM)
 
+        warm_started = False
+        if reset:
+            self.reset_planner_state()
+        generator = torch.Generator(device='cpu').manual_seed(
+            self.seed + self.solve_index
+        )
+        if self.warm_start:
+            shifted = self._shift_packed_plan(self.previous_plan, executed_actions)
+            if shifted is not None:
+                mean.copy_(shifted.reshape_as(mean))
+                shifted_std = self._shift_packed_plan(
+                    self.previous_std, executed_actions
+                )
+                if shifted_std is not None:
+                    var.copy_(
+                        (shifted_std.reshape_as(var) * self.warm_start_std_inflation)
+                        .clamp(min=self.warm_start_std_floor, max=1.0)
+                    )
+                warm_started = True
+
         best_cost = float('inf')
         best_action = None
+        previous_iter_cost = None
+        stable_steps = 0
+        stop_reason = 'max_steps'
+        trace = []
+        best_cost_history = []
 
         for step in range(self.n_steps):
             # 采样候选
-            candidates = torch.randn(self.num_samples, HORIZON, ACTION_DIM)
+            candidates = torch.randn(
+                self.num_samples, HORIZON, ACTION_DIM, generator=generator
+            )
             candidates = candidates * var + mean
             candidates[0] = mean  # 强制第一个为当前 mean
 
@@ -348,6 +412,7 @@ class FastLeWMPlanner:
             topk_candidates = candidates[topk_inds]  # (K, 1, 50)
 
             # 更新分布
+            previous_mean = mean
             mean = topk_candidates.mean(dim=0, keepdim=True)
             var = topk_candidates.std(dim=0, keepdim=True)
             self.stats['cem_update'] += time.time() - t0
@@ -357,9 +422,56 @@ class FastLeWMPlanner:
                 best_cost = topk_vals[0].item()
                 best_action = topk_candidates[0].clone()
 
-        return best_action.squeeze(0).numpy(), best_cost  # (1, 50) -> (50,), cost
+            iter_cost = topk_vals[0].item()
+            mean_delta = torch.sqrt(torch.mean((mean - previous_mean) ** 2)).item()
+            rms_std = torch.sqrt(torch.mean(var ** 2)).item()
+            rel_improvement = None
+            if previous_iter_cost is not None:
+                rel_improvement = ((previous_iter_cost - iter_cost) /
+                                   max(abs(previous_iter_cost), 1e-12))
+                cost_stable = rel_improvement <= self.cost_rel_tol
+                mean_stable = mean_delta <= self.mean_delta_tol
+                stable_steps = stable_steps + 1 if cost_stable and mean_stable else 0
+            previous_iter_cost = iter_cost
+            best_cost_history.append(best_cost)
+            trace.append({
+                'step': step + 1,
+                'best_cost': iter_cost,
+                'relative_improvement': rel_improvement,
+                'mean_delta_rms': mean_delta,
+                'rms_std': rms_std,
+            })
 
-    def plan(self, current_img_b64, goal_img_b64):
+            if self.adaptive_cem and step + 1 >= self.min_cem_steps:
+                if rms_std <= self.std_tol:
+                    stop_reason = 'variance_converged'
+                    break
+                if stable_steps >= self.stop_patience:
+                    stop_reason = 'cost_and_mean_stable'
+                    break
+                if len(best_cost_history) > self.stop_patience:
+                    old_best = best_cost_history[-self.stop_patience - 1]
+                    window_gain = ((old_best - best_cost) /
+                                   max(abs(old_best), 1e-12))
+                    if window_gain <= self.cost_rel_tol:
+                        stop_reason = 'best_cost_plateau'
+                        break
+
+        # Preserve the deployed planner's selection semantics: execute the
+        # lowest-cost sample seen across all iterations.
+        selected_action = best_action.squeeze(0).clone()
+        self.previous_plan = selected_action.reshape(-1)
+        self.previous_std = var.squeeze(0).reshape(-1).clone()
+        self.solve_index += 1
+        metadata = {
+            'warm_started': warm_started,
+            'iterations_used': len(trace),
+            'stop_reason': stop_reason,
+            'trace': trace,
+        }
+        return selected_action.numpy(), best_cost, metadata
+
+    def plan(self, current_img_b64, goal_img_b64, executed_actions=1, reset=False):
         """完整规划流程"""
         t0 = time.time()
 
@@ -376,7 +488,11 @@ class FastLeWMPlanner:
 
         # CEM 规划
         t_cem_start = time.time()
-        action, cost = self.cem_plan(current_emb, goal_emb)
+        action, cost, cem_metadata = self.cem_plan(
+            current_emb, goal_emb,
+            executed_actions=executed_actions,
+            reset=reset,
+        )
         t_cem = time.time() - t_cem_start
 
         t_total = time.time() - t0
@@ -392,6 +508,7 @@ class FastLeWMPlanner:
             'time_encode': t_enc,
             'time_cem': t_cem,
             'mode': self.mode,
+            'cem': cem_metadata,
             'profiling': {
                 'encode': self.stats['encode'],
                 'action_encoder': self.stats['action_enc'],
@@ -416,14 +533,38 @@ def main():
     parser.add_argument('--mode', type=str, default='cpu', choices=['cpu', 'npu'])
     parser.add_argument('--cem-steps', type=int, default=30)
     parser.add_argument('--num-samples', type=int, default=300)
+    parser.add_argument('--topk', type=int, default=30)
+    parser.add_argument('--warm-start', action='store_true')
+    parser.add_argument('--adaptive-cem', action='store_true')
+    parser.add_argument('--min-cem-steps', type=int, default=8)
+    parser.add_argument('--stop-patience', type=int, default=3)
+    parser.add_argument('--cost-rel-tol', type=float, default=2e-3)
+    parser.add_argument('--mean-delta-tol', type=float, default=8e-2)
+    parser.add_argument('--std-tol', type=float, default=1.5e-1)
+    parser.add_argument('--warm-start-std-floor', type=float, default=0.25)
+    parser.add_argument('--warm-start-std-inflation', type=float, default=1.25)
+    parser.add_argument('--seed', type=int, default=1234)
     args = parser.parse_args()
 
     planner = FastLeWMPlanner(mode=args.mode)
     planner.n_steps = args.cem_steps
     planner.num_samples = args.num_samples
-    if planner.topk > planner.num_samples:
-        parser.error("--num-samples must be greater than or equal to topk=30")
-    log(f"[Planner] Ready. Mode={args.mode}. CEM steps={args.cem_steps}. Samples={args.num_samples}. Waiting for requests...")
+    planner.topk = args.topk
+    planner.warm_start = args.warm_start
+    planner.adaptive_cem = args.adaptive_cem
+    planner.min_cem_steps = args.min_cem_steps
+    planner.stop_patience = args.stop_patience
+    planner.cost_rel_tol = args.cost_rel_tol
+    planner.mean_delta_tol = args.mean_delta_tol
+    planner.std_tol = args.std_tol
+    planner.warm_start_std_floor = args.warm_start_std_floor
+    planner.warm_start_std_inflation = args.warm_start_std_inflation
+    planner.seed = args.seed
+    if not 1 <= planner.topk <= planner.num_samples:
+        parser.error("--topk must be in [1, num-samples]")
+    log(f"[Planner] Ready. Mode={args.mode}. CEM steps={args.cem_steps}. "
+        f"Samples={args.num_samples}. Warm-start={args.warm_start}. "
+        f"Adaptive={args.adaptive_cem}. Waiting for requests...")
 
     for line in sys.stdin:
         line = line.strip()
@@ -434,7 +575,12 @@ def main():
             current_img = request['current_image']
             goal_img = request['goal_image']
 
-            result = planner.plan(current_img, goal_img)
+            result = planner.plan(
+                current_img,
+                goal_img,
+                executed_actions=request.get('executed_actions', 1),
+                reset=request.get('reset', False),
+            )
             print(json.dumps(result), flush=True)
         except Exception as e:
             import traceback

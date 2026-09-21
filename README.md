@@ -62,6 +62,14 @@ RK3588 includes a Mali-G610 GPU with OpenCL capability, but the tested board ima
 
 The paper reports `8.0 s` dynamics time and `28.3 s` full CEM time on an NVIDIA RTX 4090. Those absolute numbers are not directly comparable with this single-environment RK3588 run. This repository reports complete-solve and per-module timing explicitly to avoid mixing one CEM iteration with a full 30-iteration solve.
 
+## Adaptive CEM Experiment
+
+The planner now contains opt-in warm-start and adaptive-stopping experiments, but neither is enabled in the reported benchmark. An alignment audit found that the PushT configuration packs `25` primitive actions into one planning step (`horizon=1`, `action_block=25`, `receding_horizon=1`) and executes the complete 25-action plan before replanning. Therefore, the paper-aligned controller has no unexecuted suffix to shift into the next solve: conventional receding-horizon warm-start does not apply without changing the controller to replan every 1--5 primitive actions.
+
+The conservative adaptive rule monitors best-cost improvement, distribution-mean motion, and RMS standard deviation. In the deterministic seed-42 smoke test, both paper-aligned replans used all 30 iterations, producing the same actions and costs as fixed CEM. Measured planning latency was `2.64 s` versus `2.62 s` per replan, i.e. no useful improvement. These two-run smoke-test records are in `results/adaptive_cem_aligned_pilot_seed42.json` and `results/fixed_cem_aligned_pilot_seed42.json`; they are implementation checks, not task-success evidence.
+
+Warm-start remains available for an explicitly changed MPC cadence through `--replan_every < 25`, and the server reports whether it was actually applied, how many iterations ran, and why optimization stopped. Any such configuration must be evaluated separately for task success because it is no longer the paper's open-loop 25-action execution policy.
+
 ## Correctness Fixes
 
 - Terminal-only predictor input and output are fixed at `[300, 1, 192]`.
@@ -73,6 +81,8 @@ The paper reports `8.0 s` dynamics time and `28.3 s` full CEM time on an NVIDIA 
 - Action attention output projection uses an RKNN-safe `1x1 Conv` equivalent.
 - NPU handles in `board_eval_v2.py` are correctly shared with `get_cost()`.
 - Planner command-line CEM iteration and sample settings now take effect.
+- Host evaluation follows the paper's 25-action execution cadence by default.
+- CEM sampling is deterministically seeded per replan for paired comparisons.
 
 ## Repository Layout
 

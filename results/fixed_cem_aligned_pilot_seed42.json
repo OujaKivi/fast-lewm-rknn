@@ -1,0 +1,39 @@
+{
+  "config": {
+    "episodes": 1,
+    "cem_iters": 30,
+    "num_samples": 300,
+    "topk": 30,
+    "horizon": 5,
+    "seed": 42,
+    "mode": "npu",
+    "warm_start": false,
+    "adaptive_cem": false,
+    "min_cem_steps": 8,
+    "max_steps": 50,
+    "replan_every": 25,
+    "output": "results/fixed_cem_aligned_pilot_seed42.json"
+  },
+  "summary": {
+    "success_rate": 0.0,
+    "successes": 0,
+    "total_episodes": 1,
+    "avg_steps": 50.0,
+    "amortized_plan_time_per_env_step_ms": 104.67674732208252,
+    "avg_plan_time_per_replan_ms": 2616.918683052063
+  },
+  "episodes": [
+    {
+      "episode": 0,
+      "success": false,
+      "steps": 50,
+      "total_plan_time_ms": 5233.837366104126,
+      "avg_plan_time_ms": 2616.918683052063,
+      "avg_cem_iterations": 30.0,
+      "cem_iterations": [
+        30,
+        30
+      ]
+    }
+  ]
+}

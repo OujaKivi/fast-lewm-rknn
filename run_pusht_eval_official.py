@@ -12,7 +12,6 @@ import argparse
 import json
 import subprocess
 import sys
-import time
 import base64
 import io
 import threading
@@ -30,23 +29,45 @@ RK3588_HOST = "rk3588"
 RK3588_WORKDIR = "/root/Fast-LeWorldModel"
 RK3588_PYTHON = "/root/miniconda3/envs/fast-lewm/bin/python"
 
+# StandardScaler fitted to the PushT training actions.
+ACTION_MEAN = np.array([-0.0078125644, 0.0068606872], dtype=np.float32)
+ACTION_STD = np.array([0.2084674428, 0.2067486264], dtype=np.float32)
+
 
 class RK3588Planner:
     """通过 SSH 与 RK3588 planner server 通信。"""
 
-    def __init__(self, cem_iters=30, num_samples=300, topk=30, horizon=5):
+    def __init__(self, cem_iters=30, num_samples=300, topk=30, horizon=5,
+                 mode="npu", warm_start=False, adaptive_cem=False,
+                 min_cem_steps=8):
         self.cem_iters = cem_iters
         self.num_samples = num_samples
         self.topk = topk
         self.horizon = horizon
+        self.mode = mode
+        self.warm_start = warm_start
+        self.adaptive_cem = adaptive_cem
+        self.min_cem_steps = min_cem_steps
         self.process = None
         self._start_server()
 
     def _start_server(self):
         """启动 RK3588 上的 planner server。"""
+        server_args = [
+            f"--mode {self.mode}",
+            f"--cem-steps {self.cem_iters}",
+            f"--num-samples {self.num_samples}",
+            f"--topk {self.topk}",
+            f"--min-cem-steps {self.min_cem_steps}",
+        ]
+        if self.warm_start:
+            server_args.append("--warm-start")
+        if self.adaptive_cem:
+            server_args.append("--adaptive-cem")
         cmd = [
             "ssh", "-F", SSH_CONFIG, RK3588_HOST,
-            f"cd {RK3588_WORKDIR} && taskset -c 4-7 {RK3588_PYTHON} -u rk3588_planner_server.py"
+            f"cd {RK3588_WORKDIR} && taskset -c 4-7 {RK3588_PYTHON} -u "
+            f"rk3588_planner_server.py {' '.join(server_args)}"
         ]
         print(f"启动 RK3588 planner server...", file=sys.stderr)
         self.process = subprocess.Popen(
@@ -59,16 +80,20 @@ class RK3588Planner:
         )
 
         # 用线程实时打印 server 的 stderr
+        self.ready_event = threading.Event()
+
         def print_stderr():
             for line in self.process.stderr:
                 print(f"  [server] {line.rstrip()}", file=sys.stderr)
+                if "[Planner] Ready." in line:
+                    self.ready_event.set()
 
         self.stderr_thread = threading.Thread(target=print_stderr, daemon=True)
         self.stderr_thread.start()
 
-        # 等待 server 初始化完成（模型加载 + RKNN 初始化约需 30 秒）
-        print("等待 server 初始化（35秒）...", file=sys.stderr)
-        time.sleep(35)
+        print("等待 server 初始化...", file=sys.stderr)
+        if not self.ready_event.wait(timeout=60):
+            raise RuntimeError("Server 初始化超时")
 
         # 检查进程是否还在运行
         if self.process.poll() is not None:
@@ -76,7 +101,7 @@ class RK3588Planner:
 
         print("RK3588 planner server 已启动", file=sys.stderr)
 
-    def plan(self, image_np, goal_image_np):
+    def plan(self, image_np, goal_image_np, reset=False, executed_actions=25):
         """
         发送规划请求，返回动作序列。
         image_np: [224, 224, 3] uint8
@@ -91,12 +116,10 @@ class RK3588Planner:
             return base64.b64encode(buf.getvalue()).decode("ascii")
 
         req = {
-            "image": encode_image(image_np),
+            "current_image": encode_image(image_np),
             "goal_image": encode_image(goal_image_np),
-            "cem_iters": self.cem_iters,
-            "num_samples": self.num_samples,
-            "topk": self.topk,
-            "horizon": self.horizon,
+            "executed_actions": executed_actions,
+            "reset": reset,
         }
         req_json = json.dumps(req) + "\n"
 
@@ -124,9 +147,10 @@ class RK3588Planner:
             raise RuntimeError(f"RK3588 server 错误: {resp['error']}")
 
         return (
-            np.array(resp["actions"]),
-            resp["plan_time_ms"],
-            resp["final_cost"],
+            np.array(resp["action"]).reshape(-1, 2),
+            resp["time_total"] * 1000,
+            resp["cost"],
+            resp.get("cem", {}),
         )
 
     def close(self):
@@ -137,7 +161,8 @@ class RK3588Planner:
             self.process = None
 
 
-def run_episode(env, planner, seed=42, verbose=True):
+def run_episode(env, planner, seed=42, verbose=True, max_steps=None,
+                replan_every=25):
     """运行一个 episode，返回 (success, steps, total_plan_time, avg_plan_time)。"""
     obs, info = env.reset(seed=seed)
 
@@ -152,18 +177,36 @@ def run_episode(env, planner, seed=42, verbose=True):
 
     total_plan_time = 0
     plan_count = 0
+    cem_iterations = []
+    actions = None
+    last_plan_time_ms = 0.0
+    last_cost = float("nan")
+    last_cem = {}
 
-    for step in range(env.spec.max_episode_steps):
-        # 调用 RK3588 规划
-        t0 = time.perf_counter()
-        actions, plan_time_ms, cost = planner.plan(image, goal_image)
-        plan_wall_time = (time.perf_counter() - t0) * 1000
+    episode_limit = env.spec.max_episode_steps if max_steps is None else max_steps
+    for step in range(episode_limit):
+        action_offset = step % replan_every
+        if action_offset == 0:
+            actions, last_plan_time_ms, last_cost, last_cem = planner.plan(
+                image,
+                goal_image,
+                reset=(step == 0),
+                executed_actions=replan_every,
+            )
+            total_plan_time += last_plan_time_ms
+            plan_count += 1
+            cem_iterations.append(
+                last_cem.get("iterations_used", planner.cem_iters)
+            )
+        if action_offset >= len(actions):
+            raise RuntimeError(
+                f"replan_every={replan_every} exceeds plan length={len(actions)}"
+            )
 
-        total_plan_time += plan_time_ms
-        plan_count += 1
-
-        # 执行第一个动作（receding horizon control，位置控制）
-        action = actions[0]  # [2]，范围 [-1, 1]
+        # Execute the next primitive action from the packed 25-action plan.
+        # CEM searches in the checkpoint's standardized action space.
+        action = actions[action_offset] * ACTION_STD + ACTION_MEAN
+        action = np.clip(action, -1.0, 1.0)
         obs, reward, terminated, truncated, info = env.step(action.astype(np.float32))
 
         # 更新图像
@@ -171,8 +214,11 @@ def run_episode(env, planner, seed=42, verbose=True):
 
         if verbose and step % 10 == 0:
             print(f"  step {step}: reward={reward:.1f}, "
-                  f"plan_time={plan_time_ms:.0f}ms (wall={plan_wall_time:.0f}ms), "
-                  f"cost={cost:.2f}, action=[{action[0]:.3f},{action[1]:.3f}]",
+                  f"last_plan_time={last_plan_time_ms:.0f}ms, "
+                  f"cost={last_cost:.2f}, "
+                  f"cem_steps={last_cem.get('iterations_used', '?')}, "
+                  f"warm={last_cem.get('warm_started', False)}, "
+                  f"action=[{action[0]:.3f},{action[1]:.3f}]",
                   file=sys.stderr)
 
         if terminated or truncated:
@@ -181,9 +227,11 @@ def run_episode(env, planner, seed=42, verbose=True):
                 print(f"  Episode 结束: success={success}, steps={step+1}, "
                       f"avg_plan_time={total_plan_time/plan_count:.0f}ms",
                       file=sys.stderr)
-            return success, step + 1, total_plan_time, total_plan_time / plan_count
+            return (success, step + 1, total_plan_time,
+                    total_plan_time / plan_count, cem_iterations)
 
-    return False, env.spec.max_episode_steps, total_plan_time, total_plan_time / plan_count
+    return (False, episode_limit, total_plan_time,
+            total_plan_time / plan_count, cem_iterations)
 
 
 def main():
@@ -194,7 +242,24 @@ def main():
     parser.add_argument("--topk", type=int, default=30, help="CEM 精英数")
     parser.add_argument("--horizon", type=int, default=5, help="规划 horizon")
     parser.add_argument("--seed", type=int, default=42, help="随机种子")
+    parser.add_argument("--mode", choices=["cpu", "npu"], default="npu")
+    parser.add_argument("--warm_start", action="store_true")
+    parser.add_argument("--adaptive_cem", action="store_true")
+    parser.add_argument("--min_cem_steps", type=int, default=8)
+    parser.add_argument("--max_steps", type=int, default=200)
+    parser.add_argument(
+        "--replan_every", type=int, default=25,
+        help="Environment actions executed before replanning (paper config: 25)",
+    )
+    parser.add_argument(
+        "--output", default="results/pusht_eval_official_result.json",
+        help="JSON result path",
+    )
     args = parser.parse_args()
+    if not 1 <= args.replan_every <= 25:
+        parser.error("--replan_every must be in [1, 25]")
+    if args.horizon != 5:
+        parser.error("this checkpoint requires --horizon 5 action blocks")
 
     print(f"=== PushT 评估（官方 stable-worldmodel 环境）===", file=sys.stderr)
     print(f"episodes={args.episodes}, cem_iters={args.cem_iters}, "
@@ -212,6 +277,10 @@ def main():
         num_samples=args.num_samples,
         topk=args.topk,
         horizon=args.horizon,
+        mode=args.mode,
+        warm_start=args.warm_start,
+        adaptive_cem=args.adaptive_cem,
+        min_cem_steps=args.min_cem_steps,
     )
 
     # 运行评估
@@ -223,8 +292,10 @@ def main():
     try:
         for ep in range(args.episodes):
             print(f"\n--- Episode {ep+1}/{args.episodes} ---", file=sys.stderr)
-            success, steps, plan_time, avg_plan = run_episode(
-                env, planner, seed=args.seed + ep, verbose=True
+            success, steps, plan_time, avg_plan, cem_iterations = run_episode(
+                env, planner, seed=args.seed + ep, verbose=True,
+                max_steps=args.max_steps,
+                replan_every=args.replan_every,
             )
             results.append({
                 "episode": ep,
@@ -232,6 +303,8 @@ def main():
                 "steps": steps,
                 "total_plan_time_ms": plan_time,
                 "avg_plan_time_ms": avg_plan,
+                "avg_cem_iterations": float(np.mean(cem_iterations)),
+                "cem_iterations": cem_iterations,
             })
             if success:
                 successes += 1
@@ -256,11 +329,14 @@ def main():
             "successes": successes,
             "total_episodes": args.episodes,
             "avg_steps": total_steps / args.episodes,
-            "avg_plan_time_ms": total_plan_time / total_steps,
+            "amortized_plan_time_per_env_step_ms": total_plan_time / total_steps,
+            "avg_plan_time_per_replan_ms": float(np.mean([
+                episode["avg_plan_time_ms"] for episode in results
+            ])),
         },
         "episodes": results,
     }
-    output_path = "/Users/wangjiwei/Doubao/chats/2026-09-14/new-chat-2/pusht_eval_official_result.json"
+    output_path = args.output
     with open(output_path, "w") as f:
         json.dump(output, f, indent=2)
     print(f"\n结果已保存: {output_path}", file=sys.stderr)
