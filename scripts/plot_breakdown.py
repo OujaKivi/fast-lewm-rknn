@@ -34,7 +34,7 @@ def draw_sequence(ax):
     cpu, npu, shared, blocked = "#DCEAFE", "#DDF5E5", "#F7E7C6", "#F6DDDD"
     lanes = [
         ("CPU", 2.15, [(0.9, 1.25, "Images\nCPU", cpu), (2.55, 1.45, "Action encoder\nCPU", cpu), (4.40, 1.55, "Predictor + proj\nCPU", cpu), (6.35, 1.30, "Cost + top-k\nCPU", shared)]),
-        ("CPU + NPU", 1.35, [(0.9, 1.25, "Images\nCPU", cpu), (2.55, 1.45, "Action encoder\nCPU", cpu), (4.40, 1.55, "Predictor + proj\nNPU", npu), (6.35, 1.30, "Cost + top-k\nCPU", shared)]),
+        ("CPU + NPU", 1.35, [(0.9, 1.25, "Images\nNPU", npu), (2.55, 1.45, "Action encoder\nCPU", cpu), (4.40, 1.55, "Predictor + proj\nNPU", npu), (6.35, 1.30, "Cost + top-k\nCPU", shared)]),
     ]
     for name, y, boxes in lanes:
         ax.text(0.02, y, name, ha="left", va="center", fontsize=10, fontweight="bold")
@@ -63,6 +63,8 @@ def draw_breakdown(ax, data):
         for bar, value, bottom in zip(bars, values, bottoms):
             if value >= 80:
                 ax.text(bar.get_x() + bar.get_width() / 2, bottom + value / 2, f"{value:.0f} ms", ha="center", va="center", color="white", fontsize=10, fontweight="bold")
+            elif key == "image_encoder_ms":
+                ax.text(bar.get_x() + bar.get_width() + 0.02, bottom + value / 2, f"{value:.0f} ms", ha="left", va="center", color="#245C91", fontsize=9, fontweight="bold")
         bottoms = [bottom + value for bottom, value in zip(bottoms, values)]
 
     for index, record in enumerate(records):

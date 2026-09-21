@@ -10,10 +10,10 @@ Tested on RK3588 with four Cortex-A76 cores pinned, three-core NPU, RKNN Runtime
 
 | Metric | CPU | CPU + NPU FP16 | Result |
 |---|---:|---:|---:|
-| Complete CEM solve | 6.41 s | 3.68 s | **1.74x speedup** |
-| Image encoding | 263 ms | 285 ms | CPU in both runs |
-| Action-prefix encoder | 2.72 s | 2.83 s | CPU in both runs |
-| Terminal predictor + projection | 3.39 s | 536 ms | **6.33x contribution speedup** |
+| Complete CEM solve | 6.41 s | 3.48 s | **1.84x speedup** |
+| Image encoding | 263 ms | 49 ms | **NPU ViT + projector** |
+| Action-prefix encoder | 2.72 s | 2.86 s | CPU in both runs |
+| Terminal predictor + projection | 3.39 s | 540 ms | **6.28x contribution speedup** |
 
 Workload: `300` candidates, `30` CEM iterations, `top-k=30`, five action blocks, one terminal latent per candidate. Complete-solve stages are means of five repeated requests. Raw measurements are in [results/latest_benchmark.json](results/latest_benchmark.json).
 
@@ -42,11 +42,11 @@ five action blocks
   -> terminal latent cost
 ```
 
-With this alignment, the fused NPU terminal predictor is about seven times faster than CPU and reduces a complete `300 x 30` CEM solve from 6.41 seconds to 3.68 seconds. NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 77% of heterogeneous solve time. The current configuration is still not suitable for high-frequency closed-loop control without further planning-budget or action-encoder optimization.
+With this alignment, NPU runs the fused `ViT + projector` and fused terminal `predictor + pred_proj`. This reduces a complete `300 x 30` CEM solve from 6.41 seconds to 3.48 seconds (`1.84x`). NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 82% of heterogeneous solve time. The current configuration is still not suitable for high-frequency closed-loop control without further planning-budget or action-encoder optimization.
 
 ## Why Action Encoding Is Slightly Slower
 
-The heterogeneous run uses exactly the same CPU Action Encoder, weights, input shape, and terminal-only semantics as the CPU run. Across five requests it rises from `2723.66 +/- 20.95 ms` to `2828.34 +/- 33.35 ms`, a `3.84%` increase over all 30 CEM iterations. This is much smaller than the earlier single-run gap, but it is repeatable.
+The heterogeneous run uses exactly the same CPU Action Encoder, weights, input shape, and terminal-only semantics as the CPU run. Across five requests it rises from `2723.66 ms` to `2857.19 ms`, a `4.90%` increase over all 30 CEM iterations. This is much smaller than the earlier single-run gap, but it is repeatable.
 
 CPU frequency was fixed at `2.352 GHz` and NPU frequency at `1.0 GHz`, so CPU DVFS is not the explanation. The leading cause is SoC-level interference from alternating CPU and NPU work: shared DDR bandwidth and cache state, RKNN driver/runtime transitions, and possible asynchronous NPU tail work disturb the following CPU phase. Hardware PMU counters are still needed to separate those effects precisely; this is a measured systems effect, not a change in Action Encoder computation.
 
@@ -54,7 +54,7 @@ CPU frequency was fixed at `2.352 GHz` and NPU frequency at `1.0 GHz`, so CPU DV
 
 A full-NPU comparison is conceptually useful because it exposes whether moving a small or poorly supported operator graph to NPU helps end-to-end latency. It is not valid to publish one yet. The newly exported official `6 x 32` terminal Action Encoder runs at about `138 ms` for batch 300, but its RKNN output fails the accuracy gate: cosine similarity `0.062459`, MAE `1.187717`. The apparent full-NPU latency is therefore excluded from the chart and results. The validation utility is [scripts/validate_action_encoder_board.py](scripts/validate_action_encoder_board.py).
 
-The next valid route is to rewrite or partition unsupported Action Encoder operations, validate every partition against PyTorch, and only then add a full-NPU bar. The current best verified mapping remains CPU Action Encoder plus NPU predictor.
+The next valid route is to rewrite or partition unsupported Action Encoder operations, validate every partition against PyTorch, and only then add a full-NPU bar. The current best verified mapping is NPU `ViT + projector`, CPU Action Encoder, and NPU `predictor + pred_proj`. The rebuilt image graph passes its accuracy gate with cosine similarity `0.999979`, MAE `0.003556`, and maximum absolute error `0.014721`.
 
 The paper reports `8.0 s` dynamics time and `28.3 s` full CEM time on an NVIDIA RTX 4090. Those absolute numbers are not directly comparable with this single-environment RK3588 run. This repository reports complete-solve and per-module timing explicitly to avoid mixing one CEM iteration with a full 30-iteration solve.
 
@@ -77,13 +77,15 @@ Fast-LeWorldModel/                  Official model source and deployment artifac
   weights/                          Official pretrained PushT checkpoint
   onnx_out/                         Terminal predictor ONNX
   predictor_terminal_*.rknn         Terminal predictor RKNN FP16
-  vit_encoder.rknn                  ViT RKNN model
+  vit_encoder_projected_*.rknn      Fused ViT/projector RKNN FP16
   export_terminal_predictor.py      Checkpoint -> aligned terminal ONNX
   export_action_encoder.py          Experimental terminal Action Encoder export
+  export_vit_encoder.py             Checkpoint -> fused ViT/projector ONNX
   convert_to_rknn.py                ONNX -> RKNN conversion
 results/latest_benchmark.json       Latest raw measurements
 scripts/plot_breakdown.py           Breakdown figure generator
 scripts/validate_action_encoder_board.py  Board-side RKNN accuracy gate
+scripts/validate_vit_board.py       Board-side ViT/projector accuracy gate
 rk3588_planner_server.py            Board-side planner service
 board_eval_v2.py                    Board-side official CEM evaluation path
 run_pusht_eval_official.py          Host-side evaluation client
@@ -101,6 +103,14 @@ conda run -n stable-wm python Fast-LeWorldModel/export_terminal_predictor.py \
   --batch 300
 ```
 
+Export the fused image encoder:
+
+```bash
+conda run -n stable-wm python Fast-LeWorldModel/export_vit_encoder.py \
+  --checkpoint Fast-LeWorldModel/weights/Fast-lewm_pusht_object.ckpt \
+  --outdir Fast-LeWorldModel/onnx_out
+```
+
 Convert it on the RKNN Toolkit2 Linux environment:
 
 ```bash
@@ -116,6 +126,7 @@ Deploy and start the board-side planner:
 scp -F ~/.ssh/config_rknn \
   rk3588_planner_server.py \
   Fast-LeWorldModel/predictor_terminal_with_proj_b300_fp16.rknn \
+  Fast-LeWorldModel/vit_encoder_projected_fp16.rknn \
   rk3588:/root/Fast-LeWorldModel/
 
 ssh -F ~/.ssh/config_rknn rk3588 \

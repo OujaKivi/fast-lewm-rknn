@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 RK3588 完整规划 Server
-- ViT 编码 (CPU)
+- ViT 编码 (CPU 或 NPU)
 - Action Encoder (CPU)
 - Predictor (CPU 或 NPU，terminal-only planning fast path)
 - CEM 采样 (CPU)
@@ -32,6 +32,7 @@ from module import ActionPrefixEmbedder, ARPredictor, MLP
 WEIGHTS_PATH = '/root/Fast-LeWorldModel/weights/full_model_state.pt'
 # 模型已融合 pred_proj，输入和输出均为 [B, 1, 192]。
 PREDICTOR_B300_FP16_PATH = '/root/Fast-LeWorldModel/predictor_terminal_with_proj_b300_fp16.rknn'
+VIT_FP16_PATH = '/root/Fast-LeWorldModel/vit_encoder_projected_fp16.rknn'
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
@@ -119,6 +120,33 @@ class TerminalNPUPredictor:
         self.rknn.release()
 
 
+class NPUImageEncoder:
+    """Fused ViT and projector graph for normalized NCHW images."""
+
+    def __init__(self, model_path, core_mask=None):
+        from rknnlite.api import RKNNLite
+        self.rknn = RKNNLite()
+        ret = self.rknn.load_rknn(model_path)
+        if ret != 0:
+            raise RuntimeError(f"Failed to load RKNN model: {ret}")
+        if core_mask is None:
+            core_mask = RKNNLite.NPU_CORE_0_1_2
+        ret = self.rknn.init_runtime(core_mask=core_mask)
+        if ret != 0:
+            raise RuntimeError(f"Failed to init RKNN runtime: {ret}")
+        log(f"[NPU] Projected ViT loaded: {model_path}")
+
+    def __call__(self, image):
+        image_np = image.detach().cpu().numpy().astype(np.float32)
+        output = self.rknn.inference(
+            inputs=[image_np], data_format=["nchw"]
+        )[0]
+        return torch.from_numpy(output)
+
+    def release(self):
+        self.rknn.release()
+
+
 class FastLeWMPlanner:
     def __init__(self, mode='cpu'):
         self.mode = mode
@@ -179,6 +207,8 @@ class FastLeWMPlanner:
             self.predictor.requires_grad_(False)
             self.predictor_type = 'cpu'
 
+        self.image_encoder = NPUImageEncoder(VIT_FP16_PATH) if mode == 'npu' else None
+
         # 4. Projector
         self.projector = MLP(input_dim=192, hidden_dim=2048, output_dim=192, norm_fn=nn.BatchNorm1d)
         proj_state = {k.replace('projector.', '', 1): v for k, v in state_dict.items() if k.startswith('projector.')}
@@ -215,9 +245,12 @@ class FastLeWMPlanner:
         img = Image.open(io.BytesIO(img_bytes)).convert('RGB')
         img_tensor = self.transform(img).unsqueeze(0)  # (1, 3, 224, 224)
         with torch.no_grad():
-            output = self.encoder(img_tensor, interpolate_pos_encoding=True)
-            cls_token = output.last_hidden_state[:, 0]  # (1, 192)
-            emb = self.projector(cls_token)  # (1, 192)
+            if self.image_encoder is not None:
+                emb = self.image_encoder(img_tensor)
+            else:
+                output = self.encoder(img_tensor, interpolate_pos_encoding=True)
+                cls_token = output.last_hidden_state[:, 0]  # (1, 192)
+                emb = self.projector(cls_token)  # (1, 192)
         return emb
 
     def predict(self, emb, act_emb):
