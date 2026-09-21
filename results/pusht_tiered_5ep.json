@@ -1,0 +1,137 @@
+{
+  "config": {
+    "episodes": 5,
+    "cem_iters": 30,
+    "num_samples": 300,
+    "topk": 30,
+    "horizon": 5,
+    "seed": 42,
+    "mode": "npu",
+    "warm_start": false,
+    "adaptive_cem": false,
+    "min_cem_steps": 8,
+    "candidate_schedule": "300x10,150x10,64x10",
+    "elite_reuse_fraction": 0.0,
+    "max_steps": 200,
+    "replan_every": 25,
+    "output": "results/pusht_tiered_5ep.json"
+  },
+  "summary": {
+    "success_rate": 0.0,
+    "successes": 0,
+    "total_episodes": 5,
+    "avg_steps": 200.0,
+    "amortized_plan_time_per_env_step_ms": 66.66157126426697,
+    "avg_plan_time_per_replan_ms": 1666.5392816066742,
+    "mean_episode_return": -80334.07005028002,
+    "mean_best_reward": -160.60040759114517,
+    "mean_final_reward": -559.3145705729191
+  },
+  "episodes": [
+    {
+      "episode": 0,
+      "success": false,
+      "steps": 200,
+      "total_plan_time_ms": 13307.852029800415,
+      "avg_plan_time_ms": 1663.4815037250519,
+      "avg_cem_iterations": 30.0,
+      "cem_iterations": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "episode_return": -99142.57639463806,
+      "best_reward": -208.60055294755023,
+      "final_reward": -348.26230371759306
+    },
+    {
+      "episode": 1,
+      "success": false,
+      "steps": 200,
+      "total_plan_time_ms": 13346.59457206726,
+      "avg_plan_time_ms": 1668.3243215084076,
+      "avg_cem_iterations": 30.0,
+      "cem_iterations": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "episode_return": -34631.63909618685,
+      "best_reward": -58.6822833185425,
+      "final_reward": -256.0355179513697
+    },
+    {
+      "episode": 2,
+      "success": false,
+      "steps": 200,
+      "total_plan_time_ms": 13288.880348205566,
+      "avg_plan_time_ms": 1661.1100435256958,
+      "avg_cem_iterations": 30.0,
+      "cem_iterations": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "episode_return": -36695.012286110876,
+      "best_reward": -114.56627685368663,
+      "final_reward": -159.00361936162227
+    },
+    {
+      "episode": 3,
+      "success": false,
+      "steps": 200,
+      "total_plan_time_ms": 13354.548692703247,
+      "avg_plan_time_ms": 1669.3185865879059,
+      "avg_cem_iterations": 30.0,
+      "cem_iterations": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "episode_return": -163896.32960212263,
+      "best_reward": -157.07076002449733,
+      "final_reward": -1686.1718712081042
+    },
+    {
+      "episode": 4,
+      "success": false,
+      "steps": 200,
+      "total_plan_time_ms": 13363.695621490479,
+      "avg_plan_time_ms": 1670.4619526863098,
+      "avg_cem_iterations": 30.0,
+      "cem_iterations": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "episode_return": -67304.79287234166,
+      "best_reward": -264.0821648114492,
+      "final_reward": -347.09954062590606
+    }
+  ]
+}

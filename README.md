@@ -71,6 +71,20 @@ The conservative adaptive rule monitors best-cost improvement, distribution-mean
 
 Warm-start remains available for an explicitly changed MPC cadence through `--replan_every < 25`, and the server reports whether it was actually applied, how many iterations ran, and why optimization stopped. Any such configuration must be evaluated separately for task success because it is no longer the paper's open-loop 25-action execution policy.
 
+## Hardware-Aware Population Schedule
+
+![Hardware-aware CEM pilot](hardware_icem_pilot.png)
+
+The next experiment keeps all 30 CEM updates but maps their candidate populations to three fixed RKNN graphs: `300 x 10`, `150 x 10`, then `64 x 10`. This is deliberately hardware-aware: every iteration fills one compiled NPU batch instead of padding an arbitrary population to batch 300.
+
+On the same fixed observation and deterministic seed, the schedule reduced a complete replan from `2609 ms` to `1636 ms` (**37.3%**) and reduced evaluated candidates from `9000` to `5140`. Action Encoder time fell from `1992 ms` to `1223 ms`; NPU Predictor time fell from `537 ms` to `342 ms`. The terminal cost changed from `249.17` to `253.38` (`+1.69%`), but the selected action RMSE was `1.11`, so this is a speed result, not yet an accuracy-preserving result.
+
+Reusing 30% of the previous iteration's elites reduced CPU evaluations to `4879`, but the NPU still executed `5140` padded graph slots and total latency only improved from `1636 ms` to `1601 ms`. Its action deviation was also larger, so elite reuse is implemented as an opt-in experiment and is not recommended as the current default.
+
+The three Predictor graphs have consistent FP16 agreement (cosine similarity `0.9999934`--`0.9999937`). Median NPU latency is `5.18/9.48/16.87 ms` for batch `64/150/300`. One batch-150 run had an `80.4 ms` outlier, while its p95 remained `9.56 ms`; medians and p95 are therefore reported alongside means.
+
+A five-seed PushT pilot reduced average replan time from `2631 ms` to `1667 ms` (**36.6%**), but its reward proxies were mixed: mean episode return improved `0.5%`, mean best reward improved, and mean final reward worsened `5.2%`. Both the fixed-300 baseline and tiered schedule scored `0/5` successes in the current evaluation harness. This means the harness or controller alignment must be fixed before success preservation can be claimed; these pilot files are retained specifically to avoid overstating the result.
+
 ## Correctness Fixes
 
 - Terminal-only predictor input and output are fixed at `[300, 1, 192]`.
@@ -100,7 +114,11 @@ Fast-LeWorldModel/                  Official model source and deployment artifac
   export_vit_encoder.py             Checkpoint -> fused ViT/projector ONNX
   convert_to_rknn.py                ONNX -> RKNN conversion
 results/latest_benchmark.json       Latest raw measurements
+results/hardware_icem_fixed_observation.json  Paired schedule pilot
+results/predictor_batch_scan.json   Fixed-RKNN batch latency and accuracy
 scripts/plot_breakdown.py           Breakdown figure generator
+scripts/plot_hardware_icem.py       Hardware-aware schedule figure
+scripts/probe_hardware_icem.py      Paired fixed-observation benchmark
 scripts/validate_action_encoder_board.py  Board-side RKNN accuracy gate
 scripts/validate_vit_board.py       Board-side ViT/projector accuracy gate
 scripts/diagnose_action_slowdown_board.py  Controlled slowdown isolation
@@ -110,6 +128,7 @@ rk3588_planner_server.py            Board-side planner service
 board_eval_v2.py                    Board-side official CEM evaluation path
 run_pusht_eval_official.py          Host-side evaluation client
 breakdown.png                       Latest complete-CEM breakdown
+hardware_icem_pilot.png             Experimental schedule result
 ```
 
 ## Reproduction
@@ -152,17 +171,19 @@ scp -F ~/.ssh/config_rknn \
 ssh -F ~/.ssh/config_rknn rk3588 \
   'cd /root/Fast-LeWorldModel && taskset -c 4-7 \
    /root/miniconda3/envs/fast-lewm/bin/python -u rk3588_planner_server.py \
-   --mode npu --cem-steps 30 --num-samples 300'
+   --mode npu --cem-steps 30 --num-samples 300 \
+   --candidate-schedule 300x10,150x10,64x10'
 ```
 
 Regenerate the chart:
 
 ```bash
 python scripts/plot_breakdown.py
+python scripts/plot_hardware_icem.py
 ```
 
 ## Remaining Work
 
-1. Run the corrected implementation over the full episode set and report success rate with confidence intervals.
+1. Diagnose why the current fixed-300 reference controller is `0/5` in the host PushT harness before using task success as the schedule's quality gate.
 2. Optimize or replace the CPU action-prefix encoder, now the dominant latency component.
 3. Build INT8 only with real latent/action-prefix calibration data and revalidate candidate ranking and task success.

@@ -39,7 +39,11 @@ from module import ActionPrefixEmbedder, ARPredictor, MLP
 # 配置
 WEIGHTS_PATH = '/root/Fast-LeWorldModel/weights/full_model_state.pt'
 # 模型已融合 pred_proj，输入和输出均为 [B, 1, 192]。
-PREDICTOR_B300_FP16_PATH = '/root/Fast-LeWorldModel/predictor_terminal_with_proj_b300_fp16.rknn'
+PREDICTOR_FP16_PATHS = {
+    64: '/root/Fast-LeWorldModel/predictor_terminal_with_proj_b64_fp16.rknn',
+    150: '/root/Fast-LeWorldModel/predictor_terminal_with_proj_b150_fp16.rknn',
+    300: '/root/Fast-LeWorldModel/predictor_terminal_with_proj_b300_fp16.rknn',
+}
 VIT_FP16_PATH = '/root/Fast-LeWorldModel/vit_encoder_projected_fp16.rknn'
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
@@ -96,27 +100,30 @@ class TerminalNPUPredictor:
             out = self.rknn.inference(inputs=[latent_np, act_emb_np])
             return torch.from_numpy(out[0])
         
-        # 否则分批推理
+        if B < self.batch_size:
+            latent_pad = np.zeros((self.batch_size, 1, 192), dtype=np.float32)
+            action_pad = np.zeros((self.batch_size, 1, 192), dtype=np.float32)
+            latent_pad[:B] = latent_np
+            action_pad[:B] = act_emb_np
+            out = self.rknn.inference(inputs=[latent_pad, action_pad])[0]
+            return torch.from_numpy(out[:B])
+
+        # Otherwise split batches larger than the fixed graph shape.
         outputs = []
         for start in range(0, B, self.batch_size):
             end = min(start + self.batch_size, B)
             lat_batch = latent_np[start:end]  # (batch, 1, 192)
             act_batch = act_emb_np[start:end]  # (batch, 1, 192)
             
-            # 如果最后一批不足 batch_size，需要 padding 或逐个推理
+            # Pad the final partial chunk once.
             if lat_batch.shape[0] < self.batch_size:
-                # 逐个推理（小批量，效率低但准确）
-                for i in range(lat_batch.shape[0]):
-                    lat_i = lat_batch[i:i+1]
-                    act_i = act_batch[i:i+1]
-                    # 注意：这里用的是固定 batch 模型，不能直接传 batch=1
-                    # 需要 padding 到 batch_size
-                    lat_pad = np.zeros((self.batch_size, 1, 192), dtype=np.float32)
-                    act_pad = np.zeros((self.batch_size, 1, 192), dtype=np.float32)
-                    lat_pad[0] = lat_i[0]
-                    act_pad[0] = act_i[0]
-                    out = self.rknn.inference(inputs=[lat_pad, act_pad])
-                    outputs.append(out[0][0:1])
+                count = lat_batch.shape[0]
+                lat_pad = np.zeros((self.batch_size, 1, 192), dtype=np.float32)
+                act_pad = np.zeros((self.batch_size, 1, 192), dtype=np.float32)
+                lat_pad[:count] = lat_batch
+                act_pad[:count] = act_batch
+                out = self.rknn.inference(inputs=[lat_pad, act_pad])[0]
+                outputs.append(out[:count])
             else:
                 out = self.rknn.inference(inputs=[lat_batch, act_batch])
                 outputs.append(out[0])
@@ -126,6 +133,61 @@ class TerminalNPUPredictor:
     
     def release(self):
         self.rknn.release()
+
+
+class TerminalNPUPredictorBank:
+    """Choose the smallest fixed-batch RKNN graph that fits the candidates."""
+
+    def __init__(self, model_paths):
+        self.runners = {
+            batch: TerminalNPUPredictor(path, batch_size=batch)
+            for batch, path in sorted(model_paths.items())
+        }
+        self.last_graph_batch = None
+        self.total_graph_candidates = 0
+
+    def __call__(self, latent, act_emb):
+        count = latent.shape[0]
+        for batch, runner in self.runners.items():
+            if count <= batch:
+                self.last_graph_batch = batch
+                self.total_graph_candidates += batch
+                return runner(latent, act_emb)
+        batch = max(self.runners)
+        self.last_graph_batch = batch
+        self.total_graph_candidates += ((count + batch - 1) // batch) * batch
+        return self.runners[batch](latent, act_emb)
+
+    def release(self):
+        for runner in self.runners.values():
+            runner.release()
+
+    def reset_counters(self):
+        self.last_graph_batch = None
+        self.total_graph_candidates = 0
+
+
+def parse_candidate_schedule(spec, n_steps):
+    """Parse e.g. ``300x10,150x10,64x10`` into one batch per CEM step."""
+    if not spec:
+        return None
+    schedule = []
+    for item in spec.split(','):
+        parts = item.strip().lower().split('x')
+        if len(parts) != 2:
+            raise ValueError(
+                "candidate schedule must use COUNTxSTEPS entries, "
+                "for example 300x10,150x10,64x10"
+            )
+        count, repeats = (int(value) for value in parts)
+        if count < 1 or repeats < 1:
+            raise ValueError("candidate schedule values must be positive")
+        schedule.extend([count] * repeats)
+    if len(schedule) != n_steps:
+        raise ValueError(
+            f"candidate schedule covers {len(schedule)} steps, expected {n_steps}"
+        )
+    return schedule
 
 
 class NPUImageEncoder:
@@ -175,6 +237,8 @@ class FastLeWMPlanner:
         self.previous_std = None
         self.seed = 1234
         self.solve_index = 0
+        self.candidate_schedule = None
+        self.elite_reuse_fraction = 0.0
         log(f"[Planner] Loading model in {mode} mode...")
 
         # 加载权重
@@ -212,9 +276,10 @@ class FastLeWMPlanner:
         # 3. Predictor（官方 terminal-only planning 快路）
         if mode == 'npu':
             # 使用 batch=300 的 NPU 模型，用于 CEM 批量推理
-            self.predictor = TerminalNPUPredictor(PREDICTOR_B300_FP16_PATH, batch_size=300)
+            self.predictor = TerminalNPUPredictorBank(PREDICTOR_FP16_PATHS)
             self.predictor_type = 'npu'
-            log("[Planner] Using fused terminal NPU predictor (batch=300, heads=16x64)")
+            log("[Planner] Using fused terminal NPU predictor bank "
+                "(batch=64/150/300, heads=16x64)")
         else:
             self.predictor = ARPredictor(
                 depth=6, mlp_dim=2048, input_dim=192, hidden_dim=192,
@@ -394,22 +459,61 @@ class FastLeWMPlanner:
         stop_reason = 'max_steps'
         trace = []
         best_cost_history = []
+        previous_elites = None
+        previous_elite_costs = None
+        logical_candidates = 0
+        evaluated_candidates = 0
+        reused_candidates_total = 0
+        graph_batches = []
+        if self.predictor_type == 'npu':
+            self.predictor.reset_counters()
 
         for step in range(self.n_steps):
-            # 采样候选
-            candidates = torch.randn(
-                self.num_samples, HORIZON, ACTION_DIM, generator=generator
+            target_samples = (
+                self.candidate_schedule[step]
+                if self.candidate_schedule is not None else self.num_samples
             )
-            candidates = candidates * var + mean
-            candidates[0] = mean  # 强制第一个为当前 mean
+            reuse_count = 0
+            if previous_elites is not None and self.elite_reuse_fraction > 0:
+                reuse_count = min(
+                    int(round(self.topk * self.elite_reuse_fraction)),
+                    len(previous_elites),
+                    target_samples - 1,
+                )
+            new_count = target_samples - reuse_count
 
-            # 计算 cost
-            costs = self.get_cost(current_emb, goal_emb, candidates)  # (N,)
+            # 采样候选
+            new_candidates = torch.randn(
+                new_count, HORIZON, ACTION_DIM, generator=generator
+            )
+            new_candidates = new_candidates * var + mean
+            new_candidates[0] = mean  # 强制第一个为当前 mean
+
+            # Elites retain exact costs for the same current/goal pair, so only
+            # newly sampled candidates need model evaluation.
+            new_costs = self.get_cost(current_emb, goal_emb, new_candidates)
+            if reuse_count:
+                candidates = torch.cat(
+                    [previous_elites[:reuse_count], new_candidates], dim=0
+                )
+                costs = torch.cat(
+                    [previous_elite_costs[:reuse_count], new_costs], dim=0
+                )
+            else:
+                candidates = new_candidates
+                costs = new_costs
+            logical_candidates += target_samples
+            evaluated_candidates += new_count
+            reused_candidates_total += reuse_count
+            if self.predictor_type == 'npu':
+                graph_batches.append(self.predictor.last_graph_batch)
 
             # 选择 top-k
             t0 = time.time()
             topk_vals, topk_inds = torch.topk(costs, k=self.topk, dim=0, largest=False)
             topk_candidates = candidates[topk_inds]  # (K, 1, 50)
+            previous_elites = topk_candidates.detach().clone()
+            previous_elite_costs = topk_vals.detach().clone()
 
             # 更新分布
             previous_mean = mean
@@ -440,6 +544,10 @@ class FastLeWMPlanner:
                 'relative_improvement': rel_improvement,
                 'mean_delta_rms': mean_delta,
                 'rms_std': rms_std,
+                'candidate_count': target_samples,
+                'evaluated_count': new_count,
+                'reused_elites': reuse_count,
+                'npu_graph_batch': graph_batches[-1] if graph_batches else None,
             })
 
             if self.adaptive_cem and step + 1 >= self.min_cem_steps:
@@ -468,6 +576,15 @@ class FastLeWMPlanner:
             'iterations_used': len(trace),
             'stop_reason': stop_reason,
             'trace': trace,
+            'candidate_schedule': [item['candidate_count'] for item in trace],
+            'logical_candidates': logical_candidates,
+            'evaluated_candidates': evaluated_candidates,
+            'reused_candidates': reused_candidates_total,
+            'npu_graph_batches': graph_batches,
+            'npu_graph_candidates': (
+                self.predictor.total_graph_candidates
+                if self.predictor_type == 'npu' else None
+            ),
         }
         return selected_action.numpy(), best_cost, metadata
 
@@ -544,6 +661,11 @@ def main():
     parser.add_argument('--warm-start-std-floor', type=float, default=0.25)
     parser.add_argument('--warm-start-std-inflation', type=float, default=1.25)
     parser.add_argument('--seed', type=int, default=1234)
+    parser.add_argument(
+        '--candidate-schedule', default=None,
+        help='Per-iteration candidates, e.g. 300x10,150x10,64x10',
+    )
+    parser.add_argument('--elite-reuse-fraction', type=float, default=0.0)
     args = parser.parse_args()
 
     planner = FastLeWMPlanner(mode=args.mode)
@@ -560,11 +682,22 @@ def main():
     planner.warm_start_std_floor = args.warm_start_std_floor
     planner.warm_start_std_inflation = args.warm_start_std_inflation
     planner.seed = args.seed
-    if not 1 <= planner.topk <= planner.num_samples:
-        parser.error("--topk must be in [1, num-samples]")
+    try:
+        planner.candidate_schedule = parse_candidate_schedule(
+            args.candidate_schedule, planner.n_steps
+        )
+    except ValueError as exc:
+        parser.error(str(exc))
+    planner.elite_reuse_fraction = args.elite_reuse_fraction
+    smallest_population = min(planner.candidate_schedule or [planner.num_samples])
+    if not 1 <= planner.topk <= smallest_population:
+        parser.error("--topk must not exceed the smallest candidate population")
+    if not 0.0 <= planner.elite_reuse_fraction <= 1.0:
+        parser.error("--elite-reuse-fraction must be in [0, 1]")
     log(f"[Planner] Ready. Mode={args.mode}. CEM steps={args.cem_steps}. "
         f"Samples={args.num_samples}. Warm-start={args.warm_start}. "
-        f"Adaptive={args.adaptive_cem}. Waiting for requests...")
+        f"Adaptive={args.adaptive_cem}. Schedule={planner.candidate_schedule}. "
+        f"Elite reuse={planner.elite_reuse_fraction}. Waiting for requests...")
 
     for line in sys.stdin:
         line = line.strip()

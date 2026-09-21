@@ -39,7 +39,8 @@ class RK3588Planner:
 
     def __init__(self, cem_iters=30, num_samples=300, topk=30, horizon=5,
                  mode="npu", warm_start=False, adaptive_cem=False,
-                 min_cem_steps=8):
+                 min_cem_steps=8, candidate_schedule=None,
+                 elite_reuse_fraction=0.0):
         self.cem_iters = cem_iters
         self.num_samples = num_samples
         self.topk = topk
@@ -48,6 +49,8 @@ class RK3588Planner:
         self.warm_start = warm_start
         self.adaptive_cem = adaptive_cem
         self.min_cem_steps = min_cem_steps
+        self.candidate_schedule = candidate_schedule
+        self.elite_reuse_fraction = elite_reuse_fraction
         self.process = None
         self._start_server()
 
@@ -59,7 +62,10 @@ class RK3588Planner:
             f"--num-samples {self.num_samples}",
             f"--topk {self.topk}",
             f"--min-cem-steps {self.min_cem_steps}",
+            f"--elite-reuse-fraction {self.elite_reuse_fraction}",
         ]
+        if self.candidate_schedule:
+            server_args.append(f"--candidate-schedule {self.candidate_schedule}")
         if self.warm_start:
             server_args.append("--warm-start")
         if self.adaptive_cem:
@@ -163,7 +169,7 @@ class RK3588Planner:
 
 def run_episode(env, planner, seed=42, verbose=True, max_steps=None,
                 replan_every=25):
-    """运行一个 episode，返回 (success, steps, total_plan_time, avg_plan_time)。"""
+    """运行一个 episode，返回成功率、耗时与 reward 统计。"""
     obs, info = env.reset(seed=seed)
 
     # 从官方环境获取图像和 goal
@@ -182,6 +188,8 @@ def run_episode(env, planner, seed=42, verbose=True, max_steps=None,
     last_plan_time_ms = 0.0
     last_cost = float("nan")
     last_cem = {}
+    episode_return = 0.0
+    best_reward = float("-inf")
 
     episode_limit = env.spec.max_episode_steps if max_steps is None else max_steps
     for step in range(episode_limit):
@@ -208,6 +216,8 @@ def run_episode(env, planner, seed=42, verbose=True, max_steps=None,
         action = actions[action_offset] * ACTION_STD + ACTION_MEAN
         action = np.clip(action, -1.0, 1.0)
         obs, reward, terminated, truncated, info = env.step(action.astype(np.float32))
+        episode_return += float(reward)
+        best_reward = max(best_reward, float(reward))
 
         # 更新图像
         image = info["pixels"]
@@ -227,11 +237,13 @@ def run_episode(env, planner, seed=42, verbose=True, max_steps=None,
                 print(f"  Episode 结束: success={success}, steps={step+1}, "
                       f"avg_plan_time={total_plan_time/plan_count:.0f}ms",
                       file=sys.stderr)
-            return (success, step + 1, total_plan_time,
-                    total_plan_time / plan_count, cem_iterations)
+            return (bool(success), step + 1, total_plan_time,
+                    total_plan_time / plan_count, cem_iterations,
+                    episode_return, best_reward, float(reward))
 
     return (False, episode_limit, total_plan_time,
-            total_plan_time / plan_count, cem_iterations)
+            total_plan_time / plan_count, cem_iterations,
+            episode_return, best_reward, float(reward))
 
 
 def main():
@@ -246,6 +258,11 @@ def main():
     parser.add_argument("--warm_start", action="store_true")
     parser.add_argument("--adaptive_cem", action="store_true")
     parser.add_argument("--min_cem_steps", type=int, default=8)
+    parser.add_argument(
+        "--candidate_schedule", default=None,
+        help="Per-iteration candidates, e.g. 300x10,150x10,64x10",
+    )
+    parser.add_argument("--elite_reuse_fraction", type=float, default=0.0)
     parser.add_argument("--max_steps", type=int, default=200)
     parser.add_argument(
         "--replan_every", type=int, default=25,
@@ -281,6 +298,8 @@ def main():
         warm_start=args.warm_start,
         adaptive_cem=args.adaptive_cem,
         min_cem_steps=args.min_cem_steps,
+        candidate_schedule=args.candidate_schedule,
+        elite_reuse_fraction=args.elite_reuse_fraction,
     )
 
     # 运行评估
@@ -292,7 +311,8 @@ def main():
     try:
         for ep in range(args.episodes):
             print(f"\n--- Episode {ep+1}/{args.episodes} ---", file=sys.stderr)
-            success, steps, plan_time, avg_plan, cem_iterations = run_episode(
+            (success, steps, plan_time, avg_plan, cem_iterations,
+             episode_return, best_reward, final_reward) = run_episode(
                 env, planner, seed=args.seed + ep, verbose=True,
                 max_steps=args.max_steps,
                 replan_every=args.replan_every,
@@ -305,6 +325,9 @@ def main():
                 "avg_plan_time_ms": avg_plan,
                 "avg_cem_iterations": float(np.mean(cem_iterations)),
                 "cem_iterations": cem_iterations,
+                "episode_return": episode_return,
+                "best_reward": best_reward,
+                "final_reward": final_reward,
             })
             if success:
                 successes += 1
@@ -332,6 +355,15 @@ def main():
             "amortized_plan_time_per_env_step_ms": total_plan_time / total_steps,
             "avg_plan_time_per_replan_ms": float(np.mean([
                 episode["avg_plan_time_ms"] for episode in results
+            ])),
+            "mean_episode_return": float(np.mean([
+                episode["episode_return"] for episode in results
+            ])),
+            "mean_best_reward": float(np.mean([
+                episode["best_reward"] for episode in results
+            ])),
+            "mean_final_reward": float(np.mean([
+                episode["final_reward"] for episode in results
             ])),
         },
         "episodes": results,

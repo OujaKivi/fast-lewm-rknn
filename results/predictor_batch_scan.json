@@ -1,0 +1,27 @@
+[
+  {
+    "batch": 64,
+    "mean_ms": 5.1896,
+    "median_ms": 5.1754,
+    "p95_ms": 5.2483,
+    "cosine_similarity": 0.99999374,
+    "mae": 0.00150073
+  },
+  {
+    "batch": 150,
+    "mean_ms": 11.8440,
+    "median_ms": 9.4756,
+    "p95_ms": 9.5625,
+    "max_ms": 80.3967,
+    "cosine_similarity": 0.99999338,
+    "mae": 0.00137909
+  },
+  {
+    "batch": 300,
+    "mean_ms": 16.8822,
+    "median_ms": 16.8700,
+    "p95_ms": 16.9239,
+    "cosine_similarity": 0.99999362,
+    "mae": 0.00147454
+  }
+]
