@@ -36,7 +36,7 @@ with the GPU-host records in
 and [results/smolvla_rtx5060_host_cpu_smoke.json](results/smolvla_rtx5060_host_cpu_smoke.json).
 Available test machines are listed in [docs/test_hosts.md](docs/test_hosts.md).
 
-### RK3588 NPU Vision Pilot
+### RK3588 NPU Vision And Denoising
 
 The SmolVLA vision encoder plus connector was exported as one static FP16
 RKNN graph (`[1,3,512,512] -> [1,64,960]`, 227 MB). The original SmolVLM
@@ -45,23 +45,31 @@ for fully valid fixed-size images, a precomputed position-index buffer is
 mathematically identical (maximum PyTorch output difference: zero) and
 converts successfully with RKNN Toolkit2 2.3.2.
 
-On RK3588, 20 warmed NPU runs had **872 ms median** and 877 ms p95 for the
-vision graph. Against its PyTorch reference, the vision output had cosine
-similarity `0.999825` and MAE `0.0547`. In one complete-action comparison on
-the same synthetic observation and fixed initial noise:
+The original denoising RKNN graph was inaccurate because its constant Boolean
+attention-mask `Where` did not suppress masked logits on RK3588. Replacing it
+with an equivalent FP16-safe additive mask fixed the discrepancy: the full
+16-layer denoising step now has `0.999987` cosine and `0.0044` MAE versus
+the original PyTorch output, at **43.0 ms** NPU median. The original masked
+graph had `0.9556` cosine and `0.200` MAE even after fixing cache layout.
 
-| Path | Vision | Full 50-action inference |
+In one matched-input, fixed-noise, 10-step end-to-end run on RK3588:
+
+| Path | Complete 50-action inference | Ten denoising steps |
 |---|---:|---:|
-| CPU | 2.703 s | 38.099 s |
-| CPU + NPU vision | 0.881 s | 36.281 s |
+| CPU | 39.660 s | 29.255 s |
+| NPU vision + CPU denoising | 36.641 s | 29.286 s |
+| NPU vision + NPU denoising | **7.899 s** | **0.520 s** |
 
-The **4.8% end-to-end latency reduction** is small because image encoding is
-only one part of this VLA. The ten CPU denoising steps alone took `28.94 s`
-(76% of the complete CPU path). Final action cosine similarity was `0.999788` with
-MAE `0.0109`; this does not establish task-level equivalence. The language
-backbone and ten denoising steps still run on CPU, so this is **not a full-NPU
-SmolVLA implementation**. Export, board-side validation, and raw results are
-in [docs/smolvla_rknn.md](docs/smolvla_rknn.md).
+The accelerated path is **5.0x faster end to end** than the matched CPU run.
+Its final action cosine is `0.999798` and MAE is `0.0119` versus CPU; this
+includes the independently measured NPU vision difference. Holding NPU vision
+fixed, switching only denoising to NPU yields action cosine `0.999991` and
+MAE `0.00289`. The language
+prefix, preprocessing and suffix embedding still run on CPU, so this is a
+hybrid path, not full-NPU SmolVLA. The fixed-shape denoising graph assumes
+70 valid prefix tokens and is not yet general across prompts. These are
+deterministic smoke tests, **not task-success or policy-equivalence evidence**.
+Reproduction and raw data are in [docs/smolvla_rknn.md](docs/smolvla_rknn.md).
 
 ## Current Result
 

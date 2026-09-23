@@ -1,0 +1,46 @@
+{
+  "model": "/root/smolvla-rknn-denoise/denoise_step_fp16.rknn",
+  "input_count": 33,
+  "layout": "nhwc",
+  "output_shape": [
+    1,
+    50,
+    32
+  ],
+  "against_float32_reference": {
+    "cosine": 0.955621795972042,
+    "mae": 0.2000216020296284,
+    "p99_abs_error": 1.1600971722602842,
+    "max_abs_error": 3.2534856759011745
+  },
+  "against_original_reference": {
+    "cosine": 0.9556229662743827,
+    "mae": 0.19998068732838875,
+    "p99_abs_error": 1.157591795921325,
+    "max_abs_error": 3.2338523641228676
+  },
+  "latency_ms_median": 50.03965552896261,
+  "latency_ms_p95": 65.47678374918178,
+  "latency_ms_samples": [
+    50.874,
+    52.273,
+    66.949,
+    50.031,
+    50.342,
+    49.742,
+    49.971,
+    51.057,
+    65.399,
+    49.893,
+    50.152,
+    49.764,
+    49.922,
+    50.009,
+    49.716,
+    49.879,
+    50.775,
+    50.049,
+    50.024,
+    50.475
+  ]
+}

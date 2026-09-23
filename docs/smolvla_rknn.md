@@ -1,9 +1,10 @@
 # SmolVLA RK3588 NPU pilot
 
-This pilot moves only the image encoder and connector to the RK3588 NPU. The
-language backbone, action expert, and ten denoising steps stay in PyTorch on
-four Cortex-A76 cores. The checkpoint is the official `lerobot/smolvla_base`,
-with LeRobot 0.4.4, RKNN Toolkit2/Lite2 2.3.2, and NPU driver 0.9.8.
+This pilot moves the image encoder/connector and the cached 16-layer action
+denoising step to the RK3588 NPU. The language prefix and denoising suffix
+embedding stay in PyTorch on four Cortex-A76 cores. The checkpoint is the
+official `lerobot/smolvla_base`, with LeRobot 0.4.4, RKNN Toolkit2/Lite2
+2.3.2, and NPU driver 0.9.8.
 
 ## Reproduce
 
@@ -32,17 +33,62 @@ the board, use `scripts/test_smolvla_vision_rknn.py` with the exported
 The tested RKNN file has SHA-256
 `fc447ae1a83b81fdc958e1bdc2519cfb509adf793fed35474e6c1cb92fc597d0`.
 
+The denoising graph is exported separately. It accepts one suffix embedding
+`[1,50,720]` and 16 pairs of cached prefix K/V tensors
+`[1,70,5,64]`; the board caller transposes the four-dimensional caches to
+NHWC before RKNNLite inference. The exported graph fixes the mask and
+position IDs for 70 fully valid prefix tokens, so a different prompt length
+or padded prefix needs a new export.
+
+```sh
+python scripts/probe_smolvla_denoise.py \
+  --model-path "$MODEL_PATH" --vlm-path "$VLM_PATH" \
+  --output-dir "$OUTPUT_DIR/denoise"
+
+python scripts/rewrite_smolvla_attention_mask_add.py \
+  --input "$OUTPUT_DIR/denoise/denoise_step.onnx" \
+  --output "$OUTPUT_DIR/denoise/denoise_step_addmask.onnx"
+
+docker run --rm -v "$OUTPUT_DIR/denoise:/work" -v "$PWD:/repo:ro" \
+  rknn-toolkit2:2.3.2 python /repo/scripts/convert_smolvla_denoise_rknn.py \
+  --onnx /work/denoise_step_addmask.onnx \
+  --output /work/denoise_step_addmask.rknn
+```
+
+Validate the ONNX graph with `scripts/test_smolvla_denoise_onnx.py` before
+compiling and the board graph with `scripts/test_smolvla_denoise_rknn.py`
+using `--layout nhwc`. The validated 203 MiB denoising RKNN file has SHA-256
+`bf7649c8a8d5c087bf6db5a22e832e242c3b5427d06e4b723ddb5091851fc1a8`.
+
 ## Measurements
 
 - [Vision graph: 20 warmed runs](../results/smolvla_rk3588_vision_rknn.json):
   median 872 ms, p95 877 ms, output cosine 0.999825, MAE 0.0547.
-- [Full-path matched-input pilot](../results/smolvla_rk3588_npu_vision_hybrid.json):
-  CPU 38.099 s; NPU-vision hybrid 36.281 s. Ten CPU denoising steps account
-  for 28.935 s of the CPU path. Final action cosine 0.999788, MAE 0.0109
-  with identical initial noise.
+- [Original denoising graph](../results/smolvla_rk3588_denoise_original_mask.json):
+  cosine 0.9556, MAE 0.200 versus float32 PyTorch after correct NHWC cache
+  layout. Layer-one taps showed that unmasked logits matched closely, but
+  masked logits did not: masked entries were finite scores instead of the
+  required suppressing values before Softmax. The float32 ONNX and RKNN
+  simulator both matched PyTorch, isolating the defect to the board-compiled
+  Boolean `Where`/mask path rather than the model export itself. Merely
+  changing the sentinel to `-10000` or replacing the output projection with
+  convolution did not fix it.
+- [Rewritten denoising graph](../results/smolvla_rk3588_denoise_addmask.json):
+  the constant Boolean mask is encoded as additive `0/-10000` logits. ONNX
+  still matches PyTorch (MAE `4.85e-7`); the RK3588 full 16-layer output
+  has cosine `0.999987`, MAE `0.0044` versus original PyTorch. Twenty
+  warmed NPU single-step runs: median `43.0 ms`, p95 `43.6 ms`.
+- [Full-path matched-input run](../results/smolvla_rk3588_npu_vision_denoise_hybrid.json):
+  CPU `39.660 s`, NPU vision plus CPU denoising `36.641 s`, and NPU vision
+  plus NPU denoising `7.899 s`. Ten CPU steps took `29.255 s`; ten NPU
+  steps plus suffix embedding and cache transfer took `0.520 s`. Final
+  action cosine versus CPU is `0.999798`, MAE `0.0119`. Holding NPU vision
+  fixed, NPU versus CPU denoising produces action cosine `0.999991`, MAE
+  `0.00289`.
 
 The vision graph accepts normalized `[1,3,512,512]` images after LeRobot's
 resize/pad preprocessing, not raw camera pixels. The matched-input result is
-one deterministic smoke case, not a success-rate or equivalence test. A
-full-NPU or useful split-inference claim requires exporting and validating
-the language/action path and evaluating real task episodes.
+one deterministic smoke case, not a success-rate or equivalence test. The
+language prefix remains CPU-bound, and prompt lengths other than the exported
+70-token prefix are unsupported by the denoising RKNN graph. General policy
+quality requires evaluation on real task episodes.

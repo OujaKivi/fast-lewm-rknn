@@ -35,6 +35,7 @@ def main():
     parser.add_argument("--model-path", required=True)
     parser.add_argument("--vlm-path", required=True)
     parser.add_argument("--rknn-path", required=True)
+    parser.add_argument("--denoise-rknn-path")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
 
@@ -77,12 +78,37 @@ def main():
         raise RuntimeError("RKNN load failed")
     if runtime.init_runtime(core_mask=RKNNLite.NPU_CORE_0_1_2) != 0:
         raise RuntimeError("RKNN runtime initialization failed")
+    denoise_runtime = None
+    if args.denoise_rknn_path:
+        denoise_runtime = RKNNLite()
+        if denoise_runtime.load_rknn(args.denoise_rknn_path) != 0:
+            raise RuntimeError("Denoise RKNN load failed")
+        if denoise_runtime.init_runtime(core_mask=RKNNLite.NPU_CORE_0_1_2) != 0:
+            raise RuntimeError("Denoise RKNN runtime initialization failed")
     try:
         def npu_embed(image_tensor):
             output = runtime.inference(
                 inputs=[image_tensor.detach().numpy()], data_format=["nchw"]
             )[0]
             return torch.from_numpy(output).to(dtype=image_tensor.dtype)
+
+        npu_denoise_times = []
+
+        def npu_denoise(prefix_pad_masks, past_key_values, x_t, timestep):
+            if prefix_pad_masks.shape != (1, 70) or not bool(prefix_pad_masks.all()):
+                raise ValueError("Denoise RKNN was exported for 70 valid prefix tokens")
+            if len(past_key_values) != 16:
+                raise ValueError("Denoise RKNN requires 16 cache layers")
+            started = time.perf_counter()
+            suffix, _, _ = policy.model.embed_suffix(x_t, timestep)
+            values = [suffix.detach().float().numpy()]
+            for index in range(len(past_key_values)):
+                for name in ("key_states", "value_states"):
+                    cache = past_key_values[index][name].detach().float().numpy()
+                    values.append(cache.transpose(0, 2, 3, 1).copy())
+            output = denoise_runtime.inference(inputs=values, data_format=None)[0]
+            npu_denoise_times.append(time.perf_counter() - started)
+            return torch.from_numpy(output.copy())
 
         with torch.inference_mode():
             started = time.perf_counter()
@@ -106,6 +132,12 @@ def main():
             hybrid_full_seconds = time.perf_counter() - started
             hybrid_denoise_times = denoise_times.copy()
 
+            if denoise_runtime is not None:
+                policy.model.denoise_step = npu_denoise
+                started = time.perf_counter()
+                full_npu_actions = policy.predict_action_chunk(batch.copy(), noise=noise)
+                full_npu_seconds = time.perf_counter() - started
+
         result = {
             "image_shape": list(prepared_image.shape),
             "embedding_shape": list(cpu_embedding.shape),
@@ -122,8 +154,23 @@ def main():
             "cpu_actions_finite": bool(torch.isfinite(cpu_actions).all()),
             "hybrid_actions_finite": bool(torch.isfinite(hybrid_actions).all()),
         }
+        if denoise_runtime is not None:
+            result.update({
+                "full_npu_seconds": round(full_npu_seconds, 3),
+                "npu_denoise_seconds": round(sum(npu_denoise_times), 3),
+                "npu_denoise_steps": len(npu_denoise_times),
+                "full_npu_action_agreement": similarity(
+                    cpu_actions.numpy(), full_npu_actions.numpy()
+                ),
+                "denoise_only_action_agreement": similarity(
+                    hybrid_actions.numpy(), full_npu_actions.numpy()
+                ),
+                "full_npu_actions_finite": bool(torch.isfinite(full_npu_actions).all()),
+            })
     finally:
         runtime.release()
+        if denoise_runtime is not None:
+            denoise_runtime.release()
 
     path = Path(args.output)
     path.parent.mkdir(parents=True, exist_ok=True)

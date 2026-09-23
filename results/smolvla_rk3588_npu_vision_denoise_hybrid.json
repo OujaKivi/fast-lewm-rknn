@@ -1,0 +1,55 @@
+{
+  "image_shape": [
+    1,
+    3,
+    512,
+    512
+  ],
+  "embedding_shape": [
+    1,
+    64,
+    960
+  ],
+  "actions_shape": [
+    1,
+    50,
+    6
+  ],
+  "vision_cpu_seconds": 3.94,
+  "vision_npu_seconds": 0.882,
+  "full_cpu_seconds": 39.66,
+  "full_hybrid_seconds": 36.641,
+  "cpu_denoise_seconds": 29.255,
+  "hybrid_denoise_seconds": 29.286,
+  "denoise_steps": 10,
+  "embedding_agreement": {
+    "cosine": 0.9997676416906456,
+    "mae": 0.06557661654099682,
+    "p99_abs_error": 0.3108249711990357,
+    "max_abs_error": 0.7328920364379883
+  },
+  "action_agreement": {
+    "cosine": 0.999787999281619,
+    "mae": 0.010922795279572408,
+    "p99_abs_error": 0.05339782260358331,
+    "max_abs_error": 0.06352529674768448
+  },
+  "cpu_actions_finite": true,
+  "hybrid_actions_finite": true,
+  "full_npu_seconds": 7.899,
+  "npu_denoise_seconds": 0.52,
+  "npu_denoise_steps": 10,
+  "full_npu_action_agreement": {
+    "cosine": 0.9997979906751717,
+    "mae": 0.011937048882246018,
+    "p99_abs_error": 0.04809400349855422,
+    "max_abs_error": 0.055495940148830414
+  },
+  "denoise_only_action_agreement": {
+    "cosine": 0.9999912133589804,
+    "mae": 0.0028914638919134935,
+    "p99_abs_error": 0.008706684410572029,
+    "max_abs_error": 0.0148438960313797
+  },
+  "full_npu_actions_finite": true
+}
