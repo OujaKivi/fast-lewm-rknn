@@ -91,6 +91,9 @@ def main():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--repeats", type=int, default=3)
     parser.add_argument("--mode", choices=["npu", "npu-hybrid-action"], default="npu")
+    parser.add_argument("--planner-algorithm", choices=["cem", "icem"], default="cem")
+    parser.add_argument("--icem-population-decay", type=float, default=1.25)
+    parser.add_argument("--icem-graph-snap", action="store_true")
     parser.add_argument(
         "--output", default="results/hardware_icem_fixed_observation.json"
     )
@@ -118,15 +121,26 @@ def main():
             "--elite-reuse-fraction 0.3"
         ),
     }
+    if args.planner_algorithm == "icem":
+        configs = {
+            "icem_decay": (
+                "--planner-algorithm icem --num-samples 300 --topk 30 "
+                f"--icem-population-decay {args.icem_population_decay} "
+                f"{'--icem-graph-snap' if args.icem_graph_snap else ''}"
+            )
+        }
 
     raw = {}
     for name, flags in configs.items():
         print(f"Running {name}...", file=sys.stderr)
         raw[name] = run_server(flags, request.copy(), args.repeats, args.mode)
-    reference_action = np.asarray(raw["fixed_300"][0]["action"])
+    reference_action = np.asarray(next(iter(raw.values()))[0]["action"])
     result = {
         "seed": args.seed,
         "mode": args.mode,
+        "planner_algorithm": args.planner_algorithm,
+        "icem_population_decay": args.icem_population_decay,
+        "icem_graph_snap": args.icem_graph_snap,
         "note": "Fixed-observation deterministic latency/quality proxy; not task success.",
         "results": [
             summarize(name, responses, reference_action)

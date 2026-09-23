@@ -125,6 +125,63 @@ claim. These measurements are in `results/hybrid_action_benchmark.json`,
 `results/hybrid_planner_coexecution_observation.json`, and
 `results/pusht_dataset_board_npu_hybrid_tiered_50.json`.
 
+## iCEM Baseline and CEM Decision
+
+The board has an opt-in `--planner-algorithm icem` baseline. It adapts the
+original iCEM mechanisms to the paper's packed 25-action plan: exponentially
+decaying population, temporally correlated noise across the 25 primitive
+actions, within-solve elite injection, momentum updates, bounded actions, and
+best-seen action selection. It does **not** shift elites across replans because
+the entire 25-action plan is executed before another solve. The installed
+`stable-worldmodel` iCEM class is not used directly: it has no population
+decay, and its colored noise would degenerate on this task's packed
+`horizon=1` representation.
+
+All methods below use the same 200 dataset rows, the same hybrid CPU/NPU
+action mapping and NPU image/predictor graphs, and 30 optimizer rounds.
+Two full runs were made for the first two methods; the second runs had
+stable within-run latency. The graph-snap pilot was run once between them:
+
+| Planner | Success, runs 1 / 2 | Mean replan, runs 1 / 2 | P95, run 2 | Candidates |
+|---|---:|---:|---:|---:|
+| Tiered CEM, `300x10,150x10,64x10` | 183 / 182 | 2033 / 1499 ms | 1570 ms | 5140 |
+| iCEM, decay `1.25` | 179 / 178 | 1404 / 1006 ms | 1077 ms | 2562 |
+| iCEM, decay `1.25`, graph-snap | 181 / not run | 994 / not run ms | 1066 ms | 2650 |
+| iCEM, decay `1.05` | 178 / not run | 2335 / not run ms | not measured | 4700 |
+
+On the second full runs, iCEM `1.25` was 33% faster than tiered CEM with
+four fewer successes. Paired discordance was 16 tiered-only versus 12
+iCEM-only successes, insufficient to establish a success difference or
+equivalence. Graph-snap rounds the virtual iCEM population to the nearest
+available RKNN batch (`64`, `150`, `300`). It filled 2650/2650 predictor
+slots instead of ordinary iCEM's 2562/3122, yet improved mean replan latency
+by only about 1% against the repeat run. Its 181/200 successes versus
+ordinary iCEM's 178/200 is a small pilot difference, not a demonstrated
+quality gain. The `1.05` configuration was close to the tiered schedule in a
+short fixed-observation run (`1551` vs `1500 ms`), but did not remain
+latency-matched in its only sustained run.
+
+The fixed RKNN graph sizes explain part of this mismatch: decay `1.05`
+evaluated 4700 real candidates but occupied 6600 predictor graph slots,
+whereas the tiered schedule filled 5140 slots with 5140 candidates. The first
+full runs slowed sharply (tiered CEM's first/last 30 replans: 1509/2253 ms),
+but the repeats did not (1496/1499 ms for tiered CEM and 1003/1009 ms for
+iCEM). The board reached about 84 C and A76 frequency was observed at
+2.208 GHz during load, versus nominal 2.352 GHz. Thermal state is a plausible
+contributor, not an isolated cause: run order, device load, and frequency
+were not controlled enough to attribute the first-run slowdown precisely.
+
+A 50-row, same-schedule ablation using population decay without iCEM's other
+mechanisms reached 42/50 versus 44/50 for iCEM, both near 1.0 s per replan.
+This pilot cannot attribute a task-level gain to any one iCEM mechanism.
+
+The current evidence favors no new algorithmic claim: iCEM's faster point has
+an unresolved success tradeoff, while graph-snap's reduction in graph padding
+gave little end-to-end benefit in the repeat. A static three-stage schedule
+is not novel by itself. The next CEM test needs controlled, interleaved board
+measurements and a quality-aware allocation policy, rather than further
+static population tuning.
+
 ## Correctness Fixes
 
 - Terminal-only predictor input and output are fixed at `[300, 1, 192]`.
@@ -163,6 +220,13 @@ results/pusht_dataset_board_npu_tiered_50.json Aligned tiered-NPU run
 results/original_cpu_vs_rknn.json   Exact CPU and NPU planner parity audit
 results/hybrid_action_benchmark.json Candidate-level coexecution microbenchmark
 results/pusht_dataset_board_npu_hybrid_tiered_50.json Hybrid task-level pilot
+results/pusht_dataset_board_cem_tiered_hybrid_200.json 200-case tiered CEM
+results/pusht_dataset_board_icem_hybrid_200.json       200-case iCEM decay 1.25
+results/pusht_dataset_board_icem_decay105_hybrid_200.json 200-case iCEM decay 1.05
+results/pusht_dataset_board_cem_decay_hybrid_50.json 50-case decay-only CEM ablation
+results/pusht_dataset_board_cem_tiered_hybrid_200_repeat.json Tiered CEM repeat
+results/pusht_dataset_board_icem_hybrid_200_repeat.json       iCEM repeat
+results/pusht_dataset_board_icem_graph_snap_hybrid_200.json  Graph-snap pilot
 scripts/plot_breakdown.py           Breakdown figure generator
 scripts/plot_hardware_icem.py       Hardware-aware schedule figure
 scripts/probe_hardware_icem.py      Paired fixed-observation benchmark

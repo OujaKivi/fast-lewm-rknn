@@ -300,6 +300,12 @@ class FastLeWMPlanner:
         self.generator = torch.Generator(device='cpu').manual_seed(self.seed)
         self.candidate_schedule = None
         self.elite_reuse_fraction = 0.0
+        self.planner_algorithm = 'cem'
+        self.icem_population_decay = 1.25
+        self.icem_noise_beta = 2.0
+        self.icem_alpha = 0.1
+        self.icem_elite_keep = 9
+        self.icem_graph_snap = False
         log(f"[Planner] Loading model in {mode} mode...")
 
         # 加载权重
@@ -659,6 +665,110 @@ class FastLeWMPlanner:
         }
         return selected_action.numpy(), final_elite_mean_cost, metadata
 
+    def icem_plan(self, current_emb, goal_emb, reset=False):
+        """iCEM for the 25-step action block packed into a horizon-one tensor."""
+        if reset:
+            self.reset_planner_state()
+        generator = self.generator
+        mean = torch.zeros(1, HORIZON, ACTION_DIM)
+        std = torch.ones_like(mean)
+        previous_elites = None
+        best_cost = float('inf')
+        best_action = None
+        virtual_population = self.num_samples
+        trace = []
+        frequencies = torch.fft.rfftfreq(ACTION_DIM // 2)
+        frequencies[0] = 1.0
+        noise_scale = frequencies.pow(-self.icem_noise_beta / 2)
+        noise_scale[0] = noise_scale[1]
+        if self.predictor_type == 'npu':
+            self.predictor.reset_counters()
+
+        for step in range(self.n_steps):
+            if step:
+                virtual_population = max(
+                    2 * self.topk,
+                    int(virtual_population / self.icem_population_decay),
+                )
+            population = virtual_population
+            if self.icem_graph_snap:
+                graph_sizes = self.predictor.runners
+                population = min(
+                    (size for size in graph_sizes if size >= 2 * self.topk),
+                    key=lambda size: (abs(size - virtual_population), size),
+                )
+            white = torch.randn(
+                population, 2, ACTION_DIM // 2, generator=generator
+            )
+            if self.icem_noise_beta:
+                colored = torch.fft.irfft(
+                    torch.fft.rfft(white, dim=-1) * noise_scale,
+                    n=ACTION_DIM // 2, dim=-1,
+                )
+                noise = colored / colored.std(dim=-1, keepdim=True).clamp(min=1e-8)
+            else:
+                noise = white
+            candidates = noise.transpose(1, 2).reshape(
+                population, HORIZON, ACTION_DIM
+            ) * std + mean
+            keep = 0
+            if previous_elites is not None:
+                keep = min(
+                    self.icem_elite_keep,
+                    len(previous_elites),
+                    population - 1,
+                )
+                candidates[1:1 + keep] = previous_elites[:keep]
+            if step == self.n_steps - 1:
+                candidates[0] = mean
+            candidates.clamp_(-1.0, 1.0)
+
+            costs = self.get_cost(current_emb, goal_emb, candidates)
+            topk_vals, topk_inds = torch.topk(
+                costs, k=self.topk, largest=False
+            )
+            previous_elites = candidates[topk_inds].clone()
+            elite_mean = previous_elites.mean(dim=0, keepdim=True)
+            elite_std = previous_elites.std(dim=0, keepdim=True)
+            mean = self.icem_alpha * mean + (1 - self.icem_alpha) * elite_mean
+            std = self.icem_alpha * std + (1 - self.icem_alpha) * elite_std
+            if topk_vals[0].item() < best_cost:
+                best_cost = topk_vals[0].item()
+                best_action = previous_elites[0].clone()
+            trace.append({
+                'step': step + 1,
+                'candidate_count': population,
+                'virtual_population': virtual_population,
+                'evaluated_count': population,
+                'reused_elites': keep,
+                'best_cost': topk_vals[0].item(),
+                'npu_graph_batch': (
+                    self.predictor.last_graph_batch
+                    if self.predictor_type == 'npu' else None
+                ),
+            })
+
+        self.solve_index += 1
+        metadata = {
+            'algorithm': 'icem',
+            'graph_snap': self.icem_graph_snap,
+            'iterations_used': self.n_steps,
+            'stop_reason': 'max_steps',
+            'trace': trace,
+            'candidate_schedule': [item['candidate_count'] for item in trace],
+            'logical_candidates': sum(item['candidate_count'] for item in trace),
+            'evaluated_candidates': sum(item['evaluated_count'] for item in trace),
+            'reused_candidates': sum(item['reused_elites'] for item in trace),
+            'npu_graph_batches': [item['npu_graph_batch'] for item in trace],
+            'npu_graph_candidates': (
+                self.predictor.total_graph_candidates
+                if self.predictor_type == 'npu' else None
+            ),
+            'best_sample_cost': best_cost,
+            'final_elite_mean_cost': topk_vals.mean().item(),
+        }
+        return best_action.squeeze(0).numpy(), best_cost, metadata
+
     def plan(self, current_img_b64, goal_img_b64, executed_actions=1, reset=False):
         """完整规划流程"""
         t0 = time.time()
@@ -676,11 +786,15 @@ class FastLeWMPlanner:
 
         # CEM 规划
         t_cem_start = time.time()
-        action, cost, cem_metadata = self.cem_plan(
-            current_emb, goal_emb,
-            executed_actions=executed_actions,
-            reset=reset,
-        )
+        if self.planner_algorithm == 'icem':
+            action, cost, cem_metadata = self.icem_plan(
+                current_emb, goal_emb, reset=reset,
+            )
+        else:
+            action, cost, cem_metadata = self.cem_plan(
+                current_emb, goal_emb,
+                executed_actions=executed_actions, reset=reset,
+            )
         t_cem = time.time() - t_cem_start
 
         t_total = time.time() - t0
@@ -731,6 +845,12 @@ def main():
         choices=['cpu', 'npu', 'npu-image', 'npu-predictor', 'npu-hybrid-action'],
     )
     parser.add_argument('--cem-steps', type=int, default=30)
+    parser.add_argument('--planner-algorithm', choices=['cem', 'icem'], default='cem')
+    parser.add_argument('--icem-population-decay', type=float, default=1.25)
+    parser.add_argument('--icem-noise-beta', type=float, default=2.0)
+    parser.add_argument('--icem-alpha', type=float, default=0.1)
+    parser.add_argument('--icem-elite-keep', type=int, default=9)
+    parser.add_argument('--icem-graph-snap', action='store_true')
     parser.add_argument('--num-samples', type=int, default=300)
     parser.add_argument('--topk', type=int, default=30)
     parser.add_argument('--warm-start', action='store_true')
@@ -752,6 +872,12 @@ def main():
 
     planner = FastLeWMPlanner(mode=args.mode)
     planner.n_steps = args.cem_steps
+    planner.planner_algorithm = args.planner_algorithm
+    planner.icem_population_decay = args.icem_population_decay
+    planner.icem_noise_beta = args.icem_noise_beta
+    planner.icem_alpha = args.icem_alpha
+    planner.icem_elite_keep = args.icem_elite_keep
+    planner.icem_graph_snap = args.icem_graph_snap
     planner.num_samples = args.num_samples
     planner.topk = args.topk
     planner.warm_start = args.warm_start
@@ -777,7 +903,24 @@ def main():
         parser.error("--topk must not exceed the smallest candidate population")
     if not 0.0 <= planner.elite_reuse_fraction <= 1.0:
         parser.error("--elite-reuse-fraction must be in [0, 1]")
+    if planner.icem_population_decay <= 1:
+        parser.error("--icem-population-decay must be greater than 1")
+    if not 0.0 <= planner.icem_alpha <= 1.0:
+        parser.error("--icem-alpha must be in [0, 1]")
+    if planner.icem_noise_beta < 0 or planner.icem_elite_keep < 0:
+        parser.error("iCEM noise beta and elite keep must be nonnegative")
+    if planner.icem_graph_snap and (
+        planner.planner_algorithm != 'icem' or planner.predictor_type != 'npu'
+    ):
+        parser.error("--icem-graph-snap requires iCEM with an NPU predictor")
+    if planner.icem_graph_snap and 2 * planner.topk > max(planner.predictor.runners):
+        parser.error("--icem-graph-snap requires a graph batch of at least 2 * topk")
+    if planner.planner_algorithm == 'icem' and (
+        planner.candidate_schedule is not None or planner.warm_start or planner.adaptive_cem
+    ):
+        parser.error("iCEM cannot be combined with CEM schedule, warm-start, or adaptive stop")
     log(f"[Planner] Ready. Mode={args.mode}. CEM steps={args.cem_steps}. "
+        f"Algorithm={args.planner_algorithm}. "
         f"Samples={args.num_samples}. Warm-start={args.warm_start}. "
         f"Adaptive={args.adaptive_cem}. Schedule={planner.candidate_schedule}. "
         f"Elite reuse={planner.elite_reuse_fraction}. Waiting for requests...")

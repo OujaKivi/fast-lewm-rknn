@@ -40,7 +40,9 @@ class RK3588Planner:
     def __init__(self, cem_iters=30, num_samples=300, topk=30, horizon=5,
                  mode="npu", warm_start=False, adaptive_cem=False,
                  min_cem_steps=8, candidate_schedule=None,
-                 elite_reuse_fraction=0.0, seed=42):
+                 elite_reuse_fraction=0.0, seed=42,
+                 planner_algorithm="cem", icem_population_decay=1.25,
+                 icem_graph_snap=False):
         self.cem_iters = cem_iters
         self.num_samples = num_samples
         self.topk = topk
@@ -52,6 +54,9 @@ class RK3588Planner:
         self.candidate_schedule = candidate_schedule
         self.elite_reuse_fraction = elite_reuse_fraction
         self.seed = seed
+        self.planner_algorithm = planner_algorithm
+        self.icem_population_decay = icem_population_decay
+        self.icem_graph_snap = icem_graph_snap
         self.process = None
         self._start_server()
 
@@ -65,9 +70,13 @@ class RK3588Planner:
             f"--min-cem-steps {self.min_cem_steps}",
             f"--elite-reuse-fraction {self.elite_reuse_fraction}",
             f"--seed {self.seed}",
+            f"--planner-algorithm {self.planner_algorithm}",
+            f"--icem-population-decay {self.icem_population_decay}",
         ]
         if self.candidate_schedule:
             server_args.append(f"--candidate-schedule {self.candidate_schedule}")
+        if self.icem_graph_snap:
+            server_args.append("--icem-graph-snap")
         if self.warm_start:
             server_args.append("--warm-start")
         if self.adaptive_cem:
@@ -267,6 +276,9 @@ def main():
         help="Per-iteration candidates, e.g. 300x10,150x10,64x10",
     )
     parser.add_argument("--elite_reuse_fraction", type=float, default=0.0)
+    parser.add_argument("--planner_algorithm", choices=["cem", "icem"], default="cem")
+    parser.add_argument("--icem_population_decay", type=float, default=1.25)
+    parser.add_argument("--icem_graph_snap", action="store_true")
     parser.add_argument("--max_steps", type=int, default=200)
     parser.add_argument(
         "--replan_every", type=int, default=25,
@@ -305,6 +317,9 @@ def main():
         candidate_schedule=args.candidate_schedule,
         elite_reuse_fraction=args.elite_reuse_fraction,
         seed=args.seed,
+        planner_algorithm=args.planner_algorithm,
+        icem_population_decay=args.icem_population_decay,
+        icem_graph_snap=args.icem_graph_snap,
     )
 
     # 运行评估

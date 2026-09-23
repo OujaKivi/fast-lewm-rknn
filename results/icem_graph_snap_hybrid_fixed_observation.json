@@ -1,0 +1,368 @@
+{
+  "seed": 42,
+  "mode": "npu-hybrid-action",
+  "planner_algorithm": "icem",
+  "icem_population_decay": 1.25,
+  "icem_graph_snap": true,
+  "note": "Fixed-observation deterministic latency/quality proxy; not task success.",
+  "results": [
+    {
+      "name": "icem_decay",
+      "repeats": 3,
+      "mean_total_ms": 968.3409531911215,
+      "std_total_ms": 1.2977884360303131,
+      "mean_action_encoder_ms": 687.5797907511393,
+      "mean_predictor_ms": 205.77661196390787,
+      "mean_cost": 310.572021484375,
+      "action_rmse_vs_baseline": 0.0,
+      "action_max_abs_vs_baseline": 0.0,
+      "cem": {
+        "algorithm": "icem",
+        "iterations_used": 30,
+        "stop_reason": "max_steps",
+        "trace": [
+          {
+            "step": 1,
+            "candidate_count": 300,
+            "virtual_population": 300,
+            "evaluated_count": 300,
+            "reused_elites": 0,
+            "best_cost": 345.2587585449219,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 2,
+            "candidate_count": 300,
+            "virtual_population": 240,
+            "evaluated_count": 300,
+            "reused_elites": 9,
+            "best_cost": 327.3004455566406,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 3,
+            "candidate_count": 150,
+            "virtual_population": 192,
+            "evaluated_count": 150,
+            "reused_elites": 9,
+            "best_cost": 319.4761962890625,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 4,
+            "candidate_count": 150,
+            "virtual_population": 153,
+            "evaluated_count": 150,
+            "reused_elites": 9,
+            "best_cost": 313.9974365234375,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 5,
+            "candidate_count": 150,
+            "virtual_population": 122,
+            "evaluated_count": 150,
+            "reused_elites": 9,
+            "best_cost": 313.9974365234375,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 6,
+            "candidate_count": 64,
+            "virtual_population": 97,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 313.9974365234375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 7,
+            "candidate_count": 64,
+            "virtual_population": 77,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 313.9974365234375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 8,
+            "candidate_count": 64,
+            "virtual_population": 61,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 313.9974365234375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 9,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 313.9974365234375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 10,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 313.9974365234375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 11,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 313.9215087890625,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 12,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 312.89447021484375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 13,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 312.89447021484375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 14,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 312.89447021484375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 15,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 312.66546630859375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 16,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 312.66546630859375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 17,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 312.65576171875,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 18,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 312.0162048339844,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 19,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 312.0162048339844,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 20,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 311.0537414550781,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 21,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 311.0537414550781,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 22,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 311.0537414550781,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 23,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 311.0537414550781,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 24,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 310.9747314453125,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 25,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 310.9747314453125,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 26,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 310.95770263671875,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 27,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 310.95770263671875,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 28,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 310.81524658203125,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 29,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 310.572021484375,
+            "npu_graph_batch": 64
+          },
+          {
+            "step": 30,
+            "candidate_count": 64,
+            "virtual_population": 60,
+            "evaluated_count": 64,
+            "reused_elites": 9,
+            "best_cost": 310.572021484375,
+            "npu_graph_batch": 64
+          }
+        ],
+        "candidate_schedule": [
+          300,
+          300,
+          150,
+          150,
+          150,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64
+        ],
+        "logical_candidates": 2650,
+        "evaluated_candidates": 2650,
+        "reused_candidates": 261,
+        "npu_graph_batches": [
+          300,
+          300,
+          150,
+          150,
+          150,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64
+        ],
+        "npu_graph_candidates": 2650,
+        "best_sample_cost": 310.572021484375,
+        "final_elite_mean_cost": 311.0450134277344
+      }
+    }
+  ]
+}

@@ -39,6 +39,9 @@ def main():
     parser.add_argument("--output", required=True)
     parser.add_argument("--candidate-schedule", default=None)
     parser.add_argument("--elite-reuse-fraction", type=float, default=0.0)
+    parser.add_argument("--planner-algorithm", choices=["cem", "icem"], default="cem")
+    parser.add_argument("--icem-population-decay", type=float, default=1.25)
+    parser.add_argument("--icem-graph-snap", action="store_true")
     args = parser.parse_args()
 
     handle = h5py.File(args.dataset, "r")
@@ -51,6 +54,9 @@ def main():
         seed=42,
         candidate_schedule=args.candidate_schedule,
         elite_reuse_fraction=args.elite_reuse_fraction,
+        planner_algorithm=args.planner_algorithm,
+        icem_population_decay=args.icem_population_decay,
+        icem_graph_snap=args.icem_graph_snap,
     )
     results = []
     try:
@@ -101,6 +107,9 @@ def main():
 
     output = {
         "mode": args.mode,
+        "planner_algorithm": args.planner_algorithm,
+        "icem_population_decay": args.icem_population_decay,
+        "icem_graph_snap": args.icem_graph_snap,
         "candidate_schedule": args.candidate_schedule,
         "elite_reuse_fraction": args.elite_reuse_fraction,
         "episodes": args.episodes,

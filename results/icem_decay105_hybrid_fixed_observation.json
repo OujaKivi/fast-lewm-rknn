@@ -1,0 +1,337 @@
+{
+  "seed": 42,
+  "mode": "npu-hybrid-action",
+  "planner_algorithm": "icem",
+  "icem_population_decay": 1.05,
+  "note": "Fixed-observation deterministic latency/quality proxy; not task success.",
+  "results": [
+    {
+      "name": "icem_decay",
+      "repeats": 5,
+      "mean_total_ms": 1550.9809017181396,
+      "std_total_ms": 24.05106430232551,
+      "mean_action_encoder_ms": 1041.6551113128662,
+      "mean_predictor_ms": 426.8646717071533,
+      "mean_cost": 310.130126953125,
+      "action_rmse_vs_baseline": 0.0,
+      "action_max_abs_vs_baseline": 0.0,
+      "cem": {
+        "algorithm": "icem",
+        "iterations_used": 30,
+        "stop_reason": "max_steps",
+        "trace": [
+          {
+            "step": 1,
+            "candidate_count": 300,
+            "evaluated_count": 300,
+            "reused_elites": 0,
+            "best_cost": 345.2587585449219,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 2,
+            "candidate_count": 285,
+            "evaluated_count": 285,
+            "reused_elites": 9,
+            "best_cost": 327.3004455566406,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 3,
+            "candidate_count": 271,
+            "evaluated_count": 271,
+            "reused_elites": 9,
+            "best_cost": 319.27239990234375,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 4,
+            "candidate_count": 258,
+            "evaluated_count": 258,
+            "reused_elites": 9,
+            "best_cost": 319.6787109375,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 5,
+            "candidate_count": 245,
+            "evaluated_count": 245,
+            "reused_elites": 9,
+            "best_cost": 317.4534912109375,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 6,
+            "candidate_count": 233,
+            "evaluated_count": 233,
+            "reused_elites": 9,
+            "best_cost": 313.9561462402344,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 7,
+            "candidate_count": 221,
+            "evaluated_count": 221,
+            "reused_elites": 9,
+            "best_cost": 313.9561462402344,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 8,
+            "candidate_count": 210,
+            "evaluated_count": 210,
+            "reused_elites": 9,
+            "best_cost": 312.34173583984375,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 9,
+            "candidate_count": 200,
+            "evaluated_count": 200,
+            "reused_elites": 9,
+            "best_cost": 312.6016845703125,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 10,
+            "candidate_count": 190,
+            "evaluated_count": 190,
+            "reused_elites": 9,
+            "best_cost": 312.54248046875,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 11,
+            "candidate_count": 180,
+            "evaluated_count": 180,
+            "reused_elites": 9,
+            "best_cost": 311.6380310058594,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 12,
+            "candidate_count": 171,
+            "evaluated_count": 171,
+            "reused_elites": 9,
+            "best_cost": 311.5329895019531,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 13,
+            "candidate_count": 162,
+            "evaluated_count": 162,
+            "reused_elites": 9,
+            "best_cost": 311.2098083496094,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 14,
+            "candidate_count": 154,
+            "evaluated_count": 154,
+            "reused_elites": 9,
+            "best_cost": 311.1734313964844,
+            "npu_graph_batch": 300
+          },
+          {
+            "step": 15,
+            "candidate_count": 146,
+            "evaluated_count": 146,
+            "reused_elites": 9,
+            "best_cost": 310.988525390625,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 16,
+            "candidate_count": 139,
+            "evaluated_count": 139,
+            "reused_elites": 9,
+            "best_cost": 310.988525390625,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 17,
+            "candidate_count": 132,
+            "evaluated_count": 132,
+            "reused_elites": 9,
+            "best_cost": 310.7432861328125,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 18,
+            "candidate_count": 125,
+            "evaluated_count": 125,
+            "reused_elites": 9,
+            "best_cost": 310.60406494140625,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 19,
+            "candidate_count": 119,
+            "evaluated_count": 119,
+            "reused_elites": 9,
+            "best_cost": 310.4165954589844,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 20,
+            "candidate_count": 113,
+            "evaluated_count": 113,
+            "reused_elites": 9,
+            "best_cost": 310.4165954589844,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 21,
+            "candidate_count": 107,
+            "evaluated_count": 107,
+            "reused_elites": 9,
+            "best_cost": 310.4165954589844,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 22,
+            "candidate_count": 101,
+            "evaluated_count": 101,
+            "reused_elites": 9,
+            "best_cost": 310.4165954589844,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 23,
+            "candidate_count": 96,
+            "evaluated_count": 96,
+            "reused_elites": 9,
+            "best_cost": 310.3292541503906,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 24,
+            "candidate_count": 91,
+            "evaluated_count": 91,
+            "reused_elites": 9,
+            "best_cost": 310.1783752441406,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 25,
+            "candidate_count": 86,
+            "evaluated_count": 86,
+            "reused_elites": 9,
+            "best_cost": 310.1783752441406,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 26,
+            "candidate_count": 81,
+            "evaluated_count": 81,
+            "reused_elites": 9,
+            "best_cost": 310.1783752441406,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 27,
+            "candidate_count": 77,
+            "evaluated_count": 77,
+            "reused_elites": 9,
+            "best_cost": 310.1752624511719,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 28,
+            "candidate_count": 73,
+            "evaluated_count": 73,
+            "reused_elites": 9,
+            "best_cost": 310.130126953125,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 29,
+            "candidate_count": 69,
+            "evaluated_count": 69,
+            "reused_elites": 9,
+            "best_cost": 310.130126953125,
+            "npu_graph_batch": 150
+          },
+          {
+            "step": 30,
+            "candidate_count": 65,
+            "evaluated_count": 65,
+            "reused_elites": 9,
+            "best_cost": 310.130126953125,
+            "npu_graph_batch": 150
+          }
+        ],
+        "candidate_schedule": [
+          300,
+          285,
+          271,
+          258,
+          245,
+          233,
+          221,
+          210,
+          200,
+          190,
+          180,
+          171,
+          162,
+          154,
+          146,
+          139,
+          132,
+          125,
+          119,
+          113,
+          107,
+          101,
+          96,
+          91,
+          86,
+          81,
+          77,
+          73,
+          69,
+          65
+        ],
+        "logical_candidates": 4700,
+        "evaluated_candidates": 4700,
+        "reused_candidates": 261,
+        "npu_graph_batches": [
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          300,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150,
+          150
+        ],
+        "npu_graph_candidates": 6600,
+        "best_sample_cost": 310.130126953125,
+        "final_elite_mean_cost": 310.4573059082031
+      }
+    }
+  ]
+}

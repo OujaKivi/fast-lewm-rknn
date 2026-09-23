@@ -47,8 +47,30 @@ Cloud offload and network model splitting are deferred. Entire-plan offload
 after local image-to-latent encoding is the only plausible first comparison:
 it sends small latents once per replan, whereas splitting CEM iterations or
 model layers across the network would introduce repeated synchronization.
-The remote path only helps if its compute plus network tail latency beats the
-measured local 1.57 s replan without harming task success or availability.
+The remote path only helps if its compute plus network tail latency improves
+the current local quality-latency frontier without harming availability.
+
+## CEM baseline gate result
+
+The iCEM adaptation and tiered CEM were evaluated on the same 200 PushT rows
+with the same hybrid CPU/NPU mapping. In their repeat runs, tiered CEM
+succeeded on 182/200 cases at 1499 ms mean replan; iCEM with decay 1.25
+succeeded on 178/200 at 1006 ms. The success difference is not established
+by this paired sample, and equivalence is also unproven. Their earlier runs
+were much slower (2033/1404 ms respectively), so all latency comparisons
+need controlled board state. A graph-snap iCEM pilot filled every predictor
+slot but improved mean latency by only about 1% against the iCEM repeat.
+Raw per-request data are in `results/`; the detailed comparison is in
+`README.md`.
+
+This gate does not validate the proposed quality-aware runtime. It does show
+why fixed-shape graph occupancy matters: decay 1.05 evaluates 4700 real
+candidates but executes 6600 predictor slots. But eliminating padding alone
+did not yield a substantial end-to-end gain. The single next research test
+is a quality-aware allocation policy against both tiered CEM and iCEM,
+measured with interleaved board runs, controlled frequency/temperature,
+energy, and paired task success. Do not expand to cloud or VLA work while
+that test is unresolved.
 
 ## Stop rule
 

@@ -1,0 +1,644 @@
+{
+  "mode": "npu-hybrid-action",
+  "planner_algorithm": "cem",
+  "candidate_schedule": "300x1,240x1,192x1,153x1,122x1,97x1,77x1,61x1,60x22",
+  "elite_reuse_fraction": 0.0,
+  "episodes": 50,
+  "successes": 42,
+  "success_rate": 0.84,
+  "mean_replan_ms": 998.9376302625312,
+  "action_mean": [
+    -0.008142714388668537,
+    0.006439803633838892
+  ],
+  "action_std": [
+    0.20807553827762604,
+    0.20605595409870148
+  ],
+  "rows": [
+    14976,
+    15972,
+    20202,
+    20971,
+    21641,
+    22097,
+    30341,
+    38734,
+    42757,
+    47204,
+    53195,
+    64590,
+    83162,
+    86958,
+    94268,
+    101576,
+    102876,
+    103888,
+    104397,
+    105467,
+    105486,
+    117644,
+    120758,
+    123842,
+    128032,
+    130103,
+    147673,
+    150779,
+    153198,
+    158535,
+    163056,
+    163798,
+    167760,
+    171863,
+    177001,
+    177702,
+    180923,
+    181991,
+    182669,
+    183681,
+    192677,
+    193799,
+    196782,
+    201128,
+    201159,
+    207681,
+    208999,
+    217141,
+    227107,
+    228173
+  ],
+  "results": [
+    {
+      "episode": 0,
+      "dataset_row": 14976,
+      "success": true,
+      "plan_times_ms": [
+        1014.7354602813721
+      ],
+      "costs": [
+        25.120874404907227
+      ]
+    },
+    {
+      "episode": 1,
+      "dataset_row": 15972,
+      "success": true,
+      "plan_times_ms": [
+        1058.0761432647705,
+        975.6641387939453
+      ],
+      "costs": [
+        7.377490043640137,
+        37.54536056518555
+      ]
+    },
+    {
+      "episode": 2,
+      "dataset_row": 20202,
+      "success": false,
+      "plan_times_ms": [
+        975.6739139556885,
+        978.3871173858643
+      ],
+      "costs": [
+        256.3232421875,
+        265.57720947265625
+      ]
+    },
+    {
+      "episode": 3,
+      "dataset_row": 20971,
+      "success": true,
+      "plan_times_ms": [
+        975.3859043121338
+      ],
+      "costs": [
+        8.431565284729004
+      ]
+    },
+    {
+      "episode": 4,
+      "dataset_row": 21641,
+      "success": true,
+      "plan_times_ms": [
+        1064.141035079956
+      ],
+      "costs": [
+        9.246821403503418
+      ]
+    },
+    {
+      "episode": 5,
+      "dataset_row": 22097,
+      "success": true,
+      "plan_times_ms": [
+        990.2756214141846
+      ],
+      "costs": [
+        6.4203948974609375
+      ]
+    },
+    {
+      "episode": 6,
+      "dataset_row": 30341,
+      "success": true,
+      "plan_times_ms": [
+        976.4723777770996
+      ],
+      "costs": [
+        8.509929656982422
+      ]
+    },
+    {
+      "episode": 7,
+      "dataset_row": 38734,
+      "success": true,
+      "plan_times_ms": [
+        976.825475692749
+      ],
+      "costs": [
+        1.415253758430481
+      ]
+    },
+    {
+      "episode": 8,
+      "dataset_row": 42757,
+      "success": true,
+      "plan_times_ms": [
+        978.1901836395264
+      ],
+      "costs": [
+        10.479402542114258
+      ]
+    },
+    {
+      "episode": 9,
+      "dataset_row": 47204,
+      "success": true,
+      "plan_times_ms": [
+        1039.4055843353271
+      ],
+      "costs": [
+        4.674261093139648
+      ]
+    },
+    {
+      "episode": 10,
+      "dataset_row": 53195,
+      "success": true,
+      "plan_times_ms": [
+        994.513988494873
+      ],
+      "costs": [
+        13.216673851013184
+      ]
+    },
+    {
+      "episode": 11,
+      "dataset_row": 64590,
+      "success": true,
+      "plan_times_ms": [
+        977.2756099700928
+      ],
+      "costs": [
+        6.221099376678467
+      ]
+    },
+    {
+      "episode": 12,
+      "dataset_row": 83162,
+      "success": true,
+      "plan_times_ms": [
+        979.0501594543457
+      ],
+      "costs": [
+        0.8246803283691406
+      ]
+    },
+    {
+      "episode": 13,
+      "dataset_row": 86958,
+      "success": true,
+      "plan_times_ms": [
+        985.3723049163818
+      ],
+      "costs": [
+        8.67426586151123
+      ]
+    },
+    {
+      "episode": 14,
+      "dataset_row": 94268,
+      "success": true,
+      "plan_times_ms": [
+        1008.3513259887695
+      ],
+      "costs": [
+        17.336437225341797
+      ]
+    },
+    {
+      "episode": 15,
+      "dataset_row": 101576,
+      "success": true,
+      "plan_times_ms": [
+        1038.201093673706
+      ],
+      "costs": [
+        8.432476043701172
+      ]
+    },
+    {
+      "episode": 16,
+      "dataset_row": 102876,
+      "success": true,
+      "plan_times_ms": [
+        980.4904460906982
+      ],
+      "costs": [
+        2.722975492477417
+      ]
+    },
+    {
+      "episode": 17,
+      "dataset_row": 103888,
+      "success": true,
+      "plan_times_ms": [
+        979.1116714477539
+      ],
+      "costs": [
+        6.457743167877197
+      ]
+    },
+    {
+      "episode": 18,
+      "dataset_row": 104397,
+      "success": false,
+      "plan_times_ms": [
+        980.3562164306641,
+        979.2423248291016
+      ],
+      "costs": [
+        240.3080596923828,
+        249.55247497558594
+      ]
+    },
+    {
+      "episode": 19,
+      "dataset_row": 105467,
+      "success": true,
+      "plan_times_ms": [
+        1071.2676048278809
+      ],
+      "costs": [
+        9.892227172851562
+      ]
+    },
+    {
+      "episode": 20,
+      "dataset_row": 105486,
+      "success": true,
+      "plan_times_ms": [
+        980.9691905975342
+      ],
+      "costs": [
+        5.948811054229736
+      ]
+    },
+    {
+      "episode": 21,
+      "dataset_row": 117644,
+      "success": true,
+      "plan_times_ms": [
+        979.43115234375
+      ],
+      "costs": [
+        20.837100982666016
+      ]
+    },
+    {
+      "episode": 22,
+      "dataset_row": 120758,
+      "success": true,
+      "plan_times_ms": [
+        981.7509651184082
+      ],
+      "costs": [
+        2.8636293411254883
+      ]
+    },
+    {
+      "episode": 23,
+      "dataset_row": 123842,
+      "success": true,
+      "plan_times_ms": [
+        979.3686866760254
+      ],
+      "costs": [
+        2.204833507537842
+      ]
+    },
+    {
+      "episode": 24,
+      "dataset_row": 128032,
+      "success": false,
+      "plan_times_ms": [
+        1058.6705207824707,
+        997.9100227355957
+      ],
+      "costs": [
+        19.555675506591797,
+        0.8882888555526733
+      ]
+    },
+    {
+      "episode": 25,
+      "dataset_row": 130103,
+      "success": true,
+      "plan_times_ms": [
+        979.9613952636719
+      ],
+      "costs": [
+        11.53593921661377
+      ]
+    },
+    {
+      "episode": 26,
+      "dataset_row": 147673,
+      "success": false,
+      "plan_times_ms": [
+        979.6967506408691,
+        980.7295799255371
+      ],
+      "costs": [
+        249.836669921875,
+        301.7455139160156
+      ]
+    },
+    {
+      "episode": 27,
+      "dataset_row": 150779,
+      "success": true,
+      "plan_times_ms": [
+        1021.695613861084
+      ],
+      "costs": [
+        7.0913004875183105
+      ]
+    },
+    {
+      "episode": 28,
+      "dataset_row": 153198,
+      "success": false,
+      "plan_times_ms": [
+        1035.5145931243896,
+        981.5921783447266
+      ],
+      "costs": [
+        17.677431106567383,
+        151.53440856933594
+      ]
+    },
+    {
+      "episode": 29,
+      "dataset_row": 158535,
+      "success": true,
+      "plan_times_ms": [
+        991.2281036376953
+      ],
+      "costs": [
+        11.70566177368164
+      ]
+    },
+    {
+      "episode": 30,
+      "dataset_row": 163056,
+      "success": true,
+      "plan_times_ms": [
+        980.6332588195801
+      ],
+      "costs": [
+        9.994014739990234
+      ]
+    },
+    {
+      "episode": 31,
+      "dataset_row": 163798,
+      "success": true,
+      "plan_times_ms": [
+        979.7365665435791
+      ],
+      "costs": [
+        6.563134670257568
+      ]
+    },
+    {
+      "episode": 32,
+      "dataset_row": 167760,
+      "success": true,
+      "plan_times_ms": [
+        1066.1191940307617
+      ],
+      "costs": [
+        6.648285388946533
+      ]
+    },
+    {
+      "episode": 33,
+      "dataset_row": 171863,
+      "success": true,
+      "plan_times_ms": [
+        981.8124771118164
+      ],
+      "costs": [
+        2.198113441467285
+      ]
+    },
+    {
+      "episode": 34,
+      "dataset_row": 177001,
+      "success": true,
+      "plan_times_ms": [
+        981.7943572998047,
+        981.8215370178223
+      ],
+      "costs": [
+        11.536734580993652,
+        35.18006896972656
+      ]
+    },
+    {
+      "episode": 35,
+      "dataset_row": 177702,
+      "success": true,
+      "plan_times_ms": [
+        981.5402030944824
+      ],
+      "costs": [
+        4.973571300506592
+      ]
+    },
+    {
+      "episode": 36,
+      "dataset_row": 180923,
+      "success": true,
+      "plan_times_ms": [
+        1081.7081928253174
+      ],
+      "costs": [
+        4.408977031707764
+      ]
+    },
+    {
+      "episode": 37,
+      "dataset_row": 181991,
+      "success": true,
+      "plan_times_ms": [
+        989.2578125
+      ],
+      "costs": [
+        1.0911381244659424
+      ]
+    },
+    {
+      "episode": 38,
+      "dataset_row": 182669,
+      "success": true,
+      "plan_times_ms": [
+        980.0090789794922
+      ],
+      "costs": [
+        18.23076820373535
+      ]
+    },
+    {
+      "episode": 39,
+      "dataset_row": 183681,
+      "success": false,
+      "plan_times_ms": [
+        981.4276695251465,
+        982.6750755310059
+      ],
+      "costs": [
+        37.3242073059082,
+        18.177629470825195
+      ]
+    },
+    {
+      "episode": 40,
+      "dataset_row": 192677,
+      "success": true,
+      "plan_times_ms": [
+        1059.2091083526611
+      ],
+      "costs": [
+        14.418981552124023
+      ]
+    },
+    {
+      "episode": 41,
+      "dataset_row": 193799,
+      "success": true,
+      "plan_times_ms": [
+        1000.1723766326904
+      ],
+      "costs": [
+        26.5272274017334
+      ]
+    },
+    {
+      "episode": 42,
+      "dataset_row": 196782,
+      "success": true,
+      "plan_times_ms": [
+        981.4939498901367
+      ],
+      "costs": [
+        85.50308990478516
+      ]
+    },
+    {
+      "episode": 43,
+      "dataset_row": 201128,
+      "success": true,
+      "plan_times_ms": [
+        989.2716407775879
+      ],
+      "costs": [
+        2.590372323989868
+      ]
+    },
+    {
+      "episode": 44,
+      "dataset_row": 201159,
+      "success": false,
+      "plan_times_ms": [
+        983.4184646606445,
+        1048.0616092681885
+      ],
+      "costs": [
+        307.2445373535156,
+        304.1940002441406
+      ]
+    },
+    {
+      "episode": 45,
+      "dataset_row": 207681,
+      "success": false,
+      "plan_times_ms": [
+        1014.3191814422607,
+        988.1844520568848
+      ],
+      "costs": [
+        271.6122131347656,
+        268.5605773925781
+      ]
+    },
+    {
+      "episode": 46,
+      "dataset_row": 208999,
+      "success": true,
+      "plan_times_ms": [
+        985.1477146148682,
+        981.8501472473145
+      ],
+      "costs": [
+        18.921232223510742,
+        52.73963165283203
+      ]
+    },
+    {
+      "episode": 47,
+      "dataset_row": 217141,
+      "success": true,
+      "plan_times_ms": [
+        1001.1348724365234
+      ],
+      "costs": [
+        4.661539077758789
+      ]
+    },
+    {
+      "episode": 48,
+      "dataset_row": 227107,
+      "success": true,
+      "plan_times_ms": [
+        1027.068853378296
+      ],
+      "costs": [
+        10.165094375610352
+      ]
+    },
+    {
+      "episode": 49,
+      "dataset_row": 228173,
+      "success": true,
+      "plan_times_ms": [
+        982.3431968688965
+      ],
+      "costs": [
+        3.287311315536499
+      ]
+    }
+  ]
+}
