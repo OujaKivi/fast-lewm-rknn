@@ -40,7 +40,7 @@ class RK3588Planner:
     def __init__(self, cem_iters=30, num_samples=300, topk=30, horizon=5,
                  mode="npu", warm_start=False, adaptive_cem=False,
                  min_cem_steps=8, candidate_schedule=None,
-                 elite_reuse_fraction=0.0):
+                 elite_reuse_fraction=0.0, seed=42):
         self.cem_iters = cem_iters
         self.num_samples = num_samples
         self.topk = topk
@@ -51,6 +51,7 @@ class RK3588Planner:
         self.min_cem_steps = min_cem_steps
         self.candidate_schedule = candidate_schedule
         self.elite_reuse_fraction = elite_reuse_fraction
+        self.seed = seed
         self.process = None
         self._start_server()
 
@@ -63,6 +64,7 @@ class RK3588Planner:
             f"--topk {self.topk}",
             f"--min-cem-steps {self.min_cem_steps}",
             f"--elite-reuse-fraction {self.elite_reuse_fraction}",
+            f"--seed {self.seed}",
         ]
         if self.candidate_schedule:
             server_args.append(f"--candidate-schedule {self.candidate_schedule}")
@@ -300,6 +302,7 @@ def main():
         min_cem_steps=args.min_cem_steps,
         candidate_schedule=args.candidate_schedule,
         elite_reuse_fraction=args.elite_reuse_fraction,
+        seed=args.seed,
     )
 
     # 运行评估

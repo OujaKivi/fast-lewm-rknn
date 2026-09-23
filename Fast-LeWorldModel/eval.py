@@ -15,7 +15,26 @@ import torch
 from omegaconf import DictConfig, ListConfig, OmegaConf
 from sklearn import preprocessing
 from torchvision.transforms import v2 as transforms
+from transformers import ViTConfig, ViTModel
 import stable_worldmodel as swm
+
+
+def _repair_released_vit(model):
+    """Rebuild the released pickled ViT for newer Transformers versions."""
+    encoder = getattr(model, "encoder", None)
+    if encoder is None or hasattr(encoder.encoder.layer[0].attention.attention, "dropout"):
+        return model
+    rebuilt = ViTModel(
+        ViTConfig(
+            hidden_size=192, num_attention_heads=3, num_hidden_layers=12,
+            intermediate_size=768, patch_size=14, image_size=224,
+            num_channels=3,
+        ),
+        add_pooling_layer=False,
+    )
+    rebuilt.load_state_dict(encoder.state_dict(), strict=True)
+    model.encoder = rebuilt
+    return model
 
 
 def _install_fast_buffered_action_path(policy_obj):
@@ -82,13 +101,19 @@ def get_episodes_length(dataset, episodes):
     return np.array(lengths)
 
 
-def get_dataset(cfg, dataset_name, dataset_cache_dir=None):
-    dataset_path = dataset_cache_dir or Path(cfg.cache_dir or swm.data.utils.get_cache_dir())
-    dataset = swm.data.HDF5Dataset(
-        dataset_name,
-        keys_to_cache=cfg.dataset.keys_to_cache,
-        cache_dir=dataset_path,
-    )
+def get_dataset(cfg, dataset_name, dataset_cache_dir=None, dataset_path=None):
+    kwargs = {
+        "keys_to_cache": cfg.dataset.keys_to_cache,
+    }
+    if dataset_path is not None:
+        kwargs["path"] = Path(dataset_path).expanduser()
+    else:
+        kwargs["name"] = dataset_name
+        kwargs["cache_dir"] = (
+            dataset_cache_dir
+            or Path(cfg.cache_dir or swm.data.utils.get_cache_dir())
+        )
+    dataset = swm.data.HDF5Dataset(**kwargs)
     return dataset
 
 
@@ -267,7 +292,12 @@ def run(cfg: DictConfig):
 
     # create world environment
     cfg.world.max_episode_steps = 2 * cfg.eval.eval_budget
-    world = swm.World(**cfg.world, image_shape=(224, 224))
+    world_cfg = OmegaConf.to_container(cfg.world, resolve=True)
+    # Current stable-worldmodel no longer consumes these legacy World keys;
+    # forwarding them would incorrectly pass them into PushT.__init__().
+    world_cfg.pop("history_size", None)
+    world_cfg.pop("frame_skip", None)
+    world = swm.World(**world_cfg, image_shape=(224, 224))
 
     # create the transform
     transform = {
@@ -276,7 +306,12 @@ def run(cfg: DictConfig):
     }
 
     dataset_name, dataset_cache_dir = parse_dataset_reference(cfg)
-    dataset = get_dataset(cfg, dataset_name, dataset_cache_dir=dataset_cache_dir)
+    dataset = get_dataset(
+        cfg,
+        dataset_name,
+        dataset_cache_dir=dataset_cache_dir,
+        dataset_path=cfg.eval.get("dataset_path"),
+    )
     stats_dataset = dataset  # get_dataset(cfg, cfg.dataset.stats)
     col_name = "episode_idx" if "episode_idx" in dataset.column_names else "ep_idx"
     ep_indices, _ = np.unique(stats_dataset.get_col_data(col_name), return_index=True)
@@ -302,7 +337,8 @@ def run(cfg: DictConfig):
 
     if policy_name != "random":
         model = swm.policy.AutoCostModel(policy_name, cache_dir=policy_cache_dir)
-        model = model.to("cuda")
+        model = _repair_released_vit(model)
+        model = model.to(cfg.solver.device)
         model = model.eval()
         model.requires_grad_(False)
         _configure_rollout_consistency(model, consistency_weight, blocks_per_step)
@@ -368,7 +404,9 @@ def run(cfg: DictConfig):
         raise ValueError("Not enough episodes with sufficient length for evaluation.")
 
     world.set_policy(policy_obj)
-    fast_get_action_backup = _install_fast_buffered_action_path(policy_obj)
+    # Keep the installed stable-worldmodel policy path intact for correctness;
+    # its action buffer is per-environment in current releases.
+    fast_get_action_backup = None
 
     latent_loss_metrics = None
     cem_trace = {"optimized_costs": []}
@@ -400,14 +438,14 @@ def run(cfg: DictConfig):
         solver.solve = _wrapped_solve
 
     try:
-        metrics = world.evaluate_from_dataset(
-            dataset,
+        metrics = world.evaluate(
+            dataset=dataset,
             start_steps=eval_start_idx.tolist(),
-            goal_offset_steps=cfg.eval.goal_offset_steps,
+            goal_offset=cfg.eval.goal_offset_steps,
             eval_budget=cfg.eval.eval_budget,
             episodes_idx=eval_episodes.tolist(),
             callables=OmegaConf.to_container(cfg.eval.get("callables"), resolve=True),
-            video_path=results_path,
+            video=None,
         )
     finally:
         if solver_solve_backup is not None:
@@ -415,11 +453,15 @@ def run(cfg: DictConfig):
         if fast_get_action_backup is not None:
             policy_obj.get_action = fast_get_action_backup
 
-    latent_loss_metrics = _build_loss_metrics(
-        cem_trace["optimized_costs"],
-        task_labels=task_labels,
-        task_col=task_col,
-        source="cem_optimized_latent_cost",
+    cost_shapes = {np.asarray(cost).shape for cost in cem_trace["optimized_costs"]}
+    latent_loss_metrics = (
+        _build_loss_metrics(
+            cem_trace["optimized_costs"],
+            task_labels=task_labels,
+            task_col=task_col,
+            source="cem_optimized_latent_cost",
+        )
+        if len(cost_shapes) <= 1 else None
     )
     if latent_loss_metrics is not None:
         print("latent_loss_metrics", latent_loss_metrics)

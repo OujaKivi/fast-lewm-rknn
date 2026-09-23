@@ -32,6 +32,8 @@ FP16 output agreement against PyTorch: cosine similarity `0.999993`, MAE `0.0015
 
 The earlier conclusion that RK3588 NPU was no faster than CPU was caused by an implementation mismatch. The old graph predicted all five future latent tokens and discarded the first four when computing the CEM terminal cost. It also instantiated pretrained weights with incorrect head groupings.
 
+An apparent later result of `0/5` PushT successes was also an evaluation mismatch, not model failure. The official protocol initializes from an expert-dataset state and uses the state 25 expert steps later as the goal; the temporary host harness instead used a random environment reset and its unrelated default goal. The official Mac PyTorch evaluation reaches `44/50` (**88%**) on the downloaded PushT evaluation split.
+
 The corrected planning path is:
 
 ```text
@@ -43,7 +45,9 @@ five action blocks
   -> terminal latent cost
 ```
 
-With this alignment, NPU runs the fused `ViT + projector` and fused terminal `predictor + pred_proj`. With PyTorch workers matched to the four pinned CPU cores, this reduces a complete `300 x 30` CEM solve from 4.47 seconds to 2.63 seconds (`1.70x`). NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 77% of heterogeneous solve time. The paper-aligned controller executes all 25 planned actions before replanning, so `2.63 s` is a per-replan planning pause, not a per-action latency; its compute cost amortizes to about `105 ms` per executed action. This configuration is not high-frequency closed-loop control, and deployment viability depends on whether the replan pause is acceptable or can be overlapped with execution.
+With this alignment, NPU runs the fused `ViT + projector` and fused terminal `predictor + pred_proj`. With PyTorch workers matched to the four pinned CPU cores, this reduces a complete `300 x 30` CEM solve from 4.47 seconds to about 2.65 seconds. NPU acceleration is therefore effective, but the CPU action-prefix encoder is now the dominant bottleneck at roughly 77% of heterogeneous solve time. The paper-aligned controller executes all 25 planned actions before replanning, so this is a per-replan planning pause, not a per-action latency. This configuration is not high-frequency closed-loop control, and deployment viability depends on whether the replan pause is acceptable or can be overlapped with execution.
+
+The deployed CEM now also matches the official solver's selection semantics: it executes the final iteration's elite mean rather than the lowest-cost individual sample seen across all iterations, and it uses the official seed `42` with a persistent random generator. On an identical observation, Mac official PyTorch and the reconstructed CPU planner match exactly; RK3588 CPU differs by at most `1.9e-6` after 30 iterations.
 
 ## Why Action Encoding Is Slightly Slower
 
@@ -77,13 +81,22 @@ Warm-start remains available for an explicitly changed MPC cadence through `--re
 
 The next experiment keeps all 30 CEM updates but maps their candidate populations to three fixed RKNN graphs: `300 x 10`, `150 x 10`, then `64 x 10`. This is deliberately hardware-aware: every iteration fills one compiled NPU batch instead of padding an arbitrary population to batch 300.
 
-On the same fixed observation and deterministic seed, the schedule reduced a complete replan from `2609 ms` to `1636 ms` (**37.3%**) and reduced evaluated candidates from `9000` to `5140`. Action Encoder time fell from `1992 ms` to `1223 ms`; NPU Predictor time fell from `537 ms` to `342 ms`. The terminal cost changed from `249.17` to `253.38` (`+1.69%`), but the selected action RMSE was `1.11`, so this is a speed result, not yet an accuracy-preserving result.
+On the same fixed observation and deterministic seed, the schedule reduced a complete replan from `2654 ms` to `1642 ms` (**38.1%**) and reduced evaluated candidates from `9000` to `5140`. Action Encoder time fell from `2037 ms` to `1226 ms`; NPU Predictor time fell from `538 ms` to `343 ms`.
 
-Reusing 30% of the previous iteration's elites reduced CPU evaluations to `4879`, but the NPU still executed `5140` padded graph slots and total latency only improved from `1636 ms` to `1601 ms`. Its action deviation was also larger, so elite reuse is implemented as an opt-in experiment and is not recommended as the current default.
+Reusing 30% of the previous iteration's elites reduced CPU evaluations to `4879`, but the NPU still executed `5140` padded graph slots and total latency only improved from `1642 ms` to `1590 ms`. Its action deviation was also larger, so elite reuse is implemented as an opt-in experiment and is not recommended as the current default.
 
 The three Predictor graphs have consistent FP16 agreement (cosine similarity `0.9999934`--`0.9999937`). Median NPU latency is `5.18/9.48/16.87 ms` for batch `64/150/300`. One batch-150 run had an `80.4 ms` outlier, while its p95 remained `9.56 ms`; medians and p95 are therefore reported alongside means.
 
-A five-seed PushT pilot reduced average replan time from `2631 ms` to `1667 ms` (**36.6%**), but its reward proxies were mixed: mean episode return improved `0.5%`, mean best reward improved, and mean final reward worsened `5.2%`. Both the fixed-300 baseline and tiered schedule scored `0/5` successes in the current evaluation harness. This means the harness or controller alignment must be fixed before success preservation can be claimed; these pilot files are retained specifically to avoid overstating the result.
+The aligned 50-case dataset evaluation gives:
+
+| Backend / population | Success | Mean replan latency |
+|---|---:|---:|
+| Mac original PyTorch, official solver stream | 44/50 (88%) | not compared across hardware |
+| RK3588 CPU, fixed 300 | 43/50 (86%) | 4504 ms |
+| RK3588 CPU + NPU, fixed 300 | 42/50 (84%) | 2652 ms |
+| RK3588 CPU + NPU, `300 -> 150 -> 64` | 44/50 (88%) | **1675 ms** |
+
+The board CPU/NPU runs use the same 50 dataset rows and reset the candidate generator identically for each episode. Fixed NPU differs from CPU on only three cases (two losses and one gain), so the net `1/50` gap is not evidence of a systematic regression. Small FP16 errors do alter CEM top-k membership and can amplify across 30 iterations, but the task-level result shows no broad failure. The tiered schedule matches the Mac original's observed `88%` while reducing fixed-NPU latency another `36.8%`; larger trials are still needed for a tight confidence interval.
 
 ## Correctness Fixes
 
@@ -116,6 +129,11 @@ Fast-LeWorldModel/                  Official model source and deployment artifac
 results/latest_benchmark.json       Latest raw measurements
 results/hardware_icem_fixed_observation.json  Paired schedule pilot
 results/predictor_batch_scan.json   Fixed-RKNN batch latency and accuracy
+results/mac_original_pusht_50.json          Official Mac PyTorch success run
+results/pusht_dataset_board_cpu_50.json       Aligned board CPU success run
+results/pusht_dataset_board_npu_50.json       Aligned fixed-NPU success run
+results/pusht_dataset_board_npu_tiered_50.json Aligned tiered-NPU run
+results/original_cpu_vs_rknn.json   Exact CPU and NPU planner parity audit
 scripts/plot_breakdown.py           Breakdown figure generator
 scripts/plot_hardware_icem.py       Hardware-aware schedule figure
 scripts/probe_hardware_icem.py      Paired fixed-observation benchmark
@@ -184,6 +202,6 @@ python scripts/plot_hardware_icem.py
 
 ## Remaining Work
 
-1. Diagnose why the current fixed-300 reference controller is `0/5` in the host PushT harness before using task success as the schedule's quality gate.
+1. Expand the aligned dataset evaluation beyond 50 cases and report paired confidence intervals.
 2. Optimize or replace the CPU action-prefix encoder, now the dominant latency component.
 3. Build INT8 only with real latent/action-prefix calibration data and revalidate candidate ranking and task success.

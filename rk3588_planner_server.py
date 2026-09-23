@@ -37,7 +37,11 @@ sys.path.insert(0, str(LOCAL_MODEL_DIR if LOCAL_MODEL_DIR.exists() else '/root/F
 from module import ActionPrefixEmbedder, ARPredictor, MLP
 
 # 配置
-WEIGHTS_PATH = '/root/Fast-LeWorldModel/weights/full_model_state.pt'
+WEIGHTS_PATH = str(
+    (LOCAL_MODEL_DIR / 'weights/full_model_state.pt')
+    if LOCAL_MODEL_DIR.exists()
+    else Path('/root/Fast-LeWorldModel/weights/full_model_state.pt')
+)
 # 模型已融合 pred_proj，输入和输出均为 [B, 1, 192]。
 PREDICTOR_FP16_PATHS = {
     64: '/root/Fast-LeWorldModel/predictor_terminal_with_proj_b64_fp16.rknn',
@@ -235,8 +239,9 @@ class FastLeWMPlanner:
         self.warm_start_std_inflation = 1.25
         self.previous_plan = None
         self.previous_std = None
-        self.seed = 1234
+        self.seed = 42
         self.solve_index = 0
+        self.generator = torch.Generator(device='cpu').manual_seed(self.seed)
         self.candidate_schedule = None
         self.elite_reuse_fraction = 0.0
         log(f"[Planner] Loading model in {mode} mode...")
@@ -274,7 +279,7 @@ class FastLeWMPlanner:
         self.action_encoder.requires_grad_(False)
 
         # 3. Predictor（官方 terminal-only planning 快路）
-        if mode == 'npu':
+        if mode in ('npu', 'npu-predictor'):
             # 使用 batch=300 的 NPU 模型，用于 CEM 批量推理
             self.predictor = TerminalNPUPredictorBank(PREDICTOR_FP16_PATHS)
             self.predictor_type = 'npu'
@@ -293,7 +298,10 @@ class FastLeWMPlanner:
             self.predictor.requires_grad_(False)
             self.predictor_type = 'cpu'
 
-        self.image_encoder = NPUImageEncoder(VIT_FP16_PATH) if mode == 'npu' else None
+        self.image_encoder = (
+            NPUImageEncoder(VIT_FP16_PATH)
+            if mode in ('npu', 'npu-image') else None
+        )
 
         # 4. Projector
         self.projector = MLP(input_dim=192, hidden_dim=2048, output_dim=192, norm_fn=nn.BatchNorm1d)
@@ -425,6 +433,7 @@ class FastLeWMPlanner:
         self.previous_plan = None
         self.previous_std = None
         self.solve_index = 0
+        self.generator.manual_seed(self.seed)
 
     def cem_plan(self, current_emb, goal_emb, executed_actions=1, reset=False):
         """CEM 规划，返回最优动作序列"""
@@ -435,9 +444,7 @@ class FastLeWMPlanner:
         warm_started = False
         if reset:
             self.reset_planner_state()
-        generator = torch.Generator(device='cpu').manual_seed(
-            self.seed + self.solve_index
-        )
+        generator = self.generator
         if self.warm_start:
             shifted = self._shift_packed_plan(self.previous_plan, executed_actions)
             if shifted is not None:
@@ -453,7 +460,6 @@ class FastLeWMPlanner:
                 warm_started = True
 
         best_cost = float('inf')
-        best_action = None
         previous_iter_cost = None
         stable_steps = 0
         stop_reason = 'max_steps'
@@ -524,7 +530,6 @@ class FastLeWMPlanner:
             # 记录最优
             if topk_vals[0] < best_cost:
                 best_cost = topk_vals[0].item()
-                best_action = topk_candidates[0].clone()
 
             iter_cost = topk_vals[0].item()
             mean_delta = torch.sqrt(torch.mean((mean - previous_mean) ** 2)).item()
@@ -565,9 +570,10 @@ class FastLeWMPlanner:
                         stop_reason = 'best_cost_plateau'
                         break
 
-        # Preserve the deployed planner's selection semantics: execute the
-        # lowest-cost sample seen across all iterations.
-        selected_action = best_action.squeeze(0).clone()
+        # Match stable_worldmodel.solver.CEMSolver: execute the final elite
+        # distribution mean, not the lowest-cost sample seen during search.
+        selected_action = mean.squeeze(0).clone()
+        final_elite_mean_cost = topk_vals.mean().item()
         self.previous_plan = selected_action.reshape(-1)
         self.previous_std = var.squeeze(0).reshape(-1).clone()
         self.solve_index += 1
@@ -585,8 +591,10 @@ class FastLeWMPlanner:
                 self.predictor.total_graph_candidates
                 if self.predictor_type == 'npu' else None
             ),
+            'best_sample_cost': best_cost,
+            'final_elite_mean_cost': final_elite_mean_cost,
         }
-        return selected_action.numpy(), best_cost, metadata
+        return selected_action.numpy(), final_elite_mean_cost, metadata
 
     def plan(self, current_img_b64, goal_img_b64, executed_actions=1, reset=False):
         """完整规划流程"""
@@ -647,7 +655,10 @@ class FastLeWMPlanner:
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', type=str, default='cpu', choices=['cpu', 'npu'])
+    parser.add_argument(
+        '--mode', type=str, default='cpu',
+        choices=['cpu', 'npu', 'npu-image', 'npu-predictor'],
+    )
     parser.add_argument('--cem-steps', type=int, default=30)
     parser.add_argument('--num-samples', type=int, default=300)
     parser.add_argument('--topk', type=int, default=30)
@@ -660,7 +671,7 @@ def main():
     parser.add_argument('--std-tol', type=float, default=1.5e-1)
     parser.add_argument('--warm-start-std-floor', type=float, default=0.25)
     parser.add_argument('--warm-start-std-inflation', type=float, default=1.25)
-    parser.add_argument('--seed', type=int, default=1234)
+    parser.add_argument('--seed', type=int, default=42)
     parser.add_argument(
         '--candidate-schedule', default=None,
         help='Per-iteration candidates, e.g. 300x10,150x10,64x10',
@@ -682,6 +693,7 @@ def main():
     planner.warm_start_std_floor = args.warm_start_std_floor
     planner.warm_start_std_inflation = args.warm_start_std_inflation
     planner.seed = args.seed
+    planner.generator.manual_seed(planner.seed)
     try:
         planner.candidate_schedule = parse_candidate_schedule(
             args.candidate_schedule, planner.n_steps

@@ -1,0 +1,15 @@
+{
+  "protocol": "official dataset start with goal at +25 steps and 50-step budget",
+  "dataset": "pusht_eval.h5",
+  "seed": 42,
+  "episodes": 50,
+  "successes": 44,
+  "success_rate": 0.88,
+  "episode_successes": [
+    true, true, false, true, true, true, true, true, true, true,
+    true, true, true, true, true, true, true, true, false, true,
+    true, true, true, true, false, true, true, true, true, true,
+    true, true, true, true, true, true, true, true, true, true,
+    true, true, true, true, false, false, true, true, false, true
+  ]
+}
