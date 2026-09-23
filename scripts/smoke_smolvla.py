@@ -107,6 +107,9 @@ def main():
         result["cuda_peak_reserved_mb"] = round(
             torch.cuda.max_memory_reserved() / 1e6, 1
         )
+        free_bytes, total_bytes = torch.cuda.mem_get_info()
+        result["cuda_device_used_mb"] = round((total_bytes - free_bytes) / 1e6, 1)
+        result["cuda_device_total_mb"] = round(total_bytes / 1e6, 1)
     elif args.device == "mps":
         result["mps_allocated_mb"] = round(torch.mps.current_allocated_memory() / 1e6, 1)
         result["mps_driver_mb"] = round(torch.mps.driver_allocated_memory() / 1e6, 1)

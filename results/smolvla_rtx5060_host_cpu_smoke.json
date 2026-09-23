@@ -1,0 +1,29 @@
+{
+  "model": "/home/wang/smolvla-smoke/models/smolvla_base",
+  "device": "cpu",
+  "torch_threads": 10,
+  "image_key": "observation.images.camera1",
+  "image_shape": [
+    1,
+    3,
+    256,
+    256
+  ],
+  "action_shape": [
+    1,
+    50,
+    6
+  ],
+  "action_finite": true,
+  "load_seconds": 10.439,
+  "inference_seconds": [
+    2.316,
+    2.676,
+    2.292
+  ],
+  "first_inference_seconds": 2.316,
+  "rss_before_load_mb": 933.9,
+  "rss_after_load_mb": 2188.8,
+  "rss_after_inference_mb": 2259.0,
+  "max_rss_mb": 2951.2
+}

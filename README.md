@@ -15,15 +15,25 @@ robot-task quality or accuracy after conversion.
 |---|---:|---:|---:|
 | Mac MPS | 0.395 / 0.227, 0.226 s | 2.92 GB | MPS driver 1.67 GB |
 | RK3588, four Cortex-A76 CPU cores and four PyTorch threads | 38.048 / 38.112, 38.155 s | 2.53 GB | None |
+| i5-13490F, ten PyTorch CPU threads | 2.316 / 2.676, 2.292 s | 2.95 GB | None |
+| RTX 5060 CUDA | 0.463 / 0.120, 0.120 s | 3.23 GB | CUDA reserved 1.31 GB |
 
 The 907 MB checkpoint fits in the RK3588's 16 GB shared memory, but this
 unoptimized full-CPU path is far too slow for interactive control. These
 figures do not establish NPU compatibility or a distributed-inference gain.
+The RTX 5060 run used PyTorch 2.10.0+cu128 on the 8 GB card; its four warm
+inferences were `0.120, 0.120, 0.120, 0.121 s`. Total device memory in use
+after inference was 1.70 GB, including the host's roughly 0.21 GB idle GPU
+usage. The same host's ten-thread CPU reference was 2.3--2.7 s, so CUDA is
+clearly useful for this model; this does not yet measure a split across hosts.
 The smoke uses LeRobot 0.4.4. The board's four PyTorch threads are matched
 to the four pinned A76 cores; its default eight threads took about 40.8 s.
 Reproduce with [scripts/smoke_smolvla.py](scripts/smoke_smolvla.py); raw
 records are in [results/smolvla_mac_mps_smoke.json](results/smolvla_mac_mps_smoke.json)
-and [results/smolvla_rk3588_cpu_smoke.json](results/smolvla_rk3588_cpu_smoke.json).
+and [results/smolvla_rk3588_cpu_smoke.json](results/smolvla_rk3588_cpu_smoke.json),
+with the GPU-host records in
+[results/smolvla_rtx5060_cuda_smoke.json](results/smolvla_rtx5060_cuda_smoke.json)
+and [results/smolvla_rtx5060_host_cpu_smoke.json](results/smolvla_rtx5060_host_cpu_smoke.json).
 Available test machines are listed in [docs/test_hosts.md](docs/test_hosts.md).
 
 ## Current Result
