@@ -202,6 +202,9 @@ python scripts/plot_hardware_icem.py
 
 ## Remaining Work
 
+The prioritized research gates and first operator-level board profile are in
+[RESEARCH_PLAN.md](RESEARCH_PLAN.md).
+
 1. Expand the aligned dataset evaluation beyond 50 cases and report paired confidence intervals.
 2. Optimize or replace the CPU action-prefix encoder, now the dominant latency component.
 3. Build INT8 only with real latent/action-prefix calibration data and revalidate candidate ranking and task success.
