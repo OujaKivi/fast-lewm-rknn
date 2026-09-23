@@ -62,6 +62,36 @@ using `--layout nhwc`. The validated 203 MiB denoising RKNN file has SHA-256
 
 ## Measurements
 
+### Matched Cross-Device Stage Profile
+
+All paths below use the same synthetic image, instruction, state, initial
+noise (seed 42), checkpoint, and ten denoising steps. Stage timers synchronize
+MPS/CUDA before and after each measured operation. The prefix column is the
+cached image/language transformer pass after vision embedding; denoising
+includes all ten steps. `Other` is measured end-to-end time minus the three
+timed stages. Values are medians of warmed runs in milliseconds; individual
+stage medians need not sum exactly to the end-to-end median. The final column
+is the cosine similarity of the final `[1,50,6]` action chunk against the
+i5-13490F pure-CPU output, **not task success rate**.
+
+| Device / path | Vision | Prefix | 10-step denoising | Other | End to end | Action cosine |
+|---|---:|---:|---:|---:|---:|---:|
+| i5-13490F CPU | 654.7 | 274.3 | 1,377.9 | 3.1 | 2,309.1 | 1.000000 |
+| RTX 5060 CUDA | 31.2 | 8.2 | 80.7 | 2.1 | 122.2 | 0.999991 |
+| Mac MPS | 68.6 | 15.7 | 142.8 | 4.5 | 232.6 | 0.999885 |
+| RK3588 CPU | 3,968.2 | 6,469.0 | 29,308.6 | 13.2 | 39,759.1 | 0.999988 |
+| RK3588 NPU vision + CPU denoising | 878.6 | 6,463.7 | 29,274.5 | 13.1 | 36,629.9 | 0.999850 |
+| RK3588 NPU vision + NPU denoising | 878.7 | 6,462.0 | 515.7 | 14.0 | 7,872.0 | 0.999853 |
+
+The RK3588 accelerated path is 5.05x faster than its CPU path in this
+matched test. Its prefix pass now accounts for about 82% of total latency.
+The breakdown and action arrays are saved in
+`results/smolvla_profile_*.json` and `results/smolvla_profile_*.npy`;
+re-run with `scripts/profile_smolvla_stages.py`. The board CPU and
+NPU-vision/CPU-denoising rows have two timed repeats; the board full-NPU,
+Mac MPS and i5 CPU rows have three; RTX CUDA has five. These are synthetic
+smoke inputs, not task episodes.
+
 - [Vision graph: 20 warmed runs](../results/smolvla_rk3588_vision_rknn.json):
   median 872 ms, p95 877 ms, output cosine 0.999825, MAE 0.0547.
 - [Original denoising graph](../results/smolvla_rk3588_denoise_original_mask.json):

@@ -71,6 +71,12 @@ hybrid path, not full-NPU SmolVLA. The fixed-shape denoising graph assumes
 deterministic smoke tests, **not task-success or policy-equivalence evidence**.
 Reproduction and raw data are in [docs/smolvla_rknn.md](docs/smolvla_rknn.md).
 
+A [matched cross-device stage breakdown](docs/smolvla_rknn.md#matched-cross-device-stage-profile)
+compares RK3588 CPU/NPU, i5 CPU, Mac MPS, and RTX 5060 CUDA, including final
+action cosine similarity against the i5 CPU reference. After NPU denoising,
+the RK3588's cached language/image prefix pass takes about 6.46 s, or 82%
+of its remaining end-to-end latency.
+
 ## Current Result
 
 ![Aligned CEM latency breakdown](breakdown.png)

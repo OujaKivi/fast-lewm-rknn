@@ -1,0 +1,67 @@
+{
+  "device": "mps",
+  "vision_rknn": false,
+  "denoise_rknn": false,
+  "warmups": 1,
+  "repeats": 3,
+  "threads": 5,
+  "image_shape": [
+    1,
+    3,
+    256,
+    256
+  ],
+  "action_shape": [
+    1,
+    50,
+    6
+  ],
+  "action_finite": true,
+  "denoise_steps": [
+    10,
+    10,
+    10
+  ],
+  "timing": {
+    "vision_ms": {
+      "median_ms": 68.593,
+      "samples_ms": [
+        68.593,
+        68.946,
+        68.514
+      ]
+    },
+    "prefix_ms": {
+      "median_ms": 15.745,
+      "samples_ms": [
+        15.745,
+        16.534,
+        15.713
+      ]
+    },
+    "denoise_ms": {
+      "median_ms": 142.825,
+      "samples_ms": [
+        142.825,
+        142.642,
+        147.516
+      ]
+    },
+    "other_ms": {
+      "median_ms": 4.459,
+      "samples_ms": [
+        4.459,
+        4.445,
+        4.863
+      ]
+    },
+    "total_ms": {
+      "median_ms": 232.567,
+      "samples_ms": [
+        231.622,
+        232.567,
+        236.606
+      ]
+    }
+  }
+}

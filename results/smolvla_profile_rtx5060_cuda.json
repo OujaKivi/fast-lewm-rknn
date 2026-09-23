@@ -1,0 +1,79 @@
+{
+  "device": "cuda",
+  "vision_rknn": false,
+  "denoise_rknn": false,
+  "warmups": 2,
+  "repeats": 5,
+  "threads": 10,
+  "image_shape": [
+    1,
+    3,
+    256,
+    256
+  ],
+  "action_shape": [
+    1,
+    50,
+    6
+  ],
+  "action_finite": true,
+  "denoise_steps": [
+    10,
+    10,
+    10,
+    10,
+    10
+  ],
+  "timing": {
+    "vision_ms": {
+      "median_ms": 31.21,
+      "samples_ms": [
+        31.247,
+        31.21,
+        31.213,
+        31.204,
+        31.196
+      ]
+    },
+    "prefix_ms": {
+      "median_ms": 8.188,
+      "samples_ms": [
+        8.211,
+        8.193,
+        8.186,
+        8.165,
+        8.188
+      ]
+    },
+    "denoise_ms": {
+      "median_ms": 80.692,
+      "samples_ms": [
+        80.514,
+        80.688,
+        80.745,
+        80.692,
+        81.449
+      ]
+    },
+    "other_ms": {
+      "median_ms": 2.114,
+      "samples_ms": [
+        2.174,
+        2.107,
+        2.124,
+        2.103,
+        2.114
+      ]
+    },
+    "total_ms": {
+      "median_ms": 122.198,
+      "samples_ms": [
+        122.146,
+        122.198,
+        122.268,
+        122.164,
+        122.948
+      ]
+    }
+  }
+}
