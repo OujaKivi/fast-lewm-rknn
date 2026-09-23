@@ -98,6 +98,33 @@ The aligned 50-case dataset evaluation gives:
 
 The board CPU/NPU runs use the same 50 dataset rows and reset the candidate generator identically for each episode. Fixed NPU differs from CPU on only three cases (two losses and one gain), so the net `1/50` gap is not evidence of a systematic regression. Small FP16 errors do alter CEM top-k membership and can amplify across 30 iterations, but the task-level result shows no broad failure. The tiered schedule matches the Mac original's observed `88%` while reducing fixed-NPU latency another `36.8%`; larger trials are still needed for a tight confidence interval.
 
+## Candidate-Level CPU/NPU Coexecution Pilot
+
+The full NPU Action Encoder is slower than the four-core CPU encoder, but the
+independent candidates within one CEM iteration can be divided between them.
+An opt-in `npu-hybrid-action` mode sends 100 of 300 candidates, or 64 of 150
+candidates, to a fixed-shape NPU Action Encoder while the CPU processes the
+remainder. Batch 64 remains on CPU. The two output slices are concatenated
+before the existing NPU predictor runs; CEM iterations themselves remain
+sequential.
+
+On a fixed observation, five repeated complete replans decreased from
+`2653` to `2257 ms` for fixed 300 and from `1663` to `1500 ms` for the tiered
+population schedule. The latter is the relevant comparison with the current
+fastest baseline. The isolated 300-candidate Action Encoder plus predictor
+benchmark decreased from `92.94` to `71.68 ms` median at the 200-CPU/100-NPU
+split. These are measured wall times, not a sum of device utilization times.
+
+On the same 50 PushT dataset rows, tiered NPU with CPU-only Action Encoder
+scored `44/50` at `1675 ms` mean replan latency; hybrid Action Encoder also
+scored `44/50` at `1566 ms` (a `6.5%` incremental latency reduction). One
+previously successful row failed and one previously failed row succeeded, so
+the equal aggregate is not an exact behavior match or a success-preservation
+claim. These measurements are in `results/hybrid_action_benchmark.json`,
+`results/hybrid_planner_baseline_observation.json`,
+`results/hybrid_planner_coexecution_observation.json`, and
+`results/pusht_dataset_board_npu_hybrid_tiered_50.json`.
+
 ## Correctness Fixes
 
 - Terminal-only predictor input and output are fixed at `[300, 1, 192]`.
@@ -134,6 +161,8 @@ results/pusht_dataset_board_cpu_50.json       Aligned board CPU success run
 results/pusht_dataset_board_npu_50.json       Aligned fixed-NPU success run
 results/pusht_dataset_board_npu_tiered_50.json Aligned tiered-NPU run
 results/original_cpu_vs_rknn.json   Exact CPU and NPU planner parity audit
+results/hybrid_action_benchmark.json Candidate-level coexecution microbenchmark
+results/pusht_dataset_board_npu_hybrid_tiered_50.json Hybrid task-level pilot
 scripts/plot_breakdown.py           Breakdown figure generator
 scripts/plot_hardware_icem.py       Hardware-aware schedule figure
 scripts/probe_hardware_icem.py      Paired fixed-observation benchmark

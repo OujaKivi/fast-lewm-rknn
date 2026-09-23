@@ -256,7 +256,9 @@ def main():
     parser.add_argument("--topk", type=int, default=30, help="CEM 精英数")
     parser.add_argument("--horizon", type=int, default=5, help="规划 horizon")
     parser.add_argument("--seed", type=int, default=42, help="随机种子")
-    parser.add_argument("--mode", choices=["cpu", "npu"], default="npu")
+    parser.add_argument(
+        "--mode", choices=["cpu", "npu", "npu-hybrid-action"], default="npu"
+    )
     parser.add_argument("--warm_start", action="store_true")
     parser.add_argument("--adaptive_cem", action="store_true")
     parser.add_argument("--min_cem_steps", type=int, default=8)

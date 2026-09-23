@@ -25,10 +25,30 @@ an additive decomposition of wall time. The dominant cost is matrix work, not
 an obvious Python launch overhead. The raw per-operator profile is in
 `results/action_encoder_operator_profile.json`.
 
-Next, measure the same workload under alternative thread counts and identify
-which linear layers dominate. Only then test one general optimization (for
-example, layout-aware fused projections or a better GEMM backend). A76-specific
-packing is optional evidence for portability, not the paper's central method.
+If operator-specific optimization resumes, first measure alternative thread
+counts and identify which linear layers dominate. Only then test one general
+optimization (for example, layout-aware fused projections or a better GEMM
+backend). A76-specific packing is optional evidence for portability, not the
+paper's central method.
+
+## Coexecution gate result
+
+Candidate-level CPU/NPU coexecution is feasible, but its incremental benefit
+over the existing tiered schedule is modest. On the same 50 PushT rows, the
+tiered baseline and hybrid both succeeded on 44 cases; mean replan latency
+changed from 1675 to 1566 ms. Two paired outcomes swapped, so this does not
+establish success equivalence. Fixed-observation complete replans changed from
+2653 to 2257 ms at population 300, and from 1663 to 1500 ms with the tiered
+population. Thus heterogeneous execution is a useful system component, not a
+stand-alone paper contribution. The next main-line test remains a matched
+iCEM quality-latency baseline, rather than further split-ratio tuning.
+
+Cloud offload and network model splitting are deferred. Entire-plan offload
+after local image-to-latent encoding is the only plausible first comparison:
+it sends small latents once per replan, whereas splitting CEM iterations or
+model layers across the network would introduce repeated synchronization.
+The remote path only helps if its compute plus network tail latency beats the
+measured local 1.57 s replan without harming task success or availability.
 
 ## Stop rule
 

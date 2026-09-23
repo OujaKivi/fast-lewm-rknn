@@ -26,12 +26,12 @@ def encode_image(array):
     return base64.b64encode(buffer.getvalue()).decode("ascii")
 
 
-def run_server(flags, request, repeats):
+def run_server(flags, request, repeats, mode="npu"):
     command = [
         "ssh", "-F", SSH_CONFIG, "rk3588",
         "cd /root/Fast-LeWorldModel && taskset -c 4-7 "
         "/root/miniconda3/envs/fast-lewm/bin/python -u "
-        f"rk3588_planner_server.py --mode npu --cem-steps 30 {flags}",
+        f"rk3588_planner_server.py --mode {mode} --cem-steps 30 {flags}",
     ]
     process = subprocess.Popen(
         command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
@@ -90,6 +90,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--repeats", type=int, default=3)
+    parser.add_argument("--mode", choices=["npu", "npu-hybrid-action"], default="npu")
     parser.add_argument(
         "--output", default="results/hardware_icem_fixed_observation.json"
     )
@@ -121,10 +122,11 @@ def main():
     raw = {}
     for name, flags in configs.items():
         print(f"Running {name}...", file=sys.stderr)
-        raw[name] = run_server(flags, request.copy(), args.repeats)
+        raw[name] = run_server(flags, request.copy(), args.repeats, args.mode)
     reference_action = np.asarray(raw["fixed_300"][0]["action"])
     result = {
         "seed": args.seed,
+        "mode": args.mode,
         "note": "Fixed-observation deterministic latency/quality proxy; not task success.",
         "results": [
             summarize(name, responses, reference_action)

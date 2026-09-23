@@ -25,6 +25,7 @@ from torchvision.transforms import v2 as transforms
 from PIL import Image
 import io
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 
 # The service is pinned to four Cortex-A76 cores. Avoid running eight default
 # PyTorch workers on that four-core affinity mask, which adds large scheduler
@@ -49,6 +50,10 @@ PREDICTOR_FP16_PATHS = {
     300: '/root/Fast-LeWorldModel/predictor_terminal_with_proj_b300_fp16.rknn',
 }
 VIT_FP16_PATH = '/root/Fast-LeWorldModel/vit_encoder_projected_fp16.rknn'
+ACTION_FP16_PATHS = {
+    64: '/root/Fast-LeWorldModel/action_encoder_terminal_b64_fp16_conv.rknn',
+    100: '/root/Fast-LeWorldModel/action_encoder_terminal_b100_fp16_conv.rknn',
+}
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
@@ -171,6 +176,57 @@ class TerminalNPUPredictorBank:
         self.total_graph_candidates = 0
 
 
+class HybridActionEncoder:
+    """Evaluate disjoint candidate subsets on CPU and NPU concurrently."""
+
+    def __init__(self, cpu_model, graph_paths):
+        from rknnlite.api import RKNNLite
+
+        self.cpu_model = cpu_model
+        self.executor = ThreadPoolExecutor(max_workers=1)
+        self.runners = {}
+        for batch, path in graph_paths.items():
+            runner = RKNNLite()
+            if runner.load_rknn(path) != 0:
+                raise RuntimeError(f"Failed to load action encoder RKNN: {path}")
+            if runner.init_runtime(core_mask=RKNNLite.NPU_CORE_0_1_2) != 0:
+                raise RuntimeError(f"Failed to initialize action encoder RKNN: {path}")
+            self.runners[batch] = runner
+
+    def __call__(self, actions, latent):
+        count = actions.shape[0]
+        npu_count = 100 if count >= 300 else (64 if count >= 150 else 0)
+        if not npu_count:
+            return self.cpu_model(
+                actions, return_last_only=True, latent=latent
+            )
+
+        cpu_count = count - npu_count
+        runner = self.runners[npu_count]
+        npu_actions = actions[cpu_count:].numpy()
+        npu_latent = latent[cpu_count:].numpy()
+
+        def infer():
+            output = runner.inference(
+                inputs=[npu_actions, npu_latent],
+                data_format=['nchw', 'nchw'],
+            )
+            if output is None:
+                raise RuntimeError("NPU action encoder inference failed")
+            return torch.from_numpy(output[0])
+
+        future = self.executor.submit(infer)
+        cpu_output = self.cpu_model(
+            actions[:cpu_count], return_last_only=True, latent=latent[:cpu_count]
+        )
+        return torch.cat([cpu_output, future.result()], dim=0)
+
+    def release(self):
+        self.executor.shutdown(wait=True)
+        for runner in self.runners.values():
+            runner.release()
+
+
 def parse_candidate_schedule(spec, n_steps):
     """Parse e.g. ``300x10,150x10,64x10`` into one batch per CEM step."""
     if not spec:
@@ -277,9 +333,13 @@ class FastLeWMPlanner:
         self.action_encoder.load_state_dict(ae_state)
         self.action_encoder.eval()
         self.action_encoder.requires_grad_(False)
+        self.hybrid_action_encoder = (
+            HybridActionEncoder(self.action_encoder, ACTION_FP16_PATHS)
+            if mode == 'npu-hybrid-action' else None
+        )
 
         # 3. Predictor（官方 terminal-only planning 快路）
-        if mode in ('npu', 'npu-predictor'):
+        if mode in ('npu', 'npu-predictor', 'npu-hybrid-action'):
             # 使用 batch=300 的 NPU 模型，用于 CEM 批量推理
             self.predictor = TerminalNPUPredictorBank(PREDICTOR_FP16_PATHS)
             self.predictor_type = 'npu'
@@ -300,7 +360,7 @@ class FastLeWMPlanner:
 
         self.image_encoder = (
             NPUImageEncoder(VIT_FP16_PATH)
-            if mode in ('npu', 'npu-image') else None
+            if mode in ('npu', 'npu-image', 'npu-hybrid-action') else None
         )
 
         # 4. Projector
@@ -389,9 +449,12 @@ class FastLeWMPlanner:
 
         t0 = time.time()
         with torch.no_grad():
-            act_emb = self.action_encoder(
-                actions, return_last_only=True, latent=emb.unsqueeze(1)
-            )  # (N, 1, 192)
+            if self.hybrid_action_encoder is not None:
+                act_emb = self.hybrid_action_encoder(actions, emb.unsqueeze(1))
+            else:
+                act_emb = self.action_encoder(
+                    actions, return_last_only=True, latent=emb.unsqueeze(1)
+                )  # (N, 1, 192)
             if act_emb.shape != (N, 1, 192):
                 raise RuntimeError(f"Unexpected terminal action embedding shape: {tuple(act_emb.shape)}")
         self.stats['action_enc'] += time.time() - t0
@@ -651,13 +714,21 @@ class FastLeWMPlanner:
             }
         }
 
+    def close(self):
+        if self.hybrid_action_encoder is not None:
+            self.hybrid_action_encoder.release()
+        if self.predictor_type == 'npu':
+            self.predictor.release()
+        if self.image_encoder is not None:
+            self.image_encoder.release()
+
 
 def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--mode', type=str, default='cpu',
-        choices=['cpu', 'npu', 'npu-image', 'npu-predictor'],
+        choices=['cpu', 'npu', 'npu-image', 'npu-predictor', 'npu-hybrid-action'],
     )
     parser.add_argument('--cem-steps', type=int, default=30)
     parser.add_argument('--num-samples', type=int, default=300)
@@ -711,25 +782,28 @@ def main():
         f"Adaptive={args.adaptive_cem}. Schedule={planner.candidate_schedule}. "
         f"Elite reuse={planner.elite_reuse_fraction}. Waiting for requests...")
 
-    for line in sys.stdin:
-        line = line.strip()
-        if not line:
-            continue
-        try:
-            request = json.loads(line)
-            current_img = request['current_image']
-            goal_img = request['goal_image']
+    try:
+        for line in sys.stdin:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                request = json.loads(line)
+                current_img = request['current_image']
+                goal_img = request['goal_image']
 
-            result = planner.plan(
-                current_img,
-                goal_img,
-                executed_actions=request.get('executed_actions', 1),
-                reset=request.get('reset', False),
-            )
-            print(json.dumps(result), flush=True)
-        except Exception as e:
-            import traceback
-            print(json.dumps({'error': str(e), 'traceback': traceback.format_exc()}), flush=True)
+                result = planner.plan(
+                    current_img,
+                    goal_img,
+                    executed_actions=request.get('executed_actions', 1),
+                    reset=request.get('reset', False),
+                )
+                print(json.dumps(result), flush=True)
+            except Exception as e:
+                import traceback
+                print(json.dumps({'error': str(e), 'traceback': traceback.format_exc()}), flush=True)
+    finally:
+        planner.close()
 
 
 if __name__ == '__main__':

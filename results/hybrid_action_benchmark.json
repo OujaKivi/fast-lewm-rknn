@@ -1,0 +1,123 @@
+{
+  "note": "Fixed-input operator benchmark, not complete CEM or task success",
+  "threads": 4,
+  "warmup": 3,
+  "repeats": 20,
+  "configs": [
+    {
+      "name": "cpu_300",
+      "cpu_candidates": 300,
+      "npu_candidates": 0,
+      "action": {
+        "median_ms": 75.00601599999999,
+        "p95_ms": 77.519133,
+        "min_ms": 73.308099
+      },
+      "predictor": {
+        "median_ms": 17.765354000000002,
+        "p95_ms": 21.744954,
+        "min_ms": 17.694334
+      },
+      "action_plus_predictor": {
+        "median_ms": 92.940389,
+        "p95_ms": 95.900334,
+        "min_ms": 91.11093199999999
+      },
+      "action_mae_vs_cpu": 0.0,
+      "action_max_abs_vs_cpu": 0.0,
+      "prediction_mae_vs_cpu": 0.0
+    },
+    {
+      "name": "cpu_236_npu_64",
+      "cpu_candidates": 236,
+      "npu_candidates": 64,
+      "action": {
+        "median_ms": 60.780725000000004,
+        "p95_ms": 63.657837,
+        "min_ms": 58.808353
+      },
+      "predictor": {
+        "median_ms": 17.294463999999998,
+        "p95_ms": 21.265167,
+        "min_ms": 17.243715
+      },
+      "action_plus_predictor": {
+        "median_ms": 78.2054165,
+        "p95_ms": 81.407297,
+        "min_ms": 76.075693
+      },
+      "action_mae_vs_cpu": 0.0006862898590043187,
+      "action_max_abs_vs_cpu": 0.018045425415039062,
+      "prediction_mae_vs_cpu": 0.0003124782524537295
+    },
+    {
+      "name": "cpu_200_npu_100",
+      "cpu_candidates": 200,
+      "npu_candidates": 100,
+      "action": {
+        "median_ms": 54.453965499999995,
+        "p95_ms": 56.547671,
+        "min_ms": 54.056575
+      },
+      "predictor": {
+        "median_ms": 17.2281105,
+        "p95_ms": 20.239096,
+        "min_ms": 17.134049
+      },
+      "action_plus_predictor": {
+        "median_ms": 71.6823675,
+        "p95_ms": 76.786767,
+        "min_ms": 71.217165
+      },
+      "action_mae_vs_cpu": 0.0010933767771348357,
+      "action_max_abs_vs_cpu": 0.020334959030151367,
+      "prediction_mae_vs_cpu": 0.0004951946903020144
+    },
+    {
+      "name": "cpu_150_npu_150",
+      "cpu_candidates": 150,
+      "npu_candidates": 150,
+      "action": {
+        "median_ms": 68.70331949999999,
+        "p95_ms": 70.406925,
+        "min_ms": 68.507322
+      },
+      "predictor": {
+        "median_ms": 17.178964999999998,
+        "p95_ms": 18.879653,
+        "min_ms": 17.126758
+      },
+      "action_plus_predictor": {
+        "median_ms": 85.885056,
+        "p95_ms": 89.35716000000001,
+        "min_ms": 85.685995
+      },
+      "action_mae_vs_cpu": 0.001631312770769,
+      "action_max_abs_vs_cpu": 0.02109980583190918,
+      "prediction_mae_vs_cpu": 0.0007314492831937969
+    },
+    {
+      "name": "npu_300",
+      "cpu_candidates": 0,
+      "npu_candidates": 300,
+      "action": {
+        "median_ms": 129.5339185,
+        "p95_ms": 131.279669,
+        "min_ms": 129.44919
+      },
+      "predictor": {
+        "median_ms": 17.1126115,
+        "p95_ms": 20.131472,
+        "min_ms": 17.080966
+      },
+      "action_plus_predictor": {
+        "median_ms": 146.64652999999998,
+        "p95_ms": 151.41114100000001,
+        "min_ms": 146.55319799999998
+      },
+      "action_mae_vs_cpu": 0.003230504924431443,
+      "action_max_abs_vs_cpu": 0.02109980583190918,
+      "prediction_mae_vs_cpu": 0.0014609508216381073
+    }
+  ]
+}

@@ -34,7 +34,7 @@ def main():
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--episodes", type=int, default=5)
     parser.add_argument("--mode", default="npu", choices=[
-        "cpu", "npu", "npu-image", "npu-predictor"
+        "cpu", "npu", "npu-image", "npu-predictor", "npu-hybrid-action"
     ])
     parser.add_argument("--output", required=True)
     parser.add_argument("--candidate-schedule", default=None)
