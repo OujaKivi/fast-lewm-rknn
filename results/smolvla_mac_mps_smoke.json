@@ -1,0 +1,31 @@
+{
+  "model": "/Users/wangjiwei/.cache/huggingface/hub/models--lerobot--smolvla_base/snapshots/d9f33c94a60fb382c90dea2164c96845bd955e28",
+  "device": "mps",
+  "torch_threads": 5,
+  "image_key": "observation.images.camera1",
+  "image_shape": [
+    1,
+    3,
+    256,
+    256
+  ],
+  "action_shape": [
+    1,
+    50,
+    6
+  ],
+  "action_finite": true,
+  "load_seconds": 6.562,
+  "inference_seconds": [
+    0.395,
+    0.227,
+    0.226
+  ],
+  "first_inference_seconds": 0.395,
+  "rss_before_load_mb": 436.1,
+  "rss_after_load_mb": 394.1,
+  "rss_after_inference_mb": 512.6,
+  "max_rss_mb": 2915.1,
+  "mps_allocated_mb": 1198.5,
+  "mps_driver_mb": 1667.3
+}

@@ -1,0 +1,29 @@
+{
+  "model": "/root/models/smolvla_base",
+  "device": "cpu",
+  "torch_threads": 4,
+  "image_key": "observation.images.camera1",
+  "image_shape": [
+    1,
+    3,
+    256,
+    256
+  ],
+  "action_shape": [
+    1,
+    50,
+    6
+  ],
+  "action_finite": true,
+  "load_seconds": 28.085,
+  "inference_seconds": [
+    38.048,
+    38.112,
+    38.155
+  ],
+  "first_inference_seconds": 38.048,
+  "rss_before_load_mb": 502.6,
+  "rss_after_load_mb": 1750.8,
+  "rss_after_inference_mb": 1807.3,
+  "max_rss_mb": 2533.8
+}

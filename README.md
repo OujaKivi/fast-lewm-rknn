@@ -2,6 +2,30 @@
 
 Fast-LeWM PushT planning on RK3588 with a paper-aligned terminal-only CEM rollout and heterogeneous CPU/NPU execution.
 
+## SmolVLA Feasibility Smoke
+
+As a possible next model, the official `lerobot/smolvla_base` checkpoint was
+run through the complete image + language + state to action-chunk inference
+path. It produces finite `[1, 50, 6]` actions with the checkpoint's 10
+denoising steps. The input is a deterministic synthetic 256x256 image and a
+short instruction, so this **only checks execution and resource use**, not
+robot-task quality or accuracy after conversion.
+
+| Device | Complete inference, first / next two | Peak process RSS | Accelerator allocation |
+|---|---:|---:|---:|
+| Mac MPS | 0.395 / 0.227, 0.226 s | 2.92 GB | MPS driver 1.67 GB |
+| RK3588, four Cortex-A76 CPU cores and four PyTorch threads | 38.048 / 38.112, 38.155 s | 2.53 GB | None |
+
+The 907 MB checkpoint fits in the RK3588's 16 GB shared memory, but this
+unoptimized full-CPU path is far too slow for interactive control. These
+figures do not establish NPU compatibility or a distributed-inference gain.
+The smoke uses LeRobot 0.4.4. The board's four PyTorch threads are matched
+to the four pinned A76 cores; its default eight threads took about 40.8 s.
+Reproduce with [scripts/smoke_smolvla.py](scripts/smoke_smolvla.py); raw
+records are in [results/smolvla_mac_mps_smoke.json](results/smolvla_mac_mps_smoke.json)
+and [results/smolvla_rk3588_cpu_smoke.json](results/smolvla_rk3588_cpu_smoke.json).
+Available test machines are listed in [docs/test_hosts.md](docs/test_hosts.md).
+
 ## Current Result
 
 ![Aligned CEM latency breakdown](breakdown.png)
