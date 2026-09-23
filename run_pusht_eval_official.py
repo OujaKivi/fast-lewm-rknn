@@ -42,7 +42,8 @@ class RK3588Planner:
                  min_cem_steps=8, candidate_schedule=None,
                  elite_reuse_fraction=0.0, seed=42,
                  planner_algorithm="cem", icem_population_decay=1.25,
-                 icem_graph_snap=False):
+                 icem_graph_snap=False, icem_adaptive_extension=False,
+                 icem_extend_gain_threshold=0.15):
         self.cem_iters = cem_iters
         self.num_samples = num_samples
         self.topk = topk
@@ -57,6 +58,8 @@ class RK3588Planner:
         self.planner_algorithm = planner_algorithm
         self.icem_population_decay = icem_population_decay
         self.icem_graph_snap = icem_graph_snap
+        self.icem_adaptive_extension = icem_adaptive_extension
+        self.icem_extend_gain_threshold = icem_extend_gain_threshold
         self.process = None
         self._start_server()
 
@@ -77,6 +80,11 @@ class RK3588Planner:
             server_args.append(f"--candidate-schedule {self.candidate_schedule}")
         if self.icem_graph_snap:
             server_args.append("--icem-graph-snap")
+        if self.icem_adaptive_extension:
+            server_args.append("--icem-adaptive-extension")
+            server_args.append(
+                f"--icem-extend-gain-threshold {self.icem_extend_gain_threshold}"
+            )
         if self.warm_start:
             server_args.append("--warm-start")
         if self.adaptive_cem:
@@ -279,6 +287,8 @@ def main():
     parser.add_argument("--planner_algorithm", choices=["cem", "icem"], default="cem")
     parser.add_argument("--icem_population_decay", type=float, default=1.25)
     parser.add_argument("--icem_graph_snap", action="store_true")
+    parser.add_argument("--icem_adaptive_extension", action="store_true")
+    parser.add_argument("--icem_extend_gain_threshold", type=float, default=0.15)
     parser.add_argument("--max_steps", type=int, default=200)
     parser.add_argument(
         "--replan_every", type=int, default=25,
@@ -320,6 +330,8 @@ def main():
         planner_algorithm=args.planner_algorithm,
         icem_population_decay=args.icem_population_decay,
         icem_graph_snap=args.icem_graph_snap,
+        icem_adaptive_extension=args.icem_adaptive_extension,
+        icem_extend_gain_threshold=args.icem_extend_gain_threshold,
     )
 
     # 运行评估

@@ -175,12 +175,46 @@ A 50-row, same-schedule ablation using population decay without iCEM's other
 mechanisms reached 42/50 versus 44/50 for iCEM, both near 1.0 s per replan.
 This pilot cannot attribute a task-level gain to any one iCEM mechanism.
 
-The current evidence favors no new algorithmic claim: iCEM's faster point has
-an unresolved success tradeoff, while graph-snap's reduction in graph padding
-gave little end-to-end benefit in the repeat. A static three-stage schedule
-is not novel by itself. The next CEM test needs controlled, interleaved board
-measurements and a quality-aware allocation policy, rather than further
-static population tuning.
+### Final CEM allocation gate
+
+On the initial 200 rows, fixed iCEM budgets of 10, 15, 20, and 30 rounds
+reached 169, 173, 179, and 177 successes respectively, at mean replanning
+latencies of 487, 612, 744, and 987 ms. The 30-round figure comes from the
+trace-collection run; separate 30-round repeats varied by one or two cases.
+This is a useful latency-quality sweep, not evidence that 20 rounds is
+universally optimal.
+
+We then tested one *locked* quality-aware rule: run 20 rounds, and extend to
+30 only when the best predicted cost improved by more than 15% from round 15
+to round 20. This threshold was chosen after inspecting the initial rows, so
+only subsequent disjoint rows count as validation. The rule was tested
+against fixed 20, 25, and 30 rounds on 200 new rows (seed 43); a further 400
+new rows (seed 45) compared the adaptive rule with the closest-budget fixed
+25-round baseline. All use the same model, 25-action execution cadence,
+hybrid mapping, and paired dataset rows within each comparison.
+
+| Rows | Fixed 20 | Fixed 25 | Fixed 30 | Adaptive 20/30 |
+|---|---:|---:|---:|---:|
+| 200 holdout: successes | 177 | 173 | 178 | 180 |
+| 200 holdout: mean replan | 747 ms | 883 ms | 996 ms | 832 ms |
+| 400 confirmation: successes | not run | 341 | not run | 332 |
+| 400 confirmation: mean replan | not run | 869 ms | not run | 841 ms |
+
+The apparent 200-row advantage over fixed 25 rounds **did not replicate**:
+the adaptive rule lost 9 successes in the next 400 rows. Combined across the
+600 disjoint validation rows, adaptive versus fixed 25 is 512/600 versus
+514/600, with 15 adaptive-only and 17 fixed-only successes. Adaptive mean
+replan latency is 838 versus 874 ms, but its P95 is **1045 versus 937 ms**.
+The varying number of replans per episode means these latency aggregates are
+per request, not matched per episode. The rule extended 272 of 736 planning
+requests across the two runs. Energy was not measured.
+
+**Decision:** stop treating population decay, graph snapping, or this
+cost-progress-based extension as a paper-level CEM contribution. iCEM is a
+useful deployment baseline, but neither the static graph-aligned variant nor
+the dynamic rule improves the quality-latency-tail frontier robustly. Further
+CEM threshold tuning on these rows would be overfitting; any new CEM claim
+would require a different mechanism and independent tasks/devices.
 
 ## Correctness Fixes
 
@@ -227,6 +261,12 @@ results/pusht_dataset_board_cem_decay_hybrid_50.json 50-case decay-only CEM abla
 results/pusht_dataset_board_cem_tiered_hybrid_200_repeat.json Tiered CEM repeat
 results/pusht_dataset_board_icem_hybrid_200_repeat.json       iCEM repeat
 results/pusht_dataset_board_icem_graph_snap_hybrid_200.json  Graph-snap pilot
+results/pusht_dataset_board_icem_20steps_holdout200.json    Fixed-20 holdout
+results/pusht_dataset_board_icem_25steps_holdout200.json    Fixed-25 holdout
+results/pusht_dataset_board_icem_30steps_holdout200.json    Fixed-30 holdout
+results/pusht_dataset_board_icem_adaptive_holdout200.json   Adaptive holdout
+results/pusht_dataset_board_icem_25steps_confirm400.json   Fixed-25 confirmation
+results/pusht_dataset_board_icem_adaptive_confirm400.json  Adaptive confirmation
 scripts/plot_breakdown.py           Breakdown figure generator
 scripts/plot_hardware_icem.py       Hardware-aware schedule figure
 scripts/probe_hardware_icem.py      Paired fixed-observation benchmark

@@ -40,8 +40,8 @@ changed from 1675 to 1566 ms. Two paired outcomes swapped, so this does not
 establish success equivalence. Fixed-observation complete replans changed from
 2653 to 2257 ms at population 300, and from 1663 to 1500 ms with the tiered
 population. Thus heterogeneous execution is a useful system component, not a
-stand-alone paper contribution. The next main-line test remains a matched
-iCEM quality-latency baseline, rather than further split-ratio tuning.
+stand-alone paper contribution. The subsequent iCEM comparison and adaptive
+allocation gate are reported below; further split-ratio tuning is deferred.
 
 Cloud offload and network model splitting are deferred. Entire-plan offload
 after local image-to-latent encoding is the only plausible first comparison:
@@ -63,18 +63,22 @@ slot but improved mean latency by only about 1% against the iCEM repeat.
 Raw per-request data are in `results/`; the detailed comparison is in
 `README.md`.
 
-This gate does not validate the proposed quality-aware runtime. It does show
-why fixed-shape graph occupancy matters: decay 1.05 evaluates 4700 real
-candidates but executes 6600 predictor slots. But eliminating padding alone
-did not yield a substantial end-to-end gain. The single next research test
-is a quality-aware allocation policy against both tiered CEM and iCEM,
-measured with interleaved board runs, controlled frequency/temperature,
-energy, and paired task success. Do not expand to cloud or VLA work while
-that test is unresolved.
+The quality-aware runtime gate is now closed. Fixed-shape graph occupancy
+matters (decay 1.05 evaluated 4700 real candidates through 6600 predictor
+slots), but eliminating padding alone yielded only about 1% lower end-to-end
+latency. A locked cost-progress rule extended iCEM from 20 to 30 rounds when
+rounds 15-20 improved predicted cost by over 15%. On 200 new rows it beat
+fixed 25 rounds 180/200 to 173/200, but on another disjoint 400 rows it lost
+332/400 to 341/400. Across both validation sets, adaptive success was
+512/600 versus 514/600, mean replan 838 versus 874 ms, and P95 1045 versus
+937 ms. The mean latency saving does not compensate for the worse tail and
+unreliable quality. There is no defensible paper claim from this CEM scheduler.
+Do not tune its threshold further on these same rows. Freeze the CEM baseline
+and choose a different core mechanism for the research contribution.
 
 ## Stop rule
 
-If a standard iCEM baseline matches or dominates the proposed runtime at the
-same task-success and latency budget, do not claim novelty from declining batch
-sizes. If action-encoder optimization does not improve complete-replan latency,
-do not pursue a stand-alone kernel paper on this model.
+The CEM allocation stop rule has fired: no robust quality-latency-tail gain
+over a simple fixed-budget iCEM baseline was demonstrated. If action-encoder
+optimization does not improve complete-replan latency, do not pursue a
+stand-alone kernel paper on this model.

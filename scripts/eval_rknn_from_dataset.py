@@ -33,6 +33,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--episodes", type=int, default=5)
+    parser.add_argument("--cem-steps", type=int, default=30)
+    parser.add_argument("--save-traces", action="store_true")
     parser.add_argument("--mode", default="npu", choices=[
         "cpu", "npu", "npu-image", "npu-predictor", "npu-hybrid-action"
     ])
@@ -42,14 +44,18 @@ def main():
     parser.add_argument("--planner-algorithm", choices=["cem", "icem"], default="cem")
     parser.add_argument("--icem-population-decay", type=float, default=1.25)
     parser.add_argument("--icem-graph-snap", action="store_true")
+    parser.add_argument("--icem-adaptive-extension", action="store_true")
+    parser.add_argument("--icem-extend-gain-threshold", type=float, default=0.15)
+    parser.add_argument("--row-seed", type=int, default=42)
     args = parser.parse_args()
 
     handle = h5py.File(args.dataset, "r")
     action = handle["action"][:]
     action_mean = action.mean(axis=0)
     action_std = action.std(axis=0)
-    rows = select_rows(handle, args.episodes)
+    rows = select_rows(handle, args.episodes, seed=args.row_seed)
     planner = RK3588Planner(
+        cem_iters=args.cem_steps,
         mode=args.mode,
         seed=42,
         candidate_schedule=args.candidate_schedule,
@@ -57,6 +63,8 @@ def main():
         planner_algorithm=args.planner_algorithm,
         icem_population_decay=args.icem_population_decay,
         icem_graph_snap=args.icem_graph_snap,
+        icem_adaptive_extension=args.icem_adaptive_extension,
+        icem_extend_gain_threshold=args.icem_extend_gain_threshold,
     )
     results = []
     try:
@@ -74,13 +82,18 @@ def main():
             success = False
             plan_times = []
             costs = []
+            plan_traces = []
             for replan in range(2):
-                plan, plan_ms, cost, _ = planner.plan(
+                plan, plan_ms, cost, metadata = planner.plan(
                     current_image, goal_image,
                     reset=(replan == 0), executed_actions=25,
                 )
                 plan_times.append(plan_ms)
                 costs.append(cost)
+                if args.save_traces:
+                    plan_traces.append([
+                        entry["best_cost"] for entry in metadata["trace"]
+                    ])
                 for normalized_action in plan:
                     env_action = normalized_action * action_std + action_mean
                     _, _, terminated, truncated, info = env.step(
@@ -92,13 +105,16 @@ def main():
                         break
                 if success:
                     break
-            results.append({
+            result = {
                 "episode": episode_number,
                 "dataset_row": int(row),
                 "success": success,
                 "plan_times_ms": plan_times,
                 "costs": costs,
-            })
+            }
+            if args.save_traces:
+                result["plan_best_cost_traces"] = plan_traces
+            results.append(result)
             env.close()
             print(f"{episode_number + 1}/{len(rows)} success={success}")
     finally:
@@ -110,9 +126,13 @@ def main():
         "planner_algorithm": args.planner_algorithm,
         "icem_population_decay": args.icem_population_decay,
         "icem_graph_snap": args.icem_graph_snap,
+        "icem_adaptive_extension": args.icem_adaptive_extension,
+        "icem_extend_gain_threshold": args.icem_extend_gain_threshold,
+        "row_seed": args.row_seed,
         "candidate_schedule": args.candidate_schedule,
         "elite_reuse_fraction": args.elite_reuse_fraction,
         "episodes": args.episodes,
+        "cem_steps": args.cem_steps,
         "successes": sum(item["success"] for item in results),
         "success_rate": float(np.mean([item["success"] for item in results])),
         "mean_replan_ms": float(np.mean([

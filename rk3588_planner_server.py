@@ -306,6 +306,8 @@ class FastLeWMPlanner:
         self.icem_alpha = 0.1
         self.icem_elite_keep = 9
         self.icem_graph_snap = False
+        self.icem_adaptive_extension = False
+        self.icem_extend_gain_threshold = 0.15
         log(f"[Planner] Loading model in {mode} mode...")
 
         # 加载权重
@@ -677,6 +679,8 @@ class FastLeWMPlanner:
         best_action = None
         virtual_population = self.num_samples
         trace = []
+        best_cost_history = []
+        stop_reason = 'max_steps'
         frequencies = torch.fft.rfftfreq(ACTION_DIM // 2)
         frequencies[0] = 1.0
         noise_scale = frequencies.pow(-self.icem_noise_beta / 2)
@@ -719,7 +723,9 @@ class FastLeWMPlanner:
                     population - 1,
                 )
                 candidates[1:1 + keep] = previous_elites[:keep]
-            if step == self.n_steps - 1:
+            if step == self.n_steps - 1 or (
+                self.icem_adaptive_extension and step == 19
+            ):
                 candidates[0] = mean
             candidates.clamp_(-1.0, 1.0)
 
@@ -735,6 +741,7 @@ class FastLeWMPlanner:
             if topk_vals[0].item() < best_cost:
                 best_cost = topk_vals[0].item()
                 best_action = previous_elites[0].clone()
+            best_cost_history.append(best_cost)
             trace.append({
                 'step': step + 1,
                 'candidate_count': population,
@@ -747,13 +754,21 @@ class FastLeWMPlanner:
                     if self.predictor_type == 'npu' else None
                 ),
             })
+            if self.icem_adaptive_extension and step == 19:
+                recent_gain = (
+                    best_cost_history[14] - best_cost_history[19]
+                ) / max(abs(best_cost_history[14]), 1e-12)
+                if recent_gain <= self.icem_extend_gain_threshold:
+                    stop_reason = 'low_recent_gain'
+                    break
 
         self.solve_index += 1
         metadata = {
             'algorithm': 'icem',
             'graph_snap': self.icem_graph_snap,
-            'iterations_used': self.n_steps,
-            'stop_reason': 'max_steps',
+            'adaptive_extension': self.icem_adaptive_extension,
+            'iterations_used': len(trace),
+            'stop_reason': stop_reason,
             'trace': trace,
             'candidate_schedule': [item['candidate_count'] for item in trace],
             'logical_candidates': sum(item['candidate_count'] for item in trace),
@@ -851,6 +866,8 @@ def main():
     parser.add_argument('--icem-alpha', type=float, default=0.1)
     parser.add_argument('--icem-elite-keep', type=int, default=9)
     parser.add_argument('--icem-graph-snap', action='store_true')
+    parser.add_argument('--icem-adaptive-extension', action='store_true')
+    parser.add_argument('--icem-extend-gain-threshold', type=float, default=0.15)
     parser.add_argument('--num-samples', type=int, default=300)
     parser.add_argument('--topk', type=int, default=30)
     parser.add_argument('--warm-start', action='store_true')
@@ -878,6 +895,8 @@ def main():
     planner.icem_alpha = args.icem_alpha
     planner.icem_elite_keep = args.icem_elite_keep
     planner.icem_graph_snap = args.icem_graph_snap
+    planner.icem_adaptive_extension = args.icem_adaptive_extension
+    planner.icem_extend_gain_threshold = args.icem_extend_gain_threshold
     planner.num_samples = args.num_samples
     planner.topk = args.topk
     planner.warm_start = args.warm_start
@@ -915,6 +934,12 @@ def main():
         parser.error("--icem-graph-snap requires iCEM with an NPU predictor")
     if planner.icem_graph_snap and 2 * planner.topk > max(planner.predictor.runners):
         parser.error("--icem-graph-snap requires a graph batch of at least 2 * topk")
+    if planner.icem_adaptive_extension and (
+        planner.planner_algorithm != 'icem' or planner.n_steps != 30
+    ):
+        parser.error("--icem-adaptive-extension requires 30-step iCEM")
+    if planner.icem_extend_gain_threshold < 0:
+        parser.error("--icem-extend-gain-threshold must be nonnegative")
     if planner.planner_algorithm == 'icem' and (
         planner.candidate_schedule is not None or planner.warm_start or planner.adaptive_cem
     ):
