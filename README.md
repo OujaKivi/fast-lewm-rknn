@@ -36,6 +36,33 @@ with the GPU-host records in
 and [results/smolvla_rtx5060_host_cpu_smoke.json](results/smolvla_rtx5060_host_cpu_smoke.json).
 Available test machines are listed in [docs/test_hosts.md](docs/test_hosts.md).
 
+### RK3588 NPU Vision Pilot
+
+The SmolVLA vision encoder plus connector was exported as one static FP16
+RKNN graph (`[1,3,512,512] -> [1,64,960]`, 227 MB). The original SmolVLM
+position-index logic produced an ONNX graph rejected by RKNN's ONNX Runtime;
+for fully valid fixed-size images, a precomputed position-index buffer is
+mathematically identical (maximum PyTorch output difference: zero) and
+converts successfully with RKNN Toolkit2 2.3.2.
+
+On RK3588, 20 warmed NPU runs had **872 ms median** and 877 ms p95 for the
+vision graph. Against its PyTorch reference, the vision output had cosine
+similarity `0.999825` and MAE `0.0547`. In one complete-action comparison on
+the same synthetic observation and fixed initial noise:
+
+| Path | Vision | Full 50-action inference |
+|---|---:|---:|
+| CPU | 2.703 s | 38.099 s |
+| CPU + NPU vision | 0.881 s | 36.281 s |
+
+The **4.8% end-to-end latency reduction** is small because image encoding is
+only one part of this VLA. The ten CPU denoising steps alone took `28.94 s`
+(76% of the complete CPU path). Final action cosine similarity was `0.999788` with
+MAE `0.0109`; this does not establish task-level equivalence. The language
+backbone and ten denoising steps still run on CPU, so this is **not a full-NPU
+SmolVLA implementation**. Export, board-side validation, and raw results are
+in [docs/smolvla_rknn.md](docs/smolvla_rknn.md).
+
 ## Current Result
 
 ![Aligned CEM latency breakdown](breakdown.png)
