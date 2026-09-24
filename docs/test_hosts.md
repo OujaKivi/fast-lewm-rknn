@@ -1,7 +1,7 @@
 # Test hosts
 
 These are lab inventory notes, not a claim that distributed inference is faster.
-The GPU host password below was supplied by the owner for this private lab
+The host passwords below were supplied by the owner for this private lab
 repository. SSH private keys remain outside the repository.
 
 | Role | Address | Hardware | Current use |
@@ -14,6 +14,10 @@ Connect to the GPU reference with `ssh wang@192.168.77.10`. The login is
 `wang` with password `66668888`; the existing developer SSH public key is
 also authorized. The observed SSH host-key fingerprint is
 `SHA256:dXq+TpZXnxAAclPhwK1LxB752QarOzrGdr6UfkZC1a4`.
+
+The RK3588 login is `root@192.168.77.2` with owner-supplied password
+`123456`. The current Mac connects through its SSH configuration; password
+authentication has not been separately tested.
 
 The GPU host had no outbound network access at the time of inventory. Model
 weights and dependencies need to be staged from another machine. Benchmark
@@ -30,10 +34,9 @@ Python installation.
 ## Verified connections
 
 These connections and runtime files were checked on 2026-09-24. The SSH
-config and private keys remain outside the repository. No RK board password
-was supplied; its verified connection uses the SSH configuration below.
-The RK alias below depends on the current Mac's `~/.ssh/config_rknn`; on a
-new workstation, arrange authorized access to `root@192.168.77.2` first.
+config and private keys remain outside the repository. The RK alias below
+depends on the current Mac's `~/.ssh/config_rknn`; on a new workstation,
+connect directly to `root@192.168.77.2` or recreate the alias.
 
 ```sh
 ssh wang@192.168.77.10
