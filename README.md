@@ -26,6 +26,13 @@ graphs cannot be used for this LIBERO task because the prompt, image count,
 expert width, and layer count differ. Protocol, raw results, and limitations are in
 [the closed-loop evaluation report](docs/smolvla_libero_closed_loop.md).
 
+A follow-up with the **same per-step action-noise tensors** on all devices
+completed in 70 steps on RTX CPU, 69 on RTX CUDA, 70 on Mac MPS, and 68 on RK
+NPU-main-network execution. All four succeeded; the previous 70--80-step
+spread was largely confounded by device-specific random streams. This is one
+episode per device, not a precision or success-rate ranking. Simulator time
+is excluded from the inference figures.
+
 ## SmolVLA Base Inference Smoke
 
 As a possible next model, the official `lerobot/smolvla_base` checkpoint was

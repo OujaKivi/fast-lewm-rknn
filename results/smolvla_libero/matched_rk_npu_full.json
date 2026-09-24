@@ -1,0 +1,57 @@
+{
+  "checkpoint": "/home/wang/smolvla-smoke/models/smolvla_libero",
+  "suite": "libero_spatial",
+  "task_id": 0,
+  "seed": 1000,
+  "device": "remote:192.168.77.2:47651",
+  "steps": 68,
+  "success": true,
+  "reward_sum": 1.0,
+  "elapsed_s": 228.229,
+  "inference_s_total": 220.048,
+  "inference_s_mean": 3.236,
+  "inference_s_p95": 3.317,
+  "preprocess_s_total": 2.059,
+  "postprocess_s_total": 0.026,
+  "environment_s_total": 3.638,
+  "first_action": [
+    0.18188023567199707,
+    0.10082381218671799,
+    0.050528742372989655,
+    -0.018616842105984688,
+    -0.007862035185098648,
+    0.007350602187216282,
+    -0.9962565898895264
+  ],
+  "input_shapes": {
+    "observation.images.image": [
+      1,
+      3,
+      256,
+      256
+    ],
+    "observation.images.image2": [
+      1,
+      3,
+      256,
+      256
+    ],
+    "observation.state": [
+      1,
+      8
+    ],
+    "observation.language.tokens": [
+      1,
+      20
+    ],
+    "observation.language.attention_mask": [
+      1,
+      20
+    ]
+  },
+  "noise_mode": "matched_cpu_stream",
+  "first_noise_sha256": "2da2e3f3409f37e390961f3a87d3e69694545a6ebaaeb2845b65306cd3148215",
+  "vision_s_total": 118.931,
+  "prefill_s_total": 17.389,
+  "denoise_s_total": 73.863
+}

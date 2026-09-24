@@ -7,6 +7,7 @@ Use SSH forwarding for the TCP connection; the connection protocol is pickle.
 """
 
 import argparse
+import hashlib
 import json
 import time
 from multiprocessing.connection import Client, Listener
@@ -155,7 +156,10 @@ def serve_connections(args, policy, stage_times):
                             for key, value in request["observation"].items()
                         }
                         with torch.inference_mode():
-                            action = policy.select_action(observation)
+                            noise = request.get("noise")
+                            if noise is not None:
+                                noise = torch.from_numpy(noise).to(args.device)
+                            action = policy.select_action(observation, noise=noise)
                         if args.device == "cuda":
                             torch.cuda.synchronize()
                         elif args.device == "mps":
@@ -210,6 +214,8 @@ def evaluate(args):
     input_shapes = None
     success = False
     rewards = []
+    noise_generator = torch.Generator(device="cpu").manual_seed(args.seed)
+    first_noise_sha256 = None
     try:
         if conn:
             conn.send({"op": "reset", "seed": args.seed})
@@ -237,10 +243,22 @@ def evaluate(args):
                     for key, value in batch.items()
                     if isinstance(value, torch.Tensor)
                 }
+            noise = None
+            if args.matched_noise:
+                noise = torch.normal(
+                    mean=0.0,
+                    std=1.0,
+                    size=(1, config.chunk_size, config.max_action_dim),
+                    generator=noise_generator,
+                    device="cpu",
+                )
+                if first_noise_sha256 is None:
+                    first_noise_sha256 = hashlib.sha256(noise.numpy().tobytes()).hexdigest()
             t0 = time.perf_counter()
             if conn:
                 conn.send({
                     "op": "act",
+                    "noise": noise.numpy() if noise is not None else None,
                     "observation": {
                         key: value.cpu().numpy() if isinstance(value, torch.Tensor) else value
                         for key, value in batch.items()
@@ -253,7 +271,9 @@ def evaluate(args):
                 denoise_seconds.append(response["denoise_s"])
             else:
                 with torch.inference_mode():
-                    action = policy.select_action(batch)
+                    action = policy.select_action(
+                        batch, noise=noise.to(args.device) if noise is not None else None
+                    )
                 if args.device == "cuda":
                     torch.cuda.synchronize()
                 elif args.device == "mps":
@@ -298,6 +318,8 @@ def evaluate(args):
         "environment_s_total": round(sum(environment_seconds), 3),
         "first_action": first_action,
         "input_shapes": input_shapes,
+        "noise_mode": "matched_cpu_stream" if args.matched_noise else "device_rng",
+        "first_noise_sha256": first_noise_sha256,
     }
     if vision_seconds:
         result["vision_s_total"] = round(sum(vision_seconds), 3)
@@ -331,6 +353,7 @@ def main():
     parser.add_argument("--seed", type=int, default=1000)
     parser.add_argument("--max-steps", type=int)
     parser.add_argument("--output")
+    parser.add_argument("--matched-noise", action="store_true")
     args = parser.parse_args()
     if args.prefix_length < 1 or args.layers < 1:
         parser.error("--prefix-length and --layers must be positive")

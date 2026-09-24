@@ -75,11 +75,38 @@ absolute noise difference 1.15 for the same shape and seed. The first actions
 also differ substantially across those backends, whereas RK CPU and RK NPU
 start from nearly identical actions and both reached success in 70 steps.
 FP16/FP32 arithmetic and trajectory amplification can contribute too, but
-these single episodes do not isolate or quantify their effect. A causal
-precision comparison would inject the **same precomputed noise sequence**
-into all backends and repeat multiple matched episodes. On a physical robot,
+these single episodes do not isolate or quantify their effect. The matched-noise
+follow-up below removes the RNG confound, but multiple matched episodes are
+still needed to estimate precision effects reliably. On a physical robot,
 unlike this simulator, long inference pauses could change the real state
 between observations and actions.
+
+### Matched-noise follow-up
+
+We repeated the same seed-1000 task with one dedicated **CPU** generator on
+the simulator host. At each action, it generates the complete `[1,50,32]`
+noise tensor once and sends those exact float32 values to the selected policy
+device. All four runs had the same first-noise SHA-256 prefix
+`2da2e3f3409f37e3`; the generator is independent of model/device RNG state.
+Only the NPU-main-network RK deployment was rerun, not RK pure CPU.
+
+| Deployment | Original device-RNG steps | Matched-noise steps | Outcome | Mean inference / step |
+|---|---:|---:|---|---:|
+| RTX host CPU | 70 | 70 | Success, 1/1 | 4.849 s |
+| RTX 5060 CUDA | 76 | 69 | Success, 1/1 | 0.238 s |
+| Mac M5 Pro MPS | 80 | 70 | Success, 1/1 | 0.509 s |
+| RK3588 NPU vision + prefill + denoising, CPU auxiliary | 70 | 68 | Success, 1/1 | 3.236 s |
+
+The matched range contracts from 70--80 to 68--70 steps, so backend-specific
+noise was a substantial confound in the original step comparison. It does
+**not** make trajectories identical: the first action's leading value is
+0.1670/0.1664/0.1612/0.1819 for CPU/CUDA/MPS/RK NPU, respectively. Small
+backend arithmetic differences can accumulate in a closed loop; this one
+episode per device cannot separate those effects from simulator variability
+or establish a success-rate/accuracy ordering. Simulator steps are excluded
+from the inference numbers. Raw records are
+[`matched_*_full.json`](../results/smolvla_libero/) and the harness uses
+`--matched-noise` to reproduce this protocol.
 
 For the matched RK first step, vision took 7.848 s on CPU and 1.763 s on NPU,
 while whole remote inference fell from 65.156 s to 59.033 s (1.10x). The
