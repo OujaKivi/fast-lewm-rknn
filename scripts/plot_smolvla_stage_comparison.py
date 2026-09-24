@@ -62,6 +62,8 @@ def save_fig(fig, stem):
     OUT.mkdir(parents=True, exist_ok=True)
     for suffix in ("png", "svg", "pdf"):
         fig.savefig(OUT / f"{stem}.{suffix}", dpi=220, bbox_inches="tight")
+    svg_path = OUT / f"{stem}.svg"
+    svg_path.write_text("\n".join(line.rstrip() for line in svg_path.read_text().splitlines()) + "\n")
     plt.close(fig)
 
 
@@ -86,6 +88,14 @@ def stacked_bars(profiles):
                     ax.text(index, bottom + value / 2, fmt_time(value),
                             ha="center", va="center", color="white",
                             fontsize=9.5, weight="bold")
+                elif panel == 2 and stage == "Prefix":
+                    on_right = index == 0
+                    edge = index + width / 2 if on_right else index - width / 2
+                    ax.annotate(fmt_time(value), xy=(edge, bottom + value / 2),
+                                xytext=(8 if on_right else -8, 0),
+                                textcoords="offset points",
+                                ha="left" if on_right else "right", va="center",
+                                fontsize=9, weight="bold", color="#007f60")
                 bottom += value
             ax.text(index, bottom + y_limit * 0.018, fmt_time(item["total"]),
                     ha="center", va="bottom", fontsize=10.5, weight="bold",
@@ -116,6 +126,37 @@ def stacked_bars(profiles):
              ha="center", fontsize=9.5, color="#555555")
     fig.subplots_adjust(left=0.055, right=0.985, top=0.86, bottom=0.25)
     save_fig(fig, "smolvla_stage_latency_stacked")
+
+
+def all_devices_stacked(profiles):
+    fig, ax = plt.subplots(figsize=(16.5, 7.1), facecolor="white")
+    x = np.arange(len(profiles), dtype=float)
+    bottoms = np.zeros(len(profiles))
+    for stage_index, (stage, _, color) in enumerate(STAGES):
+        values = np.array([item["values"][stage_index] for item in profiles])
+        ax.bar(x, values, width=0.66, bottom=bottoms, color=color,
+               edgecolor="white", linewidth=0.8, label=f"{stage_index + 1}  {stage}")
+        bottoms += values
+    for index, item in enumerate(profiles):
+        ax.text(index, max(item["total"] + 480, 1050), fmt_time(item["total"]),
+                ha="center", va="bottom", fontsize=10.5, weight="bold")
+    ax.set_xticks(x, [item["short_name"] for item in profiles], fontsize=10)
+    ax.set_xlim(-0.62, len(profiles) - 0.38)
+    ax.set_ylim(0, 44000)
+    ax.set_ylabel("Latency per action chunk (s)", fontsize=11)
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _: f"{value / 1000:g}"))
+    ax.set_title("SmolVLA inference latency: all devices on one scale",
+                 fontsize=17, weight="bold", pad=18)
+    ax.grid(axis="y", color="#dddddd", linewidth=0.7)
+    ax.set_axisbelow(True)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.legend(loc="upper right", ncol=4, frameon=False, fontsize=10)
+    fig.text(0.5, 0.035,
+             "Shared linear scale; subsecond paths are visually small. "
+             "Colors follow execution order, and labels show end-to-end medians only.",
+             ha="center", fontsize=10, color="#555555")
+    fig.subplots_adjust(left=0.07, right=0.985, top=0.88, bottom=0.19)
+    save_fig(fig, "smolvla_stage_latency_all_devices")
 
 
 def donut_shares(profiles):
@@ -158,8 +199,10 @@ def main():
     plt.rcParams.update({"font.family": "DejaVu Sans", "svg.fonttype": "none"})
     profiles = load_profiles()
     stacked_bars(profiles)
+    all_devices_stacked(profiles)
     donut_shares(profiles)
     print(OUT / "smolvla_stage_latency_stacked.png")
+    print(OUT / "smolvla_stage_latency_all_devices.png")
     print(OUT / "smolvla_stage_share_donuts.png")
 
 

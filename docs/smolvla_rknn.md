@@ -95,10 +95,17 @@ median in the table.
 
 ![SmolVLA stage latency stacked bars](../figures/smolvla_stage_latency_stacked.png)
 
+The overview below places all six configurations on one shared linear scale.
+Only end-to-end totals are labeled; the two subsecond bars are necessarily
+small beside RK3588 CPU.
+
+![SmolVLA stage latency all devices](../figures/smolvla_stage_latency_all_devices.png)
+
 ![SmolVLA stage shares by device](../figures/smolvla_stage_share_donuts.png)
 
-The plotting source is `scripts/plot_smolvla_stage_comparison.py`; both
-figures are also available as SVG and PDF for papers and slides.
+The plotting source is `scripts/plot_smolvla_stage_comparison.py`; running it
+regenerates all three figures from the six profile JSON files. Each figure
+is also available as SVG and PDF for papers and slides.
 
 The breakdown and action arrays are saved in
 `results/smolvla_profile_*.json` and `results/smolvla_profile_*.npy`;
@@ -146,6 +153,14 @@ state token in this fixed-input benchmark. Its 16-layer multimodal backbone
 processes those 70 tokens once and produces 16 K/V-cache pairs; all ten
 denoising steps reuse that cache. On the current RK3588 hybrid, this CPU
 pass takes 6.46 s and is the main remaining bottleneck.
+
+That 6.46 s is **cache generation**, not a measurement of reading an
+already-built cache. The profile timer surrounds the `fill_kv_cache=True`
+transformer forward pass, including attention/MLP computation and cache
+writes. Token/image/state embedding happens outside this timer. The ten
+subsequent cache reads (and, on the NPU path, converting/copying cache tensors
+into RKNN inputs) are charged to the denoising stage. We have not separately
+isolated cache read bandwidth from denoising compute.
 
 An RKNN partition for the fixed-shape prefix is plausible, particularly
 because the denoising graph already runs its attention and feed-forward

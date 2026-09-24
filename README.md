@@ -76,7 +76,8 @@ compares RK3588 CPU/NPU, i5 CPU, Mac MPS, and RTX 5060 CUDA, including final
 action cosine similarity against the i5 CPU reference. After NPU denoising,
 the RK3588's cached language/image prefix pass takes about 6.46 s, or 82%
 of its remaining end-to-end latency. The [stacked latency chart](figures/smolvla_stage_latency_stacked.png)
-and [2x3 stage-share chart](figures/smolvla_stage_share_donuts.png) show all
+the [single-scale comparison](figures/smolvla_stage_latency_all_devices.png),
+and the [2x3 stage-share chart](figures/smolvla_stage_share_donuts.png) show all
 six device/configuration paths in inference order. The Mac reference is a
 MacBook Pro with Apple M5 Pro (16-core GPU). An RKNN prefix partition is the
 next hardware-specific opportunity, but it has not yet passed export,
