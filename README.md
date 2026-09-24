@@ -13,8 +13,11 @@ succeeded in 80 steps (43.2 s); the RTX host CPU also succeeded in 70 steps
 success-rate estimates. With newly exported task-shaped 32-layer NPU graphs,
 RK3588 also **completed the task** in 70 steps (230.3 s, 3.24 s/action).
 RK3588 CPU and NPU-vision/CPU hybrid both completed real closed-loop steps,
-but full episodes were not run: matched single-step inference took 65.2 s
-and 59.0 s, respectively. The full NPU path is a large improvement over
+but full episodes were not completed: matched single-step inference took 65.2 s
+and 59.0 s, respectively. The successful RK configuration runs vision,
+prefill, and denoising on NPU, but token/state/action embeddings, cache
+handling, denoising-loop updates, and preprocessing still run on CPU. It is
+**not a pure-NPU result**. This configuration is a large improvement over
 those partial paths, but is still too slow for responsive control; its two
 vision encoders consume 54% of inference time. The older base-model full-NPU
 graphs cannot be used for this LIBERO task because the prompt, image count,

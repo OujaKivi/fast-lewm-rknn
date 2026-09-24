@@ -35,6 +35,20 @@ same environment over a persistent authenticated connection.
 | RK3588, four CPU threads, remote inference | 1 step | Action applied; no task verdict | 65.2 s | 66.3 s |
 | RK3588, NPU vision + four CPU threads, remote inference | 1 step | Action applied; no task verdict | 59.0 s | 60.2 s |
 
+There is **no RK3588 pure-NPU result** in this table. The successful RKNN
+deployment offloads both image encoders, the 32-layer prefix transformer
+(prefill), and the 32-layer action-expert transformer plus action-output
+projection (denoising). On the RK3588 CPU, it still constructs the prefix
+from image/language embeddings and state projection; builds masks and position
+indices; packs/unpacks and transposes the 64 K/V cache tensors; computes the
+action/time embedding MLP at each of ten denoising steps; and samples noise
+and updates the action trajectory. The simulator host additionally performs
+observation/action preprocessing, normalization, transport, and environment
+stepping. Thus the NPU row means **NPU main networks plus CPU orchestration**,
+not a CPU-free model or end-to-end NPU execution. An NPU-only deployment would
+need new graphs/runtime integration for those remaining operations and has not
+been implemented or measured.
+
 The RTX CUDA/CPU, Mac, and RK CPU/vision-only paths also completed separate
 two-step smoke tests.
 Those earlier smoke tests did not seed the policy RNG and are retained only as
@@ -42,8 +56,9 @@ connection evidence. The full RTX CPU/CUDA, Mac, and task-shaped RK NPU
 results show that these deployments can participate in and finish this task.
 `1/1` is a capability check, **not** an estimated success rate. RK CPU and
 NPU-vision-only execute the real observation-action-environment loop, but
-their full task success is unmeasured: at roughly a minute per action, a
-75-step run would take over an hour. Even the complete RK NPU path runs at
+their full task success is unmeasured; the RK pure-CPU full-episode run was
+stopped at the user's request because each action took roughly a minute.
+Even the complete RK NPU path runs at
 only about 0.31 actions/s, so it is functional but not yet responsive control.
 The simulator waits for inference between steps; task success does not imply
 that a physical robot could tolerate the same wall-clock delay.
