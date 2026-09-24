@@ -1,0 +1,32 @@
+{
+  "model": "/root/smolvla-libero-rknn/denoise32/denoise_step_addmask.rknn",
+  "input_count": 65,
+  "layout": "nhwc",
+  "layers": 32,
+  "output_shape": [
+    1,
+    50,
+    32
+  ],
+  "against_float32_reference": {
+    "cosine": 0.999998854470822,
+    "mae": 0.001146649893562426,
+    "p99_abs_error": 0.004823933243751526,
+    "max_abs_error": 0.010810494422912598
+  },
+  "against_original_reference": {
+    "cosine": 0.9999804713057954,
+    "mae": 0.005090924480900867,
+    "p99_abs_error": 0.016430001854896546,
+    "max_abs_error": 0.023856043815612793
+  },
+  "latency_ms_median": 106.82483098935336,
+  "latency_ms_p95": 107.99334403127432,
+  "latency_ms_samples": [
+    108.003,
+    105.726,
+    105.653,
+    107.954,
+    106.825
+  ]
+}

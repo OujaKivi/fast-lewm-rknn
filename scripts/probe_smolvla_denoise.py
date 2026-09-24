@@ -60,9 +60,11 @@ def main():
     parser.add_argument("--vlm-path", required=True)
     parser.add_argument("--output-dir", default=None)
     parser.add_argument("--layers", type=int, default=16)
+    parser.add_argument("--prompt", default="Pick up the object.")
+    parser.add_argument("--all-images", action="store_true")
     args = parser.parse_args()
-    if not 1 <= args.layers <= 16:
-        parser.error("--layers must be between 1 and 16")
+    if not 1 <= args.layers <= 32:
+        parser.error("--layers must be between 1 and 32")
 
     config = PreTrainedConfig.from_pretrained(args.model_path)
     config.device = "cpu"
@@ -72,10 +74,11 @@ def main():
     image_key = next(iter(config.image_features))
     image = torch.linspace(0, 1, 256).repeat(1, 3, 256, 1)
     tokens = policy.model.vlm_with_expert.processor.tokenizer(
-        "Pick up the object.", return_tensors="pt", padding=True
+        args.prompt, return_tensors="pt", padding=True
     )
+    image_keys = list(config.image_features) if args.all_images else [image_key]
     batch = {
-        image_key: image,
+        **{key: image for key in image_keys},
         OBS_STATE: torch.zeros(1, config.input_features[OBS_STATE].shape[0]),
         OBS_LANGUAGE_TOKENS: tokens["input_ids"],
         OBS_LANGUAGE_ATTENTION_MASK: tokens["attention_mask"].bool(),

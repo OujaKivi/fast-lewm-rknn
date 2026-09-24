@@ -7,6 +7,9 @@ Cortex-A76 cores. The checkpoint is the
 official `lerobot/smolvla_base`, with LeRobot 0.4.4, RKNN Toolkit2/Lite2
 2.3.2, and NPU driver 0.9.8.
 
+For task-level LIBERO closed-loop results with a different checkpoint and
+task-shaped 32-layer graphs, see [the LIBERO evaluation](smolvla_libero_closed_loop.md).
+
 ## Reproduce
 
 Set `MODEL_PATH` to the local SmolVLA checkpoint directory and `VLM_PATH`

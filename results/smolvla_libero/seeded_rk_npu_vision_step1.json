@@ -1,0 +1,24 @@
+{
+  "checkpoint": "/home/wang/smolvla-smoke/models/smolvla_libero",
+  "suite": "libero_spatial",
+  "task_id": 0,
+  "seed": 1000,
+  "device": "remote:192.168.77.2:47651",
+  "steps": 1,
+  "success": false,
+  "reward_sum": 0.0,
+  "elapsed_s": 60.227,
+  "inference_s_total": 59.033,
+  "inference_s_mean": 59.033,
+  "inference_s_p95": 59.033,
+  "first_action": [
+    0.16892531514167786,
+    0.09688065946102142,
+    0.04702150076627731,
+    -0.017127934843301773,
+    -0.008262624964118004,
+    0.0074239810928702354,
+    -0.9965806007385254
+  ],
+  "vision_s_total": 1.763
+}

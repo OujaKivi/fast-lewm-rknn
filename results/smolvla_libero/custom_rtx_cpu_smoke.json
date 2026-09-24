@@ -1,0 +1,14 @@
+{
+  "checkpoint": "/home/wang/smolvla-smoke/models/smolvla_libero",
+  "suite": "libero_spatial",
+  "task_id": 0,
+  "seed": 1000,
+  "device": "cpu",
+  "steps": 2,
+  "success": false,
+  "reward_sum": 0.0,
+  "elapsed_s": 10.773,
+  "inference_s_total": 9.405,
+  "inference_s_mean": 4.703,
+  "inference_s_p95": 4.712
+}

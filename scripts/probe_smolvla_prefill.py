@@ -42,11 +42,13 @@ def main():
     parser.add_argument("--vlm-path", required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--layers", type=int, default=16)
+    parser.add_argument("--prompt", default="Pick up the object.")
+    parser.add_argument("--all-images", action="store_true")
     parser.add_argument("--invert-image", action="store_true")
     parser.add_argument("--reference-only", action="store_true")
     args = parser.parse_args()
-    if not 1 <= args.layers <= 16:
-        parser.error("--layers must be between 1 and 16")
+    if not 1 <= args.layers <= 32:
+        parser.error("--layers must be between 1 and 32")
 
     torch.set_num_threads(4)
     config = PreTrainedConfig.from_pretrained(args.model_path)
@@ -62,10 +64,11 @@ def main():
     if args.invert_image:
         image = 1 - image
     tokens = policy.model.vlm_with_expert.processor.tokenizer(
-        "Pick up the object.", return_tensors="pt", padding=True
+        args.prompt, return_tensors="pt", padding=True
     )
+    image_keys = list(config.image_features) if args.all_images else [image_key]
     batch = {
-        image_key: image.unsqueeze(0),
+        **{key: image.unsqueeze(0) for key in image_keys},
         OBS_STATE: torch.zeros(1, config.input_features[OBS_STATE].shape[0]),
         OBS_LANGUAGE_TOKENS: tokens["input_ids"],
         OBS_LANGUAGE_ATTENTION_MASK: tokens["attention_mask"].bool(),
@@ -76,7 +79,7 @@ def main():
         prefix, pad_mask, att_mask = policy.model.embed_prefix(
             images, img_masks, tokens["input_ids"], tokens["attention_mask"].bool(), state
         )
-    if tuple(prefix.shape) != (1, 70, 960) or not bool(pad_mask.all()):
+    if prefix.shape[0] != 1 or not bool(pad_mask.all()):
         raise RuntimeError(f"Unexpected prefill shape or mask: {tuple(prefix.shape)}")
 
     model = policy.model.float()

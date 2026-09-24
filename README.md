@@ -2,7 +2,26 @@
 
 Fast-LeWM PushT planning on RK3588 with a paper-aligned terminal-only CEM rollout and heterogeneous CPU/NPU execution.
 
-## SmolVLA Feasibility Smoke
+## SmolVLA Closed-Loop Task Check
+
+Unlike the synthetic `smolvla_base` inference measurements below, this test
+uses a LIBERO-compatible SmolVLA checkpoint and actually feeds actions back
+to a LIBERO simulator. On the same `libero_spatial` task 0 and initial state,
+RTX 5060 CUDA succeeded in 76 steps (21.3 s) and remote Mac M5 Pro MPS
+succeeded in 80 steps (43.2 s); the RTX host CPU also succeeded in 70 steps
+(345.3 s). These are **one episode per deployment**, not
+success-rate estimates. With newly exported task-shaped 32-layer NPU graphs,
+RK3588 also **completed the task** in 70 steps (230.3 s, 3.24 s/action).
+RK3588 CPU and NPU-vision/CPU hybrid both completed real closed-loop steps,
+but full episodes were not run: matched single-step inference took 65.2 s
+and 59.0 s, respectively. The full NPU path is a large improvement over
+those partial paths, but is still too slow for responsive control; its two
+vision encoders consume 54% of inference time. The older base-model full-NPU
+graphs cannot be used for this LIBERO task because the prompt, image count,
+expert width, and layer count differ. Protocol, raw results, and limitations are in
+[the closed-loop evaluation report](docs/smolvla_libero_closed_loop.md).
+
+## SmolVLA Base Inference Smoke
 
 As a possible next model, the official `lerobot/smolvla_base` checkpoint was
 run through the complete image + language + state to action-chunk inference
