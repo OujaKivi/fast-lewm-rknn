@@ -15,14 +15,14 @@ OUT = ROOT / "figures"
 
 STAGES = (
     ("Vision", "vision_ms", "#0072B2"),
-    ("Prefix", "prefix_ms", "#009E73"),
+    ("Prefill", "prefill_ms", "#009E73"),
     ("Denoising", "denoise_ms", "#D55E00"),
     ("Other", "other_ms", "#747474"),
 )
 CONFIGS = (
     ("rk3588_cpu", "RK3588\nCPU", "RK3588 CPU"),
-    ("rk3588_npu_vision_cpu_denoise", "NPU vision\nCPU denoising", "RK3588 NPU vision + CPU denoising"),
-    ("rk3588_npu_vision_denoise", "NPU vision\nNPU denoising", "RK3588 NPU vision + NPU denoising"),
+    ("rk3588_npu_vision_denoise", "NPU vision\nCPU prefill\nNPU denoising", "RK3588 NPU vision + CPU prefill + NPU denoising"),
+    ("rk3588_npu_vision_prefill_denoise", "Vision + prefill\n+ denoising\non NPU", "RK3588 NPU vision + prefill\n+ NPU denoising"),
     ("i5_cpu", "i5-13490F\nCPU", "i5-13490F CPU"),
     ("mac_mps", "Apple M5 Pro\nMPS", "MacBook Pro (Apple M5 Pro, 16-core GPU)"),
     ("rtx5060_cuda", "RTX 5060\nCUDA", "RTX 5060 CUDA"),
@@ -88,7 +88,7 @@ def stacked_bars(profiles):
                     ax.text(index, bottom + value / 2, fmt_time(value),
                             ha="center", va="center", color="white",
                             fontsize=9.5, weight="bold")
-                elif panel == 2 and stage == "Prefix":
+                elif panel == 2 and stage == "Prefill":
                     on_right = index == 0
                     edge = index + width / 2 if on_right else index - width / 2
                     ax.annotate(fmt_time(value), xy=(edge, bottom + value / 2),
@@ -114,7 +114,7 @@ def stacked_bars(profiles):
         ax.tick_params(axis="y", labelsize=9)
     fig.suptitle("SmolVLA inference latency by stage", fontsize=18, weight="bold", y=0.985)
     fig.text(0.5, 0.925,
-             "RK3588 NPU denoising removes the largest bottleneck; multimodal prefix now dominates.",
+             "RK3588 NPU prefill removes the remaining transformer bottleneck; vision now dominates.",
              ha="center", fontsize=11, color="#333333")
     fig.legend(handles=[Patch(facecolor=color, label=f"{index + 1}  {name}")
                         for index, (name, _, color) in enumerate(STAGES)],
@@ -184,11 +184,11 @@ def donut_shares(profiles):
     fig.suptitle("SmolVLA: share of inference time within each device", fontsize=18,
                  weight="bold", y=0.985)
     fig.text(0.5, 0.935,
-             "Slices follow execution order clockwise: vision, prefix, denoising, other.",
+             "Slices follow execution order clockwise: vision, prefill, denoising, other.",
              ha="center", fontsize=11, color="#333333")
     fig.text(0.5, 0.035,
              "Warmed stage medians; percentages use end-to-end median as denominator. "
-             "The RK3588 NPU path spends about 82% of its time on the prefix.",
+             "With RK3588 vision, prefill and denoising on NPU, vision is now the largest stage.",
              ha="center", fontsize=9.5, color="#555555")
     fig.subplots_adjust(left=0.035, right=0.985, top=0.89, bottom=0.095,
                         wspace=0.13, hspace=0.30)

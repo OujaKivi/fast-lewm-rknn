@@ -1,9 +1,11 @@
 {
   "device": "cpu",
   "vision_rknn": true,
-  "denoise_rknn": false,
+  "prefill_rknn": true,
+  "denoise_rknn": true,
+  "inverted_image": true,
   "warmups": 1,
-  "repeats": 2,
+  "repeats": 3,
   "threads": 4,
   "image_shape": [
     1,
@@ -19,42 +21,48 @@
   "action_finite": true,
   "denoise_steps": [
     10,
+    10,
     10
   ],
   "timing": {
     "vision_ms": {
-      "median_ms": 878.613,
+      "median_ms": 876.739,
       "samples_ms": [
-        877.595,
-        879.631
+        876.598,
+        877.353,
+        876.739
       ]
     },
     "prefill_ms": {
-      "median_ms": 6463.654,
+      "median_ms": 65.349,
       "samples_ms": [
-        6457.637,
-        6469.671
+        65.346,
+        65.349,
+        81.957
       ]
     },
     "denoise_ms": {
-      "median_ms": 29274.53,
+      "median_ms": 525.743,
       "samples_ms": [
-        29267.951,
-        29281.109
+        513.629,
+        525.743,
+        581.05
       ]
     },
     "other_ms": {
-      "median_ms": 13.14,
+      "median_ms": 15.771,
       "samples_ms": [
-        13.191,
-        13.089
+        13.93,
+        15.987,
+        15.771
       ]
     },
     "total_ms": {
-      "median_ms": 36629.937,
+      "median_ms": 1484.432,
       "samples_ms": [
-        36616.375,
-        36643.5
+        1469.502,
+        1484.432,
+        1555.517
       ]
     }
   }

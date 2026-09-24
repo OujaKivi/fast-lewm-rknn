@@ -13,17 +13,18 @@ used synthetic U8 pixels and placeholder token IDs, so its shape and
 checkpoint were comparable but its action values were not. A separate
 default-mode run with one warmup and three measured calls had 78,059 ms p50.
 
-| RK3588 path | Vision | Multimodal prefix | 10-step denoising | End to end |
+| RK3588 path | Vision | Multimodal prefill | 10-step denoising | End to end |
 |---|---:|---:|---:|---:|
 | PyTorch CPU, matched profile median | 3,968 ms | 6,469 ms | 29,309 ms | 39,759 ms |
-| Existing RKNN hybrid, matched profile median | 879 ms | 6,462 ms | 516 ms | 7,872 ms |
+| Earlier RKNN hybrid with CPU prefill, matched profile median | 879 ms | 6,462 ms | 516 ms | 7,872 ms |
 | vla.cpp BF16, one phase-timed call | 44,911 ms | 5,227 ms | 24,589 ms | 74,769 ms |
 
-The ggml CPU prefix is about 1.24x faster than PyTorch's prefix in this
+The ggml CPU prefill is about 1.24x faster than PyTorch's prefill in this
 shape-level pilot, but the complete vla.cpp CPU path is about 9.5x slower
-than the existing RKNN hybrid. `vla.cpp` can accept precomputed image
-embeddings, but its public prediction API does not expose the prefix K/V
-cache needed by our RKNN denoising graph. Combining its prefix with our NPU
+than the earlier RKNN hybrid and about 50x slower than the subsequent
+1.50 s NPU-prefill path. `vla.cpp` can accept precomputed image
+embeddings, but its public prediction API does not expose the prefill K/V
+cache needed by our RKNN denoising graph. Combining its prefill with our NPU
 graphs would require an explicit cache-layout/precision bridge and numerical
 validation; the table does not demonstrate that such a hybrid is faster.
 
@@ -42,8 +43,8 @@ and `0.20120` MAE versus the i5 PyTorch CPU result. Feeding the exact
 PyTorch vision connector output through vla.cpp's public
 `precomputed_img_emb` input raised action cosine to `0.999991` and reduced
 MAE to `0.00249`; vla.cpp then took 29,810 ms, including 5,216 ms of
-prefix and 24,556 ms of denoising. This isolates the large parity gap to
-the vla.cpp vision path for this checkpoint/input, not its prefix or action
+prefill and 24,556 ms of denoising. This isolates the large parity gap to
+the vla.cpp vision path for this checkpoint/input, not its prefill or action
 expert. The two action arrays and the fixture generator are saved as
 `results/smolvla_vla_cpp_rk3588_actions.npy`,
 `results/smolvla_vla_cpp_rk3588_precomputed_vision_actions.npy`, and
@@ -57,9 +58,9 @@ overload allowed the build to finish. No upstream source is vendored into
 this repository. The board needed `libzmq3-dev`, protobuf development tools,
 and the `cppzmq` header; the Ubuntu 22.04 image did not provide `cppzmq-dev`.
 
-**Conclusion:** vla.cpp is a useful C++ reference and its prefix implementation
+**Conclusion:** vla.cpp is a useful C++ reference and its prefill implementation
 suggests some CPU headroom, but using it wholesale neither accelerates the
 current RK3588 deployment nor preserves this checkpoint's action output
-through its vision path. The next meaningful optimization target is still
-the approximately 6.46 s multimodal prefix, preferably with a validated
-RKNN partition rather than a full runtime replacement.
+through its vision path. The former 6.46 s multimodal prefill bottleneck has
+since been addressed by the validated RKNN partition documented in
+`docs/smolvla_rknn.md`.

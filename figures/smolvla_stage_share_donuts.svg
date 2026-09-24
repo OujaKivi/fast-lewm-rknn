@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-09-24T14:53:15.366295</dc:date>
+    <dc:date>2026-09-24T16:36:47.673160</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -83,7 +83,7 @@ z
    </g>
    <g id="PathCollection_1">
     <defs>
-     <path id="m1fabd0c09e" d="M -4 4
+     <path id="m8a0811db6f" d="M -4 4
 L 4 4
 L 4 -4
 L -4 -4
@@ -91,12 +91,12 @@ z
 " style="stroke: #0072b2"/>
     </defs>
     <g>
-     <use xlink:href="#m1fabd0c09e" x="198.064833" y="127.550387" style="fill: #0072b2; stroke: #0072b2"/>
+     <use xlink:href="#m8a0811db6f" x="198.064833" y="127.550387" style="fill: #0072b2; stroke: #0072b2"/>
     </g>
    </g>
    <g id="PathCollection_2">
     <defs>
-     <path id="mf29f2202c0" d="M -4 4
+     <path id="mecfc906900" d="M -4 4
 L 4 4
 L 4 -4
 L -4 -4
@@ -104,12 +104,12 @@ z
 " style="stroke: #009e73"/>
     </defs>
     <g>
-     <use xlink:href="#mf29f2202c0" x="198.064833" y="168.159926" style="fill: #009e73; stroke: #009e73"/>
+     <use xlink:href="#mecfc906900" x="198.064833" y="168.159926" style="fill: #009e73; stroke: #009e73"/>
     </g>
    </g>
    <g id="PathCollection_3">
     <defs>
-     <path id="mf62a7a0c2a" d="M -4 4
+     <path id="m663c1d2f31" d="M -4 4
 L 4 4
 L 4 -4
 L -4 -4
@@ -117,12 +117,12 @@ z
 " style="stroke: #d55e00"/>
     </defs>
     <g>
-     <use xlink:href="#mf62a7a0c2a" x="198.064833" y="208.769465" style="fill: #d55e00; stroke: #d55e00"/>
+     <use xlink:href="#m663c1d2f31" x="198.064833" y="208.769465" style="fill: #d55e00; stroke: #d55e00"/>
     </g>
    </g>
    <g id="PathCollection_4">
     <defs>
-     <path id="m383ccb2be1" d="M -4 4
+     <path id="ma55c9be1ee" d="M -4 4
 L 4 4
 L 4 -4
 L -4 -4
@@ -130,7 +130,7 @@ z
 " style="stroke: #747474"/>
     </defs>
     <g>
-     <use xlink:href="#m383ccb2be1" x="198.064833" y="249.379004" style="fill: #747474; stroke: #747474"/>
+     <use xlink:href="#ma55c9be1ee" x="198.064833" y="249.379004" style="fill: #747474; stroke: #747474"/>
     </g>
    </g>
    <g id="text_1">
@@ -143,7 +143,7 @@ z
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="212.684267" y="130.148434" transform="rotate(-0 212.684267 130.148434)">Vision: 3.97 s  (10.0%)</text>
    </g>
    <g id="text_4">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="212.684267" y="170.757973" transform="rotate(-0 212.684267 170.757973)">Prefix: 6.47 s  (16.3%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="212.684267" y="170.757973" transform="rotate(-0 212.684267 170.757973)">Prefill: 6.47 s  (16.3%)</text>
    </g>
    <g id="text_5">
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="212.684267" y="211.367512" transform="rotate(-0 212.684267 211.367512)">Denoising: 29.31 s  (73.7%)</text>
@@ -157,224 +157,213 @@ z
   </g>
   <g id="axes_2">
    <g id="patch_6">
-    <path d="M 535.256967 109.772224
-C 533.280113 109.472016 531.292648 109.246407 529.298803 109.095876
-C 527.304958 108.945345 525.306149 108.869999 523.30663 108.869999
+    <path d="M 574.407248 127.439763
+C 567.299092 121.487586 559.205328 116.822854 550.491687 113.656352
+C 541.778046 110.489849 532.577783 108.869999 523.30663 108.869999
 L 523.30663 135.672295
-C 524.632841 135.672295 525.958582 135.722269 527.28103 135.822111
-C 528.603478 135.921953 529.921695 136.071592 531.232874 136.270709
+C 529.455864 135.672295 535.558079 136.746685 541.337535 138.846916
+C 547.116991 140.947148 552.485304 144.041103 557.199897 147.988975
 z
 " style="fill: #0072b2; stroke: #ffffff; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
-    <path d="M 599.074073 164.080064
-C 594.539472 149.990241 586.163266 137.440734 574.890907 127.848047
-C 563.618547 118.255361 549.890732 111.994526 535.256967 109.772224
-L 531.232874 136.270709
-C 540.938943 137.744685 550.044126 141.89728 557.520691 148.259776
-C 564.997256 154.622272 570.552902 162.945925 573.560546 172.291216
+    <path d="M 490.686918 115.861183
+C 482.859371 119.377987 475.651817 124.137618 469.343806 129.955471
+C 463.035795 135.773325 457.709949 142.573198 453.572833 150.091355
+C 449.435717 157.609512 446.541519 165.747481 445.002492 174.189626
+C 443.463464 182.631771 443.299766 191.267518 444.517745 199.761925
+C 445.735725 208.256331 448.31943 216.498139 452.168649 224.167684
+C 456.017868 231.837229 461.082186 238.834058 467.165179 244.886794
+C 473.248172 250.93953 480.270166 255.968895 487.95881 259.779823
+C 495.647454 263.59075 503.902043 266.133326 512.402417 267.308933
+C 520.902791 268.484541 529.537614 268.277783 537.97198 266.696679
+C 546.406346 265.115574 554.529782 262.180833 562.027216 258.006279
+C 569.52465 253.831726 576.297882 248.472039 582.084209 242.135096
+C 587.870535 235.798153 592.594167 228.566956 596.071896 220.721969
+C 599.549625 212.876982 601.7359 204.520959 602.545926 195.977993
+C 603.355951 187.435026 602.779117 178.817011 600.837797 170.458202
+C 598.896476 162.099393 595.616096 154.109272 591.123889 146.797741
+C 586.631681 139.486211 580.986483 132.949035 574.407248 127.439763
+L 557.199897 147.988975
+C 561.563675 151.643084 565.307939 155.978966 568.287465 160.828451
+C 571.26699 165.677935 573.442752 170.977505 574.730363 176.521613
+C 576.017973 182.065721 576.400567 187.781752 575.863306 193.448005
+C 575.326044 199.114258 573.875963 204.656518 571.569306 209.859826
+C 569.262649 215.063133 566.129628 219.859336 562.291759 224.06241
+C 558.453889 228.265484 553.961439 231.820379 548.988651 234.589215
+C 544.015863 237.358052 538.62787 239.304564 533.033648 240.353256
+C 527.439426 241.401947 521.712247 241.539083 516.074244 240.759343
+C 510.43624 239.979603 504.961258 238.293201 499.861647 235.765545
+C 494.762037 233.237889 490.104591 229.902085 486.069953 225.887516
+C 482.035315 221.872946 478.676329 217.232192 476.123275 212.145249
+C 473.570222 207.058306 471.85654 201.591801 471.048696 195.957756
+C 470.240853 190.323711 470.349428 184.595919 471.370212 178.996537
+C 472.390995 173.397156 474.310616 167.999523 477.054622 163.01299
+C 479.798627 158.026458 483.331076 153.516337 487.514961 149.657557
+C 491.698846 145.798777 496.479366 142.641879 501.671107 140.309304
 z
 " style="fill: #009e73; stroke: #ffffff; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
-    <path d="M 523.12723 108.870202
-C 514.783432 108.889008 506.494248 110.219704 498.563818 112.813464
-C 490.633388 115.407223 483.159906 119.231932 476.417584 124.147256
-C 469.675262 129.062579 463.747583 135.007657 458.852041 141.764356
-C 453.9565 148.521055 450.153711 156.005714 447.583205 163.943712
-C 445.012699 171.88171 443.706304 180.174759 443.711952 188.518575
-C 443.7176 196.862392 445.035222 205.153665 447.616472 213.088175
-C 450.197723 221.022686 454.010641 228.50219 458.915326 235.252255
-C 463.820011 242.002319 469.755733 247.939367 476.504704 252.845558
-C 483.253674 257.751749 490.732327 261.566336 498.666261 264.149357
-C 506.600195 266.732378 514.891174 268.05185 523.234989 268.05936
-C 531.578804 268.06687 539.872144 266.762325 547.810716 264.19359
-C 555.749287 261.624855 563.234795 257.823737 569.992586 252.929703
-C 576.750377 248.035669 582.696777 242.109317 587.613605 235.368092
-C 592.530433 228.626867 596.356809 221.154239 598.952339 213.224388
-C 601.547868 205.294537 602.880414 197.00565 602.901082 188.661857
-C 602.92175 180.318064 601.630285 172.022676 599.074073 164.080064
-L 573.560546 172.291216
-C 575.255993 177.559275 576.112577 183.061317 576.098868 188.595466
-C 576.08516 194.129614 575.201329 199.627345 573.479804 204.88694
-C 571.758279 210.146535 569.220377 215.102871 565.959215 219.574091
-C 562.698054 224.045312 558.754013 227.976056 554.271805 231.222099
-C 549.789596 234.468141 544.824719 236.989291 539.55934 238.693044
-C 534.293961 240.396796 528.793276 241.262056 523.259113 241.257075
-C 517.72495 241.252094 512.225832 240.376934 506.963528 238.663705
-C 501.701225 236.950477 496.740894 234.420394 492.264536 231.166288
-C 487.788178 227.912181 483.851219 223.974344 480.598112 219.49726
-C 477.345005 215.020176 474.816028 210.059281 473.103974 204.796595
-C 471.39192 199.53391 470.517987 194.034596 470.514241 188.500432
-C 470.510495 182.966268 471.376982 177.465777 473.081909 172.200778
-C 474.786837 166.935779 477.309094 161.971465 480.556138 157.489981
-C 483.803181 153.008497 487.734804 149.065333 492.206753 145.805169
-C 496.678701 142.545006 501.635602 140.008209 506.895581 138.287858
-C 512.15556 136.567507 517.653488 135.684903 523.18764 135.672429
+    <path d="M 522.479019 108.874302
+C 517.010825 108.931163 511.563019 109.551404 506.221989 110.72519
+C 500.880958 111.898977 495.675085 113.620072 490.686918 115.861183
+L 501.671107 140.309304
+C 504.979584 138.822853 508.43246 137.681311 511.97498 136.902779
+C 515.5175 136.124247 519.130841 135.712862 522.757705 135.675149
 z
 " style="fill: #d55e00; stroke: #ffffff; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 523.30663 108.869999
-C 523.27673 108.869999 523.24683 108.870016 523.21693 108.87005
-C 523.18703 108.870084 523.15713 108.870134 523.12723 108.870202
-L 523.18764 135.672429
-C 523.207471 135.672384 523.227303 135.672351 523.247135 135.672329
-C 523.266966 135.672306 523.286798 135.672295 523.30663 135.672295
+C 523.168692 108.869999 523.030755 108.870358 522.892819 108.871075
+C 522.754883 108.871792 522.61695 108.872868 522.479019 108.874302
+L 522.757705 135.675149
+C 522.849189 135.674198 522.940675 135.673484 523.032163 135.673009
+C 523.123651 135.672533 523.21514 135.672295 523.30663 135.672295
 z
 " style="fill: #747474; stroke: #ffffff; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="PathCollection_5">
     <g>
-     <use xlink:href="#m1fabd0c09e" x="624.830477" y="127.550387" style="fill: #0072b2; stroke: #0072b2"/>
+     <use xlink:href="#m8a0811db6f" x="624.830477" y="127.550387" style="fill: #0072b2; stroke: #0072b2"/>
     </g>
    </g>
    <g id="PathCollection_6">
     <g>
-     <use xlink:href="#mf29f2202c0" x="624.830477" y="168.159926" style="fill: #009e73; stroke: #009e73"/>
+     <use xlink:href="#mecfc906900" x="624.830477" y="168.159926" style="fill: #009e73; stroke: #009e73"/>
     </g>
    </g>
    <g id="PathCollection_7">
     <g>
-     <use xlink:href="#mf62a7a0c2a" x="624.830477" y="208.769465" style="fill: #d55e00; stroke: #d55e00"/>
+     <use xlink:href="#m663c1d2f31" x="624.830477" y="208.769465" style="fill: #d55e00; stroke: #d55e00"/>
     </g>
    </g>
    <g id="PathCollection_8">
     <g>
-     <use xlink:href="#m383ccb2be1" x="624.830477" y="249.379004" style="fill: #747474; stroke: #747474"/>
+     <use xlink:href="#ma55c9be1ee" x="624.830477" y="249.379004" style="fill: #747474; stroke: #747474"/>
     </g>
    </g>
    <g id="text_8">
-    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="523.30663" y="185.603888" transform="rotate(-0 523.30663 185.603888)">36.63 s</text>
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="523.30663" y="185.603888" transform="rotate(-0 523.30663 185.603888)">7.86 s</text>
    </g>
    <g id="text_9">
     <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="523.30663" y="205.422372" transform="rotate(-0 523.30663 205.422372)">total</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="130.148434" transform="rotate(-0 639.449911 130.148434)">Vision: 879 ms  (2.4%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="130.148434" transform="rotate(-0 639.449911 130.148434)">Vision: 872 ms  (11.1%)</text>
    </g>
    <g id="text_11">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="170.757973" transform="rotate(-0 639.449911 170.757973)">Prefix: 6.46 s  (17.6%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="170.757973" transform="rotate(-0 639.449911 170.757973)">Prefill: 6.46 s  (82.2%)</text>
    </g>
    <g id="text_12">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="211.367512" transform="rotate(-0 639.449911 211.367512)">Denoising: 29.27 s  (79.9%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="211.367512" transform="rotate(-0 639.449911 211.367512)">Denoising: 515 ms  (6.6%)</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="251.977051" transform="rotate(-0 639.449911 251.977051)">Other: 13.1 ms  (0.04%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="251.977051" transform="rotate(-0 639.449911 251.977051)">Other: 13.0 ms  (0.17%)</text>
    </g>
    <g id="text_14">
-    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: middle" x="622.8" y="78.001802" transform="rotate(-0 622.8 78.001802)">RK3588 NPU vision + CPU denoising</text>
+    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: middle" x="622.8" y="78.001802" transform="rotate(-0 622.8 78.001802)">RK3588 NPU vision + CPU prefill + NPU denoising</text>
    </g>
   </g>
   <g id="axes_3">
    <g id="patch_10">
-    <path d="M 1001.431446 127.657204
-C 994.305276 121.638303 986.176211 116.91869 977.416028 113.714212
-C 968.655846 110.509734 959.400161 108.869999 950.072274 108.869999
+    <path d="M 911.343808 258.001891
+C 921.964181 263.916866 933.799828 267.320909 945.939882 267.952047
+C 958.079936 268.583185 970.204763 266.424799 981.38124 261.643001
+C 992.557717 256.861202 1002.491581 249.581888 1010.418324 240.365273
+C 1018.345067 231.148659 1024.055987 220.237405 1027.111574 208.471241
+C 1030.167162 196.705076 1030.486965 184.393789 1028.046374 172.484853
+C 1025.605783 160.575918 1020.469054 149.38288 1013.031509 139.767156
+C 1005.593964 130.151431 996.051424 122.366188 985.138281 117.010579
+C 974.225139 111.65497 962.228722 108.869999 950.072274 108.869999
 L 950.072274 135.672295
-C 956.259138 135.672295 962.398113 136.759874 968.208438 138.885293
-C 974.018763 141.010712 979.410489 144.141068 984.137031 148.133196
+C 958.135224 135.672295 966.092031 137.519469 973.33034 141.071659
+C 980.568649 144.623849 986.897885 149.78753 991.83095 156.165307
+C 996.764016 162.543083 1000.17103 169.967037 1001.789789 177.865821
+C 1003.408549 185.764605 1003.196434 193.930254 1001.169769 201.734343
+C 999.143104 209.538431 995.355249 216.775487 990.097715 222.888548
+C 984.840182 229.001609 978.251394 233.829725 970.838425 237.001326
+C 963.425456 240.172928 955.383478 241.60451 947.331402 241.185898
+C 939.279325 240.767286 931.429151 238.509502 924.385026 234.586305
 z
 " style="fill: #0072b2; stroke: #ffffff; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_11">
-    <path d="M 917.325984 115.918185
-C 909.513692 119.444524 902.322051 124.209743 896.029354 130.029446
-C 889.736656 135.849148 884.425129 142.647286 880.300309 150.160797
-C 876.17549 157.674308 873.291278 165.80501 871.759282 174.238276
-C 870.227286 182.671542 870.067526 191.297171 871.286182 199.781383
-C 872.504839 208.265595 875.085988 216.497525 878.929749 224.158627
-C 882.773509 231.819729 887.829654 238.809894 893.902529 244.858627
-C 899.975404 250.90736 906.985653 255.935621 914.662005 259.748835
-C 922.338357 263.562049 930.580503 266.110388 939.069502 267.29524
-C 947.558501 268.480092 956.183425 268.285974 964.610522 266.720398
-C 973.037618 265.154823 981.156768 262.238247 988.653789 258.083532
-C 996.15081 253.928817 1002.927737 248.590253 1008.722327 242.274424
-C 1014.516918 235.958595 1019.253453 228.748031 1022.748646 220.921754
-C 1026.243839 213.095477 1028.452016 204.755756 1029.287731 196.225307
-C 1030.123445 187.694857 1029.575776 179.08515 1027.665915 170.729349
-C 1025.756055 162.373548 1022.50896 154.38084 1018.050281 147.060515
-C 1013.591602 139.740189 1007.979603 133.187902 1001.431446 127.657204
-L 984.137031 148.133196
-C 988.480196 151.801516 992.202441 156.147421 995.159728 161.002739
-C 998.117014 165.858057 1000.2707 171.159342 1001.537444 176.701456
-C 1002.804188 182.243569 1003.167438 187.954089 1002.613138 193.61204
-C 1002.058838 199.269991 1000.59423 204.801438 998.27599 209.992336
-C 995.95775 215.183234 992.816171 219.965751 988.97282 224.154822
-C 985.129469 228.343892 980.634568 231.884776 975.662054 234.640454
-C 970.68954 237.396133 965.30439 239.330596 959.714989 240.368988
-C 954.125589 241.40738 948.404976 241.536132 942.774517 240.750261
-C 937.144058 239.964389 931.677329 238.274165 926.585871 235.744992
-C 921.494413 233.215819 916.844758 229.880748 912.816831 225.868834
-C 908.788904 221.856919 905.435338 217.220585 902.885905 212.139242
-C 900.336472 207.057899 898.624485 201.597945 897.816193 195.970662
-C 897.0079 190.343378 897.113864 184.622298 898.129984 179.028805
-C 899.146103 173.435313 901.059101 168.0425 903.794951 163.059049
-C 906.5308 158.075598 910.053752 153.566628 914.22748 149.706622
-C 918.401208 145.846615 923.171173 142.686011 928.352796 140.347112
+    <path d="M 893.855628 244.811873
+C 896.449361 247.399597 899.218676 249.805147 902.14381 252.011356
+C 905.068944 254.217564 908.142922 256.219171 911.343808 258.001891
+L 924.385026 234.586305
+C 922.26199 233.403888 920.223126 232.076292 918.282986 230.61299
+C 916.342846 229.149689 914.506056 227.554171 912.785723 225.837824
 z
 " style="fill: #009e73; stroke: #ffffff; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_12">
-    <path d="M 949.083261 108.876144
-C 943.618968 108.944047 938.176167 109.57451 932.841045 110.75755
-C 927.505924 111.940591 922.306793 113.669931 917.325984 115.918185
-L 928.352796 140.347112
-C 931.656394 138.855923 935.104797 137.708912 938.643398 136.924242
-C 942.181999 136.139572 945.79202 135.721408 949.416296 135.676371
+    <path d="M 941.746819 109.30661
+C 926.7903 110.879663 912.581482 116.659904 900.774278 125.97451
+C 888.967074 135.289117 880.038099 147.762092 875.026689 161.941575
+C 870.01528 176.121058 869.123729 191.434674 872.455814 206.099911
+C 875.787899 220.765148 883.209115 234.190023 893.855628 244.811873
+L 912.785723 225.837824
+C 905.72426 218.792719 900.802025 209.888465 898.591969 200.161522
+C 896.381913 190.43458 896.973247 180.277589 900.297141 170.87283
+C 903.621035 161.468071 909.543315 153.195179 917.374623 147.017124
+C 925.205932 140.839068 934.630148 137.005235 944.550289 135.961884
 z
 " style="fill: #d55e00; stroke: #ffffff; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_13">
     <path d="M 950.072274 108.869999
-C 949.907434 108.869999 949.742595 108.870512 949.577758 108.871536
-C 949.412921 108.87256 949.248088 108.874096 949.083261 108.876144
-L 949.416296 135.676371
-C 949.52562 135.675012 949.634948 135.673993 949.744279 135.673314
-C 949.853609 135.672635 949.962941 135.672295 950.072274 135.672295
+C 948.682076 108.869999 947.292117 108.906421 945.903826 108.979227
+C 944.515536 109.052033 943.129392 109.161198 941.746819 109.30661
+L 944.550289 135.961884
+C 945.467301 135.865437 946.386682 135.793032 947.307487 135.744742
+C 948.228292 135.696452 949.150204 135.672295 950.072274 135.672295
 z
 " style="fill: #747474; stroke: #ffffff; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="PathCollection_9">
     <g>
-     <use xlink:href="#m1fabd0c09e" x="1051.596121" y="127.550387" style="fill: #0072b2; stroke: #0072b2"/>
+     <use xlink:href="#m8a0811db6f" x="1051.596121" y="127.550387" style="fill: #0072b2; stroke: #0072b2"/>
     </g>
    </g>
    <g id="PathCollection_10">
     <g>
-     <use xlink:href="#mf29f2202c0" x="1051.596121" y="168.159926" style="fill: #009e73; stroke: #009e73"/>
+     <use xlink:href="#mecfc906900" x="1051.596121" y="168.159926" style="fill: #009e73; stroke: #009e73"/>
     </g>
    </g>
    <g id="PathCollection_11">
     <g>
-     <use xlink:href="#mf62a7a0c2a" x="1051.596121" y="208.769465" style="fill: #d55e00; stroke: #d55e00"/>
+     <use xlink:href="#m663c1d2f31" x="1051.596121" y="208.769465" style="fill: #d55e00; stroke: #d55e00"/>
     </g>
    </g>
    <g id="PathCollection_12">
     <g>
-     <use xlink:href="#m383ccb2be1" x="1051.596121" y="249.379004" style="fill: #747474; stroke: #747474"/>
+     <use xlink:href="#ma55c9be1ee" x="1051.596121" y="249.379004" style="fill: #747474; stroke: #747474"/>
     </g>
    </g>
    <g id="text_15">
-    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="950.072274" y="185.603888" transform="rotate(-0 950.072274 185.603888)">7.87 s</text>
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="950.072274" y="185.603888" transform="rotate(-0 950.072274 185.603888)">1.50 s</text>
    </g>
    <g id="text_16">
     <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="950.072274" y="205.422372" transform="rotate(-0 950.072274 205.422372)">total</text>
    </g>
    <g id="text_17">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="130.148434" transform="rotate(-0 1066.215555 130.148434)">Vision: 879 ms  (11.2%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="130.148434" transform="rotate(-0 1066.215555 130.148434)">Vision: 873 ms  (58.1%)</text>
    </g>
    <g id="text_18">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="170.757973" transform="rotate(-0 1066.215555 170.757973)">Prefix: 6.46 s  (82.1%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="170.757973" transform="rotate(-0 1066.215555 170.757973)">Prefill: 66.0 ms  (4.4%)</text>
    </g>
    <g id="text_19">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="211.367512" transform="rotate(-0 1066.215555 211.367512)">Denoising: 516 ms  (6.6%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="211.367512" transform="rotate(-0 1066.215555 211.367512)">Denoising: 539 ms  (35.9%)</text>
    </g>
    <g id="text_20">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="251.977051" transform="rotate(-0 1066.215555 251.977051)">Other: 15.6 ms  (0.20%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="251.977051" transform="rotate(-0 1066.215555 251.977051)">Other: 25.1 ms  (1.7%)</text>
    </g>
    <g id="text_21">
-    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: middle" x="1049.565644" y="78.001802" transform="rotate(-0 1049.565644 78.001802)">RK3588 NPU vision + NPU denoising</text>
+    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'" transform="translate(959.946504 64.198658)">RK3588 NPU vision + prefill</text>
+    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'" transform="translate(995.415019 78.001802)">+ NPU denoising</text>
    </g>
   </g>
   <g id="axes_4">
@@ -436,22 +425,22 @@ z
    </g>
    <g id="PathCollection_13">
     <g>
-     <use xlink:href="#m1fabd0c09e" x="198.064833" y="431.668996" style="fill: #0072b2; stroke: #0072b2"/>
+     <use xlink:href="#m8a0811db6f" x="198.064833" y="431.668996" style="fill: #0072b2; stroke: #0072b2"/>
     </g>
    </g>
    <g id="PathCollection_14">
     <g>
-     <use xlink:href="#mf29f2202c0" x="198.064833" y="472.278535" style="fill: #009e73; stroke: #009e73"/>
+     <use xlink:href="#mecfc906900" x="198.064833" y="472.278535" style="fill: #009e73; stroke: #009e73"/>
     </g>
    </g>
    <g id="PathCollection_15">
     <g>
-     <use xlink:href="#mf62a7a0c2a" x="198.064833" y="512.888074" style="fill: #d55e00; stroke: #d55e00"/>
+     <use xlink:href="#m663c1d2f31" x="198.064833" y="512.888074" style="fill: #d55e00; stroke: #d55e00"/>
     </g>
    </g>
    <g id="PathCollection_16">
     <g>
-     <use xlink:href="#m383ccb2be1" x="198.064833" y="553.497613" style="fill: #747474; stroke: #747474"/>
+     <use xlink:href="#ma55c9be1ee" x="198.064833" y="553.497613" style="fill: #747474; stroke: #747474"/>
     </g>
    </g>
    <g id="text_22">
@@ -464,7 +453,7 @@ z
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="212.684267" y="434.267043" transform="rotate(-0 212.684267 434.267043)">Vision: 655 ms  (28.4%)</text>
    </g>
    <g id="text_25">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="212.684267" y="474.876582" transform="rotate(-0 212.684267 474.876582)">Prefix: 274 ms  (11.9%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="212.684267" y="474.876582" transform="rotate(-0 212.684267 474.876582)">Prefill: 274 ms  (11.9%)</text>
    </g>
    <g id="text_26">
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="212.684267" y="515.486121" transform="rotate(-0 212.684267 515.486121)">Denoising: 1.38 s  (59.7%)</text>
@@ -535,22 +524,22 @@ z
    </g>
    <g id="PathCollection_17">
     <g>
-     <use xlink:href="#m1fabd0c09e" x="624.830477" y="431.668996" style="fill: #0072b2; stroke: #0072b2"/>
+     <use xlink:href="#m8a0811db6f" x="624.830477" y="431.668996" style="fill: #0072b2; stroke: #0072b2"/>
     </g>
    </g>
    <g id="PathCollection_18">
     <g>
-     <use xlink:href="#mf29f2202c0" x="624.830477" y="472.278535" style="fill: #009e73; stroke: #009e73"/>
+     <use xlink:href="#mecfc906900" x="624.830477" y="472.278535" style="fill: #009e73; stroke: #009e73"/>
     </g>
    </g>
    <g id="PathCollection_19">
     <g>
-     <use xlink:href="#mf62a7a0c2a" x="624.830477" y="512.888074" style="fill: #d55e00; stroke: #d55e00"/>
+     <use xlink:href="#m663c1d2f31" x="624.830477" y="512.888074" style="fill: #d55e00; stroke: #d55e00"/>
     </g>
    </g>
    <g id="PathCollection_20">
     <g>
-     <use xlink:href="#m383ccb2be1" x="624.830477" y="553.497613" style="fill: #747474; stroke: #747474"/>
+     <use xlink:href="#ma55c9be1ee" x="624.830477" y="553.497613" style="fill: #747474; stroke: #747474"/>
     </g>
    </g>
    <g id="text_29">
@@ -563,7 +552,7 @@ z
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="434.267043" transform="rotate(-0 639.449911 434.267043)">Vision: 68.6 ms  (29.5%)</text>
    </g>
    <g id="text_32">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="474.876582" transform="rotate(-0 639.449911 474.876582)">Prefix: 15.7 ms  (6.8%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="474.876582" transform="rotate(-0 639.449911 474.876582)">Prefill: 15.7 ms  (6.8%)</text>
    </g>
    <g id="text_33">
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="639.449911" y="515.486121" transform="rotate(-0 639.449911 515.486121)">Denoising: 143 ms  (61.4%)</text>
@@ -634,22 +623,22 @@ z
    </g>
    <g id="PathCollection_21">
     <g>
-     <use xlink:href="#m1fabd0c09e" x="1051.596121" y="431.668996" style="fill: #0072b2; stroke: #0072b2"/>
+     <use xlink:href="#m8a0811db6f" x="1051.596121" y="431.668996" style="fill: #0072b2; stroke: #0072b2"/>
     </g>
    </g>
    <g id="PathCollection_22">
     <g>
-     <use xlink:href="#mf29f2202c0" x="1051.596121" y="472.278535" style="fill: #009e73; stroke: #009e73"/>
+     <use xlink:href="#mecfc906900" x="1051.596121" y="472.278535" style="fill: #009e73; stroke: #009e73"/>
     </g>
    </g>
    <g id="PathCollection_23">
     <g>
-     <use xlink:href="#mf62a7a0c2a" x="1051.596121" y="512.888074" style="fill: #d55e00; stroke: #d55e00"/>
+     <use xlink:href="#m663c1d2f31" x="1051.596121" y="512.888074" style="fill: #d55e00; stroke: #d55e00"/>
     </g>
    </g>
    <g id="PathCollection_24">
     <g>
-     <use xlink:href="#m383ccb2be1" x="1051.596121" y="553.497613" style="fill: #747474; stroke: #747474"/>
+     <use xlink:href="#ma55c9be1ee" x="1051.596121" y="553.497613" style="fill: #747474; stroke: #747474"/>
     </g>
    </g>
    <g id="text_36">
@@ -662,7 +651,7 @@ z
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="434.267043" transform="rotate(-0 1066.215555 434.267043)">Vision: 31.2 ms  (25.5%)</text>
    </g>
    <g id="text_39">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="474.876582" transform="rotate(-0 1066.215555 474.876582)">Prefix: 8.2 ms  (6.7%)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="474.876582" transform="rotate(-0 1066.215555 474.876582)">Prefill: 8.2 ms  (6.7%)</text>
    </g>
    <g id="text_40">
     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #252525" x="1066.215555" y="515.486121" transform="rotate(-0 1066.215555 515.486121)">Denoising: 80.7 ms  (66.0%)</text>
@@ -678,10 +667,10 @@ z
    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle" x="609.84" y="20.877187" transform="rotate(-0 609.84 20.877187)">SmolVLA: share of inference time within each device</text>
   </g>
   <g id="text_44">
-   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #333333" x="609.84" y="41.04" transform="rotate(-0 609.84 41.04)">Slices follow execution order clockwise: vision, prefix, denoising, other.</text>
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #333333" x="609.84" y="41.04" transform="rotate(-0 609.84 41.04)">Slices follow execution order clockwise: vision, prefill, denoising, other.</text>
   </g>
   <g id="text_45">
-   <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #555555" x="609.84" y="650.16" transform="rotate(-0 609.84 650.16)">Warmed stage medians; percentages use end-to-end median as denominator. The RK3588 NPU path spends about 82% of its time on the prefix.</text>
+   <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #555555" x="609.84" y="650.16" transform="rotate(-0 609.84 650.16)">Warmed stage medians; percentages use end-to-end median as denominator. With RK3588 vision, prefill and denoising on NPU, vision is now the largest stage.</text>
   </g>
  </g>
 </svg>

@@ -29,7 +29,7 @@
         3930.017
       ]
     },
-    "prefix_ms": {
+    "prefill_ms": {
       "median_ms": 6469.026,
       "samples_ms": [
         6464.401,

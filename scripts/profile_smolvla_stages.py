@@ -38,12 +38,14 @@ def main():
     parser.add_argument("--device", choices=["cpu", "mps", "cuda"], required=True)
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--vision-rknn")
+    parser.add_argument("--prefill-rknn")
     parser.add_argument("--denoise-rknn")
+    parser.add_argument("--invert-image", action="store_true")
     parser.add_argument("--warmups", type=int, default=1)
     parser.add_argument("--repeats", type=int, default=2)
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
-    if args.vision_rknn or args.denoise_rknn:
+    if args.vision_rknn or args.prefill_rknn or args.denoise_rknn:
         if args.device != "cpu":
             parser.error("RKNN paths require --device cpu")
         from rknnlite.api import RKNNLite
@@ -59,6 +61,8 @@ def main():
     axis = torch.linspace(0, 1, side)
     image = torch.stack(torch.meshgrid(axis, axis, indexing="ij"), dim=0)
     image = torch.cat([image, (image[:1] + image[1:]) / 2], dim=0)
+    if args.invert_image:
+        image = 1 - image
     tokens = policy.model.vlm_with_expert.processor.tokenizer(
         "Pick up the object.", return_tensors="pt", padding=True
     )
@@ -85,6 +89,7 @@ def main():
         return runtime
 
     vision_runtime = load_rknn(args.vision_rknn) if args.vision_rknn else None
+    prefill_runtime = load_rknn(args.prefill_rknn) if args.prefill_rknn else None
     denoise_runtime = load_rknn(args.denoise_rknn) if args.denoise_rknn else None
     original_embed = policy.model.vlm_with_expert.embed_image
     original_forward = policy.model.vlm_with_expert.forward
@@ -106,14 +111,35 @@ def main():
         return output
 
     def timed_forward(*forward_args, **forward_kwargs):
-        is_prefix = forward_kwargs.get("fill_kv_cache", False)
-        if is_prefix:
+        is_prefill = forward_kwargs.get("fill_kv_cache", False)
+        if is_prefill:
             synchronize(args.device)
             started = time.perf_counter()
-        output = original_forward(*forward_args, **forward_kwargs)
-        if is_prefix:
+        if is_prefill and prefill_runtime is not None:
+            prefill_embs = forward_kwargs["inputs_embeds"][0]
+            if prefill_embs.shape != (1, 70, 960):
+                raise ValueError("Prefill RKNN requires [1,70,960] embeddings")
+            positions = forward_kwargs["position_ids"]
+            if not torch.equal(positions, torch.arange(70, device=positions.device)[None]):
+                raise ValueError("Prefill RKNN requires 70 valid tokens")
+            outputs = prefill_runtime.inference(
+                inputs=[prefill_embs.detach().float().numpy()], data_format=None
+            )
+            if len(outputs) != 32:
+                raise RuntimeError(f"Prefill RKNN produced {len(outputs)} outputs, expected 32")
+            cache = {
+                layer: {
+                    "key_states": torch.from_numpy(outputs[2 * layer].copy()),
+                    "value_states": torch.from_numpy(outputs[2 * layer + 1].copy()),
+                }
+                for layer in range(16)
+            }
+            output = ([None, None], cache)
+        else:
+            output = original_forward(*forward_args, **forward_kwargs)
+        if is_prefill:
             synchronize(args.device)
-            current["prefix_ms"] += (time.perf_counter() - started) * 1e3
+            current["prefill_ms"] += (time.perf_counter() - started) * 1e3
         return output
 
     def timed_denoise(prefix_pad_masks, past_key_values, x_t, timestep):
@@ -147,14 +173,14 @@ def main():
     try:
         with torch.inference_mode():
             for run in range(args.warmups + args.repeats):
-                current = {"vision_ms": 0.0, "prefix_ms": 0.0, "denoise_ms": 0.0, "denoise_steps": 0}
+                current = {"vision_ms": 0.0, "prefill_ms": 0.0, "denoise_ms": 0.0, "denoise_steps": 0}
                 synchronize(args.device)
                 started = time.perf_counter()
                 actions = policy.predict_action_chunk(batch.copy(), noise=noise)
                 synchronize(args.device)
                 current["total_ms"] = (time.perf_counter() - started) * 1e3
                 current["other_ms"] = current["total_ms"] - sum(
-                    current[name] for name in ("vision_ms", "prefix_ms", "denoise_ms")
+                    current[name] for name in ("vision_ms", "prefill_ms", "denoise_ms")
                 )
                 if run >= args.warmups:
                     records.append(current)
@@ -166,7 +192,9 @@ def main():
     result = {
         "device": args.device,
         "vision_rknn": bool(args.vision_rknn),
+        "prefill_rknn": bool(args.prefill_rknn),
         "denoise_rknn": bool(args.denoise_rknn),
+        "inverted_image": args.invert_image,
         "warmups": args.warmups,
         "repeats": args.repeats,
         "threads": args.threads,
@@ -176,7 +204,7 @@ def main():
         "denoise_steps": [record["denoise_steps"] for record in records],
         "timing": {
             name: summary([record[name] for record in records])
-            for name in ("vision_ms", "prefix_ms", "denoise_ms", "other_ms", "total_ms")
+            for name in ("vision_ms", "prefill_ms", "denoise_ms", "other_ms", "total_ms")
         },
     }
     path = Path(args.output)

@@ -36,7 +36,7 @@ with the GPU-host records in
 and [results/smolvla_rtx5060_host_cpu_smoke.json](results/smolvla_rtx5060_host_cpu_smoke.json).
 Available test machines are listed in [docs/test_hosts.md](docs/test_hosts.md).
 
-### RK3588 NPU Vision And Denoising
+### RK3588 NPU Vision, Prefill, And Denoising
 
 The SmolVLA vision encoder plus connector was exported as one static FP16
 RKNN graph (`[1,3,512,512] -> [1,64,960]`, 227 MB). The original SmolVLM
@@ -52,43 +52,42 @@ with an equivalent FP16-safe additive mask fixed the discrepancy: the full
 the original PyTorch output, at **43.0 ms** NPU median. The original masked
 graph had `0.9556` cosine and `0.200` MAE even after fixing cache layout.
 
-In one matched-input, fixed-noise, 10-step end-to-end run on RK3588:
+In the current matched-input, fixed-noise, 10-step stage profile on RK3588:
 
-| Path | Complete 50-action inference | Ten denoising steps |
+| Path | Prefill | Complete 50-action inference |
 |---|---:|---:|
-| CPU | 39.660 s | 29.255 s |
-| NPU vision + CPU denoising | 36.641 s | 29.286 s |
-| NPU vision + NPU denoising | **7.899 s** | **0.520 s** |
+| CPU | 6.469 s | 39.759 s |
+| NPU vision + CPU prefill + NPU denoising | 6.457 s | 7.856 s |
+| NPU vision + NPU prefill + NPU denoising | **66.0 ms** | **1.503 s** |
 
-The accelerated path is **5.0x faster end to end** than the matched CPU run.
-Its final action cosine is `0.999798` and MAE is `0.0119` versus CPU; this
-includes the independently measured NPU vision difference. Holding NPU vision
-fixed, switching only denoising to NPU yields action cosine `0.999991` and
-MAE `0.00289`. The language
-prefix, preprocessing and suffix embedding still run on CPU, so this is a
-hybrid path, not full-NPU SmolVLA. The fixed-shape denoising graph assumes
-70 valid prefix tokens and is not yet general across prompts. These are
-deterministic smoke tests, **not task-success or policy-equivalence evidence**.
+The NPU prefill is **98x faster** than the otherwise identical CPU prefill;
+the complete path is **5.23x faster** than that hybrid and **26.5x faster**
+than RK3588 pure CPU. All 32 K/V outputs were checked against PyTorch on two
+different synthetic images; the lowest per-output cosine was `0.99999790`.
+Holding NPU vision and denoising fixed, the final action cosine was
+`0.9999826` (MAE `0.00334`) on the original input and `0.9999665`
+(MAE `0.00468`) on the inverted-image input. Preprocessing and embeddings
+still run on CPU, so this is not fully NPU-resident SmolVLA. The fixed-shape
+graphs assume 70 valid prefill tokens and are not yet general across prompts.
+These are deterministic smoke tests, **not task-success or policy-equivalence evidence**.
 Reproduction and raw data are in [docs/smolvla_rknn.md](docs/smolvla_rknn.md).
 
 A [matched cross-device stage breakdown](docs/smolvla_rknn.md#matched-cross-device-stage-profile)
 compares RK3588 CPU/NPU, i5 CPU, Mac MPS, and RTX 5060 CUDA, including final
-action cosine similarity against the i5 CPU reference. After NPU denoising,
-the RK3588's cached language/image prefix pass takes about 6.46 s, or 82%
-of its remaining end-to-end latency. The [stacked latency chart](figures/smolvla_stage_latency_stacked.png)
+action cosine similarity against the i5 CPU reference. With prefill also on
+NPU, vision becomes the largest RK3588 stage at about 58% of 1.50 s. The
+[stacked latency chart](figures/smolvla_stage_latency_stacked.png),
 the [single-scale comparison](figures/smolvla_stage_latency_all_devices.png),
 and the [2x3 stage-share chart](figures/smolvla_stage_share_donuts.png) show all
 six device/configuration paths in inference order. The Mac reference is a
-MacBook Pro with Apple M5 Pro (16-core GPU). An RKNN prefix partition is the
-next hardware-specific opportunity, but it has not yet passed export,
-numerical-parity, or end-to-end speed validation.
+MacBook Pro with Apple M5 Pro (16-core GPU).
 
 An [RK3588 vla.cpp pilot](docs/vla_cpp_pilot.md) converted the same
 checkpoint and ran its ARM CPU backend. Its BF16 full path took about 75--78 s,
-so it does not beat the current 7.87 s RKNN hybrid. On matched inputs, its
+so it does not beat even the previous 7.87 s RKNN hybrid. On matched inputs, its
 full-path action cosine was only 0.948 versus PyTorch; supplying the exact
 PyTorch vision embedding raised it to 0.999991, isolating the main difference
-to the vla.cpp vision path. Its prefix stage was slightly faster than
+to the vla.cpp vision path. Its prefill stage was slightly faster than
 PyTorch's, but the cache cannot yet be handed to the existing RKNN denoising
 graph without a new, validated bridge.
 

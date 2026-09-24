@@ -24,20 +24,20 @@
     "repeats": 1,
     "total_ms": 74768.9,
     "vision_ms": 44911.1,
-    "prefix_ms": 5227.4,
+    "prefill_ms": 5227.4,
     "denoising_ms": 24588.9
   },
   "matched_fixture_full_path": {
     "total_ms": 74588.0,
     "vision_ms": 44785.3,
-    "prefix_ms": 5215.8,
+    "prefill_ms": 5215.8,
     "denoising_ms": 24541.6,
     "action_cosine_vs_i5_cpu": 0.9480929843564588,
     "action_mae_vs_i5_cpu": 0.2011970089872678
   },
   "matched_fixture_with_pytorch_vision_embedding": {
     "total_ms": 29809.6,
-    "prefix_ms": 5215.9,
+    "prefill_ms": 5215.9,
     "denoising_ms": 24556.0,
     "action_cosine_vs_i5_cpu": 0.9999909348840995,
     "action_mae_vs_i5_cpu": 0.0024865278974175453
