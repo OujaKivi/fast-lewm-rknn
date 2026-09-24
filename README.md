@@ -46,6 +46,8 @@
 
 RK3588 把两路图像编码、32 层 Prefill，以及 32 层动作专家与输出投影交给 NPU，但语言/状态/动作嵌入、掩码与 K/V 缓存整理、去噪循环更新仍由 CPU 完成，**不是纯 NPU 部署**。在该闭环回合中，双相机视觉编码约占推理耗时的 **54%**；3.236 s/动作虽能完成模拟任务，尚不足以视为响应式实体机器人控制。图中“其他/传输”是 CPU 辅助、搬运与调度的合计残差，不能全部归为 CPU 算子耗时。完整协议、图转换精度和原始数据见 [LIBERO 闭环评测](docs/smolvla_libero_closed_loop.md)。
 
+LIBERO 模拟器始终运行在 RTX 主机；RK3588 只接收模拟器图像并执行策略推理。base 与 LIBERO checkpoint 的视觉/连接器权重相同，因此 RK 上的两路图像各调用同一张视觉图；两种模型的 Prefill 和动作专家图不同，不能混用。
+
 ### 合成输入阶段剖析：不要与 LIBERO 混用
 
 以下三张较早的图使用的是 **`lerobot/smolvla_base`、合成输入、单相机、16 层动作专家**，用于看设备与算子分工；它们**不是 LIBERO 任务成功率或上述 32 层任务模型的耗时图**。该模型的 RK3588 NPU 视觉 + Prefill + 去噪路径约为 **1.503 s/次动作块**，但不应与 LIBERO 闭环的 3.236 s/动作直接比较。详细配置和原始数据见 [SmolVLA RKNN 阶段剖析](docs/smolvla_rknn.md)。
@@ -81,6 +83,7 @@ RK3588 把两路图像编码、32 层 Prefill，以及 32 层动作专家与输�
 ## 设备与复现
 
 - [机器交接文档](docs/test_hosts.md)：RK3588、RTX 主机与 Mac 的连接方式、运行环境、模型与 RKNN 图路径，以及相同噪声的完整重跑顺序。
+- [模型制品备份清单](docs/artifact_backups.md)：按 Fast-LeWM、SmolVLA base 和 SmolVLA LIBERO 区分已验证图；Mac 与 RTX 主机各存一份板外快照，Git 仅保存 [SHA-256 清单](artifacts/2026-09-24.sha256)与再生成说明。
 - [SmolVLA LIBERO 评测脚本](scripts/eval_smolvla_libero.py)：`--matched-noise` 使用评测端的独立 CPU 随机数生成器；[四组闭环原始记录](results/smolvla_libero/)位于 `matched_*_full.json`。
 - [Fast-LeWM 原始计时](results/latest_benchmark.json)、[候选级协同任务结果](results/pusht_dataset_board_npu_hybrid_tiered_50.json)和 [研究计划](RESEARCH_PLAN.md)保留了具体实验口径。
 - [LIBERO 图表脚本](scripts/plot_smolvla_libero_summary.py)读取上述闭环 JSON；[合成输入图表脚本](scripts/plot_smolvla_stage_comparison.py)读取 `results/smolvla_profile_*.json`。两组图的数据源不能互换。
