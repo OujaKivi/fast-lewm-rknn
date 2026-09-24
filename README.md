@@ -77,6 +77,12 @@ action cosine similarity against the i5 CPU reference. After NPU denoising,
 the RK3588's cached language/image prefix pass takes about 6.46 s, or 82%
 of its remaining end-to-end latency.
 
+An [RK3588 vla.cpp pilot](docs/vla_cpp_pilot.md) converted the same
+checkpoint and ran its ARM CPU backend. Its BF16 full path took about 75--78 s,
+so it does not beat the current 7.87 s RKNN hybrid. Its prefix stage was
+slightly faster than PyTorch's, but the cache cannot yet be handed to the
+existing RKNN denoising graph without a new, validated bridge.
+
 ## Current Result
 
 ![Aligned CEM latency breakdown](breakdown.png)

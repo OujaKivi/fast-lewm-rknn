@@ -1,0 +1,33 @@
+{
+  "upstream_repository": "https://github.com/VinRobotics/vla.cpp",
+  "upstream_commit": "0644fc62d9bd404d7b6e19c9df0a1a3d2373ea65",
+  "checkpoint": "lerobot/smolvla_base",
+  "model_format": "BF16 GGUF",
+  "backend": "RK3588 ARM CPU",
+  "threads": 4,
+  "input_shape": {
+    "views": 1,
+    "image_side": 512,
+    "language_tokens": 5,
+    "denoising_steps": 10
+  },
+  "input_values_matched_to_pytorch": false,
+  "default_benchmark": {
+    "warmups": 1,
+    "repeats": 3,
+    "median_ms": 78059.1,
+    "mean_ms": 78046.4,
+    "mean_vision_ms": 45035.7
+  },
+  "phase_timed_benchmark": {
+    "warmups": 0,
+    "repeats": 1,
+    "total_ms": 74768.9,
+    "vision_ms": 44911.1,
+    "prefix_ms": 5227.4,
+    "denoising_ms": 24588.9
+  },
+  "q8_vision": "model load rejected quantized vit.blk.0.attn_q.weight",
+  "q8_default": "model load rejected quantized mm.fc.weight, then vlm.blk.0.attn_q.weight after exempting connector",
+  "board_build_workaround": "Use seekg(pos_type(offset)) for two safetensors reads to avoid an ARM64 libstdc++ link error"
+}
