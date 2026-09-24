@@ -65,6 +65,22 @@ only about 0.31 actions/s, so it is functional but not yet responsive control.
 The simulator waits for inference between steps; task success does not imply
 that a physical robot could tolerate the same wall-clock delay.
 
+The different successful episode lengths (70, 76, and 80 actions) are **not
+caused by inference duration** in this synchronous simulator: it advances
+only when `env.step(action)` is called. The runs share the environment seed,
+but SmolVLA samples fresh initial action noise on the policy's device at
+every replan. CPU, CUDA, and MPS generators need not produce the same noise
+tensor from the same seed; a direct CPU/CUDA check on the RTX host gave mean
+absolute noise difference 1.15 for the same shape and seed. The first actions
+also differ substantially across those backends, whereas RK CPU and RK NPU
+start from nearly identical actions and both reached success in 70 steps.
+FP16/FP32 arithmetic and trajectory amplification can contribute too, but
+these single episodes do not isolate or quantify their effect. A causal
+precision comparison would inject the **same precomputed noise sequence**
+into all backends and repeat multiple matched episodes. On a physical robot,
+unlike this simulator, long inference pauses could change the real state
+between observations and actions.
+
 For the matched RK first step, vision took 7.848 s on CPU and 1.763 s on NPU,
 while whole remote inference fell from 65.156 s to 59.033 s (1.10x). The
 first environment actions had cosine 0.999979, MAE 0.00187, and maximum
