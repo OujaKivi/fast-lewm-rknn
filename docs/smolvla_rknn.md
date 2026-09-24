@@ -78,13 +78,28 @@ i5-13490F pure-CPU output, **not task success rate**.
 |---|---:|---:|---:|---:|---:|---:|
 | i5-13490F CPU | 654.7 | 274.3 | 1,377.9 | 3.1 | 2,309.1 | 1.000000 |
 | RTX 5060 CUDA | 31.2 | 8.2 | 80.7 | 2.1 | 122.2 | 0.999991 |
-| Mac MPS | 68.6 | 15.7 | 142.8 | 4.5 | 232.6 | 0.999885 |
+| MacBook Pro (Apple M5 Pro, 16-core GPU) MPS | 68.6 | 15.7 | 142.8 | 4.5 | 232.6 | 0.999885 |
 | RK3588 CPU | 3,968.2 | 6,469.0 | 29,308.6 | 13.2 | 39,759.1 | 0.999988 |
 | RK3588 NPU vision + CPU denoising | 878.6 | 6,463.7 | 29,274.5 | 13.1 | 36,629.9 | 0.999850 |
 | RK3588 NPU vision + NPU denoising | 878.7 | 6,462.0 | 515.7 | 14.0 | 7,872.0 | 0.999853 |
 
 The RK3588 accelerated path is 5.05x faster than its CPU path in this
 matched test. Its prefix pass now accounts for about 82% of total latency.
+The figures use execution order (vision, prefix, ten-step denoising, other).
+The stacked plot separates the wide latency range into three panels with
+different, explicitly labeled linear scales; it does not put all six bars on
+one common scale. To make each bar and ring sum to the end-to-end median,
+`Other` in the figures is the residual after subtracting the three stage
+medians, which can differ slightly from the separately reported `Other`
+median in the table.
+
+![SmolVLA stage latency stacked bars](../figures/smolvla_stage_latency_stacked.png)
+
+![SmolVLA stage shares by device](../figures/smolvla_stage_share_donuts.png)
+
+The plotting source is `scripts/plot_smolvla_stage_comparison.py`; both
+figures are also available as SVG and PDF for papers and slides.
+
 The breakdown and action arrays are saved in
 `results/smolvla_profile_*.json` and `results/smolvla_profile_*.npy`;
 re-run with `scripts/profile_smolvla_stages.py`. The board CPU and
@@ -122,3 +137,26 @@ one deterministic smoke case, not a success-rate or equivalence test. The
 language prefix remains CPU-bound, and prompt lengths other than the exported
 70-token prefix are unsupported by the denoising RKNN graph. General policy
 quality requires evaluation on real task episodes.
+
+## Prefix RKNN opportunity
+
+The "prefix" is not a separate small text model. After the NPU vision
+encoder, SmolVLA combines 64 image tokens, five instruction tokens and one
+state token in this fixed-input benchmark. Its 16-layer multimodal backbone
+processes those 70 tokens once and produces 16 K/V-cache pairs; all ten
+denoising steps reuse that cache. On the current RK3588 hybrid, this CPU
+pass takes 6.46 s and is the main remaining bottleneck.
+
+An RKNN partition for the fixed-shape prefix is plausible, particularly
+because the denoising graph already runs its attention and feed-forward
+layers on the NPU. It has **not** been exported, validated, or timed yet.
+The minimum useful experiment is to export one `[1,70,960]` prefix pass
+with 32 cache outputs of shape `[1,70,5,64]`, compare every layer's cache
+against PyTorch, and then feed the NPU-generated cache into the existing
+NPU denoiser for final-action comparison. Attention masking needs the same
+additive-mask treatment that fixed the denoising graph; layout conversion,
+many graph outputs and varying instruction length may also cost time or
+require separate fixed-shape variants. Benchmark the *combined* prefix,
+cache transfer and denoising path before claiming acceleration. The
+`vla.cpp` CPU prefix pilot reached about 5.22 s, but its cache is not a
+drop-in input for the RKNN denoiser.

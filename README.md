@@ -75,13 +75,21 @@ A [matched cross-device stage breakdown](docs/smolvla_rknn.md#matched-cross-devi
 compares RK3588 CPU/NPU, i5 CPU, Mac MPS, and RTX 5060 CUDA, including final
 action cosine similarity against the i5 CPU reference. After NPU denoising,
 the RK3588's cached language/image prefix pass takes about 6.46 s, or 82%
-of its remaining end-to-end latency.
+of its remaining end-to-end latency. The [stacked latency chart](figures/smolvla_stage_latency_stacked.png)
+and [2x3 stage-share chart](figures/smolvla_stage_share_donuts.png) show all
+six device/configuration paths in inference order. The Mac reference is a
+MacBook Pro with Apple M5 Pro (16-core GPU). An RKNN prefix partition is the
+next hardware-specific opportunity, but it has not yet passed export,
+numerical-parity, or end-to-end speed validation.
 
 An [RK3588 vla.cpp pilot](docs/vla_cpp_pilot.md) converted the same
 checkpoint and ran its ARM CPU backend. Its BF16 full path took about 75--78 s,
-so it does not beat the current 7.87 s RKNN hybrid. Its prefix stage was
-slightly faster than PyTorch's, but the cache cannot yet be handed to the
-existing RKNN denoising graph without a new, validated bridge.
+so it does not beat the current 7.87 s RKNN hybrid. On matched inputs, its
+full-path action cosine was only 0.948 versus PyTorch; supplying the exact
+PyTorch vision embedding raised it to 0.999991, isolating the main difference
+to the vla.cpp vision path. Its prefix stage was slightly faster than
+PyTorch's, but the cache cannot yet be handed to the existing RKNN denoising
+graph without a new, validated bridge.
 
 ## Current Result
 

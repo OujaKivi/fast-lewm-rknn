@@ -1,5 +1,8 @@
 {
   "device": "mps",
+  "host_soc": "Apple M5 Pro",
+  "host_gpu_cores": 16,
+  "host_memory_gb": 24,
   "vision_rknn": false,
   "denoise_rknn": false,
   "warmups": 1,

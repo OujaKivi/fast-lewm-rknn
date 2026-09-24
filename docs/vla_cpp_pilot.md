@@ -7,12 +7,11 @@ project and produced a 777.3 MiB BF16 GGUF. The board build used four CPU
 threads, `VLA_OCTO=OFF`, and the project's CPU backend. This upstream
 revision does not expose an RK3588/RKNPU backend.
 
-The `vla-bench` run used one 512x512 camera view, five language tokens,
-zero warmups, one measured inference, and ten denoising steps. It uses
-synthetic U8 pixels, placeholder token IDs, and deterministic noise, rather
-than the *same values* as our PyTorch profile. The shape and checkpoint are
-comparable, but this is not an action-quality parity test. A separate default
-mode run with one warmup and three measured calls had 78,059 ms p50.
+The initial `vla-bench` run used one 512x512 camera view, five language
+tokens, zero warmups, one measured inference, and ten denoising steps. It
+used synthetic U8 pixels and placeholder token IDs, so its shape and
+checkpoint were comparable but its action values were not. A separate
+default-mode run with one warmup and three measured calls had 78,059 ms p50.
 
 | RK3588 path | Vision | Multimodal prefix | 10-step denoising | End to end |
 |---|---:|---:|---:|---:|
@@ -36,6 +35,21 @@ loader also rejected. Thus this revision's documented generic quantization
 workflow is not directly usable with this converted SmolVLA checkpoint on
 RK3588; no Q8 latency or quality claim is made.
 
+An additional exact-input parity check used the same resized float32 image,
+token IDs, zero state, and PyTorch-seeded initial noise as the cross-device
+profile. The complete vla.cpp path reached only `0.948093` action cosine
+and `0.20120` MAE versus the i5 PyTorch CPU result. Feeding the exact
+PyTorch vision connector output through vla.cpp's public
+`precomputed_img_emb` input raised action cosine to `0.999991` and reduced
+MAE to `0.00249`; vla.cpp then took 29,810 ms, including 5,216 ms of
+prefix and 24,556 ms of denoising. This isolates the large parity gap to
+the vla.cpp vision path for this checkpoint/input, not its prefix or action
+expert. The two action arrays and the fixture generator are saved as
+`results/smolvla_vla_cpp_rk3588_actions.npy`,
+`results/smolvla_vla_cpp_rk3588_precomputed_vision_actions.npy`, and
+`scripts/prepare_vla_cpp_fixture.py`. No task-success claim follows from
+these synthetic action comparisons.
+
 The stock board build also hit an ARM64 C++ ABI link error for the two
 `std::istream::seekg(offset, std::ios::beg)` calls in `src/models/smolvla.cpp`.
 For this local pilot, using the equivalent `seekg(std::istream::pos_type(offset))`
@@ -44,7 +58,8 @@ this repository. The board needed `libzmq3-dev`, protobuf development tools,
 and the `cppzmq` header; the Ubuntu 22.04 image did not provide `cppzmq-dev`.
 
 **Conclusion:** vla.cpp is a useful C++ reference and its prefix implementation
-suggests some CPU headroom, but using it wholesale does not accelerate the
-current RK3588 deployment. The next meaningful optimization target is still
+suggests some CPU headroom, but using it wholesale neither accelerates the
+current RK3588 deployment nor preserves this checkpoint's action output
+through its vision path. The next meaningful optimization target is still
 the approximately 6.46 s multimodal prefix, preferably with a validated
 RKNN partition rather than a full runtime replacement.
