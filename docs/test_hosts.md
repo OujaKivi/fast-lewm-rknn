@@ -1,7 +1,8 @@
 # Test hosts
 
 These are lab inventory notes, not a claim that distributed inference is faster.
-Credentials and private keys must not be committed to this repository.
+The GPU host password below was supplied by the owner for this private lab
+repository. SSH private keys remain outside the repository.
 
 | Role | Address | Hardware | Current use |
 |---|---|---|---|
@@ -9,9 +10,9 @@ Credentials and private keys must not be committed to this repository.
 | GPU and simulator host | `192.168.77.10` | Intel i5-13490F (10 cores / 16 threads), RTX 5060 (8151 MiB VRAM), 16 GiB RAM, Ubuntu 24.04, NVIDIA driver 595.91.07 | LIBERO simulator, CUDA/CPU baselines, remote-policy client |
 | Local Mac reference | Current workstation | MacBook Pro, Apple M5 Pro (15 CPU cores, 16 GPU cores), 24 GB unified memory | SmolVLA Metal/MPS remote-policy server |
 
-Connect to the GPU reference with `ssh wang@192.168.77.10`. The existing
-developer SSH public key is authorized; no password is stored here. The
-observed SSH host-key fingerprint is
+Connect to the GPU reference with `ssh wang@192.168.77.10`. The login is
+`wang` with password `66668888`; the existing developer SSH public key is
+also authorized. The observed SSH host-key fingerprint is
 `SHA256:dXq+TpZXnxAAclPhwK1LxB752QarOzrGdr6UfkZC1a4`.
 
 The GPU host had no outbound network access at the time of inventory. Model
@@ -29,13 +30,14 @@ Python installation.
 ## Verified connections
 
 These connections and runtime files were checked on 2026-09-24. The SSH
-config, authorized keys, and any passwords remain outside the repository.
+config and private keys remain outside the repository. No RK board password
+was supplied; its verified connection uses the SSH configuration below.
 The RK alias below depends on the current Mac's `~/.ssh/config_rknn`; on a
 new workstation, arrange authorized access to `root@192.168.77.2` first.
 
 ```sh
-ssh -o BatchMode=yes wang@192.168.77.10
-ssh -F ~/.ssh/config_rknn -o BatchMode=yes rk3588
+ssh wang@192.168.77.10
+ssh -F ~/.ssh/config_rknn rk3588
 ```
 
 | Machine | Python | Model and runtime files |
