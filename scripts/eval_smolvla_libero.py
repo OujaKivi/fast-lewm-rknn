@@ -200,6 +200,9 @@ def evaluate(args):
 
     started = time.perf_counter()
     inference_seconds = []
+    preprocess_seconds = []
+    postprocess_seconds = []
+    environment_seconds = []
     vision_seconds = []
     prefill_seconds = []
     denoise_seconds = []
@@ -218,10 +221,16 @@ def evaluate(args):
         max_steps = env.call("_max_episode_steps")[0]
         steps = 0
         for step in range(max_steps):
+            step_started = time.perf_counter()
             batch = preprocess_observation(observation)
             batch = add_envs_task(env, batch)
             batch = env_preprocessor(batch)
             batch = preprocessor(batch)
+            if not conn and args.device == "cuda":
+                torch.cuda.synchronize()
+            elif not conn and args.device == "mps":
+                torch.mps.synchronize()
+            preprocess_seconds.append(time.perf_counter() - step_started)
             if input_shapes is None:
                 input_shapes = {
                     key: list(value.shape)
@@ -250,11 +259,16 @@ def evaluate(args):
                 elif args.device == "mps":
                     torch.mps.synchronize()
             inference_seconds.append(time.perf_counter() - t0)
+            postprocess_started = time.perf_counter()
             action = postprocessor(action)
             action = env_postprocessor({ACTION: action})[ACTION]
             if first_action is None:
                 first_action = action[0].cpu().tolist()
-            observation, reward, terminated, truncated, info = env.step(action.cpu().numpy())
+            action_numpy = action.cpu().numpy()
+            postprocess_seconds.append(time.perf_counter() - postprocess_started)
+            environment_started = time.perf_counter()
+            observation, reward, terminated, truncated, info = env.step(action_numpy)
+            environment_seconds.append(time.perf_counter() - environment_started)
             rewards.append(float(reward[0]))
             steps = step + 1
             if "final_info" in info:
@@ -279,6 +293,9 @@ def evaluate(args):
         "inference_s_total": round(sum(inference_seconds), 3),
         "inference_s_mean": round(float(np.mean(inference_seconds)), 3),
         "inference_s_p95": round(float(np.percentile(inference_seconds, 95)), 3),
+        "preprocess_s_total": round(sum(preprocess_seconds), 3),
+        "postprocess_s_total": round(sum(postprocess_seconds), 3),
+        "environment_s_total": round(sum(environment_seconds), 3),
         "first_action": first_action,
         "input_shapes": input_shapes,
     }

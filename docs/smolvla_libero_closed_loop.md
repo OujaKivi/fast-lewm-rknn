@@ -92,6 +92,34 @@ language tokens; other prompts need new shape handling or another export.
 Raw records: [`results/smolvla_libero/`](../results/smolvla_libero/).
 The Mac record's `remote:127.0.0.1:47651` endpoint is an SSH reverse port
 forward to the Mac, not inference on the simulator host.
+
+### Preprocessing and timing boundary
+
+On the RTX 5060 path, the policy preprocessor moves input tensors to CUDA;
+the language/state embeddings, masks, K/V tensors, action/time embedding,
+and ten denoising updates inside `select_action()` therefore execute as CUDA
+tensor operations (with Python control flow on the host). The environment
+processors run before this move, while the final action is copied back to the
+host for `env.step()`.
+
+A repeated, seeded 76-step CUDA episode succeeded and separated the timing
+stages: preprocessing (including device transfer) 0.109 s total, or **1.43
+ms/action**; policy inference 19.392 s, or **255 ms/action**; action
+postprocessing/copy 0.006 s, or **0.08 ms/action**; and simulator step 1.902 s,
+or **25.0 ms/action**. The 22.448 s wall time additionally includes episode
+reset and loop overhead. These are measurements for two virtual 256x256
+cameras on the RTX host, not physical camera capture, ISP, network jitter, or
+robot command latency. The original CUDA result above is a separate run;
+explicit synchronization at the new stage boundary changes its timing
+slightly. Raw profile: [`seeded_cuda_profile.json`](../results/smolvla_libero/seeded_cuda_profile.json).
+
+For remote RK inference, preprocessing currently happens on the simulator
+host and the already-processed tensors are transmitted to the board; that
+transport is counted inside `inference_s_total`. A real RK deployment should
+measure camera capture, decode/resize/normalization, model input preparation,
+action postprocessing, and actuator output at their actual device locations
+before deciding whether moving preprocessing changes end-to-end latency.
+
 The evaluation harness is
 [`scripts/eval_smolvla_libero.py`](../scripts/eval_smolvla_libero.py).
 The simulator uses [LeRobot's LIBERO environment](https://huggingface.co/docs/lerobot/v0.4.4/libero).
