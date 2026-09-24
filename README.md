@@ -7,11 +7,13 @@ Fast-LeWM PushT planning on RK3588 with a paper-aligned terminal-only CEM rollou
 Unlike the synthetic `smolvla_base` inference measurements below, this test
 uses a LIBERO-compatible SmolVLA checkpoint and actually feeds actions back
 to a LIBERO simulator. On the same `libero_spatial` task 0 and initial state,
-RTX 5060 CUDA succeeded in 76 steps (21.3 s) and remote Mac M5 Pro MPS
-succeeded in 80 steps (43.2 s); the RTX host CPU also succeeded in 70 steps
-(345.3 s). These are **one episode per deployment**, not
+RTX 5060 CUDA succeeded in 76 steps (21.3 s episode wall time) and remote
+Mac M5 Pro MPS succeeded in 80 steps (43.2 s wall time); the RTX host CPU
+also succeeded in 70 steps (345.3 s wall time). These are **one episode per deployment**, not
 success-rate estimates. With newly exported task-shaped 32-layer NPU graphs,
-RK3588 also **completed the task** in 70 steps (230.3 s, 3.24 s/action).
+RK3588 also **completed the task** in 70 steps (230.3 s episode wall time,
+3.24 s/inference). Episode wall time includes simulator stepping and is not
+the inference-performance metric.
 RK3588 CPU and NPU-vision/CPU hybrid both completed real closed-loop steps,
 but full episodes were not completed: matched single-step inference took 65.2 s
 and 59.0 s, respectively. The successful RK configuration runs vision,

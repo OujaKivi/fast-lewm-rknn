@@ -19,14 +19,16 @@ same environment over a persistent authenticated connection.
 - A full episode ends on environment success or after at most 280 steps.
   One-step and two-step runs below only test closed-loop connectivity and
   cannot be interpreted as task failures or success rates.
-- Inference time includes remote serialization, transfer, and policy execution
-  for remote paths. Total episode time additionally includes simulator steps
-  and preprocessing. The RK CPU/NPU comparison uses four PyTorch threads on
-  the same board and the same first observation/seed.
+- The inference metric times `select_action()` only: it excludes local
+  preprocessing, action postprocessing, and simulator stepping. For remote
+  paths it also includes request/response serialization and transfer.
+  Episode wall time includes all stages and reset overhead; it is **not** a
+  model-inference metric. The RK CPU/NPU comparison uses four PyTorch threads
+  on the same board and the same first observation/seed.
 
 ## Results
 
-| Deployment | Episode depth | Outcome | Mean inference / step | Total elapsed |
+| Deployment | Episode depth | Outcome | Mean inference / step | Episode wall time (incl. simulator) |
 |---|---:|---|---:|---:|
 | RTX 5060 CUDA | 76 steps | Success, 1/1 episode | 0.243 s | 21.3 s |
 | Mac M5 Pro MPS, remote inference | 80 steps | Success, 1/1 episode | 0.496 s | 43.2 s |
@@ -111,7 +113,10 @@ reset and loop overhead. These are measurements for two virtual 256x256
 cameras on the RTX host, not physical camera capture, ISP, network jitter, or
 robot command latency. The original CUDA result above is a separate run;
 explicit synchronization at the new stage boundary changes its timing
-slightly. Raw profile: [`seeded_cuda_profile.json`](../results/smolvla_libero/seeded_cuda_profile.json).
+slightly. Pre/postprocessing are small in this setup and are recorded for
+completeness, not added to the inference figure; simulator time is reported
+separately and must never be counted as inference. Raw profile:
+[`seeded_cuda_profile.json`](../results/smolvla_libero/seeded_cuda_profile.json).
 
 For remote RK inference, preprocessing currently happens on the simulator
 host and the already-processed tensors are transmitted to the board; that
