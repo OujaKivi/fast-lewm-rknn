@@ -2,36 +2,56 @@
 
 Fast-LeWM PushT planning on RK3588 with a paper-aligned terminal-only CEM rollout and heterogeneous CPU/NPU execution.
 
-## SmolVLA Closed-Loop Task Check
+## Current Conclusions
 
-Unlike the synthetic `smolvla_base` inference measurements below, this test
-uses a LIBERO-compatible SmolVLA checkpoint and actually feeds actions back
-to a LIBERO simulator. On the same `libero_spatial` task 0 and initial state,
-RTX 5060 CUDA succeeded in 76 steps (21.3 s episode wall time) and remote
-Mac M5 Pro MPS succeeded in 80 steps (43.2 s wall time); the RTX host CPU
-also succeeded in 70 steps (345.3 s wall time). These are **one episode per deployment**, not
-success-rate estimates. With newly exported task-shaped 32-layer NPU graphs,
-RK3588 also **completed the task** in 70 steps (230.3 s episode wall time,
-3.24 s/inference). Episode wall time includes simulator stepping and is not
-the inference-performance metric.
-RK3588 CPU and NPU-vision/CPU hybrid both completed real closed-loop steps,
-but full episodes were not completed: matched single-step inference took 65.2 s
-and 59.0 s, respectively. The successful RK configuration runs vision,
-prefill, and denoising on NPU, but token/state/action embeddings, cache
-handling, denoising-loop updates, and preprocessing still run on CPU. It is
-**not a pure-NPU result**. This configuration is a large improvement over
-those partial paths, but is still too slow for responsive control; its two
-vision encoders consume 54% of inference time. The older base-model full-NPU
-graphs cannot be used for this LIBERO task because the prompt, image count,
-expert width, and layer count differ. Protocol, raw results, and limitations are in
-[the closed-loop evaluation report](docs/smolvla_libero_closed_loop.md).
+**Fast-LeWM / PushT.** The paper-aligned controller executes a 25-action plan
+before replanning. On RK3588, its complete fixed-300 CEM solve takes 4.47 s
+on CPU and 2.63 s with CPU/NPU mapping. A tiered `300 -> 150 -> 64` population
+plus candidate-level CPU/NPU coexecution reaches **1.566 s per replan** and
+**44/50** successes on the matched PushT set. This is a measured improvement,
+not high-frequency closed-loop control; the fixed 25-action open-loop interval
+and the 50-case evaluation limit the claim.
 
-A follow-up with the **same per-step action-noise tensors** on all devices
-completed in 70 steps on RTX CPU, 69 on RTX CUDA, 70 on Mac MPS, and 68 on RK
-NPU-main-network execution. All four succeeded; the previous 70--80-step
-spread was largely confounded by device-specific random streams. This is one
-episode per device, not a precision or success-rate ranking. Simulator time
-is excluded from the inference figures.
+**SmolVLA / LIBERO.** We used the task-adapted `smolvla_libero` checkpoint in
+a real observation-action-simulator loop. With the **same CPU-generated action
+noise at every step**, all four tested deployments completed the same seeded
+`libero_spatial` task 0 episode:
+
+| Deployment | Successful actions | Mean inference / action |
+|---|---:|---:|
+| RTX host CPU | 70 | 4.849 s |
+| RTX 5060 CUDA | 69 | 0.238 s |
+| Mac M5 Pro MPS | 70 | 0.509 s |
+| RK3588 NPU vision + prefill + denoising, CPU auxiliary | 68 | 3.236 s |
+
+Inference excludes preprocessing, action postprocessing, and simulator steps;
+remote inference includes serialization and transfer. These are **one episode
+per deployment**, not success-rate or precision rankings. The original
+device-RNG runs spanned 70--80 steps; matching noise narrowed this to 68--70.
+The RK configuration is not pure NPU: embeddings, mask/cache preparation, and
+denoising-loop updates still use CPU. Its two vision encoders account for about
+54% of inference time, and 3.24 s/action is functional but not responsive
+control. The older base-model RKNN graphs cannot be reused for this task's
+different prompt, image count, expert width, and layer count. See the
+[closed-loop protocol and raw results](docs/smolvla_libero_closed_loop.md).
+
+These are **two different workloads**: Fast-LeWM has CEM candidate batches;
+SmolVLA here infers one observation at a time with ten denoising steps. A
+batch-size result from CEM does not transfer to SmolVLA automatically.
+
+## Next Experiments
+
+| Priority | Direction | First falsifiable check |
+|---|---|---|
+| 1 | RK SmolVLA vision and data path | Profile both camera encoders, format conversions, and transfers separately; test graph/layout changes against matched-noise action parity and full task success. |
+| 2 | Shape-aware CPU/NPU coexecution for Fast-LeWM CEM | Extend the measured fixed `300/150/64` and candidate split into a latency/quality-aware scheduler; include RKNN graph-padding and dispatch costs. This is a CEM-specific experiment, not SmolVLA dynamic batching. |
+| 3 | Vision compression | Test image-token reduction, camera gating, or pruning only after the vision profile; measure latency, memory, and task quality across more than one seed/task. |
+| 4 | Edge/cloud collaboration | Compare full-policy offload with selected stage splits, including image and K/V transfer, network jitter, deadlines, and an edge fallback. No distributed speedup is claimed yet. |
+
+The immediate path is **1, then 2**; compression and edge/cloud work remain
+hypotheses until end-to-end measurements justify them. Tested machines,
+connection commands, runtime paths, and the matched-noise runbook are in
+[the machine handoff notes](docs/test_hosts.md).
 
 ## SmolVLA Base Inference Smoke
 
@@ -122,7 +142,7 @@ to the vla.cpp vision path. Its prefill stage was slightly faster than
 PyTorch's, but the cache cannot yet be handed to the existing RKNN denoising
 graph without a new, validated bridge.
 
-## Current Result
+## Fast-LeWM Timing Details
 
 ![Aligned CEM latency breakdown](breakdown.png)
 
