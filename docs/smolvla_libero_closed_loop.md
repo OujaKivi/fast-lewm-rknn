@@ -97,6 +97,8 @@ Only the NPU-main-network RK deployment was rerun, not RK pure CPU.
 | Mac M5 Pro MPS | 80 | 70 | Success, 1/1 | 0.509 s |
 | RK3588 NPU vision + prefill + denoising, CPU auxiliary | 70 | 68 | Success, 1/1 | 3.236 s |
 
+![Matched-noise SmolVLA LIBERO inference and RK3588 stage breakdown](../figures/smolvla_libero_matched_breakdown.png)
+
 The matched range contracts from 70--80 to 68--70 steps, so backend-specific
 noise was a substantial confound in the original step comparison. It does
 **not** make trajectories identical: the first action's leading value is
