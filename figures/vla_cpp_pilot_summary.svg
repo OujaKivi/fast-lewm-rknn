@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1008pt" height="489.6pt" viewBox="0 0 1008 489.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-29T13:44:18.253969</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 489.6 
+L 1008 489.6 
+L 1008 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 70.56 367.2 
+L 539.866633 367.2 
+L 539.866633 93.024 
+L 70.56 93.024 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="ma09be78687" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#ma09be78687" x="131.781449" y="367.2" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="131.781449" y="384.52" transform="rotate(-0 131.781449 384.52)">视觉</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#ma09be78687" x="247.402694" y="367.2" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="247.402694" y="384.52" transform="rotate(-0 247.402694 384.52)">Prefill</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#ma09be78687" x="363.023939" y="367.2" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="363.023939" y="384.52" transform="rotate(-0 363.023939 384.52)">十步去噪</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#ma09be78687" x="478.645184" y="367.2" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="478.645184" y="384.52" transform="rotate(-0 478.645184 384.52)">完整推理</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_5">
+      <path d="M 70.56 367.2 
+L 539.866633 367.2 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <defs>
+       <path id="m6e83b00219" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="367.2" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="372.36" transform="rotate(-0 63.56 372.36)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_7">
+      <path d="M 70.56 334.944 
+L 539.866633 334.944 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="334.944" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="340.104" transform="rotate(-0 63.56 340.104)">10</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_9">
+      <path d="M 70.56 302.688 
+L 539.866633 302.688 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="302.688" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="307.848" transform="rotate(-0 63.56 307.848)">20</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_11">
+      <path d="M 70.56 270.432 
+L 539.866633 270.432 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="270.432" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="275.592" transform="rotate(-0 63.56 275.592)">30</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_13">
+      <path d="M 70.56 238.176 
+L 539.866633 238.176 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="238.176" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="243.336" transform="rotate(-0 63.56 243.336)">40</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_15">
+      <path d="M 70.56 205.92 
+L 539.866633 205.92 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="205.92" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="211.08" transform="rotate(-0 63.56 211.08)">50</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_17">
+      <path d="M 70.56 173.664 
+L 539.866633 173.664 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="173.664" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="178.824" transform="rotate(-0 63.56 178.824)">60</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_19">
+      <path d="M 70.56 141.408 
+L 539.866633 141.408 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="141.408" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="146.568" transform="rotate(-0 63.56 146.568)">70</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_21">
+      <path d="M 70.56 109.152 
+L 539.866633 109.152 
+" clip-path="url(#p554e44cf77)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#m6e83b00219" x="70.56" y="109.152" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="63.56" y="114.312" transform="rotate(-0 63.56 114.312)">80</text>
+     </g>
+    </g>
+    <g id="text_14">
+     <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="43.48" y="230.112" transform="rotate(-90 43.48 230.112)">耗时 / s（越低越好）</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 91.89212 367.2 
+L 116.172581 367.2 
+L 116.172581 354.400035 
+L 91.89212 354.400035 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #0072b2"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 207.513365 367.2 
+L 231.793826 367.2 
+L 231.793826 346.33351 
+L 207.513365 346.33351 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #0072b2"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 323.13461 367.2 
+L 347.415071 367.2 
+L 347.415071 272.66218 
+L 323.13461 272.66218 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #0072b2"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 438.755855 367.2 
+L 463.036316 367.2 
+L 463.036316 238.95305 
+L 438.755855 238.95305 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #0072b2"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 119.641218 367.2 
+L 143.92168 367.2 
+L 143.92168 364.388464 
+L 119.641218 364.388464 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #009e73"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 235.262463 367.2 
+L 259.542925 367.2 
+L 259.542925 346.373907 
+L 235.262463 346.373907 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #009e73"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 350.883708 367.2 
+L 375.16417 367.2 
+L 375.16417 365.538926 
+L 350.883708 365.538926 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #009e73"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 466.504953 367.2 
+L 490.785415 367.2 
+L 490.785415 341.859361 
+L 466.504953 341.859361 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #009e73"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 147.390317 367.2 
+L 171.670779 367.2 
+L 171.670779 222.740536 
+L 147.390317 222.740536 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #d55e00"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 263.011562 367.2 
+L 287.292024 367.2 
+L 287.292024 350.375916 
+L 263.011562 350.375916 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #d55e00"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 378.632807 367.2 
+L 402.913269 367.2 
+L 402.913269 288.038615 
+L 378.632807 288.038615 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #d55e00"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 494.254052 367.2 
+L 518.534514 367.2 
+L 518.534514 126.608947 
+L 494.254052 126.608947 
+z
+" clip-path="url(#p554e44cf77)" style="fill: #d55e00"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 70.56 367.2 
+L 70.56 93.024 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 70.56 367.2 
+L 539.866633 367.2 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="104.03235" y="350.851875" transform="rotate(-0 104.03235 350.851875)">3.97</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="219.653595" y="342.78535" transform="rotate(-0 219.653595 342.78535)">6.47</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="335.27484" y="269.11402" transform="rotate(-0 335.27484 269.11402)">29.31</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="450.896085" y="235.40489" transform="rotate(-0 450.896085 235.40489)">39.76</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="131.781449" y="360.840304" transform="rotate(-0 131.781449 360.840304)">0.87</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="247.402694" y="342.825747" transform="rotate(-0 247.402694 342.825747)">6.46</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="363.023939" y="361.990766" transform="rotate(-0 363.023939 361.990766)">0.51</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="478.645184" y="338.311201" transform="rotate(-0 478.645184 338.311201)">7.86</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="159.530548" y="219.192376" transform="rotate(-0 159.530548 219.192376)">44.79</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="275.151793" y="346.827756" transform="rotate(-0 275.151793 346.827756)">5.22</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="390.773038" y="284.490455" transform="rotate(-0 390.773038 284.490455)">24.54</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: middle" x="506.394283" y="123.060787" transform="rotate(-0 506.394283 123.060787)">74.59</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 14px; font-family: 'PingFang SC'; text-anchor: start" x="70.56" y="81.024" transform="rotate(-0 70.56 81.024)">分项优势不等于完整推理优势</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_17">
+     <path d="M 79.56 110.624 
+L 99.56 110.624 
+L 99.56 103.624 
+L 79.56 103.624 
+z
+" style="fill: #0072b2"/>
+    </g>
+    <g id="text_28">
+     <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: start" x="107.56" y="110.624" transform="rotate(-0 107.56 110.624)">PyTorch CPU</text>
+    </g>
+    <g id="patch_18">
+     <path d="M 79.56 126.203687 
+L 99.56 126.203687 
+L 99.56 119.203687 
+L 79.56 119.203687 
+z
+" style="fill: #009e73"/>
+    </g>
+    <g id="text_29">
+     <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: start" x="107.56" y="126.203687" transform="rotate(-0 107.56 126.203687)">RKNN 视觉/去噪 + CPU Prefill</text>
+    </g>
+    <g id="patch_19">
+     <path d="M 79.56 141.203687 
+L 99.56 141.203687 
+L 99.56 134.203687 
+L 79.56 134.203687 
+z
+" style="fill: #d55e00"/>
+    </g>
+    <g id="text_30">
+     <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: start" x="107.56" y="141.203687" transform="rotate(-0 107.56 141.203687)">vla.cpp BF16 CPU</text>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_20">
+    <path d="M 674.981527 367.2 
+L 977.76 367.2 
+L 977.76 93.024 
+L 674.981527 93.024 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_3">
+    <g id="xtick_5">
+     <g id="line2d_23">
+      <g>
+       <use xlink:href="#ma09be78687" x="739.265334" y="367.2" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_31">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="739.265334" y="384.52" transform="rotate(-0 739.265334 384.52)">vla.cpp 完整路径</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_24">
+      <g>
+       <use xlink:href="#ma09be78687" x="913.476193" y="367.2" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_32">
+      <text style="font-size: 12px; font-family: 'PingFang SC'" transform="translate(876.612755 386.92)">使用 PyTorch</text>
+      <text style="font-size: 12px; font-family: 'PingFang SC'" transform="translate(871.476193 404.415625)">视觉特征的诊断</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_10">
+     <g id="line2d_25">
+      <path d="M 674.981527 367.2 
+L 977.76 367.2 
+" clip-path="url(#p3430c13ff8)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_26">
+      <g>
+       <use xlink:href="#m6e83b00219" x="674.981527" y="367.2" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_33">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="667.981527" y="372.36" transform="rotate(-0 667.981527 372.36)">0.00</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_27">
+      <path d="M 674.981527 312.3648 
+L 977.76 312.3648 
+" clip-path="url(#p3430c13ff8)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_28">
+      <g>
+       <use xlink:href="#m6e83b00219" x="674.981527" y="312.3648" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_34">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="667.981527" y="317.5248" transform="rotate(-0 667.981527 317.5248)">0.05</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_29">
+      <path d="M 674.981527 257.5296 
+L 977.76 257.5296 
+" clip-path="url(#p3430c13ff8)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_30">
+      <g>
+       <use xlink:href="#m6e83b00219" x="674.981527" y="257.5296" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_35">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="667.981527" y="262.6896" transform="rotate(-0 667.981527 262.6896)">0.10</text>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_31">
+      <path d="M 674.981527 202.6944 
+L 977.76 202.6944 
+" clip-path="url(#p3430c13ff8)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_32">
+      <g>
+       <use xlink:href="#m6e83b00219" x="674.981527" y="202.6944" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_36">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="667.981527" y="207.8544" transform="rotate(-0 667.981527 207.8544)">0.15</text>
+     </g>
+    </g>
+    <g id="ytick_14">
+     <g id="line2d_33">
+      <path d="M 674.981527 147.8592 
+L 977.76 147.8592 
+" clip-path="url(#p3430c13ff8)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_34">
+      <g>
+       <use xlink:href="#m6e83b00219" x="674.981527" y="147.8592" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_37">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="667.981527" y="153.0192" transform="rotate(-0 667.981527 153.0192)">0.20</text>
+     </g>
+    </g>
+    <g id="ytick_15">
+     <g id="line2d_35">
+      <path d="M 674.981527 93.024 
+L 977.76 93.024 
+" clip-path="url(#p3430c13ff8)" style="fill: none; stroke: #e4e8eb; stroke-width: 0.7; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_36">
+      <g>
+       <use xlink:href="#m6e83b00219" x="674.981527" y="93.024" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_38">
+      <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: end" x="667.981527" y="98.184" transform="rotate(-0 667.981527 98.184)">0.25</text>
+     </g>
+    </g>
+    <g id="text_39">
+     <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="636.837152" y="230.112" transform="rotate(-90 636.837152 230.112)">动作 MAE（相对 i5 PyTorch CPU）</text>
+    </g>
+   </g>
+   <g id="patch_21">
+    <path d="M 688.744185 367.2 
+L 789.786483 367.2 
+L 789.786483 146.546435 
+L 688.744185 146.546435 
+z
+" clip-path="url(#p3430c13ff8)" style="fill: #d55e00"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 862.955044 367.2 
+L 963.997342 367.2 
+L 963.997342 364.473015 
+L 862.955044 364.473015 
+z
+" clip-path="url(#p3430c13ff8)" style="fill: #009e73"/>
+   </g>
+   <g id="patch_23">
+    <path d="M 674.981527 367.2 
+L 674.981527 93.024 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_24">
+    <path d="M 674.981527 367.2 
+L 977.76 367.2 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_40">
+    <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="739.265334" y="139.966211" transform="rotate(-0 739.265334 139.966211)">0.20120</text>
+   </g>
+   <g id="text_41">
+    <text style="font-size: 12px; font-family: 'PingFang SC'; text-anchor: middle" x="913.476193" y="357.892791" transform="rotate(-0 913.476193 357.892791)">0.00249</text>
+   </g>
+   <g id="text_42">
+    <text style="font-size: 14px; font-family: 'PingFang SC'; text-anchor: start" x="674.981527" y="81.024" transform="rotate(-0 674.981527 81.024)">视觉替换显著缩小输出差异</text>
+   </g>
+  </g>
+  <g id="text_43">
+   <text style="font-size: 18px; font-family: 'PingFang SC'; text-anchor: start" x="50.4" y="30.168" transform="rotate(-0 50.4 30.168)">vla.cpp 部署对照：该版本不是 RK3588 加速替代方案</text>
+  </g>
+  <g id="text_44">
+   <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: start" x="50.4" y="430.848" transform="rotate(-0 50.4 430.848)">同一 smolvla_base 合成 fixture、单相机、十步去噪；PyTorch/RKNN 为 2/5 次暖机后中位数，vla.cpp 为一次匹配输入调用。</text>
+  </g>
+  <g id="text_45">
+   <text style="font-size: 10px; font-family: 'PingFang SC'; text-anchor: start" x="50.4" y="452.88" transform="rotate(-0 50.4 452.88)">右图是视觉路径差异诊断，不是任务成功率；特征旁路的计时不包含特征生成，不能当作完整推理加速。</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p554e44cf77">
+   <rect x="70.56" y="93.024" width="469.306633" height="274.176"/>
+  </clipPath>
+  <clipPath id="p3430c13ff8">
+   <rect x="674.981527" y="93.024" width="302.778473" height="274.176"/>
+  </clipPath>
+ </defs>
+</svg>

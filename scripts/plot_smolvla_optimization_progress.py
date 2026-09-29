@@ -74,7 +74,7 @@ def policy_plot(data):
     audit = read("policy_replay_probes/paired_audit.json")
     case = audit["sessions"]["strong2.json"]["cases"]["frame_0.npz"]
     plans = ["deployed_lite", "original_resident", "hoisted_consumer_ready"]
-    names = ["原 Lite 接口\n视觉已并发", "原图常驻绑定\n减少接口开销", "C06 条件准备外提\n当前强策略基线"]
+    names = ["原 Lite 接口\n视觉已并发", "原图常驻绑定\n减少接口开销", "条件准备外提\n当前强策略基线"]
     stage_keys = ["vision_ms", "prefill_ms", "denoise_ms", "other_ms"]
     stage_names = ["双相机视觉", "Prefill", "十步 Action（含准备/Euler）", "其他"]
     means = np.asarray([[case["plans"][plan]["mean_stage_ms"][key] for key in stage_keys] for plan in plans])
@@ -101,7 +101,7 @@ def policy_plot(data):
     clean(axes[0])
     delta = means[:-1] - means[1:]
     y = np.arange(4)
-    for i, (name, color) in enumerate(zip(("常驻绑定相对 Lite", "C06 相对常驻绑定"), (BLUE, GREEN))):
+    for i, (name, color) in enumerate(zip(("常驻绑定相对 Lite", "条件准备外提相对常驻绑定"), (BLUE, GREEN))):
         position = y + (i - .5) * .32
         axes[1].barh(position, delta[i], height=.28, label=name, color=color)
         for k, value in enumerate(delta[i]):
@@ -116,7 +116,7 @@ def policy_plot(data):
     clean(axes[1], True)
     save(fig, "01_policy_progress", "完整策略：收益主要来自 Action 路径，视觉仍约占 53%",
          "RK3588 · strong2 / episode 11 / frame 0 · 每方案 8 次；三帧与两会话全表见说明文档\n"
-         "同一组调用的均值可相加；微小非目标阶段变化不算优化收益。C17 未集成，离线重放不是闭环。")
+         "同一组调用的均值可相加；微小非目标阶段变化不算优化收益。原生位桥接未集成，离线重放不是闭环。")
     data["policy"] = {"source": "policy_replay_probes/paired_audit.json", "chart_session": "strong2.json", "chart_frame": "frame_0.npz",
                       "plans": case["plans"], "step_stage_savings_mean_ms": delta.tolist(), "all_sessions": audit["sessions"]}
 
@@ -186,7 +186,7 @@ def cross_plot(data):
     ax = fig.add_subplot(grid[0,0])
     keys = ["original_recompute", "ready_joint", "split_parallel_heads", "compact_split_parallel",
             "compact_parallel_cpu_restore", "compact_parallel_cpu_both"]
-    labels = ["原块：重复条件准备", "条件准备外提", "+ Head 并行（强对照）", "Compact + 编译器恢复", "Compact + CPU 输出位恢复", "C17：CPU 双向位桥接"]
+    labels = ["原块：重复条件准备", "条件准备外提", "+ Head 并行（强对照）", "Compact + 编译器恢复", "Compact + CPU 输出位恢复", "CPU 双向位桥接"]
     values = [plans[k]["median_ms"][-1] for k in keys]
     bars(ax, labels, values, "A  同轮完整 Cross 边界 / 十次消费", [GREY, BLUE, BLUE, ORANGE, GREEN, GREEN],
          ["", "", "", "比强对照慢", "比强对照省 0.60", "比强对照省 1.18"])
@@ -194,7 +194,7 @@ def cross_plot(data):
     names = list(actual["cases"])
     actual_values = np.asarray([[actual["cases"][name]["plans"][k]["median_ms"][-1]
                                 for name in names] for k in ("split_parallel_heads", "compact_parallel_cpu_both")])
-    for i, (label, color) in enumerate(zip(("Head 强对照", "C17 双向位桥接"), (BLUE, GREEN))):
+    for i, (label, color) in enumerate(zip(("Head 强对照", "CPU 双向位桥接"), (BLUE, GREEN))):
         pos = np.arange(3) + (i-.5)*.34
         ax.bar(pos, actual_values[i], width=.3, color=color, label=label)
         for j, value in enumerate(actual_values[i]):
@@ -224,8 +224,8 @@ def cross_plot(data):
     ax.set_title("C  紧凑 Attention 更快，但编译器布局恢复吃掉收益；CPU 位复制绕开它", loc="left", pad=13)
     ax.legend(frameon=False, ncol=4, loc="upper center", bbox_to_anchor=(.5, 1.00), fontsize=11)
     clean(ax)
-    save(fig, "03_c17_progress", "C17：多付小规模 CPU 位复制，少做更昂贵的 NPU 布局恢复",
-         "A/C：S13，各方案 40 次，合成 checkpoint 输入；B：每帧 60 次，hidden 经 CPU FP32 重建，C17 输出未反馈进 Euler。\n"
+    save(fig, "03_c17_progress", "原生位桥接：多付小规模 CPU 位复制，少做更昂贵的 NPU 布局恢复",
+         "A/C：同轮各方案 40 次，合成 checkpoint 输入；B：每帧 60 次，hidden 经 CPU FP32 重建，位桥接输出未反馈进 Euler。\n"
          "Q/RoPE + Cross Attention + 输出投影/残差，不含 MLP。准备/提交/同步/最终读回已计；公共原始 Prefix 打包等额排除。")
     data["c17"] = {"source_session": "session13.json", "ten_consumption_total_median_ms": dict(zip(keys, values)),
                    "stage_names": stage_labels, "stage_medians_ms": dict(zip(split_keys, stage.tolist())),
@@ -234,9 +234,10 @@ def cross_plot(data):
 
 
 def write_report(data):
-    lines = ["# SmolVLA 优化进展图与 C17 解释", "", "2026-09-29；只重画已有测量，没有新增性能实验。", "",
-             "## C17 是什么", "",
-             "C17 优化的是 action expert 的一个 cross-Attention 边界，不是视觉编码，也不是完整 transformer block。",
+    lines = ["# SmolVLA 优化进展图与原生位桥接", "", "2026-09-29；只重画已有测量，没有新增性能实验。", "",
+             "历史候选编号对照：C17 指 CPU/NPU 原生位桥接；C06 指固定条件准备外提与消费就绪缓存。编号不是模型名或系统名。", "",
+             "## 原生位桥接是什么", "",
+             "原生位桥接优化的是 action expert 的一个 cross-Attention 边界，不是视觉编码，也不是完整 transformer block。",
              "当前几何是 15 个 Q heads、5 个 KV heads、50 个查询、149 个条件 token；包含 Q/RoPE、Attention、输出投影与残差，不含 MLP。", "",
              "原来为了便于执行，会把每组共享的 K/V 展开成三份，供三个 Q heads 消费。紧凑方案保留 5 组 K/V，将共享同一 K/V 的三个 head 的查询打包，数学工作不变。",
              "真正的障碍是：这个紧凑 Attention 的输入/输出排列与原 Q/RoPE、输出投影的原生存储不匹配；让编译器恢复会出现额外 reshape/恢复 Conv，让矩阵权重顺着改又改变浮点累加顺序。", "",
@@ -251,11 +252,11 @@ def write_report(data):
              "### 完整策略代表帧的每步分项变化", "",
              "strong2 / frame 0 / 每方案 8 次，单位 ms；正值是省时。Action 包含一次条件准备及十步依赖 FP32 Euler。", "",
              "| 步骤 | 视觉 | Prefill | Action | 其他 | 总均值省时 |", "|---|---:|---:|---:|---:|---:|"]
-    for label, delta in zip(("常驻绑定 vs Lite", "C06 vs 常驻绑定"), data["policy"]["step_stage_savings_mean_ms"]):
+    for label, delta in zip(("常驻绑定 vs Lite", "条件准备外提 vs 常驻绑定"), data["policy"]["step_stage_savings_mean_ms"]):
         lines.append(f"| {label} | " + " | ".join(f"{v:+.2f}" for v in delta) + f" | {sum(delta):+.2f} |")
     lines += ["", "视觉/Prefill 约 0-2 ms 的非目标变化属于本轮观测波动，不归因于优化机制。", "",
               "### 两次会话、全部三帧的完整策略总中位数", "",
-              "| 会话 / 帧 | Lite | 常驻绑定 | C06 | 常驻省时 vs Lite | C06 省时 vs 常驻 |",
+              "| 会话 / 帧 | Lite | 常驻绑定 | 条件准备外提 | 常驻省时 vs Lite | 条件外提省时 vs 常驻 |",
               "|---|---:|---:|---:|---:|---:|---:|"]
     for session, value in data["policy"]["all_sessions"].items():
         for frame, case in value["cases"].items():
@@ -271,8 +272,8 @@ def write_report(data):
     lines += ["", "单视角 head 方案相对融合强基线 775.49 → 531.62 ms，省 243.88 ms；双视角最强融合并发 1103.42 → head 方案 1056.27 ms，仅再省 47.15 ms（4.27%）。",
               "这两组不是同一实验，不能相乘。图中 Patch、head 分图相对各自原融合 FP16 均有舍入差异；没有减精度配置，但完整任务质量还没过门槛。",
               "B2 mask 修复大幅减少分配字段，却只省 16.62 ms。跨阶段 overlap 的几个尝试持平或更慢；图中保留失败结果。", "",
-              "![C17 优化](figures/smolvla_optimization_progress/03_c17_progress.png)", "",
-              "### C17 每个部分的变化", "",
+              "![原生位桥接优化](figures/smolvla_optimization_progress/03_c17_progress.png)", "",
+              "### 原生位桥接每个部分的变化", "",
               "S13，同轮十次消费的分项中位数；表内省时为两分项中位数之差。CPU 位复制包含同步，输入 hidden 打包与最终输出读回在总时延中另计。", "",
               "| 部分 | Head 强对照 | Compact / 编译恢复 | CPU 单向恢复 | CPU 双向桥接 | 双向 vs Head 省时 |",
               "|---|---:|---:|---:|---:|---:|"]
@@ -290,7 +291,7 @@ def write_report(data):
     lines += ["", "此表是消融，不是全部方案具有同一数值资格或穷尽全部编译配置。", "", "## 证据与边界", "",
               "- [完整策略验证](SMOLVLA_POLICY_REPLAY_VALIDATION.md)；只含离线模型内推理，不含外部预处理、网络、仿真、动作后处理或图初始化。",
               "- [视觉专项](SMOLVLA_VISION_INVESTIGATION.md)；完整融合相机并发已在实际帧逐位通过，packed/head 分图未作为完整策略质量已通过的实现。",
-              "- [C17 续验](SMOLVLA_CROSS_FOLLOWUP_VALIDATION.md)；真实条件重放的 hidden 是 CPU FP32 重建，不是捕获的 NPU 内部 hidden。",
+              "- [原生位桥接续验](SMOLVLA_CROSS_FOLLOWUP_VALIDATION.md)；真实条件重放的 hidden 是 CPU FP32 重建，不是捕获的 NPU 内部 hidden。",
               "- [绘图数据](figures/smolvla_optimization_progress/chart_data.json)；图与表直接由原始 JSON 生成，SVG/PDF 同目录。",
               "- 不把旧闭环、合成输入、不同版本模型的数字拼成一条 3.236 → 2.08 s 加速链。Prefill 暂未在这一轮建立独立优化收益，端云也未取得实测胜区。", ""]
     (ROOT / "docs/SMOLVLA_OPTIMIZATION_PROGRESS.md").write_text("\n".join(lines))

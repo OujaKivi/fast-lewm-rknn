@@ -1,10 +1,12 @@
-# SmolVLA 优化进展图与 C17 解释
+# SmolVLA 优化进展图与原生位桥接
 
 2026-09-29；只重画已有测量，没有新增性能实验。
 
-## C17 是什么
+历史候选编号对照：C17 指 CPU/NPU 原生位桥接；C06 指固定条件准备外提与消费就绪缓存。编号不是模型名或系统名。
 
-C17 优化的是 action expert 的一个 cross-Attention 边界，不是视觉编码，也不是完整 transformer block。
+## 原生位桥接是什么
+
+原生位桥接优化的是 action expert 的一个 cross-Attention 边界，不是视觉编码，也不是完整 transformer block。
 当前几何是 15 个 Q heads、5 个 KV heads、50 个查询、149 个条件 token；包含 Q/RoPE、Attention、输出投影与残差，不含 MLP。
 
 原来为了便于执行，会把每组共享的 K/V 展开成三份，供三个 Q heads 消费。紧凑方案保留 5 组 K/V，将共享同一 K/V 的三个 head 的查询打包，数学工作不变。
@@ -30,13 +32,13 @@ strong2 / frame 0 / 每方案 8 次，单位 ms；正值是省时。Action 包�
 | 步骤 | 视觉 | Prefill | Action | 其他 | 总均值省时 |
 |---|---:|---:|---:|---:|---:|
 | 常驻绑定 vs Lite | +0.11 | +1.72 | +425.82 | +0.59 | +428.24 |
-| C06 vs 常驻绑定 | -0.07 | -1.42 | +51.52 | +0.79 | +50.81 |
+| 条件准备外提 vs 常驻绑定 | -0.07 | -1.42 | +51.52 | +0.79 | +50.81 |
 
 视觉/Prefill 约 0-2 ms 的非目标变化属于本轮观测波动，不归因于优化机制。
 
 ### 两次会话、全部三帧的完整策略总中位数
 
-| 会话 / 帧 | Lite | 常驻绑定 | C06 | 常驻省时 vs Lite | C06 省时 vs 常驻 |
+| 会话 / 帧 | Lite | 常驻绑定 | 条件准备外提 | 常驻省时 vs Lite | 条件外提省时 vs 常驻 |
 |---|---:|---:|---:|---:|---:|---:|
 | strong1.json / frame_0.npz | 2562.65 | 2136.10 | 2077.69 | 426.55 | 58.41 |
 | strong1.json / frame_42.npz | 2552.89 | 2138.49 | 2078.93 | 414.40 | 59.56 |
@@ -65,9 +67,9 @@ strong2 / frame 0 / 每方案 8 次，单位 ms；正值是省时。Action 包�
 这两组不是同一实验，不能相乘。图中 Patch、head 分图相对各自原融合 FP16 均有舍入差异；没有减精度配置，但完整任务质量还没过门槛。
 B2 mask 修复大幅减少分配字段，却只省 16.62 ms。跨阶段 overlap 的几个尝试持平或更慢；图中保留失败结果。
 
-![C17 优化](figures/smolvla_optimization_progress/03_c17_progress.png)
+![原生位桥接优化](figures/smolvla_optimization_progress/03_c17_progress.png)
 
-### C17 每个部分的变化
+### 原生位桥接每个部分的变化
 
 S13，同轮十次消费的分项中位数；表内省时为两分项中位数之差。CPU 位复制包含同步，输入 hidden 打包与最终输出读回在总时延中另计。
 
@@ -114,6 +116,6 @@ S13 总中位数：head 11.463 → 单向位恢复 10.865 → 双向位桥接 10
 
 - [完整策略验证](SMOLVLA_POLICY_REPLAY_VALIDATION.md)；只含离线模型内推理，不含外部预处理、网络、仿真、动作后处理或图初始化。
 - [视觉专项](SMOLVLA_VISION_INVESTIGATION.md)；完整融合相机并发已在实际帧逐位通过，packed/head 分图未作为完整策略质量已通过的实现。
-- [C17 续验](SMOLVLA_CROSS_FOLLOWUP_VALIDATION.md)；真实条件重放的 hidden 是 CPU FP32 重建，不是捕获的 NPU 内部 hidden。
+- [原生位桥接续验](SMOLVLA_CROSS_FOLLOWUP_VALIDATION.md)；真实条件重放的 hidden 是 CPU FP32 重建，不是捕获的 NPU 内部 hidden。
 - [绘图数据](figures/smolvla_optimization_progress/chart_data.json)；图与表直接由原始 JSON 生成，SVG/PDF 同目录。
 - 不把旧闭环、合成输入、不同版本模型的数字拼成一条 3.236 → 2.08 s 加速链。Prefill 暂未在这一轮建立独立优化收益，端云也未取得实测胜区。
