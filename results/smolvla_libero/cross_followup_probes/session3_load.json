@@ -1,0 +1,5572 @@
+{
+  "command": [
+    "env",
+    "SMOLVLA_CROSS_OPT3=1",
+    "/root/.venvs/smolvla/bin/python",
+    "/root/smolvla-cross-followup/probe_smolvla_cross_followup.py",
+    "--base",
+    "/root/smolvla-cross-boundary",
+    "--directory",
+    "/root/smolvla-cross-followup",
+    "--library",
+    "/root/smolvla-cross-followup/libcross_followup.so",
+    "--output",
+    "/root/smolvla-cross-followup/session3.json",
+    "--repeats",
+    "40",
+    "--stress-cases",
+    "64"
+  ],
+  "exit_code": 0,
+  "stdout": [
+    "PROBE_MEASURE_START",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_MEASURE_END",
+    "PROBE_MEASURE_START",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_q_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_full_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_serial_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_split_parallel_heads",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_full",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_serial",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_split_parallel",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_propagated_ready",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_restore_o",
+    "PROBE_PLAN_END",
+    "PROBE_MEASURE_END",
+    "{",
+    "  \"stress\": {",
+    "    \"ready_joint\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"propagated_ready\": {",
+    "      \"bitwise_equal_cases\": 34,",
+    "      \"max_abs\": 0.001953125,",
+    "      \"max_different_elements\": 3",
+    "    },",
+    "    \"restore_o\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"original_q\": {",
+    "      \"bitwise_equal_cases\": 34,",
+    "      \"max_abs\": 0.001953125,",
+    "      \"max_different_elements\": 3",
+    "    },",
+    "    \"original_q_restore_o\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"split_full_heads\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"split_serial_heads\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"split_parallel_heads\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"original_recompute\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"compact_split_full\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"compact_split_serial\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"compact_split_parallel\": {",
+    "      \"bitwise_equal_cases\": 64,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    }",
+    "  },",
+    "  \"medians\": {",
+    "    \"1\": {",
+    "      \"ready_joint\": [",
+    "        0.6584295,",
+    "        0.025083,",
+    "        1.4494215000000001,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.100916,",
+    "        2.2351625",
+    "      ],",
+    "      \"propagated_ready\": [",
+    "        0.5455565,",
+    "        0.025083,",
+    "        1.2930895,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.10018650000000001,",
+    "        1.9643535",
+    "      ],",
+    "      \"restore_o\": [",
+    "        0.5461400000000001,",
+    "        0.024792,",
+    "        1.3627975,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.10004,",
+    "        2.0344984999999998",
+    "      ],",
+    "      \"original_q\": [",
+    "        0.545411,",
+    "        0.024792,",
+    "        2.5858875,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0997485,",
+    "        3.257443",
+    "      ],",
+    "      \"original_q_restore_o\": [",
+    "        0.546577,",
+    "        0.024792,",
+    "        2.646117,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.100041,",
+    "        3.319276",
+    "      ],",
+    "      \"split_full_heads\": [",
+    "        0.6600345,",
+    "        0.024792,",
+    "        0.0,",
+    "        0.37143349999999997,",
+    "        1.0422595000000001,",
+    "        0.185206,",
+    "        0.10004,",
+    "        2.384495",
+    "      ],",
+    "      \"split_serial_heads\": [",
+    "        0.656243,",
+    "        0.0249375,",
+    "        0.0,",
+    "        0.365746,",
+    "        1.1684035000000002,",
+    "        0.1787895,",
+    "        0.099749,",
+    "        2.4927015",
+    "      ],",
+    "      \"split_parallel_heads\": [",
+    "        0.6549305,",
+    "        0.024792,",
+    "        0.0,",
+    "        0.364871,",
+    "        0.5175565,",
+    "        0.180977,",
+    "        0.099749,",
+    "        1.8455",
+    "      ],",
+    "      \"original_recompute\": [",
+    "        0.0,",
+    "        0.025958,",
+    "        1.8942085,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.100624,",
+    "        2.021519",
+    "      ],",
+    "      \"compact_split_full\": [",
+    "        0.5465774999999999,",
+    "        0.024792,",
+    "        0.0,",
+    "        0.4516405,",
+    "        0.6476385,",
+    "        0.404537,",
+    "        0.099166,",
+    "        2.175663",
+    "      ],",
+    "      \"compact_split_serial\": [",
+    "        0.545703,",
+    "        0.025083,",
+    "        0.0,",
+    "        0.44770350000000003,",
+    "        0.7678035,",
+    "        0.39782850000000003,",
+    "        0.098874,",
+    "        2.2864959999999996",
+    "      ],",
+    "      \"compact_split_parallel\": [",
+    "        0.546869,",
+    "        0.025083,",
+    "        0.0,",
+    "        0.446391,",
+    "        0.3625375,",
+    "        0.39797499999999997,",
+    "        0.099165,",
+    "        1.877438",
+    "      ]",
+    "    },",
+    "    \"10\": {",
+    "      \"ready_joint\": [",
+    "        0.667909,",
+    "        0.25082950000000004,",
+    "        14.363839500000001,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.107623,",
+    "        15.389911000000001",
+    "      ],",
+    "      \"propagated_ready\": [",
+    "        0.5540149999999999,",
+    "        0.2479125,",
+    "        12.722211999999999,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.1064575,",
+    "        13.6327845",
+    "      ],",
+    "      \"restore_o\": [",
+    "        0.552994,",
+    "        0.24820600000000004,",
+    "        13.402663,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.106749,",
+    "        14.313381",
+    "      ],",
+    "      \"original_q\": [",
+    "        0.5527025000000001,",
+    "        0.24820700000000004,",
+    "        25.6213185,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.1079155,",
+    "        26.5324745",
+    "      ],",
+    "      \"original_q_restore_o\": [",
+    "        0.5535775000000001,",
+    "        0.24878750000000002,",
+    "        26.255831999999998,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.10776949999999999,",
+    "        27.1668425",
+    "      ],",
+    "      \"split_full_heads\": [",
+    "        0.6700965,",
+    "        0.250247,",
+    "        0.0,",
+    "        3.6326690000000004,",
+    "        10.366592,",
+    "        1.7870220000000003,",
+    "        0.107915,",
+    "        16.8127915",
+    "      ],",
+    "      \"split_serial_heads\": [",
+    "        0.6630965,",
+    "        0.249954,",
+    "        0.0,",
+    "        3.6347104999999997,",
+    "        11.582536999999999,",
+    "        1.768939,",
+    "        0.1073325,",
+    "        18.010362",
+    "      ],",
+    "      \"split_parallel_heads\": [",
+    "        0.660034,",
+    "        0.250101,",
+    "        0.0,",
+    "        3.6301880000000004,",
+    "        5.1167975000000006,",
+    "        1.7915435,",
+    "        0.10631099999999999,",
+    "        11.5571625",
+    "      ],",
+    "      \"original_recompute\": [",
+    "        0.0,",
+    "        0.25126800000000005,",
+    "        18.7013125,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.106166,",
+    "        19.061808499999998",
+    "      ],",
+    "      \"compact_split_full\": [",
+    "        0.5557645,",
+    "        0.24864250000000004,",
+    "        0.0,",
+    "        4.461284,",
+    "        6.411782500000001,",
+    "        3.937747,",
+    "        0.106165,",
+    "        15.726491",
+    "      ],",
+    "      \"compact_split_serial\": [",
+    "        0.555618,",
+    "        0.24937350000000003,",
+    "        0.0,",
+    "        4.457053499999999,",
+    "        7.5994375000000005,",
+    "        3.92579,",
+    "        0.105582,",
+    "        16.8999995",
+    "      ],",
+    "      \"compact_split_parallel\": [",
+    "        0.554161,",
+    "        0.24908300000000003,",
+    "        0.0,",
+    "        4.4553055,",
+    "        3.5712735,",
+    "        3.9266625,",
+    "        0.106165,",
+    "        12.866147999999999",
+    "      ]",
+    "    }",
+    "  }",
+    "}"
+  ],
+  "samples": [
+    {
+      "seconds": 0.0008679900784045458,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.05137505801394582,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.10172666911967099,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.1521196961402893,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.20252759801223874,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.25290341721847653,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.3032462780829519,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.35362093010917306,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.4040361230727285,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.4544192331377417,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.5047962181270123,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.5551947860512882,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.6056076451204717,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.6560295470990241,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.7064642810728401,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.7568523490335792,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.8072713331785053,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.8576652351766825,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.9081364271696657,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.9585078700911254,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.008908772142604,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.0593429231084883,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.1097691990435123,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.1602021830622107,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.2106243760790676,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.2610815681982785,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.3115580100566149,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.3619778701104224,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.4124414781108499,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.4628441291861236,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.5132610711734742,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.563649430172518,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.6140071640256792,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.6643777322024107,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.7148031322285533,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.7652049080934376,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.8156128081027418,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.866014291997999,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.9163889430928975,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        46,
+        10,
+        10
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.9667840111069381,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.0171863702125847,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.0675531460437924,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.1179091301746666,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.16831411421299,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.21871151519008,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.269157623173669,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.3196063560899347,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.3700367151759565,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.420443740207702,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.4708233491983265,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.521197999129072,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.571626024087891,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.622006799094379,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.6723872821312398,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.722765432205051,
+      "phase": "measure",
+      "plan": "count1_split_full_heads",
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.773196374066174,
+      "phase": "measure",
+      "plan": "count1_original_q",
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.8236010652035475,
+      "phase": "measure",
+      "plan": "count1_ready_joint",
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.873980382224545,
+      "phase": "measure",
+      "plan": "count1_compact_split_parallel",
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.9243637821637094,
+      "phase": "measure",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.974720641039312,
+      "phase": "measure",
+      "plan": "count1_split_full_heads",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.025092083029449,
+      "phase": "measure",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.075494441203773,
+      "phase": "measure",
+      "plan": "count1_restore_o",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.125927424058318,
+      "phase": "measure",
+      "plan": "count1_compact_split_serial",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.1762939072214067,
+      "phase": "measure",
+      "plan": "count1_original_recompute",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.226676141144708,
+      "phase": "measure",
+      "plan": "count1_split_parallel_heads",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.2771187492180616,
+      "phase": "measure",
+      "plan": "count1_original_q_restore_o",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.327507982030511,
+      "phase": "measure",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.377881757216528,
+      "phase": "measure",
+      "plan": "count1_ready_joint",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.4282896572258323,
+      "phase": "measure",
+      "plan": "count1_compact_split_full",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.4786925970111042,
+      "phase": "measure",
+      "plan": "count1_split_serial_heads",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.529139288002625,
+      "phase": "measure",
+      "plan": "count1_original_q_restore_o",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.5795343541540205,
+      "phase": "measure",
+      "plan": "count1_restore_o",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.6299419610295445,
+      "phase": "measure",
+      "plan": "count1_ready_joint",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.680337319150567,
+      "phase": "measure",
+      "plan": "count1_compact_split_serial",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.730692718178034,
+      "phase": "measure",
+      "plan": "count1_split_serial_heads",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.7811207422055304,
+      "phase": "measure",
+      "plan": "count1_original_q_restore_o",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.83149976702407,
+      "phase": "measure",
+      "plan": "count1_original_q",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.8818968741688877,
+      "phase": "measure",
+      "plan": "count1_ready_joint",
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.932238274021074,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        16,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.9825607161037624,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.032905033091083,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.083212891127914,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.133527166210115,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.183843191014603,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.234135300153866,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.284456867026165,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.334792434005067,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.385150167159736,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.435463858069852,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.485774924047291,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.536134698195383,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.58649155520834,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.6368323711212724,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.68713264609687,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.737432337133214,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.7877994030714035,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.838155968114734,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.8884889089968055,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.938784226076677,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        15,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.989150708075613,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.0394579821731895,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.089886006200686,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.14037761115469,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.190703261177987,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.241043493151665,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.291349018225446,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.341695959214121,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.391984275076538,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.442250133026391,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.492556823184714,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.542857096996158,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.593199371127412,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.643484770087525,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.693817127030343,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.744165234034881,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.794538715155795,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.8448389892000705,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.895150346215814,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.945482995128259,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        80,
+        20,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.9958101022057235,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.046094042016193,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.096430483041331,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.146771298022941,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.19711065501906,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.247421428095549,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.297761660069227,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.348112100036815,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.398416749201715,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.448735689045861,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.4990660031326115,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.5494103180244565,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.5997088411822915,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.650014948099852,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.700352262007073,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.750632411101833,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.800909351091832,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.8511784160509706,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.901513981167227,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.951828254153952,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        22,
+        22
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.002092069014907,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.052383009111509,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.102703990181908,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.153011555084959,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.203313578153029,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.253629310056567,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.303963708225638,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.354249980999157,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.404528963146731,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.4548779430333525,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.505240923026577,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.555537404026836,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.605804135091603,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.656125408131629,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.706408181227744,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.756677828030661,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.807030309224501,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.857361789094284,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.907767936121672,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.958083083154634,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        78,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.008675602031872,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.059652826050296,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.11065279901959,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.161518898094073,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.212509247008711,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.26361742708832,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.31462235818617,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.36544091720134,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.416253350209445,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.467338196001947,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.518329127226025,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.569377224193886,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.620267239166424,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.671416543191299,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.722345350077376,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.773562903050333,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.824604583205655,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.8756468470674,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.926652944181114,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.977536835009232,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.028599223122,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.079662486212328,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.130679375026375,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.181592723121867,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.23262098710984,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.283521794015542,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.334355518221855,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.385259825037792,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.436098507139832,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.487030521035194,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.537884660996497,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.588752801064402,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.63963085715659,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.690714536001906,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.741843132069334,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.792855645064265,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.843812159029767,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.894698673160747,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.945717020193115,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        77,
+        19,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.996695117093623,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.047827504109591,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.098716643173248,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.149825697066262,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.200861543184146,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.25191955617629,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.302920693997294,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.353863500058651,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.40503205312416,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.456034649163485,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.507014787057415,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.55796225904487,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.608931021997705,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.660016742069274,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.710985796060413,
+      "phase": "measure",
+      "plan": null,
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.762038850225508,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.813004988012835,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.863912793109193,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.91499005514197,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        18,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.966042234096676,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.016995539190248,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.067920261062682,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.118826899211854,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.169727413216606,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.22064426005818,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.271608940092847,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.322689993074164,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.373720880132169,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.42465201811865,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.475650530075654,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.526647876016796,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.577598847215995,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.628591525135562,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.679463455220684,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.730321386130527,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.781301523093134,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.832176661118865,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.883092632051557,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.934040687046945,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        80,
+        22,
+        21
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.98500915709883,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.03585542109795,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.086654144106433,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.137671030126512,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.188600710127503,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.239453098038211,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.29038831917569,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.34126287419349,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.39226022013463,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.44311406603083,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.494015453150496,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.544933174038306,
+      "phase": "measure",
+      "plan": "count10_propagated_ready",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.59594656014815,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.646826073061675,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.6977029601112,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.74857984809205,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.799597026081756,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.850609245011583,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.90167833911255,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.952656142180786,
+      "phase": "measure",
+      "plan": "count10_restore_o",
+      "core_busy_percent": [
+        79,
+        20,
+        20
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.003591946093366,
+      "phase": "measure",
+      "plan": "count10_original_q_restore_o",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.0545510831289,
+      "phase": "measure",
+      "plan": "count10_split_parallel_heads",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.10557876015082,
+      "phase": "measure",
+      "plan": "count10_compact_split_serial",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.156513397116214,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.207423243205994,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.258359338156879,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.314820705214515,
+      "phase": "measure",
+      "plan": "count10_compact_split_parallel",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.365831466158852,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.416818019002676,
+      "phase": "measure",
+      "plan": "count10_split_full_heads",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.467731655109674,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.518603292061016,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.56954667903483,
+      "phase": "measure",
+      "plan": "count10_original_q",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.62049385602586,
+      "phase": "measure",
+      "plan": "count10_split_serial_heads",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.67141682608053,
+      "phase": "measure",
+      "plan": "count10_compact_split_full",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.722309755161405,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.77328726509586,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.824235318228602,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.875258329091594,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.92605005018413,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        79,
+        17,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    }
+  ],
+  "note": "Driver busy counters have an unknown averaging window; not MAC occupancy or measured DRAM bandwidth."
+}

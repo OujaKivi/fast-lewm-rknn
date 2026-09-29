@@ -1,0 +1,43 @@
+{
+  "scope": "Real exported vision layer-0 subgraphs; mask removal only for the verified fixed all-valid geometry",
+  "batch": 2,
+  "mask_shape": [
+    2,
+    1,
+    1024,
+    1024
+  ],
+  "mask_nonzero": 0,
+  "probes": {
+    "attention_original": {
+      "nodes": 41,
+      "initializer_bytes": 0
+    },
+    "attention_unmasked": {
+      "nodes": 20,
+      "initializer_bytes": 0
+    },
+    "block_original": {
+      "nodes": 70,
+      "initializer_bytes": 28351488
+    },
+    "block_unmasked": {
+      "nodes": 49,
+      "initializer_bytes": 28351488
+    },
+    "mlp_original": {
+      "nodes": 17,
+      "initializer_bytes": 18889728
+    },
+    "fc1_original": {
+      "nodes": 2,
+      "initializer_bytes": 9449472
+    },
+    "fc2_original": {
+      "nodes": 2,
+      "initializer_bytes": 9440256
+    }
+  },
+  "attention_fp32_max_abs_difference": 0.0,
+  "block_fp32_max_abs_difference": 0.0
+}

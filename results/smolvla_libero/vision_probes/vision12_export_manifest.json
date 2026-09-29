@@ -1,0 +1,34 @@
+{
+  "source_onnx": "/Users/wangjiwei/.cache/smolvla-patch-space2depth/vision_connector.onnx",
+  "input_fixture": "/Users/wangjiwei/.cache/smolvla-patch-space2depth/input.npy",
+  "image_shape": [
+    1,
+    3,
+    512,
+    512
+  ],
+  "embedding_shape": [
+    1,
+    64,
+    960
+  ],
+  "layers": 12,
+  "partition_heads": 4,
+  "shared_attention_signature": "fe7d2bd702aed901423e8bd415c5a6f95499b3ae4fd293c7b537b8adcfb16de8",
+  "layer_fp32_max_abs_differences": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "embedding_fp32_max_abs_difference": 0.0,
+  "scope": "Original versus packed/head-partitioned complete vision+connector, FP32 reference, one fixture"
+}

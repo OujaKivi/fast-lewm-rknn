@@ -1,0 +1,308 @@
+{
+  "scope": "Actual layer-1 ONNX subgraphs, checkpoint activations from a synthetic exported prefix; not a complete denoising loop",
+  "source_onnx": "/Users/wangjiwei/.cache/smolvla-libero-rknn/denoise32/denoise_step_addmask.onnx",
+  "scale": 0.125,
+  "cross_mask_all_zero": true,
+  "expanded_vs_repeat_compact": [
+    {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    },
+    {
+      "bitwise_equal": true,
+      "max_abs": 0.0
+    }
+  ],
+  "models": {
+    "fused": {
+      "inputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ]
+      ],
+      "outputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ]
+      ],
+      "initializer_bytes": 849000
+    },
+    "prepare_compact": {
+      "inputs": [
+        [
+          1,
+          149,
+          5,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ]
+      ],
+      "outputs": [
+        [
+          1,
+          149,
+          5,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ]
+      ],
+      "initializer_bytes": 819200
+    },
+    "prepare_expanded": {
+      "inputs": [
+        [
+          1,
+          149,
+          5,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ]
+      ],
+      "outputs": [
+        [
+          1,
+          149,
+          15,
+          64
+        ],
+        [
+          1,
+          149,
+          15,
+          64
+        ]
+      ],
+      "initializer_bytes": 819200
+    },
+    "warm_compact": {
+      "inputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ]
+      ],
+      "outputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ]
+      ],
+      "initializer_bytes": 29800
+    },
+    "warm_expanded": {
+      "inputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ],
+        [
+          1,
+          149,
+          15,
+          64
+        ],
+        [
+          1,
+          149,
+          15,
+          64
+        ]
+      ],
+      "outputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ]
+      ],
+      "initializer_bytes": 29800
+    },
+    "prepare_ready": {
+      "inputs": [
+        [
+          1,
+          149,
+          5,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ]
+      ],
+      "outputs": [
+        [
+          15,
+          64,
+          1,
+          149
+        ],
+        [
+          15,
+          64,
+          1,
+          149
+        ]
+      ],
+      "initializer_bytes": 819200
+    },
+    "warm_ready": {
+      "inputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ],
+        [
+          15,
+          64,
+          1,
+          152
+        ],
+        [
+          15,
+          64,
+          1,
+          152
+        ]
+      ],
+      "outputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ]
+      ],
+      "initializer_bytes": 29800
+    },
+    "warm_grouped": {
+      "inputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ],
+        [
+          1,
+          149,
+          5,
+          64
+        ]
+      ],
+      "outputs": [
+        [
+          1,
+          50,
+          15,
+          64
+        ]
+      ],
+      "initializer_bytes": 180
+    }
+  },
+  "reference_controls": {
+    "fused_query0": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "warm_compact_query0": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "warm_expanded_query0": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "warm_grouped_query0": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "warm_ready_query0": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "fused_query1": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "warm_compact_query1": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "warm_expanded_query1": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "warm_grouped_query1": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    },
+    "warm_ready_query1": {
+      "vs_fused_max_abs": 0.0,
+      "native_wrapper_max_abs": 0.0
+    }
+  }
+}

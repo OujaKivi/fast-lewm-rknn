@@ -1,0 +1,584 @@
+{
+  "scope": "Original synthetic-prefix C17 boundary, 500 rotated calls per mode/session; instrumented diagnostics, not a full-policy or causal hardware attribution",
+  "sessions": {
+    "tail1.json": {
+      "sampled_system_min_max": {
+        "/sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq": [
+          2352000,
+          2352000
+        ],
+        "/sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq": [
+          2352000,
+          2352000
+        ],
+        "/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq": [
+          1800000,
+          1800000
+        ],
+        "/sys/class/thermal/thermal_zone2/temp": [
+          34230,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone0/temp": [
+          34230,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone5/temp": [
+          32384,
+          37000
+        ],
+        "/sys/class/thermal/thermal_zone3/temp": [
+          33307,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone1/temp": [
+          34230,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone6/temp": [
+          33307,
+          37000
+        ],
+        "/sys/class/thermal/thermal_zone4/temp": [
+          33307,
+          37923
+        ]
+      },
+      "npu_hz": [
+        1000000000
+      ],
+      "dram_hz": [
+        2112000000
+      ],
+      "plans": {
+        "split_parallel_heads": {
+          "total_percentiles_ms": {
+            "p50": 11.4489485,
+            "p95": 15.9841378,
+            "p99": 16.337637909999998
+          },
+          "all_stage_median_ms": [
+            0.66965,
+            0.24907800000000005,
+            0.0,
+            3.6158495000000004,
+            5.043084,
+            1.764249,
+            0.105581,
+            11.4489485
+          ],
+          "slowest_5pct_stage_median_ms": [
+            0.903561,
+            0.24966000000000002,
+            0.0,
+            5.95802,
+            5.760858,
+            3.349126,
+            0.106455,
+            16.3201
+          ],
+          "slowest_5pct_involuntary_switches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "compact_parallel_cpu_both": {
+          "total_percentiles_ms": {
+            "p50": 10.243811999999998,
+            "p95": 15.492195299999999,
+            "p99": 15.58732041
+          },
+          "all_stage_median_ms": [
+            0.544528,
+            0.247036,
+            0.39082149999999993,
+            3.6259125,
+            3.568455,
+            1.75929,
+            0.106748,
+            10.243811999999998
+          ],
+          "slowest_5pct_stage_median_ms": [
+            0.780189,
+            0.24790900000000002,
+            0.3957799999999999,
+            5.968813,
+            4.7245919999999995,
+            3.3465019999999996,
+            0.107914,
+            15.542828
+          ],
+          "slowest_5pct_involuntary_switches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "paired": {
+        "wins": 486,
+        "trials": 500,
+        "median_gain_ms": 1.2030954999999999,
+        "median_reduction_percent": 10.526176268501874
+      }
+    },
+    "tail2.json": {
+      "sampled_system_min_max": {
+        "/sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq": [
+          2352000,
+          2352000
+        ],
+        "/sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq": [
+          2352000,
+          2352000
+        ],
+        "/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq": [
+          1800000,
+          1800000
+        ],
+        "/sys/class/thermal/thermal_zone2/temp": [
+          34230,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone0/temp": [
+          33307,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone5/temp": [
+          32384,
+          37000
+        ],
+        "/sys/class/thermal/thermal_zone3/temp": [
+          34230,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone1/temp": [
+          34230,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone6/temp": [
+          32384,
+          37000
+        ],
+        "/sys/class/thermal/thermal_zone4/temp": [
+          33307,
+          37923
+        ]
+      },
+      "npu_hz": [
+        1000000000
+      ],
+      "dram_hz": [
+        2112000000
+      ],
+      "plans": {
+        "split_parallel_heads": {
+          "total_percentiles_ms": {
+            "p50": 11.4744745,
+            "p95": 13.987953749999996,
+            "p99": 15.88857059
+          },
+          "all_stage_median_ms": [
+            0.673734,
+            0.250537,
+            0.0,
+            3.6091425,
+            5.067584999999999,
+            1.765711,
+            0.105872,
+            11.4744745
+          ],
+          "slowest_5pct_stage_median_ms": [
+            0.676067,
+            0.25082699999999997,
+            0.0,
+            5.341747000000001,
+            5.56895,
+            3.0355920000000003,
+            0.106747,
+            14.885725
+          ],
+          "slowest_5pct_involuntary_switches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "compact_parallel_cpu_both": {
+          "total_percentiles_ms": {
+            "p50": 10.257379,
+            "p95": 13.009449799999999,
+            "p99": 15.11907665
+          },
+          "all_stage_median_ms": [
+            0.542779,
+            0.24907900000000002,
+            0.3925759999999999,
+            3.619058,
+            3.5608745,
+            1.781165,
+            0.10733,
+            10.257379
+          ],
+          "slowest_5pct_stage_median_ms": [
+            0.543362,
+            0.24907700000000002,
+            0.390238,
+            5.490785,
+            4.458309,
+            3.207381,
+            0.107622,
+            14.351697
+          ],
+          "slowest_5pct_involuntary_switches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "paired": {
+        "wins": 480,
+        "trials": 500,
+        "median_gain_ms": 1.2162214999999996,
+        "median_reduction_percent": 10.606982480984195
+      }
+    },
+    "tail_trace.json": {
+      "sampled_system_min_max": {
+        "/sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq": [
+          2352000,
+          2352000
+        ],
+        "/sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq": [
+          2352000,
+          2352000
+        ],
+        "/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq": [
+          1800000,
+          1800000
+        ],
+        "/sys/class/thermal/thermal_zone2/temp": [
+          34230,
+          38846
+        ],
+        "/sys/class/thermal/thermal_zone0/temp": [
+          33307,
+          37923
+        ],
+        "/sys/class/thermal/thermal_zone5/temp": [
+          32384,
+          37000
+        ],
+        "/sys/class/thermal/thermal_zone3/temp": [
+          34230,
+          38846
+        ],
+        "/sys/class/thermal/thermal_zone1/temp": [
+          34230,
+          38846
+        ],
+        "/sys/class/thermal/thermal_zone6/temp": [
+          33307,
+          37000
+        ],
+        "/sys/class/thermal/thermal_zone4/temp": [
+          33307,
+          37923
+        ]
+      },
+      "npu_hz": [
+        1000000000
+      ],
+      "dram_hz": [
+        2112000000
+      ],
+      "plans": {
+        "split_parallel_heads": {
+          "total_percentiles_ms": {
+            "p50": 11.5185175,
+            "p95": 15.957286,
+            "p99": 16.368584339999998
+          },
+          "all_stage_median_ms": [
+            0.6614845,
+            0.25024399999999997,
+            0.0,
+            3.595289,
+            5.125043,
+            1.7773755000000002,
+            0.104998,
+            11.5185175
+          ],
+          "slowest_5pct_stage_median_ms": [
+            0.8910205,
+            0.2500975,
+            0.0,
+            5.933087,
+            5.7914855,
+            3.362399,
+            0.1061645,
+            16.316174
+          ],
+          "slowest_5pct_involuntary_switches": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "native_trace_columns_ms": [
+            "producer",
+            "cpu_pack",
+            "attention_and_barrier",
+            "cpu_restore",
+            "consumer",
+            "wake0",
+            "wake1",
+            "wake2",
+            "run0",
+            "run1",
+            "run2"
+          ],
+          "fast_step_median_ms": [
+            0.359033,
+            0.0,
+            0.51128,
+            0.0,
+            0.177329,
+            0.003791,
+            0.004083,
+            0.004375,
+            0.470447,
+            0.496405,
+            0.503113
+          ],
+          "slow_step_median_ms": [
+            0.593236,
+            0.0,
+            0.5795275,
+            0.0,
+            0.336284,
+            0.004083,
+            0.004083,
+            0.004083,
+            0.565529,
+            0.5668405,
+            0.5650904999999999
+          ],
+          "maximum_worker_wake_ms": 0.038791
+        },
+        "compact_parallel_cpu_both": {
+          "total_percentiles_ms": {
+            "p50": 10.26788,
+            "p95": 13.960306399999991,
+            "p99": 15.58106834
+          },
+          "all_stage_median_ms": [
+            0.538695,
+            0.24849400000000002,
+            0.39242749999999993,
+            3.6065180000000003,
+            3.5840604999999996,
+            1.7887494999999998,
+            0.106747,
+            10.26788
+          ],
+          "slowest_5pct_stage_median_ms": [
+            0.770565,
+            0.249076,
+            0.39228100000000005,
+            5.938775,
+            4.6855150000000005,
+            3.373919,
+            0.108206,
+            15.440465
+          ],
+          "slowest_5pct_involuntary_switches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "native_trace_columns_ms": [
+            "producer",
+            "cpu_pack",
+            "attention_and_barrier",
+            "cpu_restore",
+            "consumer",
+            "wake0",
+            "wake1",
+            "wake2",
+            "run0",
+            "run1",
+            "run2"
+          ],
+          "fast_step_median_ms": [
+            0.359908,
+            0.020125,
+            0.35845,
+            0.017792,
+            0.178496,
+            0.004083,
+            0.004375,
+            0.003791,
+            0.328992,
+            0.350284,
+            0.229244
+          ],
+          "slow_step_median_ms": [
+            0.5942565,
+            0.020416,
+            0.47730150000000005,
+            0.018083,
+            0.33745,
+            0.0040835,
+            0.004375,
+            0.0035,
+            0.425823,
+            0.46782250000000003,
+            0.341826
+          ],
+          "maximum_worker_wake_ms": 0.023333
+        }
+      },
+      "paired": {
+        "wins": 489,
+        "trials": 500,
+        "median_gain_ms": 1.2475744999999998,
+        "median_reduction_percent": 10.857625558150163
+      }
+    }
+  }
+}

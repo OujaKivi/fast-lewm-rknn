@@ -1,0 +1,26 @@
+{
+  "scope": "fixed exported observation and suffix; not a closed-loop rollout",
+  "cache_shape": [
+    1,
+    149,
+    5,
+    64
+  ],
+  "cache_bytes": 12206080,
+  "suffix_bytes": 96000,
+  "pack_median_ms": 8.204301993828267,
+  "pack_p95_ms": 8.400498563423753,
+  "packing_bitwise_equal": true,
+  "runtime": {
+    "repack": {
+      "median_ms": 114.17955602519214,
+      "p95_ms": 132.40927513106726
+    },
+    "reuse_host_arrays": {
+      "median_ms": 107.60211251908913,
+      "p95_ms": 123.00097570405342
+    }
+  },
+  "output_max_abs_difference": 0.0,
+  "note": "Host reuse does not prove zero-copy or NPU KV residency."
+}

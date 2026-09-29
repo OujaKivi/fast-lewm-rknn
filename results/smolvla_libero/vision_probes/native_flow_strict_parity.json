@@ -1,0 +1,310 @@
+{
+  "scope": "Ten dependent original-graph denoising steps, synthetic exported fixed prefix; excludes vision/prefill, initialization and one-time prefix preparation; not a rollout",
+  "protocol": "Same checkpoint, graph, ten timesteps/noise; CPU FP32 suffix embedding and Euler updates; graph native FP16 unchanged",
+  "rknn_model": "/root/smolvla-libero-rknn/denoise32/denoise_step_addmask.rknn",
+  "torch_version": "2.9.1+cpu",
+  "repeats": 2,
+  "prefix_fp32_bytes": 12206080,
+  "steps": 10,
+  "rk_lite_c_api_fixture_max_abs": 0.0,
+  "per_step_velocity_and_latent_max_abs": 0.0,
+  "per_step_velocity_and_latent_bitwise_equal": true,
+  "prefix_switch_restore_check": true,
+  "changed_prefix_final_action_max_abs_vs_original": 2.6452088356018066,
+  "static_preparation_scope": "From prepacked logical NHWC FP32 arrays; common initial NumPy repack excluded; CPU storage copy and each context's native packing/sync reported separately",
+  "static_preparation": {
+    "legacy_host_copy": {
+      "median_ms": 1.045619,
+      "p95_ms": 1.101619,
+      "samples_ms": [
+        1.140994,
+        1.040369,
+        1.041536,
+        1.042994,
+        1.062244,
+        1.045619,
+        1.039786,
+        1.045619,
+        1.052619,
+        1.052036,
+        1.047661
+      ]
+    },
+    "native_default_pack_sync": {
+      "median_ms": 6.393588,
+      "p95_ms": 6.408172,
+      "samples_ms": [
+        6.328552,
+        6.307256,
+        6.412838,
+        6.397381,
+        6.35188,
+        6.392422,
+        6.397963,
+        6.403506,
+        6.389214,
+        6.398255,
+        6.393588
+      ]
+    },
+    "native_dirty_pack_sync": {
+      "median_ms": 6.342839,
+      "p95_ms": 6.366028,
+      "samples_ms": [
+        6.374926,
+        6.299964,
+        6.353047,
+        6.342839,
+        6.336423,
+        6.35713,
+        6.344298,
+        6.331172,
+        6.312214,
+        6.347505,
+        6.330297
+      ]
+    },
+    "legacy_fp16_conversion": {
+      "median_ms": 2.36482,
+      "p95_ms": 2.3677365,
+      "samples_ms": [
+        2.367155,
+        2.362195,
+        2.367153,
+        2.360153,
+        2.362195,
+        2.36482,
+        2.367445,
+        2.36657,
+        2.362486,
+        2.36132,
+        2.368028
+      ]
+    },
+    "legacy_native_host_copy": {
+      "median_ms": 0.587705,
+      "p95_ms": 0.590768,
+      "samples_ms": [
+        0.588289,
+        0.587413,
+        0.588872,
+        0.582455,
+        0.589164,
+        0.587122,
+        0.587705,
+        0.585955,
+        0.590914,
+        0.590622,
+        0.579247
+      ]
+    }
+  },
+  "input_sync_policy": "mode 3 disables automatic input flush only; explicitly syncs every CPU-written suffix and all prefix buffers after every new prefix; no output flush disabled",
+  "stage_order": [
+    "suffix_embedding",
+    "input_prepare_sync",
+    "run",
+    "output_retrieval",
+    "fp32_solver"
+  ],
+  "plans": {
+    "legacy_c_api_prepacked": {
+      "total": {
+        "median_ms": 1004.1759175946936,
+        "p95_ms": 1011.2924223416485,
+        "samples_ms": [
+          996.2686900980771,
+          1012.0831450913101
+        ]
+      },
+      "stage_median_totals_ms": [
+        44.488397892564535,
+        258.5483765,
+        696.4745435,
+        0.8572040000000001,
+        1.3299923157319427
+      ],
+      "stage_samples_totals_ms": [
+        [
+          44.27096713334322,
+          251.516505,
+          696.0598669999999,
+          0.8204560000000001,
+          1.2675770558416843
+        ],
+        [
+          44.70582865178585,
+          265.580248,
+          696.8892199999999,
+          0.893952,
+          1.392407575622201
+        ]
+      ]
+    },
+    "native_rewrite_prefix": {
+      "total": {
+        "median_ms": 877.1339524537325,
+        "p95_ms": 941.5750193875283,
+        "samples_ms": [
+          948.7351379357278,
+          805.5327669717371
+        ]
+      },
+      "stage_median_totals_ms": [
+        43.36826107464731,
+        63.45217000000001,
+        765.6040059999999,
+        0.9355154999999999,
+        1.326930127106607
+      ],
+      "stage_samples_totals_ms": [
+        [
+          43.765801237896085,
+          63.398362000000006,
+          836.9947499999998,
+          0.921662,
+          1.2844931334257126
+        ],
+        [
+          42.97072091139853,
+          63.505978000000006,
+          694.213262,
+          0.9493689999999999,
+          1.3693671207875013
+        ]
+      ]
+    },
+    "native_resident_default_sync": {
+      "total": {
+        "median_ms": 791.7193855391815,
+        "p95_ms": 819.7052424889989,
+        "samples_ms": [
+          760.6239889282733,
+          822.8147821500897
+        ]
+      },
+      "stage_median_totals_ms": [
+        50.63130275812,
+        0.7093284999999998,
+        734.8277835000001,
+        1.240159,
+        1.1474095517769456
+      ],
+      "stage_samples_totals_ms": [
+        [
+          42.43143345229328,
+          0.326955,
+          713.9852860000001,
+          0.8531200000000001,
+          0.8989109192043543
+        ],
+        [
+          58.831172063946724,
+          1.0917019999999997,
+          755.670281,
+          1.627198,
+          1.395908184349537
+        ]
+      ]
+    },
+    "native_resident_dirty_sync": {
+      "total": {
+        "median_ms": 862.6066589495167,
+        "p95_ms": 974.9000874697231,
+        "samples_ms": [
+          737.8361828159541,
+          987.3771350830793
+        ]
+      },
+      "stage_median_totals_ms": [
+        53.056788514368236,
+        0.8518064999999999,
+        802.8832835,
+        1.214056,
+        1.1913052294403315
+      ],
+      "stage_samples_totals_ms": [
+        [
+          42.27101895958185,
+          0.441872,
+          691.3074409999999,
+          0.815496,
+          0.8872442413121462
+        ],
+        [
+          63.84255806915462,
+          1.2617409999999998,
+          914.459126,
+          1.612616,
+          1.4953662175685167
+        ]
+      ]
+    },
+    "legacy_fp16_prefix": {
+      "total": {
+        "median_ms": 1054.8850749619305,
+        "p95_ms": 1066.9518260052428,
+        "samples_ms": [
+          1041.4775738026947,
+          1068.2925761211663
+        ]
+      },
+      "stage_median_totals_ms": [
+        43.74961054418236,
+        310.56187199999994,
+        696.0094724999999,
+        0.8572035,
+        1.2774924980476499
+      ],
+      "stage_samples_totals_ms": [
+        [
+          43.10430260375142,
+          297.96764399999995,
+          695.951611,
+          0.8446619999999999,
+          1.2716581113636494
+        ],
+        [
+          44.3949184846133,
+          323.1560999999999,
+          696.067334,
+          0.869745,
+          1.2833268847316504
+        ]
+      ]
+    },
+    "legacy_native_prefix_passthrough": {
+      "total": {
+        "median_ms": 751.5201698988676,
+        "p95_ms": 751.8126239301637,
+        "samples_ms": [
+          751.8451188225299,
+          751.1952209752053
+        ]
+      },
+      "stage_median_totals_ms": [
+        42.25001356098801,
+        9.131888,
+        695.7994625000001,
+        0.7920155,
+        1.2306795688346028
+      ],
+      "stage_samples_totals_ms": [
+        [
+          42.87067707628012,
+          9.092952000000002,
+          695.523725,
+          0.807911,
+          1.2293667532503605
+        ],
+        [
+          41.6293500456959,
+          9.170824,
+          696.0752000000001,
+          0.77612,
+          1.2319923844188452
+        ]
+      ]
+    }
+  }
+}

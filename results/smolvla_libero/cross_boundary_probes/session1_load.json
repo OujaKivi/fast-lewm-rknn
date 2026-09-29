@@ -1,0 +1,2692 @@
+{
+  "command": [
+    "/root/.venvs/smolvla/bin/python",
+    "/root/smolvla-cross-boundary/probe_smolvla_cross_boundary.py",
+    "--directory",
+    "/root/smolvla-cross-boundary",
+    "--library",
+    "/root/smolvla-cross-boundary/libcross_boundary.so",
+    "--output",
+    "/root/smolvla-cross-boundary/session1.json",
+    "--repeats",
+    "40",
+    "--core-mask",
+    "7"
+  ],
+  "exit_code": 0,
+  "stdout": [
+    "PROBE_MEASURE_START",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count1_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_MEASURE_END",
+    "PROBE_MEASURE_START",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_split",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_original_recompute",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_ready_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_repeat_joint",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START count10_compact_grouped_joint",
+    "PROBE_PLAN_END",
+    "PROBE_MEASURE_END",
+    "{",
+    "  \"validation\": {",
+    "    \"original\": {",
+    "      \"plans_vs_original\": {",
+    "        \"original_recompute\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"ready_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_repeat_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_grouped_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_grouped_split\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        }",
+    "      },",
+    "      \"original_vs_fp32\": {",
+    "        \"max_abs\": 0.003204822540283203,",
+    "        \"mean_abs\": 0.0002642132749315351,",
+    "        \"bitwise_equal\": false",
+    "      }",
+    "    },",
+    "    \"other_suffix\": {",
+    "      \"plans_vs_original\": {",
+    "        \"original_recompute\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"ready_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_repeat_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_grouped_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_grouped_split\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        }",
+    "      },",
+    "      \"original_vs_fp32\": {",
+    "        \"max_abs\": 0.0031261444091796875,",
+    "        \"mean_abs\": 0.00026199917192570865,",
+    "        \"bitwise_equal\": false",
+    "      }",
+    "    },",
+    "    \"changed_prefix\": {",
+    "      \"plans_vs_original\": {",
+    "        \"original_recompute\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"ready_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_repeat_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_grouped_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_grouped_split\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        }",
+    "      },",
+    "      \"original_vs_fp32\": {",
+    "        \"max_abs\": 0.0036516189575195312,",
+    "        \"mean_abs\": 0.0002656760043464601,",
+    "        \"bitwise_equal\": false",
+    "      }",
+    "    },",
+    "    \"restored\": {",
+    "      \"plans_vs_original\": {",
+    "        \"original_recompute\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"ready_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_repeat_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_grouped_joint\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        },",
+    "        \"compact_grouped_split\": {",
+    "          \"max_abs\": 0.0,",
+    "          \"mean_abs\": 0.0,",
+    "          \"bitwise_equal\": true",
+    "        }",
+    "      },",
+    "      \"original_vs_fp32\": {",
+    "        \"max_abs\": 0.003204822540283203,",
+    "        \"mean_abs\": 0.0002642132749315351,",
+    "        \"bitwise_equal\": false",
+    "      }",
+    "    }",
+    "  },",
+    "  \"plans\": {",
+    "    \"1\": {",
+    "      \"original_recompute\": [",
+    "        0.0,",
+    "        0.027416,",
+    "        1.8660265,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.098872,",
+    "        1.9934805",
+    "      ],",
+    "      \"ready_joint\": [",
+    "        0.663813,",
+    "        0.026541,",
+    "        1.4348105,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.099163,",
+    "        2.224474",
+    "      ],",
+    "      \"compact_repeat_joint\": [",
+    "        0.829037,",
+    "        0.026541,",
+    "        2.0227925,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.099164,",
+    "        2.9779714999999998",
+    "      ],",
+    "      \"compact_grouped_joint\": [",
+    "        0.8278705,",
+    "        0.026541,",
+    "        2.8002055,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.09901750000000001,",
+    "        3.7534894999999997",
+    "      ],",
+    "      \"compact_grouped_split\": [",
+    "        0.828016,",
+    "        0.026832,",
+    "        0.0,",
+    "        0.443903,",
+    "        2.6206905000000003,",
+    "        0.3496975,",
+    "        0.098872,",
+    "        4.367866",
+    "      ]",
+    "    },",
+    "    \"10\": {",
+    "      \"original_recompute\": [",
+    "        0.0,",
+    "        0.2645345,",
+    "        18.541701500000002,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.106164,",
+    "        18.916337",
+    "      ],",
+    "      \"ready_joint\": [",
+    "        0.6737295,",
+    "        0.26307650000000005,",
+    "        14.2942915,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.10558,",
+    "        15.3378425",
+    "      ],",
+    "      \"compact_repeat_joint\": [",
+    "        0.837641,",
+    "        0.263512,",
+    "        20.188257,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.1055805,",
+    "        21.392802500000002",
+    "      ],",
+    "      \"compact_grouped_joint\": [",
+    "        0.833995,",
+    "        0.262054,",
+    "        27.911792000000002,",
+    "        0.0,",
+    "        0.0,",
+    "        0.0,",
+    "        0.105289,",
+    "        29.1138575",
+    "      ],",
+    "      \"compact_grouped_split\": [",
+    "        0.8350165,",
+    "        0.26365900000000003,",
+    "        0.0,",
+    "        4.384636,",
+    "        26.156447999999997,",
+    "        3.4717475,",
+    "        0.1063095,",
+    "        35.215775",
+    "      ]",
+    "    }",
+    "  }",
+    "}"
+  ],
+  "samples": [
+    {
+      "seconds": 0.0006932700052857399,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.051207222044467926,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.10153772193007171,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.1519285950344056,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.2022275950293988,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.2525018050801009,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.3027465569321066,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.35298839304596186,
+      "phase": "measure",
+      "plan": "count1_compact_grouped_joint",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.4032276030629873,
+      "phase": "measure",
+      "plan": "count1_ready_joint",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.4534659390337765,
+      "phase": "measure",
+      "plan": "count1_compact_grouped_split",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.5037249820306897,
+      "phase": "measure",
+      "plan": "count1_compact_grouped_joint",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.5539924839977175,
+      "phase": "measure",
+      "plan": "count1_compact_grouped_joint",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.6042725269217044,
+      "phase": "measure",
+      "plan": "count1_ready_joint",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.654542360920459,
+      "phase": "measure",
+      "plan": "count1_compact_grouped_split",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.7048148210160434,
+      "phase": "measure",
+      "plan": "count1_compact_grouped_joint",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.7551126549951732,
+      "phase": "measure",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.8054101970046759,
+      "phase": "measure",
+      "plan": "count1_original_recompute",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.855661948909983,
+      "phase": "measure",
+      "plan": "count1_compact_grouped_split",
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.9059247840195894,
+      "phase": "measure",
+      "plan": "count1_compact_grouped_joint",
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.9561803271062672,
+      "phase": "measure",
+      "plan": "count1_ready_joint",
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.0064282880630344,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.0566835401114076,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.1069221671205014,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.1571470859926194,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.2073947549797595,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.2576284240931273,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.3078437189105898,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.3580534718930721,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.4082678919658065,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.4584872690029442,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.5087168549653143,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.5589280670974404,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.6091331529896706,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.6593577810563147,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.7095931998919696,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.7598315360955894,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.8100946620106697,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.8603642049711198,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        59,
+        6,
+        6
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.910626748111099,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.9609619139228016,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.0113478279672563,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.0617343259509653,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.112120531965047,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.1624329490587115,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.2127377819269896,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.2630149079486728,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.313269868027419,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.3635064540430903,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.413767830003053,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.4640300821047276,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.514303707983345,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.5645793760195374,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.6148401689715683,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.665106212021783,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.7153757540509105,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.765613507013768,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.8158652579877526,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.866113218013197,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        90,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.916362636955455,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.96660038898699,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.0168664320372045,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.067120516905561,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.1173661439679563,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.167596604907885,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.2178410650230944,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.2680791090242565,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.3183104440104216,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.3685557800345123,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.418831156101078,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.4691196558997035,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.519370824098587,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.56961586792022,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.619923908961937,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.670193451922387,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.720432370901108,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.7706564150284976,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.820909332949668,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.8711686679162085,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        9,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.921460960060358,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.9717424609698355,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.021988087100908,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.072237214073539,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.122456883080304,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.172702509909868,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.22292101290077,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.273149431915954,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.323376975953579,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.373605394968763,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.4238300221040845,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.474063982954249,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.524305525934324,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.574535111896694,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.62478365493007,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.67502957303077,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.725264116888866,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.7754890359938145,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.825718912994489,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.875947915017605,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.9261707928963006,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.976396003970876,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.026650380110368,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.076921089086682,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.127151841064915,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.177380844019353,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.227609554072842,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.277828640071675,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.328050351003185,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.378267978085205,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.428511562990025,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.47875077300705,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.5289739419240505,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.579198861028999,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.62941182195209,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.679694489110261,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.729938657954335,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.780176118016243,
+      "phase": "measure",
+      "plan": null,
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.830406869994476,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.880631789099425,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        93,
+        14,
+        14
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.9308456250000745,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.981070544105023,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.0314135840162635,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.081679042894393,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.13192525296472,
+      "phase": "measure",
+      "plan": "count10_compact_repeat_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.182159797055647,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.232393173966557,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.282621301012114,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.332837179070339,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.38305305596441,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.4332759329117835,
+      "phase": "measure",
+      "plan": "count10_original_recompute",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.483512517996132,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_split",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.533727812115103,
+      "phase": "measure",
+      "plan": "count10_ready_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.5839501060545444,
+      "phase": "measure",
+      "plan": "count10_compact_grouped_joint",
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.63422927306965,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.68460060399957,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.734855272108689,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        91,
+        8,
+        9
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    }
+  ],
+  "note": "Driver busy counters have an unknown averaging window; not MAC occupancy or measured DRAM bandwidth."
+}

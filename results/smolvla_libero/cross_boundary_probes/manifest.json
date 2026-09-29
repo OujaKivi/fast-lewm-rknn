@@ -1,0 +1,975 @@
+{
+  "scope": "Actual layer-1 input RMSNorm, Q projection, full RoPE, attention, output projection and residual; no MLP or full dependent flow",
+  "source_sha256": "3fa863b26b87f09b7f9481feb469bf1bef57d1df453bbd52eb384a334630f9b6",
+  "hidden_source": "/Add_3_output_0",
+  "block_output_source": "/Add_5_output_0",
+  "ready_source": [
+    "/Transpose_5_output_0",
+    "/Transpose_6_output_0"
+  ],
+  "compact_source": [
+    "/Reshape_12_output_0",
+    "/Reshape_14_output_0"
+  ],
+  "group_ready_source": [
+    "c17_key_ready",
+    "c17_value_ready"
+  ],
+  "models": {
+    "block_original": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "key_1",
+        "value_1"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 4,
+        "Cast": 12,
+        "Concat": 3,
+        "Constant": 77,
+        "ConstantOfShape": 10,
+        "Cos": 1,
+        "Div": 2,
+        "Equal": 10,
+        "Expand": 12,
+        "Identity": 1,
+        "MatMul": 6,
+        "Mul": 19,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 10,
+        "ScatterND": 2,
+        "Shape": 2,
+        "Sin": 1,
+        "Slice": 3,
+        "Softmax": 1,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Transpose": 4,
+        "Unsqueeze": 13,
+        "Where": 10
+      }
+    },
+    "block_ready": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "/Transpose_5_output_0",
+        "/Transpose_6_output_0"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            15,
+            64,
+            1,
+            152
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            15,
+            64,
+            1,
+            152
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 4,
+        "Cast": 9,
+        "Concat": 3,
+        "Constant": 63,
+        "ConstantOfShape": 8,
+        "Cos": 1,
+        "Div": 2,
+        "Equal": 8,
+        "Expand": 10,
+        "Identity": 1,
+        "MatMul": 4,
+        "Mul": 17,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 4,
+        "ScatterND": 2,
+        "Shape": 2,
+        "Sin": 1,
+        "Slice": 3,
+        "Softmax": 1,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Transpose": 2,
+        "Unsqueeze": 11,
+        "Where": 8
+      }
+    },
+    "block_compact_repeat": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "/Reshape_12_output_0",
+        "/Reshape_14_output_0"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 4,
+        "Cast": 10,
+        "Concat": 3,
+        "Constant": 73,
+        "ConstantOfShape": 10,
+        "Cos": 1,
+        "Div": 2,
+        "Equal": 10,
+        "Expand": 12,
+        "Identity": 1,
+        "MatMul": 4,
+        "Mul": 19,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 6,
+        "ScatterND": 2,
+        "Shape": 2,
+        "Sin": 1,
+        "Slice": 3,
+        "Softmax": 1,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Transpose": 4,
+        "Unsqueeze": 13,
+        "Where": 10
+      }
+    },
+    "block_grouped_joint": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "/Reshape_12_output_0",
+        "/Reshape_14_output_0"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 3,
+        "Cast": 6,
+        "Concat": 3,
+        "Constant": 61,
+        "ConstantOfShape": 8,
+        "Cos": 1,
+        "Div": 2,
+        "Equal": 8,
+        "Expand": 10,
+        "Identity": 1,
+        "MatMul": 4,
+        "Mul": 17,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 9,
+        "ScatterND": 2,
+        "Shape": 2,
+        "Sin": 1,
+        "Slice": 3,
+        "Softmax": 1,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Transpose": 5,
+        "Unsqueeze": 11,
+        "Where": 8
+      }
+    },
+    "block_grouped_interleaved": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "/Reshape_12_output_0",
+        "/Reshape_14_output_0"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 3,
+        "Cast": 6,
+        "Concat": 3,
+        "Constant": 61,
+        "ConstantOfShape": 8,
+        "Cos": 1,
+        "Div": 2,
+        "Equal": 8,
+        "Expand": 10,
+        "Identity": 1,
+        "MatMul": 4,
+        "Mul": 17,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 9,
+        "ScatterND": 2,
+        "Shape": 2,
+        "Sin": 1,
+        "Slice": 3,
+        "Softmax": 1,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Transpose": 5,
+        "Unsqueeze": 11,
+        "Where": 8
+      }
+    },
+    "block_grouped_propagated": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "/Reshape_12_output_0",
+        "/Reshape_14_output_0"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 3,
+        "Cast": 4,
+        "Concat": 1,
+        "Constant": 11,
+        "Cos": 1,
+        "Div": 2,
+        "Identity": 1,
+        "MatMul": 4,
+        "Mul": 9,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 5,
+        "Sin": 1,
+        "Softmax": 1,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Transpose": 9,
+        "Unsqueeze": 3
+      }
+    },
+    "query_producer": {
+      "original_inputs": [
+        "/Add_3_output_0"
+      ],
+      "original_outputs": [
+        "/Cast_16_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            15,
+            64
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 2,
+        "Cast": 6,
+        "Concat": 3,
+        "Constant": 57,
+        "ConstantOfShape": 8,
+        "Cos": 1,
+        "Div": 2,
+        "Equal": 8,
+        "Expand": 10,
+        "Identity": 1,
+        "MatMul": 1,
+        "Mul": 16,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 3,
+        "ScatterND": 2,
+        "Shape": 2,
+        "Sin": 1,
+        "Slice": 2,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Unsqueeze": 11,
+        "Where": 8
+      }
+    },
+    "grouped_attention": {
+      "original_inputs": [
+        "/Cast_16_output_0",
+        "/Reshape_12_output_0",
+        "/Reshape_14_output_0"
+      ],
+      "original_outputs": [
+        "/Reshape_19_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            15,
+            64
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            15,
+            64
+          ]
+        }
+      ],
+      "operations": {
+        "MatMul": 2,
+        "Mul": 1,
+        "Reshape": 6,
+        "Softmax": 1,
+        "Transpose": 5
+      }
+    },
+    "output_consumer": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "/Reshape_19_output_0"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            50,
+            15,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 1,
+        "Cast": 1,
+        "Constant": 4,
+        "MatMul": 1,
+        "Slice": 1
+      }
+    },
+    "prepare_compact": {
+      "original_inputs": [
+        "key_1",
+        "value_1"
+      ],
+      "original_outputs": [
+        "/Reshape_12_output_0",
+        "/Reshape_14_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_output_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "operations": {
+        "Cast": 2,
+        "Constant": 4,
+        "MatMul": 2,
+        "Reshape": 4
+      }
+    },
+    "prepare_ready": {
+      "original_inputs": [
+        "key_1",
+        "value_1"
+      ],
+      "original_outputs": [
+        "/Transpose_5_output_0",
+        "/Transpose_6_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            15,
+            64,
+            1,
+            149
+          ]
+        },
+        {
+          "name": "native_output_1",
+          "shape": [
+            15,
+            64,
+            1,
+            149
+          ]
+        }
+      ],
+      "operations": {
+        "Cast": 3,
+        "Constant": 14,
+        "ConstantOfShape": 2,
+        "Equal": 2,
+        "Expand": 2,
+        "MatMul": 2,
+        "Mul": 2,
+        "Reshape": 6,
+        "Transpose": 2,
+        "Unsqueeze": 2,
+        "Where": 2
+      }
+    },
+    "prepare_group_ready": {
+      "original_inputs": [
+        "key_1",
+        "value_1"
+      ],
+      "original_outputs": [
+        "c17_key_ready",
+        "c17_value_ready"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            1,
+            149,
+            5,
+            64
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            5,
+            64,
+            1,
+            149
+          ]
+        },
+        {
+          "name": "native_output_1",
+          "shape": [
+            5,
+            64,
+            1,
+            149
+          ]
+        }
+      ],
+      "operations": {
+        "Cast": 2,
+        "Constant": 4,
+        "MatMul": 2,
+        "Reshape": 4,
+        "Transpose": 2
+      }
+    },
+    "block_grouped_propagated_ready": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "c17_key_ready",
+        "c17_value_ready"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            5,
+            64,
+            1,
+            152
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            5,
+            64,
+            1,
+            152
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 3,
+        "Cast": 4,
+        "Concat": 1,
+        "Constant": 11,
+        "Cos": 1,
+        "Div": 2,
+        "Identity": 1,
+        "MatMul": 4,
+        "Mul": 9,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 5,
+        "Sin": 1,
+        "Softmax": 1,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Transpose": 6,
+        "Unsqueeze": 3
+      }
+    },
+    "block_grouped_joint_ready": {
+      "original_inputs": [
+        "/Add_3_output_0",
+        "c17_key_ready",
+        "c17_value_ready"
+      ],
+      "original_outputs": [
+        "/Add_5_output_0"
+      ],
+      "native_inputs": [
+        {
+          "name": "native_input_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        },
+        {
+          "name": "native_input_1",
+          "shape": [
+            5,
+            64,
+            1,
+            152
+          ]
+        },
+        {
+          "name": "native_input_2",
+          "shape": [
+            5,
+            64,
+            1,
+            152
+          ]
+        }
+      ],
+      "native_outputs": [
+        {
+          "name": "native_output_0",
+          "shape": [
+            1,
+            50,
+            1,
+            480
+          ]
+        }
+      ],
+      "operations": {
+        "Add": 3,
+        "Cast": 6,
+        "Concat": 3,
+        "Constant": 61,
+        "ConstantOfShape": 8,
+        "Cos": 1,
+        "Div": 2,
+        "Equal": 8,
+        "Expand": 10,
+        "Identity": 1,
+        "MatMul": 4,
+        "Mul": 17,
+        "Pow": 2,
+        "Reciprocal": 1,
+        "ReduceMean": 1,
+        "Reshape": 9,
+        "ScatterND": 2,
+        "Shape": 2,
+        "Sin": 1,
+        "Slice": 3,
+        "Softmax": 1,
+        "Split": 1,
+        "Sqrt": 1,
+        "Sub": 1,
+        "Transpose": 2,
+        "Unsqueeze": 11,
+        "Where": 8
+      }
+    }
+  }
+}

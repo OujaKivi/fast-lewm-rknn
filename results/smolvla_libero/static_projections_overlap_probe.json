@@ -1,0 +1,35 @@
+{
+  "scope": "real checkpoint, fixed prefix, two distinct synthetic action suffixes; FP32 CPU",
+  "layers": 32,
+  "hoisted_projections": 32,
+  "checked_calls": 64,
+  "projection_input_shapes": [
+    "[1, 149, 320]"
+  ],
+  "projection_weight_shapes": [
+    "[320, 320]"
+  ],
+  "projected_bytes": 6103040,
+  "projection_once_median_ms": 26.472134049981833,
+  "output_max_abs_errors": [
+    0.0,
+    0.0
+  ],
+  "bitwise_equal": [
+    true,
+    true
+  ],
+  "note": "CPU projection timing is not NPU savings. No full denoising rollout or recompiled NPU graph tested.",
+  "preparation_overlap": {
+    "serial": {
+      "median_ms": 153.72181148268282,
+      "p95_ms": 168.9793471537996
+    },
+    "overlap": {
+      "median_ms": 110.83118448732421,
+      "p95_ms": 125.13527128612623
+    }
+  },
+  "overlap_npu_output_max_abs_error": 0.0,
+  "overlap_scope": "One original NPU step plus CPU preparation; warm NPU graph not implemented."
+}

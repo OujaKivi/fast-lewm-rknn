@@ -1,0 +1,146 @@
+{
+  "scope": "Independent CPU ORT, optimizations disabled; stage localization is not a fused NPU intermediate capture",
+  "cases": {
+    "original": {
+      "query_after_rope": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "attention_output_original_order": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "propagated_final": {
+        "bitwise_equal": false,
+        "different_elements": 8447,
+        "max_abs": 4.76837158203125e-07
+      },
+      "restore_o": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "original_q": {
+        "bitwise_equal": false,
+        "different_elements": 8447,
+        "max_abs": 4.76837158203125e-07
+      },
+      "original_q_restore_o": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "head_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "compact_group_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "original_order_group_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      }
+    },
+    "other_suffix": {
+      "query_after_rope": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "attention_output_original_order": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "propagated_final": {
+        "bitwise_equal": false,
+        "different_elements": 8370,
+        "max_abs": 4.76837158203125e-07
+      },
+      "restore_o": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "original_q": {
+        "bitwise_equal": false,
+        "different_elements": 8370,
+        "max_abs": 4.76837158203125e-07
+      },
+      "original_q_restore_o": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "head_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "compact_group_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "original_order_group_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      }
+    },
+    "changed_prefix": {
+      "query_after_rope": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "attention_output_original_order": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "propagated_final": {
+        "bitwise_equal": false,
+        "different_elements": 8726,
+        "max_abs": 2.384185791015625e-07
+      },
+      "restore_o": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "original_q": {
+        "bitwise_equal": false,
+        "different_elements": 8726,
+        "max_abs": 2.384185791015625e-07
+      },
+      "original_q_restore_o": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "head_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "compact_group_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      },
+      "original_order_group_split_final": {
+        "bitwise_equal": true,
+        "different_elements": 0,
+        "max_abs": 0.0
+      }
+    }
+  }
+}

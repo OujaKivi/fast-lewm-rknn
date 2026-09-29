@@ -1,0 +1,70 @@
+{
+  "scope": "RKNN_QUERY_MEM_SIZE and fixed-zero-input C probe; timings include outputs_get, exclude inputs_set; weight region includes compiler-generated constants, DMA is allocation rather than measured traffic",
+  "cases": {
+    "b2_vision_original": {
+      "model": "/root/smolvla-rknn-vision/vision_connector_batch2_fp16.rknn",
+      "profile": false,
+      "core_mask": 7,
+      "input_bytes": 6291456,
+      "weight_bytes": 802625856,
+      "internal_bytes": 51154944,
+      "dma_bytes": 1714794496,
+      "median_ms": 1699.13,
+      "samples_ms": [
+        1699.13
+      ]
+    },
+    "b2_vision_unmasked": {
+      "model": "/root/smolvla-rknn-vision/real_b2_probes/vision_unmasked_fp16.rknn",
+      "profile": false,
+      "core_mask": 7,
+      "input_bytes": 6291456,
+      "weight_bytes": 198646080,
+      "internal_bytes": 51154944,
+      "dma_bytes": 506728448,
+      "median_ms": 1689.81,
+      "samples_ms": [
+        1689.81
+      ]
+    },
+    "b2_attention_original": {
+      "model": "/root/smolvla-rknn-vision/real_b2_probes/attention_original_fp16.rknn",
+      "profile": false,
+      "core_mask": 7,
+      "input_bytes": 18874368,
+      "weight_bytes": 50332288,
+      "internal_bytes": 36979008,
+      "dma_bytes": 139165696,
+      "median_ms": 131.309,
+      "samples_ms": [
+        131.309
+      ]
+    },
+    "b2_attention_unmasked": {
+      "model": "/root/smolvla-rknn-vision/real_b2_probes/attention_unmasked_fp16.rknn",
+      "profile": false,
+      "core_mask": 7,
+      "input_bytes": 18874368,
+      "weight_bytes": 640,
+      "internal_bytes": 36978944,
+      "dma_bytes": 38494208,
+      "median_ms": 131.189,
+      "samples_ms": [
+        131.189
+      ]
+    },
+    "b2_attention_original_opt3": {
+      "model": "/root/smolvla-rknn-vision/real_b2_probes/attention_original_opt3_fp16.rknn",
+      "profile": false,
+      "core_mask": 7,
+      "input_bytes": 18874368,
+      "weight_bytes": 50332288,
+      "internal_bytes": 36979008,
+      "dma_bytes": 139165696,
+      "median_ms": 130.709,
+      "samples_ms": [
+        130.709
+      ]
+    }
+  }
+}

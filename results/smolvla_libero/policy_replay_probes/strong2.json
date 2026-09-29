@@ -1,0 +1,1247 @@
+{
+  "scope": "Complete two-camera policy replay including vision, prefill, 32 action layers, ten dependent CPU FP32 Euler steps; no C17 integration or closed-loop success claim",
+  "fixtures": {
+    "repo": "lerobot/libero_spatial_image",
+    "revision": "d86c0b94922572b3b657e1d1a3d01f0952ddeb46",
+    "data_path": "data/chunk-000/file-001.parquet",
+    "parquet_sha256": "1574892a5df268080927bb0fcf41ea443bfdc9475562fc35e091024d765b327b",
+    "scope": "Three offline recorded demonstration frames, not simulator rollout or task success evaluation",
+    "camera_mapping": {
+      "observation.images.wrist_image": "observation.images.image2"
+    },
+    "state_protocol": "Recorded eight-dimensional state passed unchanged into checkpoint normalization; not a claim of simulator state-semantic parity",
+    "cases": [
+      {
+        "file": "frame_0.npz",
+        "frame_index": 0,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "cd7fa1dc69bca664d9a536324e966a7929df4a81e68b31f04c1b73018bab0986",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      },
+      {
+        "file": "frame_42.npz",
+        "frame_index": 42,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "7f9aa544a5b2c20b0f72d554a914ebc8cbfd45982032fe72e5cb947a3eeb7d5f",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      },
+      {
+        "file": "frame_83.npz",
+        "frame_index": 83,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "321a49a928585691b3a9fe735401dffda44cc48f8206159511aa1a0a66740264",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      }
+    ]
+  },
+  "script_sha256": "1030cea3fa91a8abc3936eee54bf0103b95a77e0b541908a2e0169f827db4074",
+  "affinity": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "repeats": 8,
+  "vision_control": "native fused two-camera mask1/mask2 concurrent",
+  "limitations": [
+    "Seven/eight RKNN contexts coexist; no isolated memory/energy claim",
+    "Fixed valid 149-token prefix and one recorded task/episode",
+    "Checkpoint preprocessing done before measured policy; transport/simulator/postprocessing excluded",
+    "No cross-observation reuse: both images, prefill and cache preparation rerun for every call",
+    "C06 hoisting is a strong baseline, not the C17 proposed mechanism"
+  ],
+  "artifact_sha256": {
+    "/root/smolvla-rknn-vision/native_vision12/vision_unmasked.rknn": "da413e344bc5fac2236115394ca95cad0fb76ef38749ee5d9966b9a681f24e3d",
+    "/root/smolvla-libero-rknn/prefill32/prefill_addmask.rknn": "82511799271c72c95ff99dae5f9f1d531425e0a07663b441e56e7a63186b408b",
+    "/root/smolvla-libero-rknn/denoise32/denoise_step_addmask.rknn": "bcef2130221371e8c213ca2dca936e0d38aefdd2eefecc0e371b4e82f6ebdf7a",
+    "/root/smolvla-conditioning-probe/libsmolvla_conditioning_full.so": "341471bbbc6475a7e4e56a17e7e770b4ab670a4c38d1ba734bc46f6c80c9ac27",
+    "/root/smolvla-conditioning-probe/full/prepare_full.rknn": "15405bd818e32474415c2086ad3369a81c964e2a913fbf5282706f95b5ee50b4",
+    "/root/smolvla-conditioning-probe/full/warm_full.rknn": "d3ac3bb2e8626d44014473f9f042d9050965184882a63a844eb3ca154bb49bb2",
+    "/root/smolvla-policy-replay/libcamera_pair.so": "1dd4d6cd7e78654d95482c862531559672edb65e4ab74f581b8c6cc460ee2b26"
+  },
+  "validation": {
+    "frame_0.npz": {
+      "deployed_lite": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "original_resident": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "hoisted_consumer_ready": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      }
+    },
+    "frame_42.npz": {
+      "deployed_lite": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "original_resident": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "hoisted_consumer_ready": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      }
+    },
+    "frame_83.npz": {
+      "deployed_lite": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "original_resident": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "hoisted_consumer_ready": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      }
+    }
+  },
+  "cases": {
+    "frame_0.npz": {
+      "deployed_lite": {
+        "samples": [
+          {
+            "vision_ms": 1107.2557610459626,
+            "prefill_ms": 250.96975197084248,
+            "denoise_ms": 1170.1234912034124,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2549.8133080545813,
+            "other_ms": 21.464303834363818
+          },
+          {
+            "vision_ms": 1107.8825781587511,
+            "prefill_ms": 266.64952700957656,
+            "denoise_ms": 1213.5516598355025,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2609.0008879546076,
+            "other_ms": 20.91712295077741
+          },
+          {
+            "vision_ms": 1108.5107999388129,
+            "prefill_ms": 250.88192289695144,
+            "denoise_ms": 1170.4346262849867,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2551.1857469100505,
+            "other_ms": 21.358397789299488
+          },
+          {
+            "vision_ms": 1107.1032201871276,
+            "prefill_ms": 250.90046017430723,
+            "denoise_ms": 1174.6261192020029,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2553.9456049446017,
+            "other_ms": 21.315805381163955
+          },
+          {
+            "vision_ms": 1107.2751299943775,
+            "prefill_ms": 251.33166112937033,
+            "denoise_ms": 1195.3892768360674,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2575.3279000055045,
+            "other_ms": 21.331832045689225
+          },
+          {
+            "vision_ms": 1107.1713459677994,
+            "prefill_ms": 263.69990198872983,
+            "denoise_ms": 1272.2719789016992,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2664.0643822029233,
+            "other_ms": 20.921155344694853
+          },
+          {
+            "vision_ms": 1108.8073609862477,
+            "prefill_ms": 251.01525499485433,
+            "denoise_ms": 1171.6885906644166,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2553.27584897168,
+            "other_ms": 21.764642326161265
+          },
+          {
+            "vision_ms": 1107.0782830938697,
+            "prefill_ms": 251.14139798097312,
+            "denoise_ms": 1172.8945027571172,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2552.834772039205,
+            "other_ms": 21.720588207244873
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.26544552017,
+          "prefill_ms": 251.07832648791373,
+          "denoise_ms": 1173.76031097956,
+          "common_prefix_pack_ms": 0.0,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 0.0,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2553.6107269581407,
+          "other_ms": 21.345114917494357
+        },
+        "p95_total_ms": 2644.792159216013
+      },
+      "original_resident": {
+        "samples": [
+          {
+            "vision_ms": 1108.6784210056067,
+            "prefill_ms": 251.11236097291112,
+            "denoise_ms": 751.5333981718868,
+            "common_prefix_pack_ms": 5.062159150838852,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 695.171526,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2132.0633969735354,
+            "other_ms": 20.739216823130846
+          },
+          {
+            "vision_ms": 1107.549344887957,
+            "prefill_ms": 251.1014281772077,
+            "denoise_ms": 750.2359410282224,
+            "common_prefix_pack_ms": 5.084906006231904,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.663934,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2129.7425858210772,
+            "other_ms": 20.8558717276901
+          },
+          {
+            "vision_ms": 1107.0975980255753,
+            "prefill_ms": 250.7745751645416,
+            "denoise_ms": 755.5253205355257,
+            "common_prefix_pack_ms": 8.85759899392724,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.2139540000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2135.946763912216,
+            "other_ms": 22.549270186573267
+          },
+          {
+            "vision_ms": 1107.4493459891528,
+            "prefill_ms": 250.9333968628198,
+            "denoise_ms": 818.0942148901522,
+            "common_prefix_pack_ms": 5.08985691703856,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 754.494765,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2197.626510867849,
+            "other_ms": 21.149553125724196
+          },
+          {
+            "vision_ms": 1107.741632964462,
+            "prefill_ms": 266.1579209379852,
+            "denoise_ms": 794.9486922007054,
+            "common_prefix_pack_ms": 5.383271025493741,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 733.439641,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2189.1050019767135,
+            "other_ms": 20.256755873560905
+          },
+          {
+            "vision_ms": 1107.2613939177245,
+            "prefill_ms": 250.7330239750445,
+            "denoise_ms": 754.9089295789599,
+            "common_prefix_pack_ms": 6.462136982008815,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.7491610000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2133.5176681168377,
+            "other_ms": 20.61432064510882
+          },
+          {
+            "vision_ms": 1107.246587984264,
+            "prefill_ms": 250.73261721991003,
+            "denoise_ms": 751.8049711361527,
+            "common_prefix_pack_ms": 5.076142027974129,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.2468839999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2129.575116094202,
+            "other_ms": 19.790939753875136
+          },
+          {
+            "vision_ms": 1107.1831018198282,
+            "prefill_ms": 251.2846291065216,
+            "denoise_ms": 757.3483139276505,
+            "common_prefix_pack_ms": 5.695051979273558,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.934618,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2135.9706870280206,
+            "other_ms": 20.15464217402041
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.3553699534386,
+          "prefill_ms": 251.01741252001375,
+          "denoise_ms": 755.2171250572428,
+          "common_prefix_pack_ms": 5.2365639712661505,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 694.8418895,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2134.732216014527,
+          "other_ms": 20.676768734119833
+        },
+        "p95_total_ms": 2194.6439827559516
+      },
+      "hoisted_consumer_ready": {
+        "samples": [
+          {
+            "vision_ms": 1107.367305783555,
+            "prefill_ms": 250.82826102152467,
+            "denoise_ms": 697.9411421343684,
+            "common_prefix_pack_ms": 5.054282955825329,
+            "once_preparation_ms": 10.442233,
+            "native_run_ms": 630.248631,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2075.7156799081713,
+            "other_ms": 19.578970968723297
+          },
+          {
+            "vision_ms": 1107.4095650110394,
+            "prefill_ms": 251.2131209950894,
+            "denoise_ms": 694.9733439832926,
+            "common_prefix_pack_ms": 5.058655980974436,
+            "once_preparation_ms": 10.413644,
+            "native_run_ms": 630.161069,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2073.3896549791098,
+            "other_ms": 19.793624989688396
+          },
+          {
+            "vision_ms": 1107.1310008410364,
+            "prefill_ms": 250.70752087049186,
+            "denoise_ms": 756.9143432192504,
+            "common_prefix_pack_ms": 5.081110866740346,
+            "once_preparation_ms": 10.435221,
+            "native_run_ms": 690.469942,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2134.4368120189756,
+            "other_ms": 19.683947088196874
+          },
+          {
+            "vision_ms": 1107.8529439400882,
+            "prefill_ms": 251.08329905197024,
+            "denoise_ms": 701.575777027756,
+            "common_prefix_pack_ms": 5.076732020825148,
+            "once_preparation_ms": 10.440464,
+            "native_run_ms": 629.9249,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2080.1697010174394,
+            "other_ms": 19.657680997624993
+          },
+          {
+            "vision_ms": 1107.2900667786598,
+            "prefill_ms": 251.04584102518857,
+            "denoise_ms": 695.9807048551738,
+            "common_prefix_pack_ms": 5.054563982412219,
+            "once_preparation_ms": 10.452709,
+            "native_run_ms": 630.0397969999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2074.657366843894,
+            "other_ms": 20.340754184871912
+          },
+          {
+            "vision_ms": 1107.477362966165,
+            "prefill_ms": 250.85001392289996,
+            "denoise_ms": 698.2419406995177,
+            "common_prefix_pack_ms": 6.09959801658988,
+            "once_preparation_ms": 10.45212,
+            "native_run_ms": 629.659451,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2076.9975590519607,
+            "other_ms": 20.428241463378072
+          },
+          {
+            "vision_ms": 1107.4256121646613,
+            "prefill_ms": 268.6740970239043,
+            "denoise_ms": 783.2035564351827,
+            "common_prefix_pack_ms": 5.074390908703208,
+            "once_preparation_ms": 10.986153,
+            "native_run_ms": 715.0166129999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2179.318208945915,
+            "other_ms": 20.0149433221668
+          },
+          {
+            "vision_ms": 1108.8242449332029,
+            "prefill_ms": 259.80065297335386,
+            "denoise_ms": 693.4453342109919,
+            "common_prefix_pack_ms": 5.0735140684992075,
+            "once_preparation_ms": 10.443359,
+            "native_run_ms": 629.8352289999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2082.345041912049,
+            "other_ms": 20.27480979450047
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.4175885878503,
+          "prefill_ms": 251.0645700385794,
+          "denoise_ms": 698.0915414169431,
+          "common_prefix_pack_ms": 5.073952488601208,
+          "once_preparation_ms": 10.442796,
+          "native_run_ms": 630.100433,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2078.5836300347,
+          "other_ms": 19.9042841559276
+        },
+        "p95_total_ms": 2163.6097200214863
+      }
+    },
+    "frame_42.npz": {
+      "deployed_lite": {
+        "samples": [
+          {
+            "vision_ms": 1107.005569152534,
+            "prefill_ms": 251.5795750077814,
+            "denoise_ms": 1278.8683448452502,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2658.5707031190395,
+            "other_ms": 21.117214113473892
+          },
+          {
+            "vision_ms": 1108.1247220281512,
+            "prefill_ms": 251.57063477672637,
+            "denoise_ms": 1172.4434338975698,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2552.7032809332013,
+            "other_ms": 20.564490230754018
+          },
+          {
+            "vision_ms": 1107.2864620946348,
+            "prefill_ms": 250.88566401973367,
+            "denoise_ms": 1171.135847689584,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2550.232662120834,
+            "other_ms": 20.924688316881657
+          },
+          {
+            "vision_ms": 1107.6638801023364,
+            "prefill_ms": 250.90070185251534,
+            "denoise_ms": 1174.9852260109037,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2554.339444031939,
+            "other_ms": 20.789636066183448
+          },
+          {
+            "vision_ms": 1107.2626810055226,
+            "prefill_ms": 258.93970602191985,
+            "denoise_ms": 1285.23163869977,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2673.5863089561462,
+            "other_ms": 22.15228322893381
+          },
+          {
+            "vision_ms": 1108.9080169331282,
+            "prefill_ms": 250.5871660541743,
+            "denoise_ms": 1173.6013828776777,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2554.57946495153,
+            "other_ms": 21.482899086549878
+          },
+          {
+            "vision_ms": 1107.064763084054,
+            "prefill_ms": 250.6984667852521,
+            "denoise_ms": 1169.5440670009702,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2549.1725609172136,
+            "other_ms": 21.865264046937227
+          },
+          {
+            "vision_ms": 1107.1769769769162,
+            "prefill_ms": 250.9243581444025,
+            "denoise_ms": 1172.8712727781385,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2552.4470270611346,
+            "other_ms": 21.47441916167736
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.2745715500787,
+          "prefill_ms": 250.91252999845892,
+          "denoise_ms": 1173.236327827908,
+          "common_prefix_pack_ms": 0.0,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 0.0,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2553.52136248257,
+          "other_ms": 21.295816637575626
+        },
+        "p95_total_ms": 2668.330846913159
+      },
+      "original_resident": {
+        "samples": [
+          {
+            "vision_ms": 1107.1889330632985,
+            "prefill_ms": 250.85126399062574,
+            "denoise_ms": 753.8662736769766,
+            "common_prefix_pack_ms": 5.085491109639406,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.9992960000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2132.557017961517,
+            "other_ms": 20.650547230616212
+          },
+          {
+            "vision_ms": 1107.0882820058614,
+            "prefill_ms": 252.65303812921047,
+            "denoise_ms": 750.2177052665502,
+            "common_prefix_pack_ms": 5.4150710348039865,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 695.095458,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2130.1557270344347,
+            "other_ms": 20.19670163281262
+          },
+          {
+            "vision_ms": 1107.6016700826585,
+            "prefill_ms": 251.22602307237685,
+            "denoise_ms": 822.76084064506,
+            "common_prefix_pack_ms": 6.841020891442895,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 766.056057,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2202.2200950887054,
+            "other_ms": 20.6315612886101
+          },
+          {
+            "vision_ms": 1108.4060929715633,
+            "prefill_ms": 265.8234629780054,
+            "denoise_ms": 765.0505821220577,
+            "common_prefix_pack_ms": 8.706219028681517,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 704.1184269999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2159.8816481418908,
+            "other_ms": 20.60151007026434
+          },
+          {
+            "vision_ms": 1108.2926760427654,
+            "prefill_ms": 250.7929380517453,
+            "denoise_ms": 751.4545135200024,
+            "common_prefix_pack_ms": 5.074687069281936,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.9376179999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2131.2994190957397,
+            "other_ms": 20.759291481226683
+          },
+          {
+            "vision_ms": 1107.1809949353337,
+            "prefill_ms": 250.93889515846968,
+            "denoise_ms": 752.354103140533,
+            "common_prefix_pack_ms": 5.080517148599029,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.5722910000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2130.3716911934316,
+            "other_ms": 19.89769795909524
+          },
+          {
+            "vision_ms": 1107.0288179907948,
+            "prefill_ms": 251.37482094578445,
+            "denoise_ms": 761.4262907300144,
+            "common_prefix_pack_ms": 5.070016020908952,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 705.2734590000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2140.3896980918944,
+            "other_ms": 20.559768425300717
+          },
+          {
+            "vision_ms": 1106.9600889459252,
+            "prefill_ms": 251.03550497442484,
+            "denoise_ms": 838.8816902879626,
+            "common_prefix_pack_ms": 5.068263038992882,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 779.8761069999998,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2216.5393030736595,
+            "other_ms": 19.66201886534691
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.184963999316,
+          "prefill_ms": 251.13076402340084,
+          "denoise_ms": 757.6462822034955,
+          "common_prefix_pack_ms": 5.083004129119217,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 699.6069425,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2136.4733580267057,
+          "other_ms": 20.58063924778253
+        },
+        "p95_total_ms": 2211.5275802789256
+      },
+      "hoisted_consumer_ready": {
+        "samples": [
+          {
+            "vision_ms": 1107.4046920984983,
+            "prefill_ms": 251.35554000735283,
+            "denoise_ms": 700.5919455550611,
+            "common_prefix_pack_ms": 5.125449039041996,
+            "once_preparation_ms": 10.431147,
+            "native_run_ms": 630.007577,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2079.9583920743316,
+            "other_ms": 20.606214413419366
+          },
+          {
+            "vision_ms": 1107.3530451394618,
+            "prefill_ms": 251.05586019344628,
+            "denoise_ms": 753.1693137716502,
+            "common_prefix_pack_ms": 5.109986988827586,
+            "once_preparation_ms": 10.53585,
+            "native_run_ms": 685.4672249999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2131.8204200360924,
+            "other_ms": 20.24220093153417
+          },
+          {
+            "vision_ms": 1108.1017351243645,
+            "prefill_ms": 269.36358702369034,
+            "denoise_ms": 732.6166755519807,
+            "common_prefix_pack_ms": 5.0286101177334785,
+            "once_preparation_ms": 11.145717,
+            "native_run_ms": 664.1061289999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2133.7168470490724,
+            "other_ms": 23.634849349036813
+          },
+          {
+            "vision_ms": 1107.234694994986,
+            "prefill_ms": 250.6877521518618,
+            "denoise_ms": 697.4310802761465,
+            "common_prefix_pack_ms": 5.088689038529992,
+            "once_preparation_ms": 10.439295,
+            "native_run_ms": 629.901449,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2075.2815769519657,
+            "other_ms": 19.928049528971314
+          },
+          {
+            "vision_ms": 1107.1072849445045,
+            "prefill_ms": 251.1338780168444,
+            "denoise_ms": 697.6270286832005,
+            "common_prefix_pack_ms": 5.134479142725468,
+            "once_preparation_ms": 10.443373,
+            "native_run_ms": 629.797018,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2076.41894207336,
+            "other_ms": 20.550750428810716
+          },
+          {
+            "vision_ms": 1107.2785400319844,
+            "prefill_ms": 251.52750802226365,
+            "denoise_ms": 693.8703341875225,
+            "common_prefix_pack_ms": 5.1152268424630165,
+            "once_preparation_ms": 10.453868,
+            "native_run_ms": 629.6220079999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2073.453163029626,
+            "other_ms": 20.776780787855387
+          },
+          {
+            "vision_ms": 1108.6160019040108,
+            "prefill_ms": 251.07351900078356,
+            "denoise_ms": 700.0963662285358,
+            "common_prefix_pack_ms": 5.092474166303873,
+            "once_preparation_ms": 10.475736,
+            "native_run_ms": 630.018274,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2079.977279063314,
+            "other_ms": 20.191391929984093
+          },
+          {
+            "vision_ms": 1107.3881960473955,
+            "prefill_ms": 251.32686691358685,
+            "denoise_ms": 697.4352039396763,
+            "common_prefix_pack_ms": 5.084596108645201,
+            "once_preparation_ms": 10.483608,
+            "native_run_ms": 629.710587,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2075.7516140583903,
+            "other_ms": 19.601347157731652
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.3706205934286,
+          "prefill_ms": 251.23037246521562,
+          "denoise_ms": 698.8616974558681,
+          "common_prefix_pack_ms": 5.10123057756573,
+          "once_preparation_ms": 10.464801999999999,
+          "native_run_ms": 629.9545129999999,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2078.188667073846,
+          "other_ms": 20.396475680172443
+        },
+        "p95_total_ms": 2133.0530975945294
+      }
+    },
+    "frame_83.npz": {
+      "deployed_lite": {
+        "samples": [
+          {
+            "vision_ms": 1108.4884530864656,
+            "prefill_ms": 268.41274183243513,
+            "denoise_ms": 1173.7650262657553,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2572.381052887067,
+            "other_ms": 21.714831702411175
+          },
+          {
+            "vision_ms": 1107.196707976982,
+            "prefill_ms": 251.00270891562104,
+            "denoise_ms": 1171.3173668831587,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2550.9586029220372,
+            "other_ms": 21.44181914627552
+          },
+          {
+            "vision_ms": 1106.9476201664656,
+            "prefill_ms": 251.14636798389256,
+            "denoise_ms": 1171.4756987057626,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2550.5556219723076,
+            "other_ms": 20.985935116186738
+          },
+          {
+            "vision_ms": 1107.1392560843378,
+            "prefill_ms": 251.1972771026194,
+            "denoise_ms": 1240.4026759322733,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2620.015050051734,
+            "other_ms": 21.275840932503343
+          },
+          {
+            "vision_ms": 1108.9188479818404,
+            "prefill_ms": 250.89990394189954,
+            "denoise_ms": 1170.6728267017752,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2551.7221949994564,
+            "other_ms": 21.230616373941302
+          },
+          {
+            "vision_ms": 1106.9478320423514,
+            "prefill_ms": 251.33757595904171,
+            "denoise_ms": 1171.4749408420175,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2550.478497054428,
+            "other_ms": 20.71814821101725
+          },
+          {
+            "vision_ms": 1107.4778668116778,
+            "prefill_ms": 251.20008899830282,
+            "denoise_ms": 1174.3336054496467,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2553.953114198521,
+            "other_ms": 20.941552938893437
+          },
+          {
+            "vision_ms": 1107.2112168185413,
+            "prefill_ms": 251.716478029266,
+            "denoise_ms": 1260.8007758390158,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2640.8202229067683,
+            "other_ms": 21.091752219945192
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.2039623977616,
+          "prefill_ms": 251.1986830504611,
+          "denoise_ms": 1172.620362485759,
+          "common_prefix_pack_ms": 0.0,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 0.0,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2552.8376545989886,
+          "other_ms": 21.161184296943247
+        },
+        "p95_total_ms": 2633.5384124075063
+      },
+      "original_resident": {
+        "samples": [
+          {
+            "vision_ms": 1107.3642820119858,
+            "prefill_ms": 251.09475082717836,
+            "denoise_ms": 750.8689581882209,
+            "common_prefix_pack_ms": 5.03882416523993,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 695.135359,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2129.9636571202427,
+            "other_ms": 20.63566609285772
+          },
+          {
+            "vision_ms": 1107.186638051644,
+            "prefill_ms": 251.22148799709976,
+            "denoise_ms": 751.8677960615605,
+            "common_prefix_pack_ms": 5.075863096863031,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 695.119526,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2129.88462485373,
+            "other_ms": 19.608702743425965
+          },
+          {
+            "vision_ms": 1108.1550337839872,
+            "prefill_ms": 268.0014178622514,
+            "denoise_ms": 783.6628942750394,
+            "common_prefix_pack_ms": 5.08665107190609,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 727.700994,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2180.3636951372027,
+            "other_ms": 20.54434921592474
+          },
+          {
+            "vision_ms": 1108.0022170208395,
+            "prefill_ms": 251.12522207200527,
+            "denoise_ms": 755.1798878703266,
+            "common_prefix_pack_ms": 5.0531059969216585,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.9865360000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2135.0885001011193,
+            "other_ms": 20.781173137947917
+          },
+          {
+            "vision_ms": 1107.1823940146714,
+            "prefill_ms": 251.3345170300454,
+            "denoise_ms": 751.2630426790565,
+            "common_prefix_pack_ms": 5.077895009890199,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.337534,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2130.5966989602894,
+            "other_ms": 20.816745236516
+          },
+          {
+            "vision_ms": 1107.1268450468779,
+            "prefill_ms": 251.70360086485744,
+            "denoise_ms": 757.0909059140831,
+            "common_prefix_pack_ms": 7.8530870378017426,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 696.867285,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2137.4045368283987,
+            "other_ms": 21.483185002580285
+          },
+          {
+            "vision_ms": 1107.6175060588866,
+            "prefill_ms": 266.03269996121526,
+            "denoise_ms": 827.1943100262433,
+            "common_prefix_pack_ms": 7.791540818288922,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 764.4626900000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2221.5719900559634,
+            "other_ms": 20.727474009618163
+          },
+          {
+            "vision_ms": 1108.6574022192508,
+            "prefill_ms": 258.05000588297844,
+            "denoise_ms": 751.817524433136,
+            "common_prefix_pack_ms": 5.111136939376593,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.914561,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2139.3737278413028,
+            "other_ms": 20.84879530593753
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.4908940354362,
+          "prefill_ms": 251.5190589474514,
+          "denoise_ms": 753.5238419659436,
+          "common_prefix_pack_ms": 5.082273040898144,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 695.1274424999999,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2136.246518464759,
+          "other_ms": 20.75432357378304
+        },
+        "p95_total_ms": 2207.149086834397
+      },
+      "hoisted_consumer_ready": {
+        "samples": [
+          {
+            "vision_ms": 1107.2778769303113,
+            "prefill_ms": 250.95444405451417,
+            "denoise_ms": 780.2000127267092,
+            "common_prefix_pack_ms": 5.07440697401762,
+            "once_preparation_ms": 10.645228,
+            "native_run_ms": 714.3146899999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2159.0385399758816,
+            "other_ms": 20.606206264346838
+          },
+          {
+            "vision_ms": 1108.0986091401428,
+            "prefill_ms": 265.53147891536355,
+            "denoise_ms": 719.4855434354395,
+            "common_prefix_pack_ms": 5.106779048219323,
+            "once_preparation_ms": 12.310926,
+            "native_run_ms": 650.78597,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2113.522032974288,
+            "other_ms": 20.40640148334205
+          },
+          {
+            "vision_ms": 1108.044058084488,
+            "prefill_ms": 251.18605000898242,
+            "denoise_ms": 697.2153065726161,
+            "common_prefix_pack_ms": 5.140608875080943,
+            "once_preparation_ms": 10.443384,
+            "native_run_ms": 629.1953540000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2077.023017918691,
+            "other_ms": 20.577603252604604
+          },
+          {
+            "vision_ms": 1107.3106140829623,
+            "prefill_ms": 251.20599498040974,
+            "denoise_ms": 698.5249842982739,
+            "common_prefix_pack_ms": 5.093064159154892,
+            "once_preparation_ms": 10.565585,
+            "native_run_ms": 630.0739950000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2078.039470128715,
+            "other_ms": 20.9978767670691
+          },
+          {
+            "vision_ms": 1107.3042480275035,
+            "prefill_ms": 250.84712798707187,
+            "denoise_ms": 696.8300719745457,
+            "common_prefix_pack_ms": 5.104728043079376,
+            "once_preparation_ms": 10.444246,
+            "native_run_ms": 629.667694,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2076.3567299582064,
+            "other_ms": 21.375281969085336
+          },
+          {
+            "vision_ms": 1107.2952651884407,
+            "prefill_ms": 264.29365086369216,
+            "denoise_ms": 766.0002051852643,
+            "common_prefix_pack_ms": 5.094808991998434,
+            "once_preparation_ms": 11.024363,
+            "native_run_ms": 698.0553219999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2157.5643999967724,
+            "other_ms": 19.975278759375215
+          },
+          {
+            "vision_ms": 1107.0379079319537,
+            "prefill_ms": 251.76968099549413,
+            "denoise_ms": 699.9495427589864,
+            "common_prefix_pack_ms": 5.138556007295847,
+            "once_preparation_ms": 10.434902,
+            "native_run_ms": 630.1024590000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2078.7816878873855,
+            "other_ms": 20.024556200951338
+          },
+          {
+            "vision_ms": 1107.197561999783,
+            "prefill_ms": 251.05849420651793,
+            "denoise_ms": 697.4158454686403,
+            "common_prefix_pack_ms": 5.096261855214834,
+            "once_preparation_ms": 10.476606,
+            "native_run_ms": 630.272238,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2076.3416138943285,
+            "other_ms": 20.669712219387293
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1107.299756607972,
+          "prefill_ms": 251.19602249469608,
+          "denoise_ms": 699.2372635286301,
+          "common_prefix_pack_ms": 5.100494949147105,
+          "once_preparation_ms": 10.521095500000001,
+          "native_run_ms": 630.1873485000001,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2078.4105790080503,
+          "other_ms": 20.59190475847572
+        },
+        "p95_total_ms": 2158.5225909831934
+      }
+    }
+  },
+  "camera_schedule_parity": {
+    "frame_0.npz": {
+      "max_abs": 0.0,
+      "bitwise_equal": true
+    },
+    "frame_42.npz": {
+      "max_abs": 0.0,
+      "bitwise_equal": true
+    },
+    "frame_83.npz": {
+      "max_abs": 0.0,
+      "bitwise_equal": true
+    }
+  },
+  "recorded_boundary_inputs": {
+    "frame_0_inputs.npz": "8fddb197b1b00b0f84448c161b83298bbc2707fb51c833acaa4d18e824d4ee10",
+    "frame_42_inputs.npz": "bde8bdcbe9a60c1ffdd29069a77e20b61830eca4aa165f9ee56dcf59dfd37cdc",
+    "frame_83_inputs.npz": "ba71bf14a312b16523872a15c4c6229fc6bd241096556fc1e2c16338dd4044b5"
+  },
+  "restored_observation": {
+    "max_abs": 0.0,
+    "bitwise_equal": true
+  }
+}

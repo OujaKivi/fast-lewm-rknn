@@ -1,0 +1,205 @@
+{
+  "scope": "SDK reported operator times, not end-to-end latency or measured DRAM bandwidth",
+  "profiles": {
+    "smolvla_vision_perf.txt": {
+      "total_us": 848402,
+      "groups": {
+        "other": {
+          "operators": 56,
+          "time_us": 2485,
+          "share_percent": 0.292903599944366
+        },
+        "patch_embedding": {
+          "operators": 2,
+          "time_us": 70128,
+          "share_percent": 8.265892819677465
+        },
+        "normalization": {
+          "operators": 24,
+          "time_us": 33424,
+          "share_percent": 3.9396418207406394
+        },
+        "qkv_projection": {
+          "operators": 36,
+          "time_us": 31640,
+          "share_percent": 3.7293641457705187
+        },
+        "attention": {
+          "operators": 12,
+          "time_us": 494058,
+          "share_percent": 58.23395041501552
+        },
+        "attention_output_projection": {
+          "operators": 12,
+          "time_us": 10838,
+          "share_percent": 1.2774604491738586
+        },
+        "mlp_fc1_activation": {
+          "operators": 12,
+          "time_us": 87234,
+          "share_percent": 10.282153978892081
+        },
+        "mlp_fc2": {
+          "operators": 12,
+          "time_us": 108760,
+          "share_percent": 12.819394579456436
+        },
+        "connector": {
+          "operators": 8,
+          "time_us": 9835,
+          "share_percent": 1.1592381913291105
+        }
+      }
+    },
+    "smolvla_vision_core1_perf.txt": {
+      "total_us": 1183132,
+      "groups": {
+        "other": {
+          "operators": 56,
+          "time_us": 2563,
+          "share_percent": 0.21662840663594593
+        },
+        "patch_embedding": {
+          "operators": 2,
+          "time_us": 201886,
+          "share_percent": 17.063691963365034
+        },
+        "normalization": {
+          "operators": 24,
+          "time_us": 33269,
+          "share_percent": 2.8119432151273065
+        },
+        "qkv_projection": {
+          "operators": 36,
+          "time_us": 58498,
+          "share_percent": 4.944334190944036
+        },
+        "attention": {
+          "operators": 12,
+          "time_us": 494854,
+          "share_percent": 41.82576415818353
+        },
+        "attention_output_projection": {
+          "operators": 12,
+          "time_us": 19505,
+          "share_percent": 1.6485903517105445
+        },
+        "mlp_fc1_activation": {
+          "operators": 12,
+          "time_us": 87159,
+          "share_percent": 7.366802689809759
+        },
+        "mlp_fc2": {
+          "operators": 12,
+          "time_us": 266058,
+          "share_percent": 22.487600707275266
+        },
+        "connector": {
+          "operators": 8,
+          "time_us": 19340,
+          "share_percent": 1.6346443169485736
+        }
+      }
+    },
+    "smolvla_vision_batch2_perf.txt": {
+      "total_us": 1708050,
+      "groups": {
+        "other": {
+          "operators": 56,
+          "time_us": 4726,
+          "share_percent": 0.27668979245338254
+        },
+        "patch_embedding": {
+          "operators": 2,
+          "time_us": 139835,
+          "share_percent": 8.186821228886743
+        },
+        "normalization": {
+          "operators": 24,
+          "time_us": 66399,
+          "share_percent": 3.887415473785896
+        },
+        "qkv_projection": {
+          "operators": 36,
+          "time_us": 64845,
+          "share_percent": 3.796434530605076
+        },
+        "attention": {
+          "operators": 12,
+          "time_us": 995870,
+          "share_percent": 58.304499282807875
+        },
+        "attention_output_projection": {
+          "operators": 12,
+          "time_us": 21784,
+          "share_percent": 1.2753725008050114
+        },
+        "mlp_fc1_activation": {
+          "operators": 12,
+          "time_us": 174417,
+          "share_percent": 10.21146921928515
+        },
+        "mlp_fc2": {
+          "operators": 12,
+          "time_us": 220393,
+          "share_percent": 12.903193700418605
+        },
+        "connector": {
+          "operators": 8,
+          "time_us": 19781,
+          "share_percent": 1.1581042709522555
+        }
+      }
+    },
+    "smolvla_vision_patch_s2d_perf.txt": {
+      "total_us": 781586,
+      "groups": {
+        "other": {
+          "operators": 57,
+          "time_us": 2814,
+          "share_percent": 0.3600371552202829
+        },
+        "patch_embedding": {
+          "operators": 3,
+          "time_us": 8532,
+          "share_percent": 1.0916265132691731
+        },
+        "normalization": {
+          "operators": 24,
+          "time_us": 33261,
+          "share_percent": 4.255577761116499
+        },
+        "qkv_projection": {
+          "operators": 36,
+          "time_us": 30945,
+          "share_percent": 3.9592572026622785
+        },
+        "attention": {
+          "operators": 12,
+          "time_us": 489522,
+          "share_percent": 62.63187928135867
+        },
+        "attention_output_projection": {
+          "operators": 12,
+          "time_us": 10620,
+          "share_percent": 1.3587756177823043
+        },
+        "mlp_fc1_activation": {
+          "operators": 12,
+          "time_us": 87137,
+          "share_percent": 11.148741149406463
+        },
+        "mlp_fc2": {
+          "operators": 12,
+          "time_us": 108958,
+          "share_percent": 13.940628414531478
+        },
+        "connector": {
+          "operators": 8,
+          "time_us": 9797,
+          "share_percent": 1.253476904652847
+        }
+      }
+    }
+  }
+}

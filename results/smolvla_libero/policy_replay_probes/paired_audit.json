@@ -1,0 +1,423 @@
+{
+  "note": "No session/input pooling. Paired means/gains describe the recorded calls, not an input-population or success-rate estimate.",
+  "sessions": {
+    "strong1.json": {
+      "vision_control": "native fused two-camera mask1/mask2 concurrent",
+      "cases": {
+        "frame_0.npz": {
+          "comparisons": {
+            "original_resident_vs_deployed_lite": {
+              "paired_median_ms": 430.2921035559848,
+              "paired_mean_ms": 429.94401208125055,
+              "wins": 8,
+              "trials": 8,
+              "median_reduction_percent": 16.64494658727057
+            },
+            "hoisted_consumer_ready_vs_original_resident": {
+              "paired_median_ms": 57.11408250499517,
+              "paired_mean_ms": 53.69472154416144,
+              "wins": 6,
+              "trials": 8,
+              "median_reduction_percent": 2.7344247834308666
+            }
+          },
+          "plans": {
+            "deployed_lite": {
+              "median_total_ms": 2562.6500805374235,
+              "mean_stage_ms": {
+                "vision_ms": 1108.5077519819606,
+                "prefill_ms": 254.40657313447446,
+                "denoise_ms": 1193.8911919132806,
+                "other_ms": 21.301564091118053,
+                "total_ms": 2578.1070811208338
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 42.99696316337784,
+                "prefill_ms": 9.867959907385655,
+                "denoise_ms": 46.30882870056102,
+                "other_ms": 0.8262482286754816
+              }
+            },
+            "original_resident": {
+              "median_total_ms": 2136.098343413323,
+              "mean_stage_ms": {
+                "vision_ms": 1108.5098982148338,
+                "prefill_ms": 252.9620790737681,
+                "denoise_ms": 765.3728675795719,
+                "other_ms": 21.318224171409383,
+                "total_ms": 2148.163069039583
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 51.60268855708588,
+                "prefill_ms": 11.775739128913722,
+                "denoise_ms": 35.629179116358266,
+                "other_ms": 0.9923931976421368
+              }
+            },
+            "hoisted_consumer_ready": {
+              "median_total_ms": 2077.688340912573,
+              "mean_stage_ms": {
+                "vision_ms": 1108.357476623496,
+                "prefill_ms": 252.08513127290644,
+                "denoise_ms": 713.4749328834005,
+                "other_ms": 20.55080671561882,
+                "total_ms": 2094.4683474954218
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 52.9183206778406,
+                "prefill_ms": 12.035757502583001,
+                "denoise_ms": 34.064727391873845,
+                "other_ms": 0.9811944277025528
+              }
+            }
+          }
+        },
+        "frame_42.npz": {
+          "comparisons": {
+            "original_resident_vs_deployed_lite": {
+              "paired_median_ms": 413.5859130183235,
+              "paired_mean_ms": 404.72551982384175,
+              "wins": 8,
+              "trials": 8,
+              "median_reduction_percent": 16.232579961519523
+            },
+            "hoisted_consumer_ready_vs_original_resident": {
+              "paired_median_ms": 64.5666338969022,
+              "paired_mean_ms": 76.31723425583914,
+              "wins": 7,
+              "trials": 8,
+              "median_reduction_percent": 2.784924932902655
+            }
+          },
+          "plans": {
+            "deployed_lite": {
+              "median_total_ms": 2552.8898359043524,
+              "mean_stage_ms": {
+                "vision_ms": 1108.2266109006014,
+                "prefill_ms": 253.81170469336212,
+                "denoise_ms": 1184.395936812507,
+                "other_ms": 21.24296681722626,
+                "total_ms": 2567.6772192236967
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 43.16066687056791,
+                "prefill_ms": 9.884875824465924,
+                "denoise_ms": 46.12713498196605,
+                "other_ms": 0.8273223230001157
+              }
+            },
+            "original_resident": {
+              "median_total_ms": 2138.489951961674,
+              "mean_stage_ms": {
+                "vision_ms": 1108.3550154580735,
+                "prefill_ms": 252.2968409175519,
+                "denoise_ms": 781.8313289026264,
+                "other_ms": 20.46851412160322,
+                "total_ms": 2162.951699399855
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 51.242707627988366,
+                "prefill_ms": 11.664469483417296,
+                "denoise_ms": 36.14649967077664,
+                "other_ms": 0.9463232178176948
+              }
+            },
+            "hoisted_consumer_ready": {
+              "median_total_ms": 2078.9346121018752,
+              "mean_stage_ms": {
+                "vision_ms": 1108.2713535870425,
+                "prefill_ms": 251.33805224322714,
+                "denoise_ms": 706.1508699553087,
+                "other_ms": 20.874189358437434,
+                "total_ms": 2086.634465144016
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 53.1128653389012,
+                "prefill_ms": 12.045140461431046,
+                "denoise_ms": 33.84161824944128,
+                "other_ms": 1.0003759502264684
+              }
+            }
+          }
+        },
+        "frame_83.npz": {
+          "comparisons": {
+            "original_resident_vs_deployed_lite": {
+              "paired_median_ms": 419.8423563502729,
+              "paired_mean_ms": 432.17420345172286,
+              "wins": 8,
+              "trials": 8,
+              "median_reduction_percent": 16.367222661927173
+            },
+            "hoisted_consumer_ready_vs_original_resident": {
+              "paired_median_ms": 51.24537507072091,
+              "paired_mean_ms": 40.60453572310507,
+              "wins": 6,
+              "trials": 8,
+              "median_reduction_percent": 2.4297005583112763
+            }
+          },
+          "plans": {
+            "deployed_lite": {
+              "median_total_ms": 2553.707828396,
+              "mean_stage_ms": {
+                "vision_ms": 1108.3926786668599,
+                "prefill_ms": 250.494540494401,
+                "denoise_ms": 1194.6633495099377,
+                "other_ms": 21.016880898969248,
+                "total_ms": 2574.567449570168
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 43.051607711886106,
+                "prefill_ms": 9.729577701925109,
+                "denoise_ms": 46.40248790954731,
+                "other_ms": 0.8163266766414716
+              }
+            },
+            "original_resident": {
+              "median_total_ms": 2135.7367819873616,
+              "mean_stage_ms": {
+                "vision_ms": 1108.546309551457,
+                "prefill_ms": 253.19892459083349,
+                "denoise_ms": 760.1680214866064,
+                "other_ms": 20.479990489548072,
+                "total_ms": 2142.393246118445
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 51.743362781781734,
+                "prefill_ms": 11.818508345728564,
+                "denoise_ms": 35.48218903620366,
+                "other_ms": 0.9559398362860508
+              }
+            },
+            "hoisted_consumer_ready": {
+              "median_total_ms": 2083.8447734713554,
+              "mean_stage_ms": {
+                "vision_ms": 1108.33836364327,
+                "prefill_ms": 255.02087402855977,
+                "denoise_ms": 717.8308103175368,
+                "other_ms": 20.5986624059733,
+                "total_ms": 2101.78871039534
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 52.73310100874959,
+                "prefill_ms": 12.133516217269582,
+                "denoise_ms": 34.15332886541745,
+                "other_ms": 0.9800539085633758
+              }
+            }
+          }
+        }
+      }
+    },
+    "strong2.json": {
+      "vision_control": "native fused two-camera mask1/mask2 concurrent",
+      "cases": {
+        "frame_0.npz": {
+          "comparisons": {
+            "original_resident_vs_deployed_lite": {
+              "paired_median_ms": 417.30699804611504,
+              "paired_mean_ms": 428.2375900365878,
+              "wins": 8,
+              "trials": 8,
+              "median_reduction_percent": 16.403381553874574
+            },
+            "hoisted_consumer_ready_vs_original_resident": {
+              "paired_median_ms": 56.35032395366579,
+              "paired_mean_ms": 50.81471326411702,
+              "wins": 7,
+              "trials": 8,
+              "median_reduction_percent": 2.6302402502106026
+            }
+          },
+          "plans": {
+            "deployed_lite": {
+              "median_total_ms": 2553.6107269581407,
+              "mean_stage_ms": {
+                "vision_ms": 1107.6355599216186,
+                "prefill_ms": 254.57373476820067,
+                "denoise_ms": 1192.6225307106506,
+                "other_ms": 21.34923098492436,
+                "total_ms": 2576.181056385394
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 42.99525288318545,
+                "prefill_ms": 9.881826206943302,
+                "denoise_ms": 46.29420466215227,
+                "other_ms": 0.8287162477189856
+              }
+            },
+            "original_resident": {
+              "median_total_ms": 2134.732216014527,
+              "mean_stage_ms": {
+                "vision_ms": 1107.5259283243213,
+                "prefill_ms": 252.8537440521177,
+                "denoise_ms": 766.799972683657,
+                "other_ms": 20.76382128871046,
+                "total_ms": 2147.9434663488064
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 51.562154482908966,
+                "prefill_ms": 11.77189940114823,
+                "denoise_ms": 35.699262326820275,
+                "other_ms": 0.9666837891225302
+              }
+            },
+            "hoisted_consumer_ready": {
+              "median_total_ms": 2078.5836300347,
+              "mean_stage_ms": {
+                "vision_ms": 1107.597262802301,
+                "prefill_ms": 254.27535086055286,
+                "denoise_ms": 715.2845178206917,
+                "other_ms": 19.971621601143852,
+                "total_ms": 2097.1287530846894
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 52.81493857604709,
+                "prefill_ms": 12.124927975286996,
+                "denoise_ms": 34.107801763176056,
+                "other_ms": 0.9523316854898574
+              }
+            }
+          }
+        },
+        "frame_42.npz": {
+          "comparisons": {
+            "original_resident_vs_deployed_lite": {
+              "paired_median_ms": 415.6652083620429,
+              "paired_mean_ms": 425.27710655122064,
+              "wins": 8,
+              "trials": 8,
+              "median_reduction_percent": 16.332270040239816
+            },
+            "hoisted_consumer_ready_vs_original_resident": {
+              "paired_median_ms": 58.665473596192896,
+              "paired_mean_ms": 64.62954566814005,
+              "wins": 7,
+              "trials": 8,
+              "median_reduction_percent": 2.728079464875366
+            }
+          },
+          "plans": {
+            "deployed_lite": {
+              "median_total_ms": 2553.52136248257,
+              "mean_stage_ms": {
+                "vision_ms": 1107.5616339221597,
+                "prefill_ms": 252.0107840828132,
+                "denoise_ms": 1199.835151724983,
+                "other_ms": 21.29636178142391,
+                "total_ms": 2580.70393151138
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 42.91703594505396,
+                "prefill_ms": 9.76519549591355,
+                "denoise_ms": 46.49255333300879,
+                "other_ms": 0.825215226023691
+              }
+            },
+            "original_resident": {
+              "median_total_ms": 2136.4733580267057,
+              "mean_stage_ms": {
+                "vision_ms": 1107.468444504775,
+                "prefill_ms": 253.08699341258034,
+                "denoise_ms": 774.5014999236446,
+                "other_ms": 20.369887119159102,
+                "total_ms": 2155.426824960159
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 51.38047052584332,
+                "prefill_ms": 11.741850406694201,
+                "denoise_ms": 35.932627865386266,
+                "other_ms": 0.9450512020762115
+              }
+            },
+            "hoisted_consumer_ready": {
+              "median_total_ms": 2078.188667073846,
+              "mean_stage_ms": {
+                "vision_ms": 1107.5605237856507,
+                "prefill_ms": 253.4405639162287,
+                "denoise_ms": 709.1047435242217,
+                "other_ms": 20.69144806591794,
+                "total_ms": 2090.797279292019
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 52.97311866412464,
+                "prefill_ms": 12.121718658541978,
+                "denoise_ms": 33.915518761548086,
+                "other_ms": 0.9896439157852945
+              }
+            }
+          }
+        },
+        "frame_83.npz": {
+          "comparisons": {
+            "original_resident_vs_deployed_lite": {
+              "paired_median_ms": 421.09973705373704,
+              "paired_mean_ms": 423.32961576175876,
+              "wins": 8,
+              "trials": 8,
+              "median_reduction_percent": 16.318747703510727
+            },
+            "hoisted_consumer_ready_vs_original_resident": {
+              "paired_median_ms": 55.64449948724359,
+              "paired_mean_ms": 48.447492270497605,
+              "wins": 6,
+              "trials": 8,
+              "median_reduction_percent": 2.7073626080511226
+            }
+          },
+          "plans": {
+            "deployed_lite": {
+              "median_total_ms": 2552.8376545989886,
+              "mean_stage_ms": {
+                "vision_ms": 1107.5409751210827,
+                "prefill_ms": 253.36414284538478,
+                "denoise_ms": 1191.7803645774256,
+                "other_ms": 21.175062080146745,
+                "total_ms": 2573.86054462404
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 43.03034122941807,
+                "prefill_ms": 9.843740111506053,
+                "denoise_ms": 46.303222102171326,
+                "other_ms": 0.8226965569045527
+              }
+            },
+            "original_resident": {
+              "median_total_ms": 2136.246518464759,
+              "mean_stage_ms": {
+                "vision_ms": 1107.661539776018,
+                "prefill_ms": 256.0704628122039,
+                "denoise_ms": 766.1181649309583,
+                "other_ms": 20.68076134310104,
+                "total_ms": 2150.530928862281
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 51.506422200680284,
+                "prefill_ms": 11.907313648712584,
+                "denoise_ms": 35.62460574962603,
+                "other_ms": 0.9616584009811013
+              }
+            },
+            "hoisted_consumer_ready": {
+              "median_total_ms": 2078.4105790080503,
+              "mean_stage_ms": {
+                "vision_ms": 1107.4457676731981,
+                "prefill_ms": 254.60586525150575,
+                "denoise_ms": 719.4526890525594,
+                "other_ms": 20.579114614520222,
+                "total_ms": 2102.0834365917835
+              },
+              "fraction_of_mean_total_percent": {
+                "vision_ms": 52.68324503183171,
+                "prefill_ms": 12.112072281217884,
+                "denoise_ms": 34.225696113140266,
+                "other_ms": 0.978986573810134
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

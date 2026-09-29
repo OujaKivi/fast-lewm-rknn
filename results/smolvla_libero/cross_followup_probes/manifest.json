@@ -1,0 +1,485 @@
+{
+  "restore_o": {
+    "inputs": [
+      "/Add_3_output_0",
+      "c17_key_ready",
+      "c17_value_ready"
+    ],
+    "native_inputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ]
+    ]
+  },
+  "original_q": {
+    "inputs": [
+      "/Add_3_output_0",
+      "c17_key_ready",
+      "c17_value_ready"
+    ],
+    "native_inputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ]
+    ]
+  },
+  "original_q_restore_o": {
+    "inputs": [
+      "/Add_3_output_0",
+      "c17_key_ready",
+      "c17_value_ready"
+    ],
+    "native_inputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ]
+    ]
+  },
+  "head_producer": {
+    "inputs": [
+      "/Add_3_output_0"
+    ],
+    "native_inputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        960,
+        1,
+        50
+      ]
+    ]
+  },
+  "head_consumer": {
+    "inputs": [
+      "/Add_3_output_0",
+      "head_a"
+    ],
+    "native_inputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ],
+      [
+        1,
+        960,
+        1,
+        52
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ]
+    ]
+  },
+  "head_attention_5": {
+    "inputs": [
+      "head_q",
+      "k",
+      "v"
+    ],
+    "native_inputs": [
+      [
+        1,
+        320,
+        1,
+        52
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        320,
+        1,
+        50
+      ]
+    ]
+  },
+  "head_attention_15": {
+    "inputs": [
+      "head_q",
+      "k",
+      "v"
+    ],
+    "native_inputs": [
+      [
+        1,
+        960,
+        1,
+        52
+      ],
+      [
+        15,
+        64,
+        1,
+        152
+      ],
+      [
+        15,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        960,
+        1,
+        50
+      ]
+    ]
+  },
+  "group_producer": {
+    "inputs": [
+      "/Add_3_output_0"
+    ],
+    "native_inputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        320,
+        1,
+        150
+      ]
+    ]
+  },
+  "group_consumer": {
+    "inputs": [
+      "/Add_3_output_0",
+      "group_a"
+    ],
+    "native_inputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ],
+      [
+        1,
+        320,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        50,
+        1,
+        480
+      ]
+    ]
+  },
+  "group_attention_1": {
+    "inputs": [
+      "group_q",
+      "k",
+      "v"
+    ],
+    "native_inputs": [
+      [
+        1,
+        64,
+        1,
+        152
+      ],
+      [
+        1,
+        64,
+        1,
+        152
+      ],
+      [
+        1,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        64,
+        1,
+        150
+      ]
+    ]
+  },
+  "group_attention_2": {
+    "inputs": [
+      "group_q",
+      "k",
+      "v"
+    ],
+    "native_inputs": [
+      [
+        1,
+        128,
+        1,
+        152
+      ],
+      [
+        2,
+        64,
+        1,
+        152
+      ],
+      [
+        2,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        128,
+        1,
+        150
+      ]
+    ]
+  },
+  "group_attention_5": {
+    "inputs": [
+      "group_q",
+      "k",
+      "v"
+    ],
+    "native_inputs": [
+      [
+        1,
+        320,
+        1,
+        152
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        320,
+        1,
+        150
+      ]
+    ]
+  },
+  "original_order_attention_1": {
+    "inputs": [
+      "head_q",
+      "k",
+      "v"
+    ],
+    "native_inputs": [
+      [
+        1,
+        192,
+        1,
+        52
+      ],
+      [
+        1,
+        64,
+        1,
+        152
+      ],
+      [
+        1,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        192,
+        1,
+        50
+      ]
+    ]
+  },
+  "original_order_attention_2": {
+    "inputs": [
+      "head_q",
+      "k",
+      "v"
+    ],
+    "native_inputs": [
+      [
+        1,
+        384,
+        1,
+        52
+      ],
+      [
+        2,
+        64,
+        1,
+        152
+      ],
+      [
+        2,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        384,
+        1,
+        50
+      ]
+    ]
+  },
+  "original_order_attention_5": {
+    "inputs": [
+      "head_q",
+      "k",
+      "v"
+    ],
+    "native_inputs": [
+      [
+        1,
+        960,
+        1,
+        52
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ],
+      [
+        5,
+        64,
+        1,
+        152
+      ]
+    ],
+    "native_outputs": [
+      [
+        1,
+        960,
+        1,
+        50
+      ]
+    ]
+  }
+}

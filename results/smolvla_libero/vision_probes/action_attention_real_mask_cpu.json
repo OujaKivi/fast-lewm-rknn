@@ -1,0 +1,1331 @@
+{
+  "scope": "Real checkpoint action activations from exported synthetic prefix and two suffixes; CPU FP32 only, not NPU activations or a rollout",
+  "boundary_scope": "No NPU producer/consumer, device cache synchronization, or native conversions timed; not an NPU speedup",
+  "precision": "Same FP32 tensors; fused SDPA changes accumulation order, so numerical and bitwise differences are reported, not called lossless",
+  "torch_version": "2.9.1+cpu",
+  "affinity": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "threads": 4,
+  "num_attention_heads": 15,
+  "num_key_value_heads": 5,
+  "groups": 3,
+  "layer_audit": [
+    {
+      "layer": 0,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 1,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 2,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 3,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 4,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 5,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 6,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 7,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 8,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 9,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 10,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 11,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 12,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 13,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 14,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 15,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 16,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 17,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 18,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 19,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 20,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 21,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 22,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 23,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 24,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 25,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 26,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 27,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 28,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 29,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    },
+    {
+      "layer": 30,
+      "kind": "self",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        199,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        199
+      ],
+      "masked_entries": 1225,
+      "prefix_all_visible": true,
+      "suffix_causal": true,
+      "kv_equal_across_two_suffixes": [
+        false,
+        false
+      ]
+    },
+    {
+      "layer": 31,
+      "kind": "cross",
+      "query": [
+        1,
+        50,
+        15,
+        64
+      ],
+      "key": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "value": [
+        1,
+        149,
+        5,
+        64
+      ],
+      "mask": [
+        1,
+        50,
+        149
+      ],
+      "masked_entries": 0,
+      "prefix_all_visible": true,
+      "suffix_causal": null,
+      "kv_equal_across_two_suffixes": [
+        true,
+        true
+      ]
+    }
+  ],
+  "representative_timings": {
+    "Q50_K199": {
+      "eager_actual_mask_gqa": {
+        "median_ms": 20.538431010209024,
+        "p95_ms": 21.893125458154827,
+        "samples_ms": [
+          20.770886912941933,
+          19.70514585264027,
+          21.294425940141082,
+          21.13517699763179,
+          19.692603964358568,
+          19.777185982093215,
+          22.091835970059037,
+          18.97073397412896,
+          20.581889199092984,
+          20.572846988216043,
+          18.99844314903021,
+          21.65025705471635,
+          22.179044084623456,
+          18.34277994930744,
+          21.145967999473214,
+          20.87209513410926,
+          20.942969946190715,
+          19.239940913394094,
+          21.51288208551705,
+          19.334440119564533,
+          19.088275032117963,
+          19.748019985854626,
+          19.178106915205717,
+          20.024226047098637,
+          18.465279135853052,
+          21.623423090204597,
+          20.609013037756085,
+          21.38338307850063,
+          19.61006294004619,
+          20.504015032202005
+        ],
+        "vs_eager": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "bitwise_equal": true
+        }
+      },
+      "fused_dynamic_gqa_layout": {
+        "median_ms": 1.1616995325312018,
+        "p95_ms": 1.2185885687358677,
+        "samples_ms": [
+          1.2378238607198,
+          1.1902828700840473,
+          1.1048249434679747,
+          1.2136159930378199,
+          1.1765749659389257,
+          1.0806170757859945,
+          1.1984501034021378,
+          1.1045329738408327,
+          1.1908658780157566,
+          1.0960758663713932,
+          1.1946579907089472,
+          1.119991997256875,
+          1.1579080019146204,
+          1.2226570397615433,
+          1.1876581702381372,
+          1.1027830187231302,
+          1.1783249210566282,
+          1.1812408920377493,
+          1.0940330103039742,
+          1.1602409649640322,
+          1.1010330636054277,
+          1.1631581000983715,
+          1.089658122509718,
+          1.1549920309334993,
+          1.1237829457968473,
+          1.156158046796918,
+          1.1926160659641027,
+          1.1876579374074936,
+          1.105407951399684,
+          1.1724911164492369
+        ],
+        "vs_eager": {
+          "max_abs": 1.4901161193847656e-07,
+          "mean_abs": 4.863625946427419e-09,
+          "bitwise_equal": false
+        }
+      }
+    },
+    "Q50_K149": {
+      "eager_actual_mask_gqa": {
+        "median_ms": 20.115808816626668,
+        "p95_ms": 21.948512038215995,
+        "samples_ms": [
+          21.92412898875773,
+          19.996517803519964,
+          20.068558864295483,
+          18.86981795541942,
+          21.308134077116847,
+          22.55879109725356,
+          20.670263096690178,
+          20.50022198818624,
+          21.005677990615368,
+          19.489313010126352,
+          19.629603950306773,
+          20.26164112612605,
+          20.035309018567204,
+          20.382682094350457,
+          20.775554003193974,
+          19.214273896068335,
+          20.125433802604675,
+          19.963559927418828,
+          18.12811498530209,
+          20.935968961566687,
+          21.968461805954576,
+          20.64022095873952,
+          18.659236142411828,
+          18.168365117162466,
+          18.992609111592174,
+          19.293898018077016,
+          20.677553955465555,
+          21.17484202608466,
+          20.10618383064866,
+          20.089559024199843
+        ],
+        "vs_eager": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "bitwise_equal": true
+        }
+      },
+      "fused_dynamic_gqa_layout": {
+        "median_ms": 0.8525350131094456,
+        "p95_ms": 0.8746730629354715,
+        "samples_ms": [
+          0.8574940729886293,
+          0.8493270725011826,
+          0.8446599822491407,
+          0.8857850916683674,
+          0.8551611099392176,
+          0.8432019967585802,
+          0.8551611099392176,
+          0.8659521117806435,
+          0.8502020500600338,
+          0.8432019967585802,
+          0.8531189523637295,
+          0.8376610931009054,
+          0.8688680827617645,
+          0.8650769013911486,
+          0.8563271258026361,
+          0.8496181108057499,
+          0.8499110117554665,
+          0.8653691038489342,
+          0.8472851477563381,
+          0.8467021398246288,
+          0.8525350131094456,
+          0.8717861492186785,
+          0.857784878462553,
+          0.8525350131094456,
+          0.8507850579917431,
+          0.8408678695559502,
+          0.8770350832492113,
+          0.851368997246027,
+          0.855160178616643,
+          0.8429100271314383
+        ],
+        "vs_eager": {
+          "max_abs": 5.066394805908203e-07,
+          "mean_abs": 2.1080573731069308e-08,
+          "bitwise_equal": false
+        }
+      },
+      "fused_static_kv": {
+        "median_ms": 0.5457039223983884,
+        "p95_ms": 0.5557954777032137,
+        "samples_ms": [
+          0.5410381127148867,
+          0.5404539406299591,
+          0.5395798943936825,
+          0.5532880313694477,
+          0.541621120646596,
+          0.5424949340522289,
+          0.5535788368433714,
+          0.5357870832085609,
+          0.5395801272243261,
+          0.5468709859997034,
+          0.5573700182139874,
+          0.5407461430877447,
+          0.5521210841834545,
+          0.5445368587970734,
+          0.5427878350019455,
+          0.5459960084408522,
+          0.5492051132023335,
+          0.5401631351560354,
+          0.5626198835670948,
+          0.5454118363559246,
+          0.5404539406299591,
+          0.553871039301157,
+          0.5462879780679941,
+          0.5398709326982498,
+          0.5459960084408522,
+          0.5524128209799528,
+          0.5483299028128386,
+          0.5462870467454195,
+          0.5512461066246033,
+          0.5424958653748035
+        ],
+        "vs_eager": {
+          "max_abs": 5.066394805908203e-07,
+          "mean_abs": 2.1080573731069308e-08,
+          "bitwise_equal": false
+        }
+      },
+      "static_kv_prepare_ms_single_sample": 0.32024807296693325,
+      "static_expanded_fp32_kv_bytes": 1144320
+    }
+  },
+  "full_32_layer_velocity_vs_cpu_eager": [
+    {
+      "max_abs": 1.9073486328125e-06,
+      "mean_abs": 3.3263705745412153e-07,
+      "bitwise_equal": false
+    },
+    {
+      "max_abs": 1.430511474609375e-06,
+      "mean_abs": 3.2296438234880043e-07,
+      "bitwise_equal": false
+    }
+  ]
+}

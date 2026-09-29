@@ -1,0 +1,32 @@
+{
+  "scope": "Transcribed RKNN_QUERY_MEM_SIZE outputs; fixed-zero C graph probe, not production or closed-loop latency",
+  "toolkit_runtime": "2.3.2",
+  "full_vision_query_date": "2026-09-26",
+  "full_vision": {
+    "original_batch1": {"weight_bytes": 223811904, "internal_bytes": 25577472, "dma_bytes": 502648832, "median_ms": 851.004},
+    "original_batch2": {"weight_bytes": 802625856, "internal_bytes": 51154944, "dma_bytes": 1714794496, "median_ms": 1697.05},
+    "patch_space2depth_batch1": {"weight_bytes": 221844416, "internal_bytes": 25165824, "dma_bytes": 496455680, "median_ms": 782.893}
+  },
+  "onnx_check": {
+    "batch1_batch2_initializer_shape_value_hash_multisets_equal": true,
+    "initializer_count_each": 198,
+    "initializer_raw_bytes_each": 392918016,
+    "node_count_each": 688
+  },
+  "standalone_sdpa_query_date": "2026-09-28",
+  "standalone_sdpa": {
+    "batch1_heads12_unmasked_core1": {"weight_bytes": 128, "internal_bytes": 27803904, "dma_bytes": 30629888, "median_ms": 51.5811, "attention_operator_us": 40403},
+    "batch1_heads6_unmasked_core1": {"weight_bytes": 128, "internal_bytes": 21250304, "dma_bytes": 23769088, "median_ms": 25.7998, "attention_operator_us": 20281},
+    "batch1_heads3_unmasked_core1": {"weight_bytes": 2368, "internal_bytes": 22429952, "dma_bytes": 24965120, "median_ms": 15.7474, "attention_operator_us": 10109},
+    "batch1_heads12_zero_mask_core7": {"weight_bytes": 128, "internal_bytes": 27803904, "dma_bytes": 30629888, "median_ms": 51.8595},
+    "batch2_heads12_unmasked_core7": {"weight_bytes": 384, "internal_bytes": 29638912, "dma_bytes": 37752832, "median_ms": 111.567},
+    "batch2_heads12_zero_mask_core7": {"weight_bytes": 384, "internal_bytes": 29638912, "dma_bytes": 37752832, "median_ms": 111.68},
+    "batch2_heads12_derived_zero_mask_core7": {"weight_bytes": 384, "internal_bytes": 29638912, "dma_bytes": 37752832, "median_ms": 111.42}
+  },
+  "caveats": [
+    "weight_bytes is an SDK-reported compiled weight region and can include generated constants; it does not prove semantic parameter duplication",
+    "DMA bytes are SDK allocations, not measured peak RSS or external-memory traffic; do not sum overlapping categories",
+    "C timings include run and output retrieval but exclude input setting",
+    "Standalone zero-mask probes did not reproduce full-vision batch2 inflation; the actual vision subgraph cause remains unknown"
+  ]
+}

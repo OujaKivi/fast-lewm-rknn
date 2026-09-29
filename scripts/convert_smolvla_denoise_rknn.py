@@ -10,10 +10,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--onnx", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--optimization-level", type=int, choices=[0, 1, 2, 3], default=0)
     args = parser.parse_args()
 
     runtime = RKNN(verbose=False)
-    if runtime.config(target_platform="rk3588", optimization_level=0) != 0:
+    if runtime.config(target_platform="rk3588", optimization_level=args.optimization_level) != 0:
         raise RuntimeError("RKNN config failed")
     if runtime.load_onnx(model=args.onnx) != 0:
         raise RuntimeError("RKNN ONNX load failed")

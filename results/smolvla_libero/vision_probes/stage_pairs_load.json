@@ -1,0 +1,2329 @@
+{
+  "command": [
+    "/root/smolvla-rknn-vision/native_vision12/probe_smolvla_native_stage_pairs",
+    "/root/smolvla-rknn-vision/native_vision12",
+    "20",
+    "/root/smolvla-rknn-vision/native_vision12/stage_pairs.json"
+  ],
+  "exit_code": 0,
+  "stdout": [
+    "PROBE_MEASURE_START",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_serial_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START attention_h4_parallel_views",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask7_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask1_mask2",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START consumer_parallel_mask3_mask4",
+    "PROBE_PLAN_END",
+    "PROBE_PLAN_START qkv_serial_mask7",
+    "PROBE_PLAN_END",
+    "PROBE_MEASURE_END",
+    "qkv_serial_mask7 median_ms=8.84571",
+    "qkv_parallel_mask7_mask7 median_ms=8.93948",
+    "qkv_parallel_mask1_mask2 median_ms=7.43977",
+    "attention_h4_serial_views median_ms=36.6836",
+    "attention_h4_parallel_views median_ms=36.7799",
+    "consumer_serial_mask7 median_ms=38.0759",
+    "consumer_parallel_mask7_mask7 median_ms=38.1486",
+    "consumer_parallel_mask1_mask2 median_ms=36.2564",
+    "consumer_parallel_mask3_mask4 median_ms=38.3518"
+  ],
+  "samples": [
+    {
+      "seconds": 0.000646607019007206,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.051140284864231944,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.10147734195925295,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.1518018578644842,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.20209049992263317,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.2524001409765333,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.3027526568621397,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.3530520899221301,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.40332585689611733,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.453615081962198,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.5039092670194805,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.5541897430084646,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.604481884976849,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.6547970690298826,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.7050956280436367,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.7553702709265053,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.8057163699995726,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.8560365119483322,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.9064666088670492,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.9567660428583622,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.0070027699694037,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.0572543719317764,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.1074931409675628,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.1577053698711097,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.2079170139040798,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.2581228259950876,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.3083432200364769,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.3585557399783283,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.4087565939407796,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.4589708629064262,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.5091734668239951,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.559371112845838,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.6095713840331882,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.6597722379956394,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.709967841859907,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.760159363038838,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.8103587590157986,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.8605721548665315,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.910928170895204,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.9612704799510539,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.011651578824967,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        15,
+        11,
+        11
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.061951305018738,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.112367111025378,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.1626758789643645,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.2129898970015347,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.2632377080153674,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.31350739300251,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.3637531630229205,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.4139872658997774,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.464222827926278,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.514497763942927,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.5647989488206804,
+      "phase": "measure",
+      "plan": "qkv_parallel_mask1_mask2",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.6151013008784503,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.665340945823118,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.715569799998775,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.765791945857927,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.816037132870406,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.866298944922164,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.9165584228467196,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.9667928179260343,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.017000963911414,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        95,
+        71,
+        71
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.0672029859852046,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.117440005997196,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.167680234881118,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.2179026720114052,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.2681306519079953,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.318357463926077,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.368600900983438,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.4188110888935626,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.469039650866762,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.519283671863377,
+      "phase": "measure",
+      "plan": "qkv_serial_mask7",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.569529150845483,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.6197620888706297,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.6699912359472364,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.7201985069550574,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.7704235708806664,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.8206713828258216,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.870954195037484,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.921254213899374,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.9715889408253133,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        86,
+        67,
+        60
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.021897417958826,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.072201520903036,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.122441167011857,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.172693646047264,
+      "phase": "measure",
+      "plan": "qkv_parallel_mask7_mask7",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.22295720782131,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.273202979005873,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.323441749904305,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.373658646829426,
+      "phase": "measure",
+      "plan": "qkv_serial_mask7",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.42389012593776,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.474126855842769,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.524372627027333,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.5746102328412235,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.6248606708832085,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.67512773303315,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.725381379947066,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.7756262759212404,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.825880505843088,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.8761332768481225,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.926369423978031,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.976607903838158,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        89,
+        70,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.0268411338329315,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.077069697901607,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.127308177994564,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.177551032975316,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.227777263848111,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.277982495026663,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.328215142013505,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.378472287906334,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.428692393004894,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.478924748953432,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.529144271975383,
+      "phase": "measure",
+      "plan": "qkv_serial_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.579380710842088,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.630067470949143,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.680743439821526,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.731398408999667,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.782109376974404,
+      "phase": "measure",
+      "plan": "qkv_parallel_mask7_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.832807802828029,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.883465104969218,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.934123866027221,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.984786710003391,
+      "phase": "measure",
+      "plan": "qkv_serial_mask7",
+      "core_busy_percent": [
+        92,
+        73,
+        64
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.035469678929076,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.086150021990761,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.136806157883257,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.187452669022605,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.238136512925848,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.288806647993624,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.339477658038959,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.390130877960473,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.440802179975435,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.491772723849863,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.5427041859366,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.593439653981477,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.6441870799753815,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.6949590048752725,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.745735303964466,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.79647893900983,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.8472076980397105,
+      "phase": "measure",
+      "plan": "qkv_parallel_mask7_mask7",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.897937041008845,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.948652675841004,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.9993067709729075,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        89,
+        71,
+        65
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.049985073041171,
+      "phase": "measure",
+      "plan": "qkv_serial_mask7",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.100688749924302,
+      "phase": "measure",
+      "plan": "attention_h4_serial_views",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.151380176888779,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.202066062949598,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.2527490318752825,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask1_mask2",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.30346787488088,
+      "phase": "measure",
+      "plan": "qkv_parallel_mask1_mask2",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.354228717042133,
+      "phase": "measure",
+      "plan": "attention_h4_parallel_views",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.404945226851851,
+      "phase": "measure",
+      "plan": "consumer_serial_mask7",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.4556194469332695,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask7_mask7",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.5063114578370005,
+      "phase": "measure",
+      "plan": "consumer_parallel_mask3_mask4",
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.55720296385698,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.608137635048479,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.659122470999137,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.710094474954531,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.761057436931878,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.81205918896012,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.863106149015948,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.914131817873567,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.965108487987891,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.016058032866567,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        90,
+        72,
+        67
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.06694778893143,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        47,
+        38,
+        32
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.117642425000668,
+      "phase": "done",
+      "plan": null,
+      "core_busy_percent": [
+        47,
+        38,
+        32
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    }
+  ],
+  "note": "Driver busy counters have an unknown averaging window; not MAC occupancy or measured DRAM bandwidth."
+}

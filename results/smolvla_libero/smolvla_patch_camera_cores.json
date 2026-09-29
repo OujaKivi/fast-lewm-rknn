@@ -1,0 +1,48 @@
+{
+  "scope": "two fixed inputs (export fixture and horizontal flip), same complete vision graph; not a rollout",
+  "input_shape": [
+    1,
+    3,
+    512,
+    512
+  ],
+  "plans": {
+    "serial_three_cores": {
+      "median_ms": 1638.1731979781762,
+      "p95_ms": 1674.9214861774817,
+      "samples_ms": [
+        1638.1731979781762,
+        1636.9371310574934,
+        1674.6348069282249,
+        1634.8449210636318,
+        1674.993155989796
+      ],
+      "max_abs_output_difference": 0.0
+    },
+    "serial_one_core": {
+      "median_ms": 2033.4243620745838,
+      "p95_ms": 2059.8241531988606,
+      "samples_ms": [
+        2030.898466007784,
+        2033.4652740275487,
+        2031.538591021672,
+        2033.4243620745838,
+        2066.4138729916885
+      ],
+      "max_abs_output_difference": 0.0
+    },
+    "parallel_two_single_cores": {
+      "median_ms": 1171.8011420452967,
+      "p95_ms": 1187.2735047945753,
+      "samples_ms": [
+        1190.829336992465,
+        1173.0501760030165,
+        1171.4850519783795,
+        1171.609497978352,
+        1171.8011420452967
+      ],
+      "max_abs_output_difference": 0.0
+    }
+  },
+  "note": "Three contexts resident in every plan; weights not explicitly shared. Plan order rotates each trial."
+}

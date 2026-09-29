@@ -1,0 +1,115 @@
+{
+  "scope": "Real exported vision layer-0 subgraphs; mask removal only for the verified fixed all-valid geometry",
+  "batch": 1,
+  "mask_shape": [
+    1,
+    1,
+    1024,
+    1024
+  ],
+  "mask_nonzero": 0,
+  "probes": {
+    "attention_original": {
+      "nodes": 41,
+      "initializer_bytes": 0,
+      "inputs": [
+        "/vision_model/encoder/layers.0/self_attn/q_proj/Add_output_0",
+        "/vision_model/encoder/layers.0/self_attn/k_proj/Add_output_0",
+        "/vision_model/encoder/layers.0/self_attn/v_proj/Add_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/self_attn/Reshape_3_output_0"
+      ]
+    },
+    "attention_unmasked": {
+      "nodes": 20,
+      "initializer_bytes": 0,
+      "inputs": [
+        "/vision_model/encoder/layers.0/self_attn/q_proj/Add_output_0",
+        "/vision_model/encoder/layers.0/self_attn/k_proj/Add_output_0",
+        "/vision_model/encoder/layers.0/self_attn/v_proj/Add_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/self_attn/Reshape_3_output_0"
+      ]
+    },
+    "block_original": {
+      "nodes": 70,
+      "initializer_bytes": 28351488,
+      "inputs": [
+        "/vision_model/embeddings/Add_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/Add_1_output_0"
+      ]
+    },
+    "block_unmasked": {
+      "nodes": 49,
+      "initializer_bytes": 28351488,
+      "inputs": [
+        "/vision_model/embeddings/Add_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/Add_1_output_0"
+      ]
+    },
+    "mlp_original": {
+      "nodes": 17,
+      "initializer_bytes": 18889728,
+      "inputs": [
+        "/vision_model/encoder/layers.0/layer_norm2/LayerNormalization_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/mlp/fc2/Add_output_0"
+      ]
+    },
+    "fc1_original": {
+      "nodes": 2,
+      "initializer_bytes": 9449472,
+      "inputs": [
+        "/vision_model/encoder/layers.0/layer_norm2/LayerNormalization_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/mlp/fc1/Add_output_0"
+      ]
+    },
+    "fc2_original": {
+      "nodes": 2,
+      "initializer_bytes": 9440256,
+      "inputs": [
+        "/vision_model/encoder/layers.0/mlp/activation_fn/Mul_5_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/mlp/fc2/Add_output_0"
+      ]
+    },
+    "qkv_original": {
+      "nodes": 7,
+      "initializer_bytes": 7093248,
+      "inputs": [
+        "/vision_model/embeddings/Add_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/self_attn/q_proj/Add_output_0",
+        "/vision_model/encoder/layers.0/self_attn/k_proj/Add_output_0",
+        "/vision_model/encoder/layers.0/self_attn/v_proj/Add_output_0"
+      ]
+    },
+    "suffix_original": {
+      "nodes": 22,
+      "initializer_bytes": 21258240,
+      "inputs": [
+        "/vision_model/embeddings/Add_output_0",
+        "/vision_model/encoder/layers.0/self_attn/Reshape_3_output_0"
+      ],
+      "outputs": [
+        "/vision_model/encoder/layers.0/Add_1_output_0"
+      ]
+    }
+  },
+  "attention_fp32_max_abs_difference": 0.0,
+  "partition_heads": 4,
+  "partition_fp32_max_abs_difference": 0.0,
+  "block_fp32_max_abs_difference": 0.0,
+  "native_split_block_fp32_max_abs_difference": 0.0
+}

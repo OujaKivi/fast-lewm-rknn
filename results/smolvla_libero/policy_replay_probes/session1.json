@@ -1,0 +1,793 @@
+{
+  "scope": "Complete two-camera policy replay including vision, prefill, 32 action layers, ten dependent CPU FP32 Euler steps; no C17 integration or closed-loop success claim",
+  "fixtures": {
+    "repo": "lerobot/libero_spatial_image",
+    "revision": "d86c0b94922572b3b657e1d1a3d01f0952ddeb46",
+    "data_path": "data/chunk-000/file-001.parquet",
+    "parquet_sha256": "1574892a5df268080927bb0fcf41ea443bfdc9475562fc35e091024d765b327b",
+    "scope": "Three offline recorded demonstration frames, not simulator rollout or task success evaluation",
+    "camera_mapping": {
+      "observation.images.wrist_image": "observation.images.image2"
+    },
+    "state_protocol": "Recorded eight-dimensional state passed unchanged into checkpoint normalization; not a claim of simulator state-semantic parity",
+    "cases": [
+      {
+        "file": "frame_0.npz",
+        "frame_index": 0,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "cd7fa1dc69bca664d9a536324e966a7929df4a81e68b31f04c1b73018bab0986",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      },
+      {
+        "file": "frame_42.npz",
+        "frame_index": 42,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "7f9aa544a5b2c20b0f72d554a914ebc8cbfd45982032fe72e5cb947a3eeb7d5f",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      },
+      {
+        "file": "frame_83.npz",
+        "frame_index": 83,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "321a49a928585691b3a9fe735401dffda44cc48f8206159511aa1a0a66740264",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      }
+    ]
+  },
+  "affinity": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "repeats": 4,
+  "limitations": [
+    "Seven RKNN contexts coexist; no isolated memory/energy claim",
+    "Fixed valid 149-token prefix and one recorded task/episode",
+    "Checkpoint preprocessing done before measured policy; transport/simulator/postprocessing excluded",
+    "No cross-observation reuse: both images, prefill and cache preparation rerun for every call",
+    "C06 hoisting is a strong baseline, not the C17 proposed mechanism"
+  ],
+  "artifact_sha256": {
+    "/root/smolvla-rknn-vision/vision_connector_fp16.rknn": "fc447ae1a83b81fdc958e1bdc2519cfb509adf793fed35474e6c1cb92fc597d0",
+    "/root/smolvla-libero-rknn/prefill32/prefill_addmask.rknn": "82511799271c72c95ff99dae5f9f1d531425e0a07663b441e56e7a63186b408b",
+    "/root/smolvla-libero-rknn/denoise32/denoise_step_addmask.rknn": "bcef2130221371e8c213ca2dca936e0d38aefdd2eefecc0e371b4e82f6ebdf7a",
+    "/root/smolvla-conditioning-probe/libsmolvla_conditioning_full.so": "341471bbbc6475a7e4e56a17e7e770b4ab670a4c38d1ba734bc46f6c80c9ac27",
+    "/root/smolvla-conditioning-probe/full/prepare_full.rknn": "15405bd818e32474415c2086ad3369a81c964e2a913fbf5282706f95b5ee50b4",
+    "/root/smolvla-conditioning-probe/full/warm_full.rknn": "d3ac3bb2e8626d44014473f9f042d9050965184882a63a844eb3ca154bb49bb2"
+  },
+  "validation": {
+    "frame_0.npz": {
+      "deployed_lite": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "original_resident": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "hoisted_consumer_ready": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      }
+    },
+    "frame_42.npz": {
+      "deployed_lite": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "original_resident": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "hoisted_consumer_ready": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      }
+    },
+    "frame_83.npz": {
+      "deployed_lite": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "original_resident": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      },
+      "hoisted_consumer_ready": {
+        "max_abs": 0.0,
+        "bitwise_equal": true
+      }
+    }
+  },
+  "cases": {
+    "frame_0.npz": {
+      "deployed_lite": {
+        "samples": [
+          {
+            "vision_ms": 1745.6218332517892,
+            "prefill_ms": 250.69497502408922,
+            "denoise_ms": 1208.0217457842082,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3226.0534970555454,
+            "other_ms": 21.71494299545884
+          },
+          {
+            "vision_ms": 1748.4156978316605,
+            "prefill_ms": 250.44969795271754,
+            "denoise_ms": 1172.0863848458976,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3195.932145928964,
+            "other_ms": 24.98036529868841
+          },
+          {
+            "vision_ms": 1746.0439677815884,
+            "prefill_ms": 250.31302403658628,
+            "denoise_ms": 1173.796045128256,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3193.7468289397657,
+            "other_ms": 23.59379199333489
+          },
+          {
+            "vision_ms": 1746.0368431638926,
+            "prefill_ms": 250.53275097161531,
+            "denoise_ms": 1174.5967788156122,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3193.3212929870933,
+            "other_ms": 22.15492003597319
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1746.0404054727405,
+          "prefill_ms": 250.49122446216643,
+          "denoise_ms": 1174.1964119719341,
+          "common_prefix_pack_ms": 0.0,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 0.0,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 3194.839487434365,
+          "other_ms": 22.87435601465404
+        },
+        "p95_total_ms": 3221.5352943865582
+      },
+      "original_resident": {
+        "samples": [
+          {
+            "vision_ms": 1747.9172020684928,
+            "prefill_ms": 253.89156606979668,
+            "denoise_ms": 753.0161971226335,
+            "common_prefix_pack_ms": 5.861485842615366,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.8913249999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2777.038648026064,
+            "other_ms": 22.21368276514113
+          },
+          {
+            "vision_ms": 1747.7614970412105,
+            "prefill_ms": 250.39136386476457,
+            "denoise_ms": 749.3068848270923,
+            "common_prefix_pack_ms": 5.0360888708382845,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.001484,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2768.460124032572,
+            "other_ms": 21.00037829950452
+          },
+          {
+            "vision_ms": 1746.8447319697589,
+            "prefill_ms": 265.12415520846844,
+            "denoise_ms": 816.0424453672022,
+            "common_prefix_pack_ms": 8.68604495190084,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 753.6405989999998,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2848.7951308488846,
+            "other_ms": 20.783798303455114
+          },
+          {
+            "vision_ms": 1749.4387670885772,
+            "prefill_ms": 255.20150503143668,
+            "denoise_ms": 750.0489728990942,
+            "common_prefix_pack_ms": 5.149781936779618,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.536274,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2775.2562910318375,
+            "other_ms": 20.567046012729406
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1747.8393495548517,
+          "prefill_ms": 254.54653555061668,
+          "denoise_ms": 751.5325850108638,
+          "common_prefix_pack_ms": 5.505633889697492,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 694.7137995,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2776.1474695289508,
+          "other_ms": 20.892088301479816
+        },
+        "p95_total_ms": 2838.0316584254615
+      },
+      "hoisted_consumer_ready": {
+        "samples": [
+          {
+            "vision_ms": 1746.0593341384083,
+            "prefill_ms": 250.64393691718578,
+            "denoise_ms": 716.3606921676546,
+            "common_prefix_pack_ms": 6.924585904926062,
+            "once_preparation_ms": 10.94249,
+            "native_run_ms": 639.6702180000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2734.7587819676846,
+            "other_ms": 21.694818744435906
+          },
+          {
+            "vision_ms": 1745.4101401381195,
+            "prefill_ms": 250.77081401832402,
+            "denoise_ms": 730.4204609245062,
+            "common_prefix_pack_ms": 4.943632986396551,
+            "once_preparation_ms": 10.98274,
+            "native_run_ms": 660.625404,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2747.7832038421184,
+            "other_ms": 21.18178876116872
+          },
+          {
+            "vision_ms": 1746.070332126692,
+            "prefill_ms": 263.4384110569954,
+            "denoise_ms": 786.28861438483,
+            "common_prefix_pack_ms": 5.042750854045153,
+            "once_preparation_ms": 14.724282,
+            "native_run_ms": 708.376394,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2815.5092659872025,
+            "other_ms": 19.711908418685198
+          },
+          {
+            "vision_ms": 1745.9246050566435,
+            "prefill_ms": 250.82109798677266,
+            "denoise_ms": 705.6243750266731,
+            "common_prefix_pack_ms": 5.02873701043427,
+            "once_preparation_ms": 10.978285,
+            "native_run_ms": 637.7534989999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2722.780490992591,
+            "other_ms": 20.410412922501564
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1745.991969597526,
+          "prefill_ms": 250.79595600254834,
+          "denoise_ms": 723.3905765460804,
+          "common_prefix_pack_ms": 5.035743932239711,
+          "once_preparation_ms": 10.9805125,
+          "native_run_ms": 650.147811,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2741.2709929049015,
+          "other_ms": 20.79610084183514
+        },
+        "p95_total_ms": 2805.35035666544
+      }
+    },
+    "frame_42.npz": {
+      "deployed_lite": {
+        "samples": [
+          {
+            "vision_ms": 1748.8718149252236,
+            "prefill_ms": 251.22783984988928,
+            "denoise_ms": 1174.5984249282628,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3196.3590618688613,
+            "other_ms": 21.66098216548562
+          },
+          {
+            "vision_ms": 1745.3232440166175,
+            "prefill_ms": 251.01989414542913,
+            "denoise_ms": 1236.6954467725009,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3254.267917945981,
+            "other_ms": 21.229333011433482
+          },
+          {
+            "vision_ms": 1746.080341981724,
+            "prefill_ms": 264.5683870650828,
+            "denoise_ms": 1242.9638432804495,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3275.874561164528,
+            "other_ms": 22.26198883727193
+          },
+          {
+            "vision_ms": 1749.1588802076876,
+            "prefill_ms": 265.09232306852937,
+            "denoise_ms": 1174.295553471893,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3210.3373599238694,
+            "other_ms": 21.790603175759315
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1747.4760784534737,
+          "prefill_ms": 257.89811345748603,
+          "denoise_ms": 1205.6469358503819,
+          "common_prefix_pack_ms": 0.0,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 0.0,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 3232.302638934925,
+          "other_ms": 21.725792670622468
+        },
+        "p95_total_ms": 3272.633564681746
+      },
+      "original_resident": {
+        "samples": [
+          {
+            "vision_ms": 1746.975156944245,
+            "prefill_ms": 250.5007330328226,
+            "denoise_ms": 776.7252251505852,
+            "common_prefix_pack_ms": 5.003130994737148,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 716.248409,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2794.184766942635,
+            "other_ms": 19.983651814982295
+          },
+          {
+            "vision_ms": 1745.7732658367604,
+            "prefill_ms": 254.45681205019355,
+            "denoise_ms": 805.2446078509092,
+            "common_prefix_pack_ms": 5.353997927159071,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 749.048191,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2828.362687025219,
+            "other_ms": 22.88800128735602
+          },
+          {
+            "vision_ms": 1745.8059911150485,
+            "prefill_ms": 256.45133992657065,
+            "denoise_ms": 755.0217173993587,
+            "common_prefix_pack_ms": 4.97624184936285,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.3862940000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2779.0008520241827,
+            "other_ms": 21.721803583204746
+          },
+          {
+            "vision_ms": 1745.8047978579998,
+            "prefill_ms": 250.94960909336805,
+            "denoise_ms": 751.7865502741188,
+            "common_prefix_pack_ms": 5.066943820565939,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.267179,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2769.3556188605726,
+            "other_ms": 20.81466163508594
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1745.8053944865242,
+          "prefill_ms": 252.7032105717808,
+          "denoise_ms": 765.873471274972,
+          "common_prefix_pack_ms": 5.035037407651544,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 705.3173515000001,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2786.592809483409,
+          "other_ms": 21.268232609145343
+        },
+        "p95_total_ms": 2823.2359990128316
+      },
+      "hoisted_consumer_ready": {
+        "samples": [
+          {
+            "vision_ms": 1747.9245143476874,
+            "prefill_ms": 250.18982402980328,
+            "denoise_ms": 704.5933941844851,
+            "common_prefix_pack_ms": 5.348457023501396,
+            "once_preparation_ms": 10.942783,
+            "native_run_ms": 637.394985,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2724.667379166931,
+            "other_ms": 21.959646604955196
+          },
+          {
+            "vision_ms": 1747.3039021715522,
+            "prefill_ms": 250.40944898501039,
+            "denoise_ms": 707.7188382390887,
+            "common_prefix_pack_ms": 4.999631084501743,
+            "once_preparation_ms": 10.932575,
+            "native_run_ms": 637.956737,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2726.2622360140085,
+            "other_ms": 20.8300466183573
+          },
+          {
+            "vision_ms": 1745.8077180199325,
+            "prefill_ms": 251.7619349528104,
+            "denoise_ms": 705.530317267403,
+            "common_prefix_pack_ms": 5.360378883779049,
+            "once_preparation_ms": 11.195311,
+            "native_run_ms": 637.787647,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2724.250104976818,
+            "other_ms": 21.150134736672044
+          },
+          {
+            "vision_ms": 1749.9205030035228,
+            "prefill_ms": 257.7869619708508,
+            "denoise_ms": 708.5277838632464,
+            "common_prefix_pack_ms": 5.278988042846322,
+            "once_preparation_ms": 10.993445,
+            "native_run_ms": 637.8361859999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2738.9495738316327,
+            "other_ms": 22.714324994012713
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1747.6142082596198,
+          "prefill_ms": 251.0856919689104,
+          "denoise_ms": 706.6245777532458,
+          "common_prefix_pack_ms": 5.313722533173859,
+          "once_preparation_ms": 10.968114,
+          "native_run_ms": 637.8119164999999,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2725.4648075904697,
+          "other_ms": 21.55489067081362
+        },
+        "p95_total_ms": 2737.046473158989
+      }
+    },
+    "frame_83.npz": {
+      "deployed_lite": {
+        "samples": [
+          {
+            "vision_ms": 1745.5192001070827,
+            "prefill_ms": 250.31494698487222,
+            "denoise_ms": 1231.708915438503,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3251.64378201589,
+            "other_ms": 24.10071948543191
+          },
+          {
+            "vision_ms": 1746.7781140003353,
+            "prefill_ms": 253.16280289553106,
+            "denoise_ms": 1176.387280691415,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3199.1998138837516,
+            "other_ms": 22.871616296470165
+          },
+          {
+            "vision_ms": 1745.963886147365,
+            "prefill_ms": 250.78954314813018,
+            "denoise_ms": 1173.6041901167482,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3191.9166618026793,
+            "other_ms": 21.559042390435934
+          },
+          {
+            "vision_ms": 1745.6634619738907,
+            "prefill_ms": 250.72346604429185,
+            "denoise_ms": 1179.094542749226,
+            "common_prefix_pack_ms": 0.0,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 0.0,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 3197.2181028686464,
+            "other_ms": 21.736632101237774
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1745.8136740606278,
+          "prefill_ms": 250.75650459621102,
+          "denoise_ms": 1177.7409117203206,
+          "common_prefix_pack_ms": 0.0,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 0.0,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 3198.208958376199,
+          "other_ms": 22.30412419885397
+        },
+        "p95_total_ms": 3243.777186796069
+      },
+      "original_resident": {
+        "samples": [
+          {
+            "vision_ms": 1746.9010900240391,
+            "prefill_ms": 256.4260938670486,
+            "denoise_ms": 752.6353052817285,
+            "common_prefix_pack_ms": 5.107545992359519,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.266018,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2776.7770788632333,
+            "other_ms": 20.81458969041705
+          },
+          {
+            "vision_ms": 1746.0700368974358,
+            "prefill_ms": 253.88277205638587,
+            "denoise_ms": 754.8251508269459,
+            "common_prefix_pack_ms": 4.999002208933234,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.4585320000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2776.4949430711567,
+            "other_ms": 21.71698329038918
+          },
+          {
+            "vision_ms": 1767.7237261086702,
+            "prefill_ms": 268.26188201084733,
+            "denoise_ms": 763.3464212995023,
+            "common_prefix_pack_ms": 5.045074038207531,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 702.1743549999999,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2822.3488500807434,
+            "other_ms": 23.016820661723614
+          },
+          {
+            "vision_ms": 1749.426486203447,
+            "prefill_ms": 258.08522989973426,
+            "denoise_ms": 752.5560539215803,
+            "common_prefix_pack_ms": 5.0952318124473095,
+            "once_preparation_ms": 0.0,
+            "native_run_ms": 694.8258400000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2781.2510929070413,
+            "other_ms": 21.183322882279754
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1748.163788113743,
+          "prefill_ms": 257.25566188339144,
+          "denoise_ms": 753.7302280543372,
+          "common_prefix_pack_ms": 5.07015292532742,
+          "once_preparation_ms": 0.0,
+          "native_run_ms": 694.642186,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2779.0140858851373,
+          "other_ms": 21.450153086334467
+        },
+        "p95_total_ms": 2816.184186504688
+      },
+      "hoisted_consumer_ready": {
+        "samples": [
+          {
+            "vision_ms": 1745.5731690861285,
+            "prefill_ms": 250.4762359894812,
+            "denoise_ms": 759.8906343337148,
+            "common_prefix_pack_ms": 5.023839883506298,
+            "once_preparation_ms": 10.918867,
+            "native_run_ms": 689.165184,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2776.6846290323883,
+            "other_ms": 20.744589623063803
+          },
+          {
+            "vision_ms": 1746.1951791774482,
+            "prefill_ms": 250.539842993021,
+            "denoise_ms": 824.2255945224315,
+            "common_prefix_pack_ms": 5.918941926211119,
+            "once_preparation_ms": 10.92786,
+            "native_run_ms": 753.9566550000001,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2841.3684689439833,
+            "other_ms": 20.40785225108266
+          },
+          {
+            "vision_ms": 1747.4343080539256,
+            "prefill_ms": 263.90820113010705,
+            "denoise_ms": 760.5502230580896,
+            "common_prefix_pack_ms": 5.023492965847254,
+            "once_preparation_ms": 14.747886,
+            "native_run_ms": 689.705364,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2792.4565880093724,
+            "other_ms": 20.56385576725006
+          },
+          {
+            "vision_ms": 1745.8432139828801,
+            "prefill_ms": 250.73326914571226,
+            "denoise_ms": 703.3615009859204,
+            "common_prefix_pack_ms": 5.071896826848388,
+            "once_preparation_ms": 10.93102,
+            "native_run_ms": 638.10031,
+            "vision_calls": 2,
+            "denoise_steps": 10,
+            "total_ms": 2720.5379579681903,
+            "other_ms": 20.59997385367751
+          }
+        ],
+        "median_ms": {
+          "vision_ms": 1746.0191965801641,
+          "prefill_ms": 250.63655606936663,
+          "denoise_ms": 760.2204286959022,
+          "common_prefix_pack_ms": 5.047868355177343,
+          "once_preparation_ms": 10.92944,
+          "native_run_ms": 689.4352739999999,
+          "vision_calls": 2.0,
+          "denoise_steps": 10.0,
+          "total_ms": 2784.5706085208803,
+          "other_ms": 20.581914810463786
+        },
+        "p95_total_ms": 2834.0316868037917
+      }
+    }
+  },
+  "restored_observation": {
+    "max_abs": 0.0,
+    "bitwise_equal": true
+  }
+}

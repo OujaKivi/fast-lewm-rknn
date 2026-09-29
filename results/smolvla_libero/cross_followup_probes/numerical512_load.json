@@ -1,0 +1,5851 @@
+{
+  "command": [
+    "env",
+    "SMOLVLA_CROSS_OPT3=1",
+    "/root/.venvs/smolvla/bin/python",
+    "/root/smolvla-cross-followup/probe_smolvla_cross_followup.py",
+    "--base",
+    "/root/smolvla-cross-boundary",
+    "--directory",
+    "/root/smolvla-cross-followup",
+    "--library",
+    "/root/smolvla-cross-followup/libcross_followup.so",
+    "--output",
+    "/root/smolvla-cross-followup/numerical512.json",
+    "--validation-only",
+    "--stress-cases",
+    "512"
+  ],
+  "exit_code": 0,
+  "stdout": [
+    "{",
+    "  \"stress\": {",
+    "    \"ready_joint\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"propagated_ready\": {",
+    "      \"bitwise_equal_cases\": 260,",
+    "      \"max_abs\": 0.001953125,",
+    "      \"max_different_elements\": 4",
+    "    },",
+    "    \"restore_o\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"original_q\": {",
+    "      \"bitwise_equal_cases\": 260,",
+    "      \"max_abs\": 0.001953125,",
+    "      \"max_different_elements\": 4",
+    "    },",
+    "    \"original_q_restore_o\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"split_full_heads\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"split_serial_heads\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"split_parallel_heads\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"original_recompute\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"compact_split_full\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"compact_split_serial\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"compact_split_parallel\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"original_order_compact_full\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"original_order_compact_serial\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"original_order_compact_parallel\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"compact_parallel_cpu_restore\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    },",
+    "    \"compact_full_cpu_restore\": {",
+    "      \"bitwise_equal_cases\": 512,",
+    "      \"max_abs\": 0.0,",
+    "      \"max_different_elements\": 0",
+    "    }",
+    "  },",
+    "  \"medians\": {}",
+    "}"
+  ],
+  "samples": [
+    {
+      "seconds": 0.0009668590500950813,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.05150924110785127,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.10184366791509092,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.15214659506455064,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.20255306200124323,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.25294786295853555,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.3032904560677707,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.353659882908687,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.4040433089248836,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.45446844189427793,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.5048725761007518,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.5552700019907206,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.6056650939863175,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.6560563950333744,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.7064299040939659,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.7568182880058885,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.8072151308879256,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.8575769739691168,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.9079688580241054,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 0.9583770749159157,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.0087917079217732,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.0592308409977704,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.109615433961153,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.1599889430217445,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        0,
+        0,
+        0
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.2103674109093845,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.2607616279274225,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.3111514700576663,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.3615672709420323,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.412000570911914,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.4624397039879113,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.5128385880962014,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.563266929006204,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.6136935208924115,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.6641443208791316,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.7145948288962245,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.7650397950783372,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.8154658030252904,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.8658503950573504,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.9162384879309684,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 1.9666169548872858,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.0169758810661733,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.067373889964074,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.117767232004553,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.168140158057213,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        61,
+        15,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.2185294160153717,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.2688918421044946,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.3192843100987375,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.369653152069077,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.420015285955742,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.470396379008889,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.520749762887135,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.5711413549724966,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.6215495720971376,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.67194816400297,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.72236658888869,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.7727584729436785,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.823143356014043,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.8735145318787545,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.923909916076809,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 2.9742912990041077,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.024712349055335,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.075094024883583,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.125451783882454,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.17582558398135,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.226196760078892,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.276579601923004,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.327005319064483,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.3773782439529896,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.4277450449299067,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.4781710531096905,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.5285708110313863,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.5793748130090535,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.6303876449819654,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.681411559926346,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.732403100002557,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.7835500959772617,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.8347487170249224,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.885876754997298,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.9370564168784767,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 3.988203413086012,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.039354200940579,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.090517821954563,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.141733649885282,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.192908061901107,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.2440124759450555,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.295061473036185,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.346131470985711,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.397147510899231,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.448170841904357,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.499215173069388,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.549980384064838,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.600353308953345,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.650690359994769,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.701053952099755,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.7513968360144645,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.801830718992278,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.852232519071549,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.902642776956782,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 4.953017744002864,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.003367336001247,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.053747843950987,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.104123102966696,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.154513820074499,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.204950619023293,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.255347169004381,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.305722719058394,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.356082811020315,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.4064968610182405,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.456889326917008,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.507319709984586,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.557703718077391,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.608046018984169,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.6583842360414565,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.708779619075358,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.759183461079374,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.809597217943519,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.8599943509325385,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.910457692109048,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 5.960855408105999,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.0112251250538975,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.061607382958755,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.111979433102533,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.162400773959234,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.212771948892623,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.263188624056056,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.313570006983355,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.363961890107021,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.414356980938464,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.464733405970037,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.515135206049308,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.5655833799391985,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.615975555032492,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.666336230002344,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.716828153003007,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.767264659982175,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.817879372974858,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.868877328932285,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.919799452880397,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 6.970788076054305,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.02180061605759,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.072754530934617,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.123751028906554,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.174757444066927,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.225807606941089,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.276755397906527,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.327708730008453,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.378651853883639,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.429676350904629,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.480721849016845,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.531732054892927,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.582684512017295,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.633653593948111,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.684627342037857,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.735590881900862,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.786535463994369,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.837392546935007,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.888474211096764,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.939463125076145,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 7.990508039016277,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.041462829103693,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.092454076977447,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.143498698947951,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.194446197943762,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.245521736098453,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.296576858032495,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.347528147976846,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.398581811925396,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.449481768999249,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.500464267097414,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.551491389982402,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.602389014093205,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.653411177918315,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.704398925881833,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.755456089042127,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.80646396195516,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.857448210008442,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.908420790918171,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 8.959421955049038,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.010518200928345,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.061568656936288,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.112613569945097,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.163618525955826,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.214598398888484,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.265567479887977,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.31651322892867,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.367520225932822,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.418623764067888,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.469709801953286,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.520832588896155,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.571973751066253,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.623090997105464,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.674179075984284,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.7253219881095,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.776395484106615,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.82756435405463,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.878800597041845,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.929965384071693,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 9.98117479402572,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.032297580968589,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.083319162018597,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.134366407990456,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.185310407076031,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.236373695079237,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.287503190105781,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.338557145092636,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.389642308000475,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.440703554078937,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.491741467965767,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.542921128915623,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.593998708063737,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.645038662943989,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.696117992978543,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.747094074031338,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.798210443928838,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.849192358087748,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.90028743701987,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 10.951356267090887,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.002439971081913,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.053569173905998,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.104692836059257,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.155684374971315,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        20,
+        18
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.20658812392503,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.25764499604702,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.308635368011892,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.359588990919292,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.410625153919682,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.461739191086963,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.512707397108898,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.563757268944755,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.61475143302232,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.66576163796708,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.716736552072689,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.767710591899231,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.818756087915972,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.869730710051954,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.92072312394157,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 11.971703872084618,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.022692786063999,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.073636492015794,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.124622781062499,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.175589819904417,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        70,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.226670023985207,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.277625980088487,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.328611978096887,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.379556850995868,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.430489473976195,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.48155888589099,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.53253146703355,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.583589504938573,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.634502878878266,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.685569958062842,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.736630328930914,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.787594743072987,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.838513948954642,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.889534071087837,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.940518900984898,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 12.991631770972162,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.04258014401421,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.093551557976753,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.144594721030444,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.195572552038357,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.246559714898467,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.297558254096657,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.352892929920927,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.40401921607554,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.455061503918841,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.505960877984762,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.556912750005722,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.607919747009873,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.658932284917682,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.709985072957352,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.76101423590444,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.811942483996972,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.862952979980037,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.91396843502298,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 13.964866349939257,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.015909512992948,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.066833093995228,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.117897548014298,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.168866337044165,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.219745002919808,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.270805082051083,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.321807703003287,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.372811783105135,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.423782029887661,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.474776193965226,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.52586398110725,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.576883811037987,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.627916473895311,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.678882054053247,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.729894883930683,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.780858130892739,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.831954959081486,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.88293337309733,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.933952326886356,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 14.984896033070982,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.03587882197462,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.086902733892202,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.138088810956106,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.18921334692277,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.240390965947881,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.291622542077675,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.342706829076633,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.393840115051717,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.444855277892202,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.496019188081846,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.547056226059794,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.598287218948826,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.649356921901926,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.700511500006542,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.751581786898896,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.802753279916942,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.853835233021528,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.904880437068641,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 15.956064471974969,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.007163925096393,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.058316169073805,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.10946578788571,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.160638448083773,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.211676653008908,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.262779022101313,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.313753060996532,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.364813430933282,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.415845219045877,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.467024587094784,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.518037708010525,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.569085536990315,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.620088449912146,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.671053155092523,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.721965652890503,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.77301289793104,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.823989561991766,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.87528559495695,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.926342173013836,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 16.977367544081062,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.028444831026718,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.079410701990128,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.130461155902594,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.181568775093183,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        72,
+        21,
+        19
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.23265627003275,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.283682516077533,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.33462272095494,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.385686008026823,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.436722171027213,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.487800623988733,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.538844368886203,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.589928363915533,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.64109577401541,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.692154977936298,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.74325676402077,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.794243342941627,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.845235463930294,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.896285043098032,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.947409579064697,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 17.998394991038367,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.04938040394336,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.100338109070435,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.15140197891742,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.20241539203562,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.25360992597416,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.304663005052134,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.355698291910812,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.40682399389334,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.45795990503393,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.509015025105327,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.559989063069224,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.610967767890543,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.661872972967103,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.71298700897023,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.764080920023844,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.815170163987204,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.866127578075975,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.91719582187943,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 18.968200193019584,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.019373144954443,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.07045859703794,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.121528883930296,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.17254550405778,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.223545792046934,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.274602077901363,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.325559491990134,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.37656969600357,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.42756006703712,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.478569686878473,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.529586015967652,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.580637635895982,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.631738838972524,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.6828482078854,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.73392111901194,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.78496719710529,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.8359660259448,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.887132852105424,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.938277804059908,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 19.989310174016282,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.040439083939418,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.091432954883203,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.142464159056544,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.193633317947388,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.244687271071598,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.295823181048036,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.34682492702268,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.39802296110429,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.44907603901811,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.500086243031546,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.551024697953835,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.602009526919574,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.6530211889185,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.704112475039437,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.755085638025776,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.806067257886752,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.857066670898348,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.908057041000575,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 20.95931019890122,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.01040848507546,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.061552270082757,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.112661930033937,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.16382875596173,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.214980124030262,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.266183990985155,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.317352276062593,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.368421687046066,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.41948147304356,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.470606591086835,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.521692627109587,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.572865285910666,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.624153152108192,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.675298102898523,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.726406305097044,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.77760200598277,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.828854579944164,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.880011197878048,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.93098640209064,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 21.98214710294269,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.033195805968717,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.08415263495408,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.135202212957665,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.186257916036993,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        18,
+        16
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.237429407890886,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.288443404017016,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.3394859819673,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.39053351804614,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.441537596052513,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.49262071494013,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.543662127107382,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.594728328986093,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.645791614893824,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.696802692953497,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.74790039495565,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.798848475096747,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.84995871805586,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.90107712801546,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 22.95208908105269,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.003060201881453,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.054168112110347,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.105080608045682,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.156251516891643,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        71,
+        19,
+        17
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.2073378439527,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.25834863097407,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.309391208924353,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.36038712109439,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.41128678410314,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.46237836102955,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.5134944380261,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.564646971877664,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.615710549987853,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.66680125100538,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.717884369893,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.768868031911552,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.819960192078725,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.87102931109257,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.92216026200913,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 23.973309295950457,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 24.02425387594849,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 24.075101040070876,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 24.1258265809156,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 24.176730619044974,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        69,
+        17,
+        15
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 24.227677240036428,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        57,
+        14,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    },
+    {
+      "seconds": 24.278395490022376,
+      "phase": "setup",
+      "plan": null,
+      "core_busy_percent": [
+        57,
+        14,
+        13
+      ],
+      "npu_hz": 1000000000,
+      "dram_hz": 2112000000
+    }
+  ],
+  "note": "Driver busy counters have an unknown averaging window; not MAC occupancy or measured DRAM bandwidth."
+}

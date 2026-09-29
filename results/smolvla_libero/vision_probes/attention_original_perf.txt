@@ -1,0 +1,42 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                          Network Layer Information Table                                                                                
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ID   OpType             DataType Target InputShape                               OutputShape            Cycles(DDR/NPU/Total)    Time(us)     MacUsage(%)          WorkLoad(0/1/2)      RW(KB)       FullName        
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1    InputOperator      FLOAT16  CPU    \                                        (2,1024,768)           0/0/0                    2                                 0.0%/0.0%/0.0%       0            InputOperator:/vision_model/encoder/layers.0/self_attn/q_proj/Add_output_0
+2    InputOperator      FLOAT16  CPU    \                                        (2,1024,768)           0/0/0                    1                                 0.0%/0.0%/0.0%       0            InputOperator:/vision_model/encoder/layers.0/self_attn/k_proj/Add_output_0
+3    InputOperator      FLOAT16  CPU    \                                        (2,1024,768)           0/0/0                    1                                 0.0%/0.0%/0.0%       0            InputOperator:/vision_model/encoder/layers.0/self_attn/v_proj/Add_output_0
+4    Reshape            FLOAT16  NPU    (2,1024,768),(4)                         (2,1024,12,64)         0/0/0                    3019                              100.0%/0.0%/0.0%     3072         Reshape:/vision_model/encoder/layers.0/self_attn/Reshape
+5    Mul                FLOAT16  NPU    (2,1024,12,64),(1,1,1,1)                 (2,1024,12,64)         0/0/0                    484                               100.0%/0.0%/0.0%     3072         Mul:/vision_model/encoder/layers.0/self_attn/Mul
+6    Transpose          FLOAT16  NPU    (2,1024,12,64)                           (2,12,64,1024)         0/0/0                    5754                              100.0%/0.0%/0.0%     3072         Transpose:/vision_model/encoder/layers.0/self_attn/Mul_output_0_tp
+7    Reshape            FLOAT16  NPU    (2,12,64,1024),(4)                       (24,64,1,1024)         0/0/0                    4824                              100.0%/0.0%/0.0%     4096         Reshape:/vision_model/encoder/layers.0/self_attn/Mul_output_0_tp_rs
+8    Reshape            FLOAT16  NPU    (2,1024,768),(4)                         (2,1024,12,64)         0/0/0                    3009                              100.0%/0.0%/0.0%     3072         Reshape:/vision_model/encoder/layers.0/self_attn/Reshape_1
+9    Mul                FLOAT16  NPU    (2,1024,12,64),(1,1,1,1)                 (2,1024,12,64)         0/0/0                    499                               100.0%/0.0%/0.0%     3072         Mul:/vision_model/encoder/layers.0/self_attn/Mul_1
+10   Transpose          FLOAT16  NPU    (2,1024,12,64)                           (2,12,64,1024)         0/0/0                    5752                              100.0%/0.0%/0.0%     3072         Transpose:/vision_model/encoder/layers.0/self_attn/Transpose_2
+11   Reshape            FLOAT16  NPU    (2,12,64,1024),(4)                       (24,64,1,1024)         0/0/0                    4814                              100.0%/0.0%/0.0%     4096         Reshape:/vision_model/encoder/layers.0/self_attn/Mul_1_output_0_rs
+12   Reshape            FLOAT16  NPU    (2,1024,768),(4)                         (2,1024,12,64)         0/0/0                    3044                              100.0%/0.0%/0.0%     3072         Reshape:/vision_model/encoder/layers.0/self_attn/Reshape_2
+13   Transpose          FLOAT16  NPU    (2,1024,12,64)                           (2,12,64,1024)         0/0/0                    5755                              100.0%/0.0%/0.0%     3072         Transpose:/vision_model/encoder/layers.0/self_attn/Transpose_1_output_0_tp
+14   Reshape            FLOAT16  NPU    (2,12,64,1024),(4)                       (24,64,1,1024)         0/0/0                    4811                              100.0%/0.0%/0.0%     4096         Reshape:/vision_model/encoder/layers.0/self_attn/Transpose_1_output_0_tp_rs
+15   exSDPAttention     FLOAT16  NPU    (24,64,1,1024),(24,64,1,1024),...        (24,64,1,1024)         0/0/0                    78867                             100.0%/0.0%/0.0%     58368        exSDPAttention:/vision_model/encoder/layers.0/self_attn/MatMul_1_2sdpa
+16   Reshape            FLOAT16  NPU    (24,64,1,1024),(4)                       (2,12,64,1024)         0/0/0                    5205                              100.0%/0.0%/0.0%     3072         Reshape:/vision_model/encoder/layers.0/self_attn/MatMul_1_output_0_sdpa_tp_rs
+17   Transpose          FLOAT16  NPU    (2,12,64,1024)                           (2,1024,12,64)         0/0/0                    3465                              100.0%/0.0%/0.0%     4096         Transpose:/vision_model/encoder/layers.0/self_attn/Transpose_3
+18   Reshape            FLOAT16  NPU    (2,1024,12,64),(3)                       (2,1024,768)           0/0/0                    571                               100.0%/0.0%/0.0%     3072         Reshape:/vision_model/encoder/layers.0/self_attn/Reshape_3
+19   OutputOperator     FLOAT16  CPU    (2,1024,768)                             \                      0/0/0                    49                                0.0%/0.0%/0.0%       3072         OutputOperator:/vision_model/encoder/layers.0/self_attn/Reshape_3_output_0
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total Operator Elapsed Per Frame Time(us): 129926
+Total Memory Read/Write Per Frame Size(KB): 108544.25
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+                                 Operator Time Consuming Ranking Table            
+---------------------------------------------------------------------------------------------------
+OpType             CallNumber   CPUTime(us)  GPUTime(us)  NPUTime(us)  TotalTime(us)  TimeRatio(%)  
+---------------------------------------------------------------------------------------------------
+exSDPAttention     1            0            0            78867        78867          60.70%        
+Reshape            8            0            0            29297        29297          22.55%        
+Transpose          4            0            0            20726        20726          15.95%        
+Mul                2            0            0            983          983            0.76%         
+OutputOperator     1            49           0            0            49             0.04%         
+InputOperator      3            4            0            0            4              0.00%         
+---------------------------------------------------------------------------------------------------
+Total                           53           0            129873       129926        
+---------------------------------------------------------------------------------------------------

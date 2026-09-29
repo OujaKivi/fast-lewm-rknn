@@ -1,0 +1,355 @@
+{
+  "scope": "Actual recorded observation/source-pixel and native NPU connector lossless payload sizes/CPU codec times; no cloud inference, network measurements, or branch-placement speed claim",
+  "fixtures": {
+    "repo": "lerobot/libero_spatial_image",
+    "revision": "d86c0b94922572b3b657e1d1a3d01f0952ddeb46",
+    "data_path": "data/chunk-000/file-001.parquet",
+    "parquet_sha256": "1574892a5df268080927bb0fcf41ea443bfdc9475562fc35e091024d765b327b",
+    "scope": "Three offline recorded demonstration frames, not simulator rollout or task success evaluation",
+    "camera_mapping": {
+      "observation.images.wrist_image": "observation.images.image2"
+    },
+    "state_protocol": "Recorded eight-dimensional state passed unchanged into checkpoint normalization; not a claim of simulator state-semantic parity",
+    "cases": [
+      {
+        "file": "frame_0.npz",
+        "frame_index": 0,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "cd7fa1dc69bca664d9a536324e966a7929df4a81e68b31f04c1b73018bab0986",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      },
+      {
+        "file": "frame_42.npz",
+        "frame_index": 42,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "7f9aa544a5b2c20b0f72d554a914ebc8cbfd45982032fe72e5cb947a3eeb7d5f",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      },
+      {
+        "file": "frame_83.npz",
+        "frame_index": 83,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "321a49a928585691b3a9fe735401dffda44cc48f8206159511aa1a0a66740264",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      }
+    ]
+  },
+  "vision_sha256": "da413e344bc5fac2236115394ca95cad0fb76ef38749ee5d9966b9a681f24e3d",
+  "affinity": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "cases": {
+    "frame_0.npz": [
+      {
+        "source_uint8_raw_bytes": 196608,
+        "source_fp32_raw_bytes": 786432,
+        "png": {
+          "bytes": 58472,
+          "encode_decode_median_ms": [
+            22.137301042675972,
+            2.0314399152994156
+          ]
+        },
+        "source_zlib": {
+          "bytes": 72858,
+          "encode_decode_median_ms": [
+            11.082941899076104,
+            0.8869501762092113
+          ]
+        },
+        "connector_fp32_raw_bytes": 245760,
+        "connector_fp32_zlib": {
+          "bytes": 146361,
+          "encode_decode_median_ms": [
+            53.39201889000833,
+            1.5303611289709806
+          ]
+        },
+        "connector_fp16_roundtrip_bitwise_equal": true,
+        "connector_fp16_raw_bytes": 122880,
+        "connector_fp16_zlib": {
+          "bytes": 113842,
+          "encode_decode_median_ms": [
+            5.292827030643821,
+            0.7437439635396004
+          ]
+        }
+      },
+      {
+        "source_uint8_raw_bytes": 196608,
+        "source_fp32_raw_bytes": 786432,
+        "png": {
+          "bytes": 60249,
+          "encode_decode_median_ms": [
+            20.066778175532818,
+            1.9623148255050182
+          ]
+        },
+        "source_zlib": {
+          "bytes": 75863,
+          "encode_decode_median_ms": [
+            10.521488031372428,
+            0.9070751257240772
+          ]
+        },
+        "connector_fp32_raw_bytes": 245760,
+        "connector_fp32_zlib": {
+          "bytes": 146469,
+          "encode_decode_median_ms": [
+            53.521224996075034,
+            1.5318200457841158
+          ]
+        },
+        "connector_fp16_roundtrip_bitwise_equal": true,
+        "connector_fp16_raw_bytes": 122880,
+        "connector_fp16_zlib": {
+          "bytes": 113986,
+          "encode_decode_median_ms": [
+            5.217869998887181,
+            0.7419928442686796
+          ]
+        }
+      }
+    ],
+    "frame_42.npz": [
+      {
+        "source_uint8_raw_bytes": 196608,
+        "source_fp32_raw_bytes": 786432,
+        "png": {
+          "bytes": 62728,
+          "encode_decode_median_ms": [
+            22.473879856988788,
+            2.0734400022774935
+          ]
+        },
+        "source_zlib": {
+          "bytes": 79821,
+          "encode_decode_median_ms": [
+            11.196982115507126,
+            0.9499490261077881
+          ]
+        },
+        "connector_fp32_raw_bytes": 245760,
+        "connector_fp32_zlib": {
+          "bytes": 146317,
+          "encode_decode_median_ms": [
+            53.49030694924295,
+            1.5286118723452091
+          ]
+        },
+        "connector_fp16_roundtrip_bitwise_equal": true,
+        "connector_fp16_raw_bytes": 122880,
+        "connector_fp16_zlib": {
+          "bytes": 113924,
+          "encode_decode_median_ms": [
+            5.242077866569161,
+            0.741118099540472
+          ]
+        }
+      },
+      {
+        "source_uint8_raw_bytes": 196608,
+        "source_fp32_raw_bytes": 786432,
+        "png": {
+          "bytes": 58270,
+          "encode_decode_median_ms": [
+            17.266218084841967,
+            1.7517339438199997
+          ]
+        },
+        "source_zlib": {
+          "bytes": 68284,
+          "encode_decode_median_ms": [
+            10.130950016900897,
+            0.7799100130796432
+          ]
+        },
+        "connector_fp32_raw_bytes": 245760,
+        "connector_fp32_zlib": {
+          "bytes": 146037,
+          "encode_decode_median_ms": [
+            53.53726400062442,
+            1.5332770999521017
+          ]
+        },
+        "connector_fp16_roundtrip_bitwise_equal": true,
+        "connector_fp16_raw_bytes": 122880,
+        "connector_fp16_zlib": {
+          "bytes": 113847,
+          "encode_decode_median_ms": [
+            5.165369948372245,
+            0.743744196370244
+          ]
+        }
+      }
+    ],
+    "frame_83.npz": [
+      {
+        "source_uint8_raw_bytes": 196608,
+        "source_fp32_raw_bytes": 786432,
+        "png": {
+          "bytes": 64642,
+          "encode_decode_median_ms": [
+            22.349337814375758,
+            2.1151481196284294
+          ]
+        },
+        "source_zlib": {
+          "bytes": 81947,
+          "encode_decode_median_ms": [
+            11.312189046293497,
+            0.9586999658495188
+          ]
+        },
+        "connector_fp32_raw_bytes": 245760,
+        "connector_fp32_zlib": {
+          "bytes": 146362,
+          "encode_decode_median_ms": [
+            53.75571991316974,
+            1.5376529190689325
+          ]
+        },
+        "connector_fp16_roundtrip_bitwise_equal": true,
+        "connector_fp16_raw_bytes": 122880,
+        "connector_fp16_zlib": {
+          "bytes": 113892,
+          "encode_decode_median_ms": [
+            5.2132029086351395,
+            0.7484098896384239
+          ]
+        }
+      },
+      {
+        "source_uint8_raw_bytes": 196608,
+        "source_fp32_raw_bytes": 786432,
+        "png": {
+          "bytes": 67358,
+          "encode_decode_median_ms": [
+            19.199366914108396,
+            2.162687946110964
+          ]
+        },
+        "source_zlib": {
+          "bytes": 81047,
+          "encode_decode_median_ms": [
+            10.95927506685257,
+            0.8621588349342346
+          ]
+        },
+        "connector_fp32_raw_bytes": 245760,
+        "connector_fp32_zlib": {
+          "bytes": 146261,
+          "encode_decode_median_ms": [
+            53.279432002454996,
+            1.5297781210392714
+          ]
+        },
+        "connector_fp16_roundtrip_bitwise_equal": true,
+        "connector_fp16_raw_bytes": 122880,
+        "connector_fp16_zlib": {
+          "bytes": 113842,
+          "encode_decode_median_ms": [
+            5.14466199092567,
+            0.7422850467264652
+          ]
+        }
+      }
+    ]
+  }
+}
