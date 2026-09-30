@@ -1,0 +1,2389 @@
+{
+  "scope": "Actual demonstration camera service matrix; no policy rollout, task quality, or edge-cloud acceleration claim",
+  "status": "complete",
+  "fixtures": {
+    "repo": "lerobot/libero_spatial_image",
+    "revision": "d86c0b94922572b3b657e1d1a3d01f0952ddeb46",
+    "data_path": "data/chunk-000/file-001.parquet",
+    "parquet_sha256": "1574892a5df268080927bb0fcf41ea443bfdc9475562fc35e091024d765b327b",
+    "scope": "Three offline recorded demonstration frames, not simulator rollout or task success evaluation",
+    "camera_mapping": {
+      "observation.images.wrist_image": "observation.images.image2"
+    },
+    "state_protocol": "Recorded eight-dimensional state passed unchanged into checkpoint normalization; not a claim of simulator state-semantic parity",
+    "cases": [
+      {
+        "file": "frame_0.npz",
+        "frame_index": 0,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "cd7fa1dc69bca664d9a536324e966a7929df4a81e68b31f04c1b73018bab0986",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      },
+      {
+        "file": "frame_42.npz",
+        "frame_index": 42,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "7f9aa544a5b2c20b0f72d554a914ebc8cbfd45982032fe72e5cb947a3eeb7d5f",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      },
+      {
+        "file": "frame_83.npz",
+        "frame_index": 83,
+        "episode_index": 11,
+        "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "sha256": "321a49a928585691b3a9fe735401dffda44cc48f8206159511aa1a0a66740264",
+        "shapes": {
+          "observation.state": [
+            1,
+            8
+          ],
+          "observation.images.image": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.images.image2": [
+            1,
+            3,
+            256,
+            256
+          ],
+          "observation.language.tokens": [
+            1,
+            20
+          ],
+          "observation.language.attention_mask": [
+            1,
+            20
+          ],
+          "noise": [
+            1,
+            50,
+            32
+          ]
+        }
+      }
+    ]
+  },
+  "preprocessing": {
+    "camera_order": [
+      "observation.images.image",
+      "observation.images.image2"
+    ],
+    "config_sha256": "e346a63094732ea28e05b08302a218306cf6541960b663a3cb4b6948e4efe6e0",
+    "prepare_images_source_sha256": "65016436b70196aabf2693c1e1db4b6c9ada280997c8be6e731c1a72bf0ffdf8",
+    "resize_imgs_with_padding": [
+      512,
+      512
+    ],
+    "timing_excludes_checkpoint_resize_normalize": true
+  },
+  "repeats": 8,
+  "affinity": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "script_sha256": "573951063a03a3453b85f7b27880219c1a0e7b0b82e295b83199a9659f3ceb3c",
+  "binary_sha256": "e7d3280bf09d6a9339da8ecd1ae52e44b329ec44e5c263b052dc7125e9fbedeb",
+  "artifact_sha256": {
+    "/root/smolvla-rknn-vision/native_vision12/vision_unmasked.rknn": "da413e344bc5fac2236115394ca95cad0fb76ef38749ee5d9966b9a681f24e3d",
+    "/root/smolvla-rknn-vision/native_vision12/stem_native.rknn": "851e0694d33827c6d4023ea0a5972003abf460e505dd305fbeff2fd7b247dce4",
+    "/root/smolvla-rknn-vision/native_vision12/tail_native.rknn": "e92f7ca042449a010a0b4bdc4d76accfc7c44769be1785692b338d941b58a7e3",
+    "/root/smolvla-rknn-vision/native_vision12/attention_full.rknn": "37ac97cbd15ee0a7d7e17a3d5eaf340cb53ab1f094e49d21e002e3c22b478f3c",
+    "/root/smolvla-rknn-vision/native_vision12/attention_h4.rknn": "fc220789f45986ab0cb27c8580e22eecea2e7a70f42542e8a9d1f011866e1aec",
+    "/root/smolvla-rknn-vision/native_vision12/layer00_qkv.rknn": "6ff7b051f37ee2e9a79737ec17d0151a108291ea5c46081a32ec6ba35cbbb28c",
+    "/root/smolvla-rknn-vision/native_vision12/layer00_suffix.rknn": "a067448b15e50a44ef62315d9c364ef30406e6371312571afff6012e721efa49",
+    "/root/smolvla-rknn-vision/native_vision12/layer01_qkv.rknn": "81ed869a7cf9980aacf7de68848cc55434bce83ff1086eae776b0b5dfb01114d",
+    "/root/smolvla-rknn-vision/native_vision12/layer01_suffix.rknn": "ac831a12d116c12e2e12b31dfbd3ed935d242d310f727a33e2db4893bf36d6e0",
+    "/root/smolvla-rknn-vision/native_vision12/layer02_qkv.rknn": "cc210dda02661f9f94ac8b824ad41059bf06c276bc6b57515ff7ac3ff92d7251",
+    "/root/smolvla-rknn-vision/native_vision12/layer02_suffix.rknn": "a4c54c76ad66e5777e944239c9f39370af1b380248fcbca44580e8512789919d",
+    "/root/smolvla-rknn-vision/native_vision12/layer03_qkv.rknn": "42389e670b1d6de46f5eb03352e149d9a1dcaedc78e801f63a5befbc735c5af7",
+    "/root/smolvla-rknn-vision/native_vision12/layer03_suffix.rknn": "5c38c57dd8e34a333a8933365e6e71a15a49564782e7e42165c650dcafdbdd4d",
+    "/root/smolvla-rknn-vision/native_vision12/layer04_qkv.rknn": "058af0f38eed5e598137644809c096295138aaaad9864eccfe6bf57052da7c2c",
+    "/root/smolvla-rknn-vision/native_vision12/layer04_suffix.rknn": "e2e981764527efe390ae4f38d231f3d0efbc5f630dd530c8d69471ded35cefda",
+    "/root/smolvla-rknn-vision/native_vision12/layer05_qkv.rknn": "1e1d6bda6ecfc79880233ecbf019d4ec85e568b1ec31cf2ded35f1282cec5835",
+    "/root/smolvla-rknn-vision/native_vision12/layer05_suffix.rknn": "b9a0fd64867eeea7943b0ab176779e1bfc8a5a85daac3350425b340b6d8766c5",
+    "/root/smolvla-rknn-vision/native_vision12/layer06_qkv.rknn": "c234a280fc10a4c0b0930a848d175915bb2be3c6a62ca1a114822f5958dbd0c4",
+    "/root/smolvla-rknn-vision/native_vision12/layer06_suffix.rknn": "c774758e534a8fd3614b2b4fb475e2a105c11d9f14883a74780b29a10b2917fd",
+    "/root/smolvla-rknn-vision/native_vision12/layer07_qkv.rknn": "3b6928c80029ff0986e247ee7396cf8dc7a81fa496f9a08c4974542b8fe6d8c9",
+    "/root/smolvla-rknn-vision/native_vision12/layer07_suffix.rknn": "b11bbabcc09245ec1e9d68654c6d5d99f272e8b016f665427be9f7f60fab9354",
+    "/root/smolvla-rknn-vision/native_vision12/layer08_qkv.rknn": "fe8c7e916c15c5e048d2f7a0df1544aa44700ebf74d9bf2bd2a7cf7f529b2550",
+    "/root/smolvla-rknn-vision/native_vision12/layer08_suffix.rknn": "21d52f0a1b2a80adfe5e4ceb84bbde3b907f9ac629cd61dce3f64cbf806336ca",
+    "/root/smolvla-rknn-vision/native_vision12/layer09_qkv.rknn": "d77f024cf803a0cd64929947f8dacf27597cde013b3fabd4c6d1fb31d90bee53",
+    "/root/smolvla-rknn-vision/native_vision12/layer09_suffix.rknn": "facbc5b68a2d79e818402f029182ab8e8e0987794c8a954dc49ab5def8d1e79a",
+    "/root/smolvla-rknn-vision/native_vision12/layer10_qkv.rknn": "c5ff8fcbd5389c2da10099c373090816588fa846a2b64c9dc754a91eaf258800",
+    "/root/smolvla-rknn-vision/native_vision12/layer10_suffix.rknn": "d9a22ae603ba8fca6b3ece60d55c56eaf93b8aee79169b0bb1814c8a424ccaad",
+    "/root/smolvla-rknn-vision/native_vision12/layer11_qkv.rknn": "22a2cc662f49f2d4ac4eed3a75dae2dd158f38014425e963e76d5e06af2ef665",
+    "/root/smolvla-rknn-vision/native_vision12/layer11_suffix.rknn": "e49e616f17d4a072d02e1612a272872bbacf8492520a6b8ed3a288a700affba3"
+  },
+  "cases": {
+    "frame_0.npz": {
+      "scope": "Actual recorded camera branches; full 12-layer vision and connector; not complete policy, closed loop or edge-cloud service",
+      "repeats": 8,
+      "contexts": "Both fused and packed camera contexts coexist; duplicate contexts have independent I/O; not isolated RSS",
+      "schedule_swap_restore_and_post_timing_bitwise_checks": true,
+      "head_vs_full_layer_parity": [
+        [
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          }
+        ],
+        [
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          }
+        ]
+      ],
+      "plans": {
+        "fused_camera0_mask7": {
+          "camera_count": 1,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 766.2691665,
+              "samples_ms": [
+                769.182937,
+                766.961445,
+                766.195128,
+                766.268526,
+                766.200769,
+                766.269807,
+                766.606308,
+                766.237621
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 767.3887645,
+              "samples_ms": [
+                769.389725,
+                771.122113,
+                767.225274,
+                767.32376,
+                767.328339,
+                767.25737,
+                767.522128,
+                767.44919
+              ]
+            }
+          }
+        },
+        "fused_camera1_mask7": {
+          "camera_count": 1,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 766.5418845,
+              "samples_ms": [
+                766.323773,
+                766.360515,
+                767.976866,
+                768.038015,
+                766.414506,
+                766.363962,
+                766.669263,
+                767.501363
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 767.7061915,
+              "samples_ms": [
+                767.529504,
+                770.505032,
+                770.643601,
+                767.436613,
+                767.497193,
+                767.660145,
+                767.752238,
+                771.2073
+              ]
+            }
+          }
+        },
+        "packed_full_camera0": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.203125,
+              "mae": 0.01816536208,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 795.745919,
+              "samples_ms": [
+                795.750717,
+                795.614211,
+                796.6109,
+                799.452333,
+                796.653098,
+                795.731037,
+                795.74086,
+                795.741121
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 796.721576,
+              "samples_ms": [
+                796.621035,
+                797.057062,
+                796.660463,
+                796.711807,
+                801.865175,
+                799.67319,
+                796.731345,
+                796.659565
+              ]
+            }
+          }
+        },
+        "packed_full_camera1": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.25,
+              "mae": 0.01550027032,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 795.5972995,
+              "samples_ms": [
+                798.097137,
+                795.537795,
+                795.61508,
+                795.555166,
+                795.602161,
+                795.592438,
+                797.464854,
+                795.543901
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 796.9854865,
+              "samples_ms": [
+                797.039862,
+                796.687235,
+                796.931111,
+                796.614523,
+                797.506189,
+                800.468546,
+                801.429209,
+                796.774173
+              ]
+            }
+          }
+        },
+        "packed_h4_camera0": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.203125,
+              "mae": 0.01816536208,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 516.877144,
+              "samples_ms": [
+                520.588053,
+                516.878691,
+                516.630783,
+                516.851303,
+                516.771123,
+                516.875597,
+                516.97918,
+                517.010471
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 517.9824835,
+              "samples_ms": [
+                518.499169,
+                520.142971,
+                517.589197,
+                517.918512,
+                517.812081,
+                518.029417,
+                517.93555,
+                518.423591
+              ]
+            }
+          }
+        },
+        "packed_h4_camera1": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.25,
+              "mae": 0.01550027032,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 515.142775,
+              "samples_ms": [
+                514.942643,
+                515.81704,
+                518.478767,
+                514.770236,
+                514.761515,
+                514.928669,
+                515.342907,
+                518.733911
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 516.1508925,
+              "samples_ms": [
+                515.827546,
+                520.213845,
+                516.012138,
+                516.415534,
+                516.105523,
+                516.196262,
+                515.878997,
+                519.682999
+              ]
+            }
+          }
+        },
+        "fused_dual_serial_mask7": {
+          "camera_count": 2,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            },
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1532.714438,
+              "samples_ms": [
+                1532.644624,
+                1532.716066,
+                1535.303583,
+                1537.07437,
+                1532.564708,
+                1533.058309,
+                1532.71281,
+                1532.505206
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1535.054712,
+              "samples_ms": [
+                1534.880503,
+                1534.795031,
+                1534.864843,
+                1535.228921,
+                1539.76999,
+                1539.22992,
+                1536.979826,
+                1534.849857
+              ]
+            }
+          }
+        },
+        "fused_dual_parallel_mask1_mask2": {
+          "camera_count": 2,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            },
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1100.857319,
+              "samples_ms": [
+                1100.899433,
+                1102.300858,
+                1101.034123,
+                1100.578845,
+                1100.764668,
+                1100.719197,
+                1100.815206,
+                1100.987999
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1102.937269,
+              "samples_ms": [
+                1104.576125,
+                1102.786185,
+                1102.935254,
+                1102.929139,
+                1102.808127,
+                1103.078241,
+                1104.184579,
+                1102.939284
+              ]
+            }
+          }
+        },
+        "packed_h4_dual_serial": {
+          "camera_count": 2,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.203125,
+              "mae": 0.01816536208,
+              "bitwise_equal": false
+            },
+            {
+              "max_abs": 0.25,
+              "mae": 0.01550027032,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1032.261698,
+              "samples_ms": [
+                1031.887542,
+                1032.463856,
+                1040.509544,
+                1031.700648,
+                1031.79784,
+                1032.184365,
+                1032.339031,
+                1040.146529
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1034.401178,
+              "samples_ms": [
+                1034.76012,
+                1033.958039,
+                1034.384196,
+                1041.91831,
+                1034.570106,
+                1034.169129,
+                1034.200711,
+                1034.41816
+              ]
+            }
+          }
+        },
+        "packed_h4_dual_parallel": {
+          "camera_count": 2,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.203125,
+              "mae": 0.01816536208,
+              "bitwise_equal": false
+            },
+            {
+              "max_abs": 0.25,
+              "mae": 0.01550027032,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1023.62472,
+              "samples_ms": [
+                1027.167574,
+                1023.353229,
+                1023.4743,
+                1022.767939,
+                1023.775141,
+                1028.202138,
+                1029.571311,
+                1023.101715
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1025.545833,
+              "samples_ms": [
+                1025.142857,
+                1025.244345,
+                1024.635755,
+                1027.075901,
+                1034.622865,
+                1029.899673,
+                1025.727461,
+                1025.364205
+              ]
+            }
+          }
+        }
+      },
+      "supplemental_stage_diagnostics": {
+        "repeats": 3,
+        "not_pooled_with_formal_timings": true,
+        "cameras": [
+          {
+            "packed_full": {
+              "patch": {
+                "median_ms": 9.04342,
+                "samples_ms": [
+                  9.052462,
+                  9.04342,
+                  9.038169
+                ]
+              },
+              "qkv": {
+                "median_ms": 49.625644,
+                "samples_ms": [
+                  49.625644,
+                  49.590933,
+                  49.659761
+                ]
+              },
+              "attention": {
+                "median_ms": 497.873975,
+                "samples_ms": [
+                  497.928266,
+                  497.873975,
+                  497.850908
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 227.145126,
+                "samples_ms": [
+                  227.145126,
+                  227.183022,
+                  227.054386
+                ]
+              },
+              "connector": {
+                "median_ms": 12.028628,
+                "samples_ms": [
+                  12.030671,
+                  12.028628,
+                  12.015503
+                ]
+              }
+            },
+            "packed_h4": {
+              "patch": {
+                "median_ms": 9.033794,
+                "samples_ms": [
+                  9.01892,
+                  9.062669,
+                  9.033794
+                ]
+              },
+              "qkv": {
+                "median_ms": 49.567304,
+                "samples_ms": [
+                  49.551852,
+                  49.58889,
+                  49.567304
+                ]
+              },
+              "attention": {
+                "median_ms": 218.84661,
+                "samples_ms": [
+                  218.63837,
+                  218.84661,
+                  219.162461
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 227.165245,
+                "samples_ms": [
+                  227.165245,
+                  227.152695,
+                  227.169591
+                ]
+              },
+              "connector": {
+                "median_ms": 12.026296,
+                "samples_ms": [
+                  12.035338,
+                  12.026296,
+                  12.013461
+                ]
+              }
+            }
+          },
+          {
+            "packed_full": {
+              "patch": {
+                "median_ms": 9.223085,
+                "samples_ms": [
+                  9.208503,
+                  9.411794,
+                  9.223085
+                ]
+              },
+              "qkv": {
+                "median_ms": 50.046225,
+                "samples_ms": [
+                  50.046225,
+                  50.91947,
+                  49.985262
+                ]
+              },
+              "attention": {
+                "median_ms": 497.530707,
+                "samples_ms": [
+                  497.530707,
+                  498.763543,
+                  497.484555
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 226.963411,
+                "samples_ms": [
+                  226.963411,
+                  229.092851,
+                  226.961626
+                ]
+              },
+              "connector": {
+                "median_ms": 11.940836,
+                "samples_ms": [
+                  11.940838,
+                  11.931211,
+                  11.940836
+                ]
+              }
+            },
+            "packed_h4": {
+              "patch": {
+                "median_ms": 9.204127,
+                "samples_ms": [
+                  9.19217,
+                  9.226003,
+                  9.204127
+                ]
+              },
+              "qkv": {
+                "median_ms": 50.018224,
+                "samples_ms": [
+                  50.018224,
+                  50.470305,
+                  50.002467
+                ]
+              },
+              "attention": {
+                "median_ms": 217.149975,
+                "samples_ms": [
+                  216.761776,
+                  217.149975,
+                  217.233957
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 227.009165,
+                "samples_ms": [
+                  226.957569,
+                  228.457895,
+                  227.009165
+                ]
+              },
+              "connector": {
+                "median_ms": 11.960087,
+                "samples_ms": [
+                  11.960087,
+                  12.138003,
+                  11.948419
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "prepared_camera_sha256": {
+        "frame_0_camera0_fp32.bin": "9f1f600deb813813ecc9153c383b4f57126389a458113186c0844bb534246a74",
+        "frame_0_camera1_fp32.bin": "3a4fc1c41b5750e3004d6ae606e905875cdecd1bb66936dbe1de1af8717e9087"
+      },
+      "connector_sha256": {
+        "frame_0.json.packed_camera0.bin": "300f31e3684cdcf9c3d13042ff3dc700a022385d5bf1069cde293ee591616018",
+        "frame_0.json.packed_camera1.bin": "56609654b866c2215d62d9224364804a7a810df2699ee404ec22ce9bb814271b",
+        "frame_0.json.fused_camera1.bin": "a04bce0c487689ef0449e7352d0183733af1a3ade6eb59127f690ec62155313a",
+        "frame_0.json.fused_camera0.bin": "ef86fc608aefdc83c8d9f52da6fdb0257fd81cc241b49fdb39f94c1a1b2abee0"
+      }
+    },
+    "frame_42.npz": {
+      "scope": "Actual recorded camera branches; full 12-layer vision and connector; not complete policy, closed loop or edge-cloud service",
+      "repeats": 8,
+      "contexts": "Both fused and packed camera contexts coexist; duplicate contexts have independent I/O; not isolated RSS",
+      "schedule_swap_restore_and_post_timing_bitwise_checks": true,
+      "head_vs_full_layer_parity": [
+        [
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          }
+        ],
+        [
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          }
+        ]
+      ],
+      "plans": {
+        "fused_camera0_mask7": {
+          "camera_count": 1,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 765.6266885,
+              "samples_ms": [
+                765.581279,
+                765.583311,
+                765.511581,
+                767.743148,
+                766.817148,
+                765.670066,
+                765.414907,
+                765.860653
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 766.7492175,
+              "samples_ms": [
+                766.673849,
+                766.759588,
+                766.678818,
+                766.610015,
+                770.154668,
+                769.203585,
+                766.943223,
+                766.738847
+              ]
+            }
+          }
+        },
+        "fused_camera1_mask7": {
+          "camera_count": 1,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 765.9132055,
+              "samples_ms": [
+                768.062441,
+                765.843742,
+                765.910835,
+                765.859244,
+                765.915576,
+                765.945071,
+                766.755367,
+                765.846331
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 767.089169,
+              "samples_ms": [
+                766.95296,
+                766.962879,
+                767.24143,
+                767.136461,
+                767.023917,
+                769.275616,
+                770.614405,
+                767.041877
+              ]
+            }
+          }
+        },
+        "packed_full_camera0": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.1875,
+              "mae": 0.01684978776,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 796.754684,
+              "samples_ms": [
+                800.306432,
+                797.909219,
+                796.905599,
+                796.722439,
+                796.786929,
+                796.5895,
+                796.602666,
+                796.486367
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 797.7813335,
+              "samples_ms": [
+                797.787005,
+                802.724614,
+                797.873624,
+                797.621341,
+                797.775662,
+                797.712985,
+                797.686192,
+                801.668375
+              ]
+            }
+          }
+        },
+        "packed_full_camera1": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.1875,
+              "mae": 0.01376049393,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 795.521039,
+              "samples_ms": [
+                795.769228,
+                795.366724,
+                796.908474,
+                798.614734,
+                795.675354,
+                795.353678,
+                795.222467,
+                795.219628
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 796.7185245,
+              "samples_ms": [
+                796.872617,
+                797.009402,
+                801.753353,
+                796.542751,
+                796.476279,
+                796.405145,
+                796.564432,
+                798.859626
+              ]
+            }
+          }
+        },
+        "packed_h4_camera0": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.1875,
+              "mae": 0.01684978776,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 517.067977,
+              "samples_ms": [
+                516.352311,
+                516.824911,
+                517.060684,
+                520.088582,
+                517.088331,
+                517.332389,
+                517.07527,
+                516.917632
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 518.2096045,
+              "samples_ms": [
+                517.950058,
+                517.680073,
+                517.955217,
+                518.463992,
+                521.278103,
+                521.201042,
+                518.765466,
+                517.948955
+              ]
+            }
+          }
+        },
+        "packed_h4_camera1": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.1875,
+              "mae": 0.01376049393,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 515.614464,
+              "samples_ms": [
+                515.310174,
+                515.491397,
+                515.531751,
+                515.646779,
+                515.582149,
+                518.186842,
+                519.59787,
+                515.771953
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 516.8019115,
+              "samples_ms": [
+                516.409465,
+                516.719024,
+                516.884799,
+                516.19833,
+                519.891812,
+                520.152968,
+                520.768622,
+                516.648707
+              ]
+            }
+          }
+        },
+        "fused_dual_serial_mask7": {
+          "camera_count": 2,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            },
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1531.723895,
+              "samples_ms": [
+                1536.421861,
+                1533.917049,
+                1531.442006,
+                1531.481142,
+                1531.417626,
+                1531.31182,
+                1533.428229,
+                1531.966648
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1534.035484,
+              "samples_ms": [
+                1534.430606,
+                1536.324409,
+                1538.452728,
+                1533.6155,
+                1533.640363,
+                1533.567807,
+                1533.460563,
+                1538.087787
+              ]
+            }
+          }
+        },
+        "fused_dual_parallel_mask1_mask2": {
+          "camera_count": 2,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            },
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1101.248263,
+              "samples_ms": [
+                1101.204624,
+                1100.930345,
+                1101.151036,
+                1101.146867,
+                1102.843412,
+                1102.15092,
+                1101.291901,
+                1101.441807
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1103.483129,
+              "samples_ms": [
+                1103.407898,
+                1103.452117,
+                1103.51414,
+                1105.058424,
+                1103.557726,
+                1103.051024,
+                1103.341458,
+                1103.755904
+              ]
+            }
+          }
+        },
+        "packed_h4_dual_serial": {
+          "camera_count": 2,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.1875,
+              "mae": 0.01684978776,
+              "bitwise_equal": false
+            },
+            {
+              "max_abs": 0.1875,
+              "mae": 0.01376049393,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1032.697106,
+              "samples_ms": [
+                1035.255066,
+                1032.127443,
+                1032.583242,
+                1032.81097,
+                1032.297879,
+                1035.371399,
+                1039.466927,
+                1032.227211
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1034.627657,
+              "samples_ms": [
+                1037.57583,
+                1039.285197,
+                1034.559839,
+                1034.773568,
+                1034.6831,
+                1034.572214,
+                1034.17755,
+                1034.560223
+              ]
+            }
+          }
+        },
+        "packed_h4_dual_parallel": {
+          "camera_count": 2,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.1875,
+              "mae": 0.01684978776,
+              "bitwise_equal": false
+            },
+            {
+              "max_abs": 0.1875,
+              "mae": 0.01376049393,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1023.55709,
+              "samples_ms": [
+                1023.05372,
+                1023.807887,
+                1026.582144,
+                1028.332956,
+                1023.006798,
+                1023.306293,
+                1022.78505,
+                1026.120841
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1025.759246,
+              "samples_ms": [
+                1025.25174,
+                1029.856774,
+                1029.998451,
+                1025.07507,
+                1025.551313,
+                1025.967179,
+                1025.541018,
+                1031.002467
+              ]
+            }
+          }
+        }
+      },
+      "supplemental_stage_diagnostics": {
+        "repeats": 3,
+        "not_pooled_with_formal_timings": true,
+        "cameras": [
+          {
+            "packed_full": {
+              "patch": {
+                "median_ms": 9.122128,
+                "samples_ms": [
+                  9.122128,
+                  9.123878,
+                  9.114836
+                ]
+              },
+              "qkv": {
+                "median_ms": 49.680829,
+                "samples_ms": [
+                  49.666542,
+                  49.698915,
+                  49.680829
+                ]
+              },
+              "attention": {
+                "median_ms": 498.785199,
+                "samples_ms": [
+                  498.799246,
+                  498.783758,
+                  498.785199
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 226.969673,
+                "samples_ms": [
+                  226.969673,
+                  226.954204,
+                  226.970822
+                ]
+              },
+              "connector": {
+                "median_ms": 12.009615,
+                "samples_ms": [
+                  12.00845,
+                  12.01049,
+                  12.009615
+                ]
+              }
+            },
+            "packed_h4": {
+              "patch": {
+                "median_ms": 9.125045,
+                "samples_ms": [
+                  9.135545,
+                  9.125045,
+                  9.10142
+                ]
+              },
+              "qkv": {
+                "median_ms": 49.725456,
+                "samples_ms": [
+                  50.285455,
+                  49.725456,
+                  49.664495
+                ]
+              },
+              "attention": {
+                "median_ms": 218.814406,
+                "samples_ms": [
+                  218.827538,
+                  218.814406,
+                  218.726602
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 226.986873,
+                "samples_ms": [
+                  228.757581,
+                  226.986873,
+                  226.942819
+                ]
+              },
+              "connector": {
+                "median_ms": 12.013991,
+                "samples_ms": [
+                  12.21524,
+                  12.013991,
+                  12.006698
+                ]
+              }
+            }
+          },
+          {
+            "packed_full": {
+              "patch": {
+                "median_ms": 9.196794,
+                "samples_ms": [
+                  9.391919,
+                  9.180461,
+                  9.196794
+                ]
+              },
+              "qkv": {
+                "median_ms": 50.646534,
+                "samples_ms": [
+                  50.646534,
+                  49.843871,
+                  50.689698
+                ]
+              },
+              "attention": {
+                "median_ms": 498.805602,
+                "samples_ms": [
+                  498.833358,
+                  497.822706,
+                  498.805602
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 228.803952,
+                "samples_ms": [
+                  228.803952,
+                  226.883032,
+                  228.970183
+                ]
+              },
+              "connector": {
+                "median_ms": 11.881282,
+                "samples_ms": [
+                  11.872825,
+                  11.881282,
+                  12.078448
+                ]
+              }
+            },
+            "packed_h4": {
+              "patch": {
+                "median_ms": 9.207877,
+                "samples_ms": [
+                  9.19592,
+                  9.207877,
+                  9.403001
+                ]
+              },
+              "qkv": {
+                "median_ms": 49.818495,
+                "samples_ms": [
+                  49.798373,
+                  49.818495,
+                  50.531614
+                ]
+              },
+              "attention": {
+                "median_ms": 217.968269,
+                "samples_ms": [
+                  217.692082,
+                  218.055779,
+                  217.968269
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 226.909286,
+                "samples_ms": [
+                  226.871084,
+                  226.909286,
+                  228.458305
+                ]
+              },
+              "connector": {
+                "median_ms": 11.878075,
+                "samples_ms": [
+                  11.861741,
+                  11.878075,
+                  11.878949
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "prepared_camera_sha256": {
+        "frame_42_camera0_fp32.bin": "4bf595c08580694b5f56f88d664947747a144590eb57a5a0ad8c2fd0ea91e4eb",
+        "frame_42_camera1_fp32.bin": "32f30a31bc75535d85d26dfc672f14d5a3d85b272dd2d222675d1ff1787af200"
+      },
+      "connector_sha256": {
+        "frame_42.json.fused_camera1.bin": "edc29b52c5fe2e6e305f9001ec4fb6e5bef4b7f385841da3027e1ee37e1e2c6c",
+        "frame_42.json.packed_camera1.bin": "911f4732e880507d66597c4888562d316f817e8fccb76145fb00d26e6e563075",
+        "frame_42.json.packed_camera0.bin": "15f7615fae6798b7d6221481e5d649cbf26b09e79d199e6d7fc79c3575e79006",
+        "frame_42.json.fused_camera0.bin": "c96933a46882c36334ab797c9e10fe9572692075aebdf921db67dc8f5857d715"
+      }
+    },
+    "frame_83.npz": {
+      "scope": "Actual recorded camera branches; full 12-layer vision and connector; not complete policy, closed loop or edge-cloud service",
+      "repeats": 8,
+      "contexts": "Both fused and packed camera contexts coexist; duplicate contexts have independent I/O; not isolated RSS",
+      "schedule_swap_restore_and_post_timing_bitwise_checks": true,
+      "head_vs_full_layer_parity": [
+        [
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          }
+        ],
+        [
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          },
+          {
+            "max_abs": 0,
+            "mae": 0,
+            "bitwise_equal": true
+          }
+        ]
+      ],
+      "plans": {
+        "fused_camera0_mask7": {
+          "camera_count": 1,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 767.231394,
+              "samples_ms": [
+                769.08165,
+                770.860119,
+                767.292293,
+                767.170495,
+                767.144369,
+                767.080327,
+                767.108161,
+                767.67852
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 768.2704135,
+              "samples_ms": [
+                768.300559,
+                768.738246,
+                771.719174,
+                768.182565,
+                768.145939,
+                768.240268,
+                768.144147,
+                771.809067
+              ]
+            }
+          }
+        },
+        "fused_camera1_mask7": {
+          "camera_count": 1,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 765.8353525,
+              "samples_ms": [
+                765.854347,
+                765.701032,
+                765.726027,
+                768.311171,
+                766.724638,
+                765.872811,
+                765.816358,
+                765.798427
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 767.076476,
+              "samples_ms": [
+                767.028309,
+                766.895992,
+                768.414893,
+                769.276298,
+                766.888854,
+                767.124643,
+                766.832525,
+                767.638548
+              ]
+            }
+          }
+        },
+        "packed_full_camera0": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.3125,
+              "mae": 0.01711970379,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 795.481299,
+              "samples_ms": [
+                795.47731,
+                795.433653,
+                795.558293,
+                795.485288,
+                800.356208,
+                798.40188,
+                795.389689,
+                795.343464
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 796.6010505,
+              "samples_ms": [
+                796.460209,
+                796.512804,
+                796.649987,
+                796.521273,
+                796.788848,
+                799.947111,
+                801.591347,
+                796.552114
+              ]
+            }
+          }
+        },
+        "packed_full_camera1": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.3125,
+              "mae": 0.01594179766,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 796.8018685,
+              "samples_ms": [
+                801.090374,
+                798.003776,
+                796.874549,
+                796.706658,
+                796.820038,
+                796.783699,
+                796.733657,
+                796.649223
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 797.9341,
+              "samples_ms": [
+                800.472636,
+                797.853286,
+                798.154095,
+                797.939243,
+                797.928957,
+                797.885324,
+                799.375855,
+                797.782932
+              ]
+            }
+          }
+        },
+        "packed_h4_camera0": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.3125,
+              "mae": 0.01711970379,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 517.556634,
+              "samples_ms": [
+                517.749651,
+                520.991962,
+                517.51519,
+                517.348529,
+                517.598078,
+                517.357805,
+                517.495652,
+                520.782911
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 518.6511055,
+              "samples_ms": [
+                518.40064,
+                520.928374,
+                520.516129,
+                518.44898,
+                518.733819,
+                518.366959,
+                518.568392,
+                522.675229
+              ]
+            }
+          }
+        },
+        "packed_h4_camera1": {
+          "camera_count": 1,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.3125,
+              "mae": 0.01594179766,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 515.0611745,
+              "samples_ms": [
+                514.766775,
+                515.221064,
+                517.386555,
+                516.185944,
+                514.547546,
+                515.243635,
+                514.901285,
+                514.39224
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 516.0246125,
+              "samples_ms": [
+                516.034652,
+                516.138064,
+                520.022042,
+                516.007737,
+                515.966207,
+                515.648759,
+                516.014573,
+                516.694933
+              ]
+            }
+          }
+        },
+        "fused_dual_serial_mask7": {
+          "camera_count": 2,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            },
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1533.099078,
+              "samples_ms": [
+                1532.875787,
+                1532.947741,
+                1533.250414,
+                1536.798457,
+                1536.11212,
+                1533.82775,
+                1532.740094,
+                1532.756395
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1535.918224,
+              "samples_ms": [
+                1538.072637,
+                1535.229986,
+                1534.999206,
+                1535.15752,
+                1536.606461,
+                1538.810813,
+                1539.625682,
+                1535.117395
+              ]
+            }
+          }
+        },
+        "fused_dual_parallel_mask1_mask2": {
+          "camera_count": 2,
+          "anchor": "fused",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            },
+            {
+              "max_abs": 0,
+              "mae": 0,
+              "bitwise_equal": true
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1101.020202,
+              "samples_ms": [
+                1100.986469,
+                1101.569239,
+                1102.245931,
+                1101.053936,
+                1100.724403,
+                1100.795909,
+                1100.940339,
+                1102.636751
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1103.196353,
+              "samples_ms": [
+                1103.712681,
+                1104.436324,
+                1103.022069,
+                1103.119233,
+                1103.257821,
+                1103.241534,
+                1103.151173,
+                1102.876514
+              ]
+            }
+          }
+        },
+        "packed_h4_dual_serial": {
+          "camera_count": 2,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.3125,
+              "mae": 0.01711970379,
+              "bitwise_equal": false
+            },
+            {
+              "max_abs": 0.3125,
+              "mae": 0.01594179766,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1032.852634,
+              "samples_ms": [
+                1032.838901,
+                1032.279234,
+                1034.363521,
+                1038.837424,
+                1032.264529,
+                1032.192259,
+                1032.866366,
+                1033.03651
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1035.123447,
+              "samples_ms": [
+                1034.462,
+                1034.99812,
+                1033.976465,
+                1035.805261,
+                1041.062292,
+                1037.327294,
+                1034.318552,
+                1035.248774
+              ]
+            }
+          }
+        },
+        "packed_h4_dual_parallel": {
+          "camera_count": 2,
+          "anchor": "packed_full",
+          "errors_vs_fused": [
+            {
+              "max_abs": 0.3125,
+              "mae": 0.01711970379,
+              "bitwise_equal": false
+            },
+            {
+              "max_abs": 0.3125,
+              "mae": 0.01594179766,
+              "bitwise_equal": false
+            }
+          ],
+          "timings": {
+            "resident_compute": {
+              "median_ms": 1024.926749,
+              "samples_ms": [
+                1032.20273,
+                1026.095598,
+                1024.097452,
+                1025.165297,
+                1024.6882,
+                1024.596684,
+                1025.842165,
+                1024.146241
+              ]
+            },
+            "input_compute_output": {
+              "median_ms": 1027.683326,
+              "samples_ms": [
+                1028.670682,
+                1025.80249,
+                1026.093039,
+                1026.695969,
+                1028.695105,
+                1033.688763,
+                1033.378212,
+                1025.986075
+              ]
+            }
+          }
+        }
+      },
+      "supplemental_stage_diagnostics": {
+        "repeats": 3,
+        "not_pooled_with_formal_timings": true,
+        "cameras": [
+          {
+            "packed_full": {
+              "patch": {
+                "median_ms": 9.032269,
+                "samples_ms": [
+                  9.032269,
+                  9.023518,
+                  9.036935
+                ]
+              },
+              "qkv": {
+                "median_ms": 49.691472,
+                "samples_ms": [
+                  49.691472,
+                  50.428219,
+                  49.672513
+                ]
+              },
+              "attention": {
+                "median_ms": 497.888875,
+                "samples_ms": [
+                  497.771367,
+                  498.943254,
+                  497.888875
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 226.994351,
+                "samples_ms": [
+                  226.887905,
+                  228.843507,
+                  226.994351
+                ]
+              },
+              "connector": {
+                "median_ms": 11.961747,
+                "samples_ms": [
+                  11.961747,
+                  12.154245,
+                  11.959705
+                ]
+              }
+            },
+            "packed_h4": {
+              "patch": {
+                "median_ms": 9.02031,
+                "samples_ms": [
+                  9.02031,
+                  9.043643,
+                  9.006309
+                ]
+              },
+              "qkv": {
+                "median_ms": 49.733474,
+                "samples_ms": [
+                  49.733474,
+                  49.727348,
+                  49.79822
+                ]
+              },
+              "attention": {
+                "median_ms": 219.756698,
+                "samples_ms": [
+                  220.067326,
+                  219.756698,
+                  219.73919
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 227.040136,
+                "samples_ms": [
+                  227.043359,
+                  226.899857,
+                  227.040136
+                ]
+              },
+              "connector": {
+                "median_ms": 11.963788,
+                "samples_ms": [
+                  11.963788,
+                  11.959414,
+                  11.968454
+                ]
+              }
+            }
+          },
+          {
+            "packed_full": {
+              "patch": {
+                "median_ms": 9.057642,
+                "samples_ms": [
+                  9.060268,
+                  9.029643,
+                  9.057642
+                ]
+              },
+              "qkv": {
+                "median_ms": 49.911099,
+                "samples_ms": [
+                  49.911099,
+                  49.897679,
+                  50.000052
+                ]
+              },
+              "attention": {
+                "median_ms": 498.884058,
+                "samples_ms": [
+                  498.884058,
+                  498.866249,
+                  499.052317
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 226.985893,
+                "samples_ms": [
+                  226.980942,
+                  226.985893,
+                  227.007761
+                ]
+              },
+              "connector": {
+                "median_ms": 11.906914,
+                "samples_ms": [
+                  11.906914,
+                  11.901664,
+                  11.91508
+                ]
+              }
+            },
+            "packed_h4": {
+              "patch": {
+                "median_ms": 9.042476,
+                "samples_ms": [
+                  9.042476,
+                  9.240808,
+                  9.022934
+                ]
+              },
+              "qkv": {
+                "median_ms": 50.013762,
+                "samples_ms": [
+                  49.93443,
+                  50.741173,
+                  50.013762
+                ]
+              },
+              "attention": {
+                "median_ms": 216.947957,
+                "samples_ms": [
+                  216.722223,
+                  217.673043,
+                  216.947957
+                ]
+              },
+              "projection_mlp": {
+                "median_ms": 227.079797,
+                "samples_ms": [
+                  226.917066,
+                  228.695632,
+                  227.079797
+                ]
+              },
+              "connector": {
+                "median_ms": 11.90458,
+                "samples_ms": [
+                  11.90458,
+                  11.921205,
+                  11.902247
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "prepared_camera_sha256": {
+        "frame_83_camera0_fp32.bin": "830e507586be91b914e679ab269fe0415fa14b2897c010ed7d16b660fe49a7ea",
+        "frame_83_camera1_fp32.bin": "e4897996624263647b8f90ff7206f8dc6fb483c818188980342566a33a0746e2"
+      },
+      "connector_sha256": {
+        "frame_83.json.packed_camera0.bin": "3f283ccfacbc0b0fc96fdc2793a089077133e48ae26608ddf8f18c8ec6d3ebca",
+        "frame_83.json.fused_camera0.bin": "7a1eb9d1b1bc158736aeba31fc9eebd4c72fa4afd39d4fc7337099e693d1fc63",
+        "frame_83.json.fused_camera1.bin": "9d662f725c049633e8d43ace13f0ec588eb6550198ea321789cf3afdb66d9399",
+        "frame_83.json.packed_camera1.bin": "6649e2bbbfa98804720383acfa47851d0ff09d711ec75453551666dbfcdb7c8e"
+      }
+    }
+  },
+  "limitations": [
+    "One episode, three recorded frames, not live cameras or success rates",
+    "All fused/packed contexts coexist, not isolated memory/energy",
+    "Split/fused rounding differences require separate action/quality validation",
+    "Resident and host-I/O modes are separate calls; their median difference is not exact I/O cost",
+    "Eight repeats do not establish stable p95/p99; stages are separate three-repeat diagnostics"
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "scope": "One independent session; six actual images, 40 rotating trials per plan/image; bars summarize six per-image medians; whiskers are their min/max, not confidence intervals; last-layer consumer only",
+  "original_native_summary_ms": 18.940202499999998,
+  "plans": {
+    "spatial_1x1024": {
+      "per_image_medians_ms": [
+        18.848249,
+        18.856102,
+        18.9025865,
+        18.903865,
+        18.8070015,
+        18.8082785
+      ],
+      "median_of_medians_ms": 18.8521755,
+      "range_ms": [
+        18.8070015,
+        18.903865
+      ],
+      "all_tested_original_bits_equal": true
+    },
+    "spatial_16x64": {
+      "per_image_medians_ms": [
+        21.213321,
+        21.216647,
+        21.2256375,
+        21.2244505,
+        21.3934325,
+        21.399388
+      ],
+      "median_of_medians_ms": 21.225044,
+      "range_ms": [
+        21.213321,
+        21.399388
+      ],
+      "all_tested_original_bits_equal": true
+    },
+    "spatial_32x32": {
+      "per_image_medians_ms": [
+        28.1541185,
+        28.1549395,
+        28.108056,
+        28.1091995,
+        28.1263395,
+        28.1286325
+      ],
+      "median_of_medians_ms": 28.127485999999998,
+      "range_ms": [
+        28.108056,
+        28.1549395
+      ],
+      "all_tested_original_bits_equal": true
+    },
+    "spatial_64x16": {
+      "per_image_medians_ms": [
+        41.894618,
+        41.8976365,
+        41.8536655,
+        41.8532935,
+        41.9281715,
+        41.930604
+      ],
+      "median_of_medians_ms": 41.89612725,
+      "range_ms": [
+        41.8532935,
+        41.930604
+      ],
+      "all_tested_original_bits_equal": true
+    },
+    "split_mlp_original": {
+      "per_image_medians_ms": [
+        19.1193595,
+        19.1213805,
+        19.0759905,
+        19.076108,
+        19.114571,
+        19.1164385
+      ],
+      "median_of_medians_ms": 19.11550475,
+      "range_ms": [
+        19.0759905,
+        19.1213805
+      ],
+      "all_tested_original_bits_equal": false
+    },
+    "split_mlp_spatial_16x64": {
+      "per_image_medians_ms": [
+        16.0570375,
+        16.061387,
+        16.073904,
+        16.0760635,
+        16.115265,
+        16.1184475
+      ],
+      "median_of_medians_ms": 16.07498375,
+      "range_ms": [
+        16.0570375,
+        16.1184475
+      ],
+      "all_tested_original_bits_equal": false
+    },
+    "split_mlp_spatial_32x32": {
+      "per_image_medians_ms": [
+        16.058932,
+        16.064306,
+        16.0588755,
+        16.0572435,
+        16.117596,
+        16.119905
+      ],
+      "median_of_medians_ms": 16.061619,
+      "range_ms": [
+        16.0572435,
+        16.119905
+      ],
+      "all_tested_original_bits_equal": false
+    },
+    "split_mlp_spatial_64x16": {
+      "per_image_medians_ms": [
+        15.820343,
+        15.8201655,
+        15.863747,
+        15.8618195,
+        15.944047,
+        15.9501485
+      ],
+      "median_of_medians_ms": 15.86278325,
+      "range_ms": [
+        15.8201655,
+        15.9501485
+      ],
+      "all_tested_original_bits_equal": false
+    },
+    "stage_spatial_1x1024": {
+      "per_image_medians_ms": [
+        18.9115495,
+        18.917059,
+        19.0014705,
+        19.002015,
+        18.938255,
+        18.9310675
+      ],
+      "median_of_medians_ms": 18.93466125,
+      "range_ms": [
+        18.9115495,
+        19.002015
+      ],
+      "all_tested_original_bits_equal": true
+    },
+    "stage_spatial_16x64": {
+      "per_image_medians_ms": [
+        21.7759655,
+        21.778708,
+        21.8078335,
+        21.807937,
+        21.708451,
+        21.724602
+      ],
+      "median_of_medians_ms": 21.777336750000003,
+      "range_ms": [
+        21.708451,
+        21.807937
+      ],
+      "all_tested_original_bits_equal": false
+    },
+    "stage_spatial_32x32": {
+      "per_image_medians_ms": [
+        28.5849105,
+        28.588357,
+        28.662253,
+        28.6606015,
+        28.5441735,
+        28.54676
+      ],
+      "median_of_medians_ms": 28.586633749999997,
+      "range_ms": [
+        28.5441735,
+        28.662253
+      ],
+      "all_tested_original_bits_equal": false
+    },
+    "stage_spatial_64x16": {
+      "per_image_medians_ms": [
+        42.5380905,
+        42.5412085,
+        42.423452,
+        42.426287,
+        42.5339955,
+        42.537416
+      ],
+      "median_of_medians_ms": 42.535705750000005,
+      "range_ms": [
+        42.423452,
+        42.5412085
+      ],
+      "all_tested_original_bits_equal": false
+    }
+  }
+}

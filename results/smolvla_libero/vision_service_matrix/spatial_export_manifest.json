@@ -1,0 +1,55 @@
+{
+  "scope": "Same parameters, 1024 independent positions, channel reductions and nonlinearities; only native spatial factoring changes; not an NPU speed or quality claim",
+  "source_sha256": "c0ae3ce4aaff8022b968130c281aeef84ad46a6c03daae16417772f430b24052",
+  "initializer_bytes": 21258264,
+  "plans": {
+    "consumer_spatial_1x1024": {
+      "shape": [
+        1,
+        768,
+        1,
+        1024
+      ],
+      "fp32_max_abs": 0.0,
+      "fp32_mae": 0.0,
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "7cc040d8147ed94c124dbbead293455395bb7e04fc3f76bd8096ba86359b7a8d"
+    },
+    "consumer_spatial_16x64": {
+      "shape": [
+        1,
+        768,
+        16,
+        64
+      ],
+      "fp32_max_abs": 0.0,
+      "fp32_mae": 0.0,
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "8d9065e14a8217c0db02b0d177796ee66f6248ec856314d2dbbc723c1be31fbc"
+    },
+    "consumer_spatial_32x32": {
+      "shape": [
+        1,
+        768,
+        32,
+        32
+      ],
+      "fp32_max_abs": 0.0,
+      "fp32_mae": 0.0,
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "3f336f5f9b87f540c1402a651c769cc9b825c02f05ed97385bae7b9ce3a588a5"
+    },
+    "consumer_spatial_64x16": {
+      "shape": [
+        1,
+        768,
+        64,
+        16
+      ],
+      "fp32_max_abs": 0.0,
+      "fp32_mae": 0.0,
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "7e5620d39fb1913bdcc32d966ac54dcb9ef3ac6516fc265932eadc0c8a2fe846"
+    }
+  }
+}

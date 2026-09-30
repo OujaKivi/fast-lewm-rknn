@@ -1,0 +1,22 @@
+{
+  "scope": "One graph; original inputs, normalization and residual geometry; only position-separable MLP geometry changes; no new intermediate storage precision",
+  "source_sha256": "c0ae3ce4aaff8022b968130c281aeef84ad46a6c03daae16417772f430b24052",
+  "plans": {
+    "consumer_stage_spatial_1x1024": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "aafaf587807346b666ca8baa0b038609aed10454161eee0ffa4f1edc1085386d"
+    },
+    "consumer_stage_spatial_16x64": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "58206e6b9060fbd520b4a5c038203eb1e71277eb77e27969f070ed1c34018306"
+    },
+    "consumer_stage_spatial_32x32": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "99a2d6d186e134ae01c617c69819e037ccb7af62334adae520867ea50cd6b4a9"
+    },
+    "consumer_stage_spatial_64x16": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "99bca76bc3ec364e69ba0b84c31c4e538f540001fb80c9a1646bbc1fe04bd28f"
+    }
+  }
+}

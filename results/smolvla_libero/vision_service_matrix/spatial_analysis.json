@@ -1,0 +1,3368 @@
+{
+  "scope": "Per-input paired whole-consumer comparisons, not whole vision/policy or population inference",
+  "cases": {
+    "frame_0.npz": {
+      "cameras": [
+        {
+          "plans": {
+            "original_native": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.940914499999998,
+                "baseline_median_ms": 18.940914499999998,
+                "median_reduction_percent": 0.0,
+                "paired_median_saved_ms": 0.0,
+                "paired_mean_saved_ms": 0.0,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 213,
+                  "attention_output_projection": 905,
+                  "normalization": 1378,
+                  "mlp_fc1_activation": 7262,
+                  "mlp_fc2": 9070
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 905,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 185,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1378,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7262,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9070,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "original_recompiled": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.844521,
+                "baseline_median_ms": 18.940914499999998,
+                "median_reduction_percent": 0.5089168213076367,
+                "paired_median_saved_ms": 0.09683099999999989,
+                "paired_mean_saved_ms": 0.09765479999999985,
+                "wins": 40,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 219,
+                  "attention_output_projection": 920,
+                  "normalization": 1378,
+                  "mlp_fc1_activation": 7264,
+                  "mlp_fc2": 9221
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 920,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 189,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1378,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7264,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9221,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 26,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_1x1024": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.891041,
+                "baseline_median_ms": 18.940914499999998,
+                "median_reduction_percent": 0.2633109399231892,
+                "paired_median_saved_ms": 0.049872999999999834,
+                "paired_mean_saved_ms": 0.05316947499999989,
+                "wins": 40,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 218,
+                  "attention_output_projection": 937,
+                  "normalization": 1388,
+                  "mlp_fc1_activation": 7264,
+                  "mlp_fc2": 9092
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 937,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 189,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1388,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7264,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9092,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_16x64": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 21.4245355,
+                "baseline_median_ms": 18.940914499999998,
+                "median_reduction_percent": -13.112466137788669,
+                "paired_median_saved_ms": -2.485079500000001,
+                "paired_mean_saved_ms": -2.4789768750000003,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 746,
+                  "attention_output_projection": 720,
+                  "normalization": 1490,
+                  "mlp_fc1_activation": 8049,
+                  "mlp_fc2": 10229
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 4,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 720,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 193,
+                    "sdk_workload": "37.5%/31.3%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 264,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1490,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 8049,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10229,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 260,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48238592
+              }
+            },
+            "spatial_32x32": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 28.110087999999998,
+                "baseline_median_ms": 18.940914499999998,
+                "median_reduction_percent": -48.40934950632927,
+                "paired_median_saved_ms": -9.1745685,
+                "paired_mean_saved_ms": -9.17392725,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 848,
+                  "attention_output_projection": 737,
+                  "normalization": 1621,
+                  "mlp_fc1_activation": 14875,
+                  "mlp_fc2": 9978
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 737,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 193,
+                    "sdk_workload": "34.4%/34.4%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 311,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1621,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 14875,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9978,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 315,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48914432
+              }
+            },
+            "spatial_64x16": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 41.891847,
+                "baseline_median_ms": 18.940914499999998,
+                "median_reduction_percent": -121.1711952978828,
+                "paired_median_saved_ms": -22.9567655,
+                "paired_mean_saved_ms": -22.9582095,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 872,
+                  "attention_output_projection": 704,
+                  "normalization": 1875,
+                  "mlp_fc1_activation": 28458,
+                  "mlp_fc2": 9947
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 704,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 192,
+                    "sdk_workload": "34.4%/32.8%/32.8%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 324,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1875,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 28458,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9947,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 327,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 50245632
+              }
+            }
+          }
+        },
+        {
+          "plans": {
+            "original_native": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.9461655,
+                "baseline_median_ms": 18.9461655,
+                "median_reduction_percent": 0.0,
+                "paired_median_saved_ms": 0.0,
+                "paired_mean_saved_ms": 0.0,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 213,
+                  "attention_output_projection": 908,
+                  "normalization": 1380,
+                  "mlp_fc1_activation": 7254,
+                  "mlp_fc2": 9077
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 908,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 185,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1380,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7254,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9077,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "original_recompiled": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.8580855,
+                "baseline_median_ms": 18.9461655,
+                "median_reduction_percent": 0.4648961817629971,
+                "paired_median_saved_ms": 0.09362250000000216,
+                "paired_mean_saved_ms": 0.09190167500000027,
+                "wins": 39,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 216,
+                  "attention_output_projection": 945,
+                  "normalization": 1377,
+                  "mlp_fc1_activation": 7262,
+                  "mlp_fc2": 9119
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 945,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 187,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1377,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7262,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9119,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_1x1024": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.901105,
+                "baseline_median_ms": 18.9461655,
+                "median_reduction_percent": 0.23783440506733866,
+                "paired_median_saved_ms": 0.05249849999999867,
+                "paired_mean_saved_ms": 0.0506902750000001,
+                "wins": 38,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 213,
+                  "attention_output_projection": 947,
+                  "normalization": 1393,
+                  "mlp_fc1_activation": 7253,
+                  "mlp_fc2": 9043
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 947,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 186,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1393,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7253,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9043,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_16x64": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 21.4405795,
+                "baseline_median_ms": 18.9461655,
+                "median_reduction_percent": -13.165798641419023,
+                "paired_median_saved_ms": -2.496746,
+                "paired_mean_saved_ms": -2.4858896249999995,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 749,
+                  "attention_output_projection": 724,
+                  "normalization": 1489,
+                  "mlp_fc1_activation": 8046,
+                  "mlp_fc2": 10212
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 4,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 724,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 193,
+                    "sdk_workload": "37.5%/31.3%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 264,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1489,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 8046,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10212,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 262,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48238592
+              }
+            },
+            "spatial_32x32": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 28.120735500000002,
+                "baseline_median_ms": 18.9461655,
+                "median_reduction_percent": -48.42441601177823,
+                "paired_median_saved_ms": -9.1805495,
+                "paired_mean_saved_ms": -9.17708555,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 844,
+                  "attention_output_projection": 725,
+                  "normalization": 1596,
+                  "mlp_fc1_activation": 14870,
+                  "mlp_fc2": 9988
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 725,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 192,
+                    "sdk_workload": "34.4%/34.4%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 309,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1596,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 14870,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9988,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 314,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48914432
+              }
+            },
+            "spatial_64x16": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 41.906141500000004,
+                "baseline_median_ms": 18.9461655,
+                "median_reduction_percent": -121.1853448656933,
+                "paired_median_saved_ms": -22.962892999999998,
+                "paired_mean_saved_ms": -22.96573675,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 873,
+                  "attention_output_projection": 703,
+                  "normalization": 1875,
+                  "mlp_fc1_activation": 28451,
+                  "mlp_fc2": 10000
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 4,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 703,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 193,
+                    "sdk_workload": "34.4%/32.8%/32.8%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 323,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1875,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 28451,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10000,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 327,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 50245632
+              }
+            }
+          }
+        }
+      ],
+      "telemetry": {
+        "sha256": "71755095c135f2a81fa3f30e2e5e93c0122340bdce698d8556842b57318d86a4",
+        "formal_phase_samples": 233,
+        "npu_hz_observed": [
+          1000000000
+        ],
+        "dram_hz_observed": [
+          2112000000
+        ],
+        "system_observed_ranges": {
+          "/sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq": [
+            2352000,
+            2352000
+          ],
+          "/sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq": [
+            2352000,
+            2352000
+          ],
+          "/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq": [
+            1800000,
+            1800000
+          ],
+          "/sys/class/thermal/thermal_zone2/temp": [
+            37000,
+            40692
+          ],
+          "/sys/class/thermal/thermal_zone0/temp": [
+            37000,
+            40692
+          ],
+          "/sys/class/thermal/thermal_zone5/temp": [
+            36076,
+            39769
+          ],
+          "/sys/class/thermal/thermal_zone3/temp": [
+            37000,
+            40692
+          ],
+          "/sys/class/thermal/thermal_zone1/temp": [
+            36076,
+            39769
+          ],
+          "/sys/class/thermal/thermal_zone6/temp": [
+            37000,
+            40692
+          ],
+          "/sys/class/thermal/thermal_zone4/temp": [
+            37000,
+            40692
+          ]
+        },
+        "note": "50 ms snapshots only; driver busy is not MAC occupancy or measured DDR bandwidth."
+      }
+    },
+    "frame_42.npz": {
+      "cameras": [
+        {
+          "plans": {
+            "original_native": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.9038775,
+                "baseline_median_ms": 18.9038775,
+                "median_reduction_percent": 0.0,
+                "paired_median_saved_ms": 0.0,
+                "paired_mean_saved_ms": 0.0,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 216,
+                  "attention_output_projection": 903,
+                  "normalization": 1374,
+                  "mlp_fc1_activation": 7271,
+                  "mlp_fc2": 9130
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 2,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 903,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 189,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1374,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7271,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9130,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "original_recompiled": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.934939,
+                "baseline_median_ms": 18.9038775,
+                "median_reduction_percent": -0.16431285063076562,
+                "paired_median_saved_ms": -0.030186999999999742,
+                "paired_mean_saved_ms": -0.030937800000000147,
+                "wins": 2,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 217,
+                  "attention_output_projection": 945,
+                  "normalization": 1381,
+                  "mlp_fc1_activation": 7264,
+                  "mlp_fc2": 9054
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 945,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 188,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1381,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7264,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9054,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_1x1024": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.886961499999998,
+                "baseline_median_ms": 18.9038775,
+                "median_reduction_percent": 0.08948428701995859,
+                "paired_median_saved_ms": 0.013707999999999387,
+                "paired_mean_saved_ms": 0.01397780000000024,
+                "wins": 32,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 215,
+                  "attention_output_projection": 940,
+                  "normalization": 1375,
+                  "mlp_fc1_activation": 7263,
+                  "mlp_fc2": 9072
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 2,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 940,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 189,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1375,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7263,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9072,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_16x64": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 21.227525,
+                "baseline_median_ms": 18.9038775,
+                "median_reduction_percent": -12.29190942440248,
+                "paired_median_saved_ms": -2.3281685000000003,
+                "paired_mean_saved_ms": -2.3289553249999995,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 742,
+                  "attention_output_projection": 716,
+                  "normalization": 1490,
+                  "mlp_fc1_activation": 8047,
+                  "mlp_fc2": 10154
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 2,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 716,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 192,
+                    "sdk_workload": "37.5%/31.3%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 263,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1490,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 8047,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10154,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 259,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48238592
+              }
+            },
+            "spatial_32x32": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 28.085448999999997,
+                "baseline_median_ms": 18.9038775,
+                "median_reduction_percent": -48.56977887208589,
+                "paired_median_saved_ms": -9.185070000000001,
+                "paired_mean_saved_ms": -9.190867575,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 847,
+                  "attention_output_projection": 727,
+                  "normalization": 1591,
+                  "mlp_fc1_activation": 14875,
+                  "mlp_fc2": 10026
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 2,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 727,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 193,
+                    "sdk_workload": "34.4%/34.4%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 310,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1591,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 14875,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10026,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 317,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48914432
+              }
+            },
+            "spatial_64x16": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 41.911105500000005,
+                "baseline_median_ms": 18.9038775,
+                "median_reduction_percent": -121.70639594971986,
+                "paired_median_saved_ms": -23.0095615,
+                "paired_mean_saved_ms": -23.011581125,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 872,
+                  "attention_output_projection": 702,
+                  "normalization": 1876,
+                  "mlp_fc1_activation": 28457,
+                  "mlp_fc2": 9958
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 702,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 191,
+                    "sdk_workload": "34.4%/32.8%/32.8%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 322,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1876,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 28457,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9958,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 330,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 50245632
+              }
+            }
+          }
+        },
+        {
+          "plans": {
+            "original_native": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.9012545,
+                "baseline_median_ms": 18.9012545,
+                "median_reduction_percent": 0.0,
+                "paired_median_saved_ms": 0.0,
+                "paired_mean_saved_ms": 0.0,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 220,
+                  "attention_output_projection": 922,
+                  "normalization": 1383,
+                  "mlp_fc1_activation": 7264,
+                  "mlp_fc2": 9067
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 922,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 191,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1383,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7264,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9067,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "original_recompiled": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.9394615,
+                "baseline_median_ms": 18.9012545,
+                "median_reduction_percent": -0.20214002197578296,
+                "paired_median_saved_ms": -0.036457000000000406,
+                "paired_mean_saved_ms": -0.036187650000000196,
+                "wins": 2,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 217,
+                  "attention_output_projection": 910,
+                  "normalization": 1381,
+                  "mlp_fc1_activation": 7260,
+                  "mlp_fc2": 9130
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 4,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 910,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 188,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1381,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7260,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9130,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_1x1024": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.8920675,
+                "baseline_median_ms": 18.9012545,
+                "median_reduction_percent": 0.0486052394035541,
+                "paired_median_saved_ms": 0.008894999999998987,
+                "paired_mean_saved_ms": 0.01045589999999974,
+                "wins": 32,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 217,
+                  "attention_output_projection": 920,
+                  "normalization": 1386,
+                  "mlp_fc1_activation": 7265,
+                  "mlp_fc2": 9103
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 4,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 920,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 187,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1386,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7265,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9103,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_16x64": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 21.230297999999998,
+                "baseline_median_ms": 18.9012545,
+                "median_reduction_percent": -12.322163589723623,
+                "paired_median_saved_ms": -2.3309395000000013,
+                "paired_mean_saved_ms": -2.334256625,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 751,
+                  "attention_output_projection": 725,
+                  "normalization": 1493,
+                  "mlp_fc1_activation": 8046,
+                  "mlp_fc2": 10355
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 725,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 193,
+                    "sdk_workload": "37.5%/31.3%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 265,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1493,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 8046,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10355,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 264,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48238592
+              }
+            },
+            "spatial_32x32": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 28.087347,
+                "baseline_median_ms": 18.9012545,
+                "median_reduction_percent": -48.60043813493966,
+                "paired_median_saved_ms": -9.187551500000001,
+                "paired_mean_saved_ms": -9.195498650000001,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 850,
+                  "attention_output_projection": 726,
+                  "normalization": 1596,
+                  "mlp_fc1_activation": 14871,
+                  "mlp_fc2": 10044
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 2,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 726,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 194,
+                    "sdk_workload": "34.4%/34.4%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 311,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1596,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 14871,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10044,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 317,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48914432
+              }
+            },
+            "spatial_64x16": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 41.9116935,
+                "baseline_median_ms": 18.9012545,
+                "median_reduction_percent": -121.7402739061579,
+                "paired_median_saved_ms": -23.0101475,
+                "paired_mean_saved_ms": -23.011648925,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 874,
+                  "attention_output_projection": 703,
+                  "normalization": 1880,
+                  "mlp_fc1_activation": 28444,
+                  "mlp_fc2": 9972
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 4,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 703,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 191,
+                    "sdk_workload": "34.4%/32.8%/32.8%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 322,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1880,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 28444,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9972,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 331,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 26,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 50245632
+              }
+            }
+          }
+        }
+      ],
+      "telemetry": {
+        "sha256": "96b9eb4a5be8ad9cbbf4671f426105a73808768cf161890b648b68126cccf6c9",
+        "formal_phase_samples": 233,
+        "npu_hz_observed": [
+          1000000000
+        ],
+        "dram_hz_observed": [
+          2112000000
+        ],
+        "system_observed_ranges": {
+          "/sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq": [
+            2352000,
+            2352000
+          ],
+          "/sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq": [
+            2352000,
+            2352000
+          ],
+          "/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq": [
+            1800000,
+            1800000
+          ],
+          "/sys/class/thermal/thermal_zone2/temp": [
+            40692,
+            42538
+          ],
+          "/sys/class/thermal/thermal_zone0/temp": [
+            40692,
+            42538
+          ],
+          "/sys/class/thermal/thermal_zone5/temp": [
+            39769,
+            41615
+          ],
+          "/sys/class/thermal/thermal_zone3/temp": [
+            40692,
+            42538
+          ],
+          "/sys/class/thermal/thermal_zone1/temp": [
+            39769,
+            42538
+          ],
+          "/sys/class/thermal/thermal_zone6/temp": [
+            40692,
+            42538
+          ],
+          "/sys/class/thermal/thermal_zone4/temp": [
+            40692,
+            42538
+          ]
+        },
+        "note": "50 ms snapshots only; driver busy is not MAC occupancy or measured DDR bandwidth."
+      }
+    },
+    "frame_83.npz": {
+      "cameras": [
+        {
+          "plans": {
+            "original_native": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.930714,
+                "baseline_median_ms": 18.930714,
+                "median_reduction_percent": 0.0,
+                "paired_median_saved_ms": 0.0,
+                "paired_mean_saved_ms": 0.0,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 215,
+                  "attention_output_projection": 944,
+                  "normalization": 1380,
+                  "mlp_fc1_activation": 7260,
+                  "mlp_fc2": 9108
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 944,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 187,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1380,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7260,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9108,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "original_recompiled": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.91336,
+                "baseline_median_ms": 18.930714,
+                "median_reduction_percent": 0.09167113295355245,
+                "paired_median_saved_ms": 0.02085350000000119,
+                "paired_mean_saved_ms": 0.018986975000000062,
+                "wins": 35,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 217,
+                  "attention_output_projection": 912,
+                  "normalization": 1382,
+                  "mlp_fc1_activation": 7258,
+                  "mlp_fc2": 9107
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 912,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 188,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1382,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7258,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9107,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_1x1024": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.9655675,
+                "baseline_median_ms": 18.930714,
+                "median_reduction_percent": -0.18411085815357442,
+                "paired_median_saved_ms": -0.03514449999999947,
+                "paired_mean_saved_ms": -0.03825102499999966,
+                "wins": 1,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 218,
+                  "attention_output_projection": 905,
+                  "normalization": 1384,
+                  "mlp_fc1_activation": 7263,
+                  "mlp_fc2": 9053
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 905,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 190,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1384,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7263,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9053,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_16x64": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 21.2845485,
+                "baseline_median_ms": 18.930714,
+                "median_reduction_percent": -12.433944646778784,
+                "paired_median_saved_ms": -2.3550010000000015,
+                "paired_mean_saved_ms": -2.35837705,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 752,
+                  "attention_output_projection": 721,
+                  "normalization": 1492,
+                  "mlp_fc1_activation": 8045,
+                  "mlp_fc2": 10237
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 721,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 199,
+                    "sdk_workload": "37.5%/31.3%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 263,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1492,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 8045,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10237,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 262,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48238592
+              }
+            },
+            "spatial_32x32": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 28.0558515,
+                "baseline_median_ms": 18.930714,
+                "median_reduction_percent": -48.202817389771994,
+                "paired_median_saved_ms": -9.131116499999997,
+                "paired_mean_saved_ms": -9.1345431,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 847,
+                  "attention_output_projection": 730,
+                  "normalization": 1597,
+                  "mlp_fc1_activation": 14869,
+                  "mlp_fc2": 10031
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 730,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 194,
+                    "sdk_workload": "34.4%/34.4%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 309,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1597,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 14869,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10031,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 316,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48914432
+              }
+            },
+            "spatial_64x16": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 41.9439265,
+                "baseline_median_ms": 18.930714,
+                "median_reduction_percent": -121.56547555469915,
+                "paired_median_saved_ms": -23.0181705,
+                "paired_mean_saved_ms": -23.022180675,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 876,
+                  "attention_output_projection": 705,
+                  "normalization": 1884,
+                  "mlp_fc1_activation": 28447,
+                  "mlp_fc2": 9911
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 705,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 194,
+                    "sdk_workload": "34.4%/32.8%/32.8%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 322,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1884,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 28447,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9911,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 331,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 26,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 50245632
+              }
+            }
+          }
+        },
+        {
+          "plans": {
+            "original_native": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.928528999999997,
+                "baseline_median_ms": 18.928528999999997,
+                "median_reduction_percent": 0.0,
+                "paired_median_saved_ms": 0.0,
+                "paired_mean_saved_ms": 0.0,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 218,
+                  "attention_output_projection": 901,
+                  "normalization": 1371,
+                  "mlp_fc1_activation": 7266,
+                  "mlp_fc2": 9124
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 4,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 901,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 188,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1371,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7266,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9124,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "original_recompiled": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.912926,
+                "baseline_median_ms": 18.928528999999997,
+                "median_reduction_percent": 0.08243112816637144,
+                "paired_median_saved_ms": 0.019104000000000454,
+                "paired_mean_saved_ms": 0.021932850000000316,
+                "wins": 31,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 216,
+                  "attention_output_projection": 902,
+                  "normalization": 1384,
+                  "mlp_fc1_activation": 7263,
+                  "mlp_fc2": 9009
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 2,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 902,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 188,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1384,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7263,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9009,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_1x1024": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 18.9718405,
+                "baseline_median_ms": 18.928528999999997,
+                "median_reduction_percent": -0.2288159845913018,
+                "paired_median_saved_ms": -0.04258149999999716,
+                "paired_mean_saved_ms": -0.04276454999999988,
+                "wins": 1,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 214,
+                  "attention_output_projection": 928,
+                  "normalization": 1374,
+                  "mlp_fc1_activation": 7269,
+                  "mlp_fc2": 9081
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 928,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 187,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1374,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 7269,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9081,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 28311552,
+                "dma_bytes": 50724864
+              }
+            },
+            "spatial_16x64": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 21.284112999999998,
+                "baseline_median_ms": 18.928528999999997,
+                "median_reduction_percent": -12.444622611720124,
+                "paired_median_saved_ms": -2.3576265000000003,
+                "paired_mean_saved_ms": -2.3586981249999996,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 748,
+                  "attention_output_projection": 726,
+                  "normalization": 1487,
+                  "mlp_fc1_activation": 8049,
+                  "mlp_fc2": 10159
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 726,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 193,
+                    "sdk_workload": "37.5%/31.3%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 265,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1487,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 8049,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10159,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 261,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48238592
+              }
+            },
+            "spatial_32x32": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 28.0608125,
+                "baseline_median_ms": 18.928528999999997,
+                "median_reduction_percent": -48.2461341819008,
+                "paired_median_saved_ms": -9.135054,
+                "paired_mean_saved_ms": -9.1473768,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 846,
+                  "attention_output_projection": 725,
+                  "normalization": 1610,
+                  "mlp_fc1_activation": 14875,
+                  "mlp_fc2": 10065
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 3,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 1,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 725,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 192,
+                    "sdk_workload": "34.4%/34.4%/31.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 311,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1610,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 14875,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 10065,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 315,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 24,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 48914432
+              }
+            },
+            "spatial_64x16": {
+              "bit_gate_vs_original_native": true,
+              "errors_vs_original_native": {
+                "max_abs": 0,
+                "mae": 0,
+                "bitwise_equal": true
+              },
+              "vs_original_native": {
+                "candidate_median_ms": 41.943346,
+                "baseline_median_ms": 18.928528999999997,
+                "median_reduction_percent": -121.58798499344563,
+                "paired_median_saved_ms": -23.0178815,
+                "paired_mean_saved_ms": -23.023021325,
+                "wins": 0,
+                "trials": 40
+              },
+              "sdk_profile": {
+                "sdk_reported_group_time_us": {
+                  "other": 874,
+                  "attention_output_projection": 709,
+                  "normalization": 1876,
+                  "mlp_fc1_activation": 28461,
+                  "mlp_fc2": 9931
+                },
+                "operators": [
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.10/Add_1_output_0_native_nchw",
+                    "time_us": 2,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "InputOperator",
+                    "name": "InputOperator:/vision_model/encoder/layers.11/self_attn/Reshape_3_output_0_native_nchw",
+                    "time_us": 0,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "Conv",
+                    "name": "Conv:/vision_model/encoder/layers.11/self_attn/out_proj/MatMul#2",
+                    "time_us": 709,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Add",
+                    "name": "Add:/vision_model/encoder/layers.11/Add",
+                    "time_us": 193,
+                    "sdk_workload": "34.4%/32.8%/32.8%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_output_0_tp#1_tp",
+                    "time_us": 323,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "exNorm",
+                    "name": "exNorm:/vision_model/encoder/layers.11/layer_norm2/LayerNormalization#1",
+                    "time_us": 1876,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvExGelu",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc1/MatMul#2",
+                    "time_us": 28461,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "ConvAdd",
+                    "name": "Conv:/vision_model/encoder/layers.11/mlp/fc2/MatMul#2_ConvAdd",
+                    "time_us": 9931,
+                    "sdk_workload": "33.3%/33.3%/33.3%"
+                  },
+                  {
+                    "operation": "Transpose",
+                    "name": "Transpose:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw_tp",
+                    "time_us": 331,
+                    "sdk_workload": "100.0%/0.0%/0.0%"
+                  },
+                  {
+                    "operation": "OutputOperator",
+                    "name": "OutputOperator:/vision_model/encoder/layers.11/Add_1_output_0_native_nchw",
+                    "time_us": 25,
+                    "sdk_workload": "0.0%/0.0%/0.0%"
+                  }
+                ],
+                "note": "SDK profiled times/workload only; not production timing, MAC occupancy or physical DDR."
+              },
+              "sdk_allocation_fields": {
+                "weight_bytes": 10641920,
+                "internal_bytes": 25165824,
+                "dma_bytes": 50245632
+              }
+            }
+          }
+        }
+      ],
+      "telemetry": {
+        "sha256": "64436614a22755c546b1cb49907f0224b29dfce1fa5292e2a42471338ec7d208",
+        "formal_phase_samples": 234,
+        "npu_hz_observed": [
+          1000000000
+        ],
+        "dram_hz_observed": [
+          2112000000
+        ],
+        "system_observed_ranges": {
+          "/sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq": [
+            2352000,
+            2352000
+          ],
+          "/sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq": [
+            2352000,
+            2352000
+          ],
+          "/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq": [
+            1800000,
+            1800000
+          ],
+          "/sys/class/thermal/thermal_zone2/temp": [
+            41615,
+            43461
+          ],
+          "/sys/class/thermal/thermal_zone0/temp": [
+            42538,
+            43461
+          ],
+          "/sys/class/thermal/thermal_zone5/temp": [
+            41615,
+            43461
+          ],
+          "/sys/class/thermal/thermal_zone3/temp": [
+            41615,
+            44384
+          ],
+          "/sys/class/thermal/thermal_zone1/temp": [
+            41615,
+            43461
+          ],
+          "/sys/class/thermal/thermal_zone6/temp": [
+            41615,
+            43461
+          ],
+          "/sys/class/thermal/thermal_zone4/temp": [
+            42538,
+            44384
+          ]
+        },
+        "note": "50 ms snapshots only; driver busy is not MAC occupancy or measured DDR bandwidth."
+      }
+    }
+  }
+}

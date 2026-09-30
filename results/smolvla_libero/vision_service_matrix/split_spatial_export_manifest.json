@@ -1,0 +1,28 @@
+{
+  "scope": "Same position/channel arithmetic, normalization stays rank-3/flat; prefix and MLP split then native spatial MLP; no NPU speed claim",
+  "source_sha256": "c0ae3ce4aaff8022b968130c281aeef84ad46a6c03daae16417772f430b24052",
+  "normalization_tensor": "/vision_model/encoder/layers.11/layer_norm2/LayerNormalization_output_0",
+  "residual_tensor": "/vision_model/encoder/layers.11/Add_output_0",
+  "plans": {
+    "mlp_original": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "19e24e95e7d26f1904801552a3300e7cc91505744160251f29d97456ad305638"
+    },
+    "mlp_spatial_1x1024": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "349426340fe6bcabfc4b2e1ee21f170420bc091b7c093bd232e460ab1d8427a4"
+    },
+    "mlp_spatial_16x64": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "8cb9008e9d4347f39d6b123044b068304da06589441c8eebec37256a95c69488"
+    },
+    "mlp_spatial_32x32": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "a0690c0efd81e71df714234deb60375f140b57ac26deb7d871578c46238ace56"
+    },
+    "mlp_spatial_64x16": {
+      "fp32_bitwise_equal": true,
+      "onnx_sha256": "70357ce5cb2ba815ee515de2520e4a18d0ae12df9ec51db9335f57fbc9579105"
+    }
+  }
+}

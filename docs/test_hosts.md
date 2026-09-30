@@ -33,6 +33,11 @@ Python installation.
 
 ## Verified connections
 
+2026-09-30: both RK3588 and `192.168.77.10` are reachable through existing SSH
+credentials. The GPU host's existing SmolVLA Python/checkpoint paths below and
+RTX 5060 visibility were checked again. This restores access only, not a new
+cloud-latency, distributed-inference or closed-loop evaluation result.
+
 These connections and runtime files were checked on 2026-09-24. The SSH
 config and private keys remain outside the repository. The RK alias below
 depends on the current Mac's `~/.ssh/config_rknn`; on a new workstation,
