@@ -2,6 +2,11 @@
 
 Status: proposed main route, not an established result. 2026-09-25.
 
+2026-09-30: current scope and execution gates are in the
+[main-line plan](MAINLINE_EXECUTION_PLAN_2026-09-30.md). This historical proposal
+is not revived: no cached views, lossy payload, freshness premise or changed
+control protocol. Same-observation collaboration must beat strong endpoints.
+
 2026-09-28 status correction: historical proposal, not the current main route.
 Cached-view, token reduction, lossy transfer and freshness-dependent claims
 are outside the current scope. Only the measured same-observation lossless

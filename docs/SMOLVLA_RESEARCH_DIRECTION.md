@@ -4,6 +4,11 @@ Updated 2026-09-26. Candidate mechanism, not an established paper claim.
 Scope: unchanged model, observations, action tokens, denoising steps, and
 control protocol. No approximate feature reuse or policy substitution.
 
+2026-09-30 project update: the current working question and execution order are
+in the [main-line plan and self-audit](MAINLINE_EXECUTION_PLAN_2026-09-30.md).
+Matched full services and collaboration feasibility now precede micro-probes.
+This historical note does not define the current project priority.
+
 2026-09-29 followup: the actual action cross boundary now has complete native
 head-parallel and numerical ablations. Old output-weight reindexing loses to
 the head control and changes rounding; compact groups plus CPU native bit

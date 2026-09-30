@@ -1,7 +1,8 @@
 # SmolVLA systems idea candidates
 
 Updated: 2026-09-30. This is a decision log, not a list of claimed contributions.
-Latest plan: [prioritized visual tasks and execution update](PLAN_VISION_BOUNDARIES_2026-09-30.md).
+Latest project plan: [one main line, experiment priorities and self-audit](MAINLINE_EXECUTION_PLAN_2026-09-30.md).
+Earlier executed subplan: [visual services and boundaries](PLAN_VISION_BOUNDARIES_2026-09-30.md).
 Latest experiment: [actual vision service and stage-geometry counterfactuals](SMOLVLA_VISION_SERVICE_VALIDATION_2026-09-30.md).
 Earlier full-policy result: [recorded replay, tail trace and lossless payload](SMOLVLA_POLICY_REPLAY_VALIDATION.md).
 Earlier boundary followup: [numerical/head/bit-copy audit](SMOLVLA_CROSS_FOLLOWUP_VALIDATION.md).
@@ -20,6 +21,35 @@ untested mechanism with a named experiment, not automatically a baseline;
 `reject` = a specific claim contradicted in its tested scope, or out of scope.
 No experiment is currently running. The ranks below are historical, not the
 current execution order.
+
+## Current project decision: one main line, not a queue of micro-probes
+
+Working question: **Can local NPU and remote GPU collaboration complete an
+unchanged multi-view flow VLA action chunk sooner than optimized all-local and
+streaming all-cloud execution on a constrained link?** This is a falsifiable
+research route, not an established contribution. The proposed coupling between
+placement, payload and local execution must earn an increment over ordinary
+offloading and the best static plan; a best-local-configuration reversal is not
+an observed fact or a mandatory invented motivation.
+
+| Current priority | Required evidence / deliverable | Decision |
+|---|---|---|
+| P0: matched complete services and dependencies | GPU vision/prefill/whole flow, all-local and streaming all-cloud with one request boundary; reuse completed local matrix | Next main task; no old CUDA closed-loop number as the new remote service |
+| P1: complete collaboration feasibility | Legal branch/join plans, predefined network range, real payload/codec/link costs, optimistic bounds then actual link validation | Before scheduler construction; stop this latency route if even the optimistic hybrid is dominated |
+| P2: one critical-path mechanism | Joint vs placement-only/local-only/best-static controls; identical-work overlap ablation | Conditional on P1; static offloading absorbing the gain is not a new adaptive mechanism |
+| P3: integrated system evidence | More episodes/instructions, quality, network traces, tails, thermals and isolated memory/energy | Conditional on a legal, important mechanism; no present claim of completion |
+
+The historical C04 record (same-observation branch collaboration) supplies the
+initial feasibility question, not a ready-made paper solution. Stage geometry
+is now a bounded numerical support item, not project priority one. C17 (native
+bit bridges) is retained as local mechanism evidence, with no all-layer expansion.
+C08/C13 (within-attention backend diagnostics), C15 (prefix/first-step overlap),
+C05/C10 (hedge/migration) and C16 (strict speculation compatibility) are paused
+unless the full trace makes them necessary. Historical IDs index evidence;
+they do not denote separate promised modules or automatic fallback stories.
+This documentation update contains no new hardware results.
+
+## Evidence and earlier candidate decisions
 
 Full-policy importance gate (2026-09-29): P0 replays three actual LIBERO demonstration frames,
 with both cameras, 32 action layers and ten dependent original FP32 Euler steps.
@@ -52,8 +82,9 @@ head parallelism's 11.46-11.50 ms, a 10.3%-10.7% median increment. The final
 independent 512-case check passes bit parity. p95 is worse in one session. Full-policy
 importance, generality, tail causes and novelty remain open. This is neither
 a deployed full-policy replacement nor an established paper line.
-C04 remains
-a separate lossless payload/latency-region audit only. C15 gets a dependency and
+C04 previously remained
+a separate lossless payload/latency-region audit only; its feasibility question
+is now organized by the main-line plan above. C15 previously got a dependency and
 ceiling check, not a full streaming implementation. C16 is an AR/VLM reserve,
 not directly compatible with the current flow sampler. C13 is now only an
 auxiliary backend probe, not the next main experiment. The native-loop strong
@@ -67,7 +98,7 @@ two independent sessions, eight rotating trials per plan/mode. Including native
 input/output, single-camera head improvement is 32.4%-32.8%; dual-camera head
 serial versus fused camera concurrency is only 6.17%-6.35%. Head/full twelve-layer
 and swap/restore gates pass, but split/fused connector still differs. Head wins in
-both branch counts: the best-configuration crossing required by C04 is **not proven**.
+both branch counts: the earlier proposed best-configuration crossing is **not proven**.
 
 The actual last-layer consumer does not show a large restore matrix. Equivalent
 whole-consumer 16x64/32x32/64x16 native geometry is bit-equal but slower. Cutting
@@ -78,32 +109,23 @@ becomes Conv + Add; rounding provenance is not closed. A stronger simple control
 reshape only after Norm inside one graph, is also slower: the compiler moves it
 before Norm and converts H into batch. This is a stage-geometry/compiler-boundary
 hypothesis, not a lossless speed claim, not a full-policy result or a paper line.
-Whole-geometry and simple single-graph reshapes stop here. Next task: preserve
-the original numerical protocol before expanding any layers. GPU/simulator
+Whole-geometry and simple single-graph reshapes stop here. Within this support
+item, preserving original numerics is required before any layer expansion;
+it is no longer the next project experiment. GPU/simulator
 access is restored; no new cloud service or closed-loop result yet.
 
-**Next exploration order:** first diagnose/retain original fusion numerics for
-the measured visual stage-geometry boundary; expand representative layers/full
-vision only after that gate. Actual service matrix is done, not a future task.
-P0 recorded full-policy trace completed; further
-tasks/closed loop remain independent validation. Keep C17 as a local mechanism,
-seek another important same-cause boundary instead of immediate all-layer expansion.
-For independent C04: measured cloud/local services and network feasible-region
-audit, without claiming an observed best-local-contract switch;
-P2 C08 within-attention backend reversal diagnostic; P3 C04 lossless payload
-and cloud/local winning-region audit. C17 does not revive the losing C14
-consumer: it changes the measured boundary to include actual dynamic Q
-production and the output projection. Old weight-permutation variants lose
-to the stronger parallel alternative; the native bit-copy variant passes
-local median/numerical gates, not full-policy or tail/generalization gates.
-These are independent research candidates, not three modules or automatic
-fallbacks. Important small mechanisms remain eligible; there is no established
-CCF-A main line yet. FC1 partition is not the next research experiment. The vision rewrite also
-needs a separate numerical gate before any real-policy integration.
+**Execution order is now P0 -> P1 -> conditional P2/P3 in the main-line plan.**
+The earlier P0 recorded local replay is completed; the new P0 fills the missing
+matched remote services and request-level accounting. Do not repeat completed
+local service/trace work or promote stage-geometry shape sweeps to the main task.
+Native bit-copy passes local median/numerical gates, not integrated policy or
+tail/generalization gates. Vision rewrites need their own numerical gate.
+There is still no established CCF-A contribution; the project now has one
+working question and a bounded go/no-go sequence instead of competing probes.
 
 | Earlier Rank / ID | Candidate / central question | Evidence already in hand | Strongest simple explanation or baseline | Next decisive test and kill condition | Status |
 |---|---|---|---|---|---|
-| current bounded / stage geometry | **Which compiler boundary can preserve a useful stage-specific geometry without changing arithmetic?** | Same 1024 positions/weights, actual last-layer inputs from six images, 40 rotating trials. Whole 64x16 consumer ~41.9 ms vs original ~18.9, all tested bits pass. Flat normalization prefix + spatial MLP ~15.8-16.0 ms, extra call charged; spatial/flat split bits pass, original-consumer bits fail (max 0.5). In-graph post-Norm reshape loses (~42.4-42.5 ms at 64x16); profile places reshape before Norm and maps H to batch. FC2 improves in the true split geometry; no physical DDR/occupancy claim. | Original/recompiled consumer; rank-only 1x1024; whole-consumer factoring; matched flat split; single-graph local reshape. Ordinary graph partition/layout specialization are old. Splitting itself changes ConvAdd fusion, so speed is not yet a legal replacement. | Audit Norm/residual/FC2 and keep original fusion/rounding while retaining B=1 spatial MLP. Stop deployment candidate if speed requires relaxing numerical protocol. Only then test early/middle/final layers, complete dual-camera vision and policy; no times-twelve extrapolation. | mechanism clue survives two independent process schedules; original numerics, whole-policy importance and novelty open |
+| bounded support / stage geometry | **Which compiler boundary can preserve a useful stage-specific geometry without changing arithmetic?** | Same 1024 positions/weights, actual last-layer inputs from six images, 40 rotating trials. Whole 64x16 consumer ~41.9 ms vs original ~18.9, all tested bits pass. Flat normalization prefix + spatial MLP ~15.8-16.0 ms, extra call charged; spatial/flat split bits pass, original-consumer bits fail (max 0.5). In-graph post-Norm reshape loses (~42.4-42.5 ms at 64x16); profile places reshape before Norm and maps H to batch. FC2 improves in the true split geometry; no physical DDR/occupancy claim. | Original/recompiled consumer; rank-only 1x1024; whole-consumer factoring; matched flat split; single-graph local reshape. Ordinary graph partition/layout specialization are old. Splitting itself changes ConvAdd fusion, so speed is not yet a legal replacement. | At most an initial 1-2 workday numerical provenance audit, subordinate to P0/P1; no more shape sweeps or full-layer expansion. Stop if speed needs relaxed numerics. Reopen integration only with a legal interface and full critical-path importance. | demoted to bounded support; no legal original-anchor speedup or paper claim |
 | local hold / C17 | **Native bit bridges instead of bending the arithmetic producer.** Can compact Attention geometry coexist with original Q/RoPE and O arithmetic through cheaper native boundaries? | Complete Q/RoPE/Attention/O/residual, 19 controls. Old weight permutation fails bits and loses to head parallelism. Two strict compact combinations lose. Profiles locate CPU reshape/960x960 recovery Conv; C8 lanes permit 120 contiguous bit-copy tiles/direction. Matched level-3 S13-S15: 10.27-10.29 ms versus head control 11.46-11.50, all prep/sync/dispatch charged; independent 512-case bit audit passes. Original Q/O unchanged. State 583680->194560 bytes. Observation-driven K/V and suffix replay with CPU-reconstructed hidden: 30 steps pass bits, 10.52-10.53 versus 11.72-11.74 ms, 60 trials/input. Only ~1.2 ms/block, not integrated C17 policy. Three 500-trial diagnostics narrow tails to NPU calls, not bit copies/wake; cause unknown. | C06 ordinary ready; native 5+5+5 head parallelism with persistent workers; compact 2+2+1 group parallelism with compiler restore; original-head-order packing; one-direction restoration; bidirectional bridges without group parallelism; static-only and matched level-3 controls. GQA, head parallelism, CPU transposes/native interop alone are not novel. | Do not expand all 32 layers on the small measured increment. Find another important same-cause boundary/shape or prove integrated gain over strongest whole graph. Preserve FP32 Euler and dynamic self masks/KV. Do not infer DDR/capacity from state size; no root-cause or stable tail guarantee yet. | local mechanism survives observed conditions; importance gate limits expansion; integrated policy/generality/novelty open |
 | 1 / C01 | **Fusion versus usable parallelism.** Can independent camera/head work become parallel without paying a host-layout boundary at every attention? | Historical B1 head gain 31.4%, dual-view increment 4%-6%. Now actual six images/two sessions, native I/O included: fused single 766.43-768.27 ms vs head 516.03-518.65; fused camera concurrency 1102.94-1105.20 vs head camera-serial 1033.63-1035.12. Actual head single gain 32.4%-32.8%, dual 6.17%-6.35%. Extra camera concurrency <1%. All head/full twelve-layer/state gates pass; split/fused connector MAE 0.01376-0.01817, max up to 0.3125. Full-policy fused vision ~53%; head-policy quality untested. | Orca/CoDL/HeteroInfer/Rammer already cross inter-/intra-operator boundaries. Head parallelism/native I/O alone are not new. Fused whole-camera concurrency absorbs most single-view win; direct stage complementarity unsupported. | Service matrix completed. Keep fused policy control; audit complete head-policy numerical/quality gate independently. Stage-geometry candidate is a different boundary question, not more head threads. No multi-view scheduler before a measured remaining mechanism increment. | actual-input service/state validation completed; head policy quality/generality open; scheduler paused |
 | 2 / C12 | **Different parallel contracts inside the MLP.** Can output-channel partitions of FC1+pointwise activation feed full FC2 through a native activation buffer? | Original 12-layer profile: FC1+activation 87.23 ms, single-core without mask7 scaling; FC2 266.06 ms on one core versus 108.76 ms on three. No partitioned FC1 timing yet. The optimistic threefold FC1 ceiling saves ~58 ms/view before costs, using the old profile rather than a measured current-pipeline bound. | Ordinary tensor partitioning, Megatron-style column-parallel first GEMM/activation, compiler-native multi-core GEMM, and repaired fused consumer. Not VLA-specific, and single-core mapping is not proof of a defect. | Optional bounded whole-consumer test only. Reject as a paper centerpiece without a broader demonstrated mechanism; do not divert the next main experiments to this remaining hotspot. | optional engineering; downgraded, not next main test |
